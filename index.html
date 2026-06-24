@@ -552,6 +552,10 @@
     }
 
     .catalog-card {
+      --tilt-x: 0deg;
+      --tilt-y: 0deg;
+      --glow-x: 50%;
+      --glow-y: 50%;
       position: relative;
       overflow: hidden;
       min-height: 520px;
@@ -560,6 +564,8 @@
       background: linear-gradient(180deg, rgba(11, 28, 61, 0.86), rgba(4, 13, 32, 0.94));
       box-shadow: 0 28px 80px rgba(0, 0, 0, 0.26);
       isolation: isolate;
+      transform: perspective(1200px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(var(--motion-y, 0px));
+      transform-style: preserve-3d;
     }
 
     .catalog-carousel {
@@ -594,6 +600,7 @@
       inset: 0;
       z-index: -1;
       background:
+        radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(126, 164, 255, 0.26), transparent 24rem),
         linear-gradient(180deg, rgba(2, 7, 18, 0.06), rgba(2, 7, 18, 0.86) 72%),
         linear-gradient(90deg, rgba(2, 7, 18, 0.72), rgba(2, 7, 18, 0.12));
     }
@@ -612,6 +619,7 @@
       right: 26px;
       bottom: 26px;
       z-index: 1;
+      transform: translateZ(54px);
     }
 
     .catalog-index {
@@ -2188,6 +2196,14 @@
       transform: translate3d(var(--motion-x, 0px), calc(var(--motion-y, 0px) - 3px), 0);
     }
 
+    .catalog-card.motion-item {
+      transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translate3d(var(--motion-x, 0px), var(--motion-y, 0px), 0);
+    }
+
+    .catalog-card.motion-item:hover {
+      transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translate3d(var(--motion-x, 0px), calc(var(--motion-y, 0px) - 6px), 0);
+    }
+
     .service-card.is-motion-active,
     .product-card.is-motion-active,
     .catalog-card.is-motion-active,
@@ -2289,9 +2305,9 @@
         <div class="catalog-grid">
           <article class="catalog-card" data-modal-title="Beauty Queens and King" data-modal-body="SENZ supports pageant leaders and titleholders with public image direction, PR, social presence, campaign visuals, and polished digital assets." data-modal-visual="visual-strategist" data-modal-kicker="Pageant Image System" data-modal-items="Public Image|Visual Direction|Campaign Presence" data-modal-chips="Pageants|PR|Digital Assets" data-modal-metric="Crown" data-modal-caption="A premium public-image system for beauty queens, kings, and titleholders.">
             <div class="catalog-carousel" aria-hidden="true">
-              <span class="catalog-slide" style="background-image: url('assets/senz-premium-leadership-portrait.png');"></span>
-              <span class="catalog-slide" style="background-image: url('assets/senz-premium-strategy-team.png');"></span>
-              <span class="catalog-slide" style="background-image: url('assets/senz-blog-clear-messaging.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-catalog-pageant-01.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-catalog-pageant-02.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-catalog-pageant-03.png');"></span>
             </div>
             <div class="catalog-body">
               <span class="catalog-index">01 / Pageant</span>
@@ -2307,9 +2323,9 @@
 
           <article class="catalog-card" data-modal-title="Politicians or Public Figure" data-modal-body="SENZ helps political personalities and public figures sharpen credibility, narrative, visual presence, audience trust, and public-facing communication systems." data-modal-visual="visual-pr" data-modal-kicker="Public Trust Board" data-modal-items="Narrative|Credibility Signals|Audience Trust" data-modal-chips="Public Figure|Reputation|Message" data-modal-metric="Trust" data-modal-caption="A visibility and credibility system for leaders who need disciplined public presence.">
             <div class="catalog-carousel" aria-hidden="true">
-              <span class="catalog-slide" style="background-image: url('assets/senz-blog-pr-trust.png');"></span>
-              <span class="catalog-slide" style="background-image: url('assets/senz-corporate-team-facility.png');"></span>
-              <span class="catalog-slide" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-catalog-public-figure-01.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-catalog-public-figure-02.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-catalog-public-figure-03.png');"></span>
             </div>
             <div class="catalog-body">
               <span class="catalog-index">02 / Public Figure</span>
@@ -2325,9 +2341,9 @@
 
           <article class="catalog-card" data-modal-title="Events: Voting and Tabulation" data-modal-body="SENZ builds event systems for voting, tabulation, ticket selling, dashboards, and live audience engagement for pageants, competitions, shows, and brand activations." data-modal-visual="visual-events" data-modal-kicker="Live Event System" data-modal-items="Ticket Sales|Live Voting|Tabulation Dashboard" data-modal-chips="Voting|Tabulation|Ticketing" data-modal-metric="Live" data-modal-caption="A modern event stack for voting, tabulation, ticketing, and live show operations.">
             <div class="catalog-carousel" aria-hidden="true">
-              <span class="catalog-slide" style="background-image: url('assets/senz-blog-digital-presence.png');"></span>
-              <span class="catalog-slide" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
-              <span class="catalog-slide" style="background-image: url('assets/senz-corporate-team-facility.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-catalog-events-01.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-catalog-events-02.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-catalog-events-03.png');"></span>
             </div>
             <div class="catalog-body">
               <span class="catalog-index">03 / Events</span>
@@ -2762,6 +2778,25 @@
             event.preventDefault();
             openModal(card.dataset.modalTitle, card.dataset.modalBody, card);
           }
+        });
+      });
+
+      document.querySelectorAll('.catalog-card').forEach((card) => {
+        card.addEventListener('pointermove', (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width;
+          const y = (event.clientY - rect.top) / rect.height;
+          card.style.setProperty('--tilt-y', `${(x - 0.5) * 7}deg`);
+          card.style.setProperty('--tilt-x', `${(0.5 - y) * 7}deg`);
+          card.style.setProperty('--glow-x', `${Math.round(x * 100)}%`);
+          card.style.setProperty('--glow-y', `${Math.round(y * 100)}%`);
+        });
+
+        card.addEventListener('pointerleave', () => {
+          card.style.setProperty('--tilt-x', '0deg');
+          card.style.setProperty('--tilt-y', '0deg');
+          card.style.setProperty('--glow-x', '50%');
+          card.style.setProperty('--glow-y', '50%');
         });
       });
 
