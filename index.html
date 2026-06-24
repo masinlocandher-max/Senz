@@ -101,30 +101,16 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 18px;
+      gap: 14px;
       min-width: 235px;
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
-      position: relative;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #83b1ff 0%, #0057ff 54%, #001e88 100%);
-      transform: rotate(45deg);
-      box-shadow: 0 0 30px rgba(0, 87, 255, 0.66);
-    }
-
-    .brand-mark::before {
-      content: "";
-      position: absolute;
-      width: 21px;
-      height: 29px;
-      left: 10px;
-      top: 7px;
-      border-radius: 14px 14px 5px 14px;
-      background: #061020;
-      transform: rotate(-45deg);
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      display: block;
+      filter: none;
     }
 
     .brand-word {
@@ -193,7 +179,10 @@
     .service-card,
     .value-card,
     .focus-card,
-    .work-card {
+    .work-card,
+    .product-card,
+    .portfolio-card,
+    .portfolio-strip-card {
       transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
     }
 
@@ -210,8 +199,10 @@
     .value-card:hover,
     .focus-card:hover,
     .service-card:hover,
-    .work-card:hover {
-      transform: translateY(-6px);
+    .work-card:hover,
+    .product-card:hover,
+    .portfolio-card:hover {
+      transform: translateY(-3px);
       border-color: rgba(111, 152, 255, 0.7);
       box-shadow: 0 28px 80px rgba(0, 87, 255, 0.16);
     }
@@ -219,8 +210,20 @@
     .service-card,
     .value-card,
     .focus-card,
-    .work-card {
+    .work-card,
+    .product-card {
+      cursor: default;
+    }
+
+    [data-modal-title] {
       cursor: pointer;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    [data-modal-title]:focus-visible {
+      outline: 2px solid rgba(142, 174, 255, 0.95);
+      outline-offset: 4px;
     }
 
     .mobile-toggle {
@@ -299,9 +302,9 @@
       padding: 126px 0 46px;
       isolation: isolate;
       background:
-        linear-gradient(90deg, rgba(2, 7, 19, 0.98) 0%, rgba(2, 7, 19, 0.82) 38%, rgba(2, 7, 19, 0.22) 100%),
-        linear-gradient(180deg, rgba(2, 7, 19, 0.08) 0%, rgba(2, 7, 19, 0.35) 72%, #020713 100%),
-        url("assets/senz-hero-building.jpeg") 58% center / cover no-repeat;
+        linear-gradient(90deg, rgba(2, 7, 19, 0.92) 0%, rgba(2, 7, 19, 0.72) 42%, rgba(2, 7, 19, 0.2) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.04) 0%, rgba(2, 7, 19, 0.28) 72%, #020713 100%),
+        url("assets/senz-premium-hero-facility.png") 58% center / cover no-repeat;
     }
 
     .hero::before,
@@ -335,12 +338,16 @@
     .hero-copy {
       max-width: 620px;
       padding-top: 36px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.54);
     }
 
     .offer-line {
       margin-bottom: 22px;
-      color: rgba(255, 255, 255, 0.74);
+      color: rgba(247, 249, 255, 0.9);
       font-size: 17px;
+      font-weight: 700;
     }
 
     .offer-line span {
@@ -351,6 +358,16 @@
     .hero .lead {
       max-width: 520px;
       margin-top: 24px;
+      color: rgba(247, 249, 255, 0.88);
+      font-size: 20px;
+    }
+
+    .hero h1 {
+      color: #f7f9ff;
+    }
+
+    .hero h1 span {
+      color: #5f91ff;
     }
 
     .hero-actions {
@@ -369,11 +386,12 @@
       background: rgba(8, 22, 49, 0.72);
       box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
       backdrop-filter: blur(14px);
+      color: #f7f9ff;
     }
 
     .trust-card span {
       display: block;
-      color: var(--muted);
+      color: rgba(247, 249, 255, 0.78);
       font-size: 13px;
       font-weight: 800;
     }
@@ -415,26 +433,31 @@
     }
 
     .value-card {
-      min-height: 150px;
+      min-height: 166px;
       display: grid;
       place-items: center;
-      gap: 14px;
-      padding: 24px;
+      gap: 18px;
+      padding: 28px 24px;
       text-align: center;
     }
 
     .icon {
-      width: 58px;
-      height: 58px;
+      width: 60px;
+      height: 60px;
       display: grid;
       place-items: center;
+      flex: 0 0 60px;
       color: #6f98ff;
     }
 
     .icon svg {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
+      display: block;
       stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      overflow: visible;
     }
 
     .value-card h3 {
@@ -538,19 +561,22 @@
     }
 
     .service-card {
-      min-height: 158px;
+      min-height: 176px;
       display: grid;
-      grid-template-columns: 78px 1fr 26px;
-      gap: 18px;
+      grid-template-columns: 84px 1fr 24px;
+      gap: 22px;
       align-items: center;
-      padding: 24px;
+      padding: 28px 26px;
     }
 
     .service-icon {
-      width: 62px;
-      height: 62px;
+      width: 64px;
+      height: 64px;
       display: grid;
       place-items: center;
+      align-self: center;
+      justify-self: center;
+      flex: 0 0 64px;
       border-radius: var(--radius);
       color: white;
       background: linear-gradient(135deg, #1a72ff, #003bc4);
@@ -558,19 +584,24 @@
     }
 
     .service-icon svg {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
+      display: block;
       stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      overflow: visible;
     }
 
     .service-card h3 {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-size: 24px;
     }
 
     .arrow {
       color: rgba(255, 255, 255, 0.72);
-      font-size: 26px;
+      font-size: 24px;
+      justify-self: end;
     }
 
     .work {
@@ -648,7 +679,8 @@
       transition: opacity 620ms ease, transform 620ms ease;
     }
 
-    .reveal.is-visible {
+    .reveal.is-visible,
+    .hero.reveal {
       opacity: 1;
       transform: translateY(0);
     }
@@ -789,8 +821,8 @@
       }
 
       .brand-mark {
-        width: 34px;
-        height: 34px;
+        width: 46px;
+        height: 46px;
       }
 
       .brand-word {
@@ -868,20 +900,923 @@
         height: 300px;
       }
     }
+    /* Corporate luxury refinement */
+    :root {
+      --ink: #050914;
+      --ink-2: #071122;
+      --panel: rgba(7, 17, 34, 0.86);
+      --panel-2: rgba(10, 24, 48, 0.9);
+      --line: rgba(158, 180, 235, 0.22);
+      --line-strong: rgba(166, 190, 255, 0.42);
+      --blue: #155cff;
+      --blue-soft: #7ea4ff;
+      --text: #f8fbff;
+      --muted: #c9d3e7;
+      --radius: 6px;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 78% 0%, rgba(21, 92, 255, 0.18), transparent 28rem),
+        linear-gradient(180deg, #050914 0%, #071122 46%, #04070e 100%);
+      opacity: 1;
+    }
+
+    body.is-leaving {
+      opacity: 1;
+    }
+
+    body::before {
+      background-image: linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+      background-size: 1px 92px;
+      opacity: 0.65;
+      mask-image: linear-gradient(180deg, transparent, black 18%, black 72%, transparent);
+    }
+
+    .site-header {
+      background: rgba(5, 9, 20, 0.82);
+      border-bottom: 1px solid rgba(198, 211, 245, 0.13);
+      box-shadow: 0 18px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand-word {
+      font-weight: 700;
+      letter-spacing: 10px;
+    }
+
+    .brand-mark {
+      box-shadow: 0 18px 44px rgba(21, 92, 255, 0.32);
+    }
+
+    .nav-links {
+      color: rgba(248, 251, 255, 0.72);
+      letter-spacing: 0.01em;
+    }
+
+    .button,
+    .nav-cta {
+      border-color: rgba(142, 169, 239, 0.42);
+      background: linear-gradient(135deg, #2f73ff, #0d43cf);
+      box-shadow: 0 20px 48px rgba(13, 67, 207, 0.28);
+      letter-spacing: 0.01em;
+    }
+
+    .button.secondary {
+      background: rgba(5, 13, 29, 0.68);
+      border-color: rgba(177, 197, 255, 0.3);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      font-size: clamp(58px, 6.7vw, 104px);
+    }
+
+    h2 {
+      font-size: clamp(38px, 4.4vw, 64px);
+    }
+
+    .eyebrow,
+    .offer-line {
+      letter-spacing: 6px;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      background:
+        linear-gradient(90deg, rgba(5, 9, 20, 0.88) 0%, rgba(5, 9, 20, 0.68) 41%, rgba(5, 9, 20, 0.08) 100%),
+        linear-gradient(180deg, rgba(5, 9, 20, 0.08) 0%, rgba(5, 9, 20, 0.26) 74%, #050914 100%),
+        url("assets/senz-premium-hero-facility.png") 58% center / cover no-repeat;
+    }
+
+    .hero::before,
+    .services::after {
+      opacity: 0.5;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(21, 92, 255, 0.26), transparent 55%),
+        linear-gradient(12deg, transparent 40%, rgba(126, 164, 255, 0.22) 49%, transparent 58%);
+    }
+
+    .hero::after {
+      opacity: 0.18;
+      background: radial-gradient(circle at 8% 8%, rgba(126, 164, 255, 0.18), transparent 21rem);
+      mask-image: none;
+    }
+
+    .hero-copy {
+      padding-top: 18px;
+      text-shadow: 0 3px 24px rgba(0, 0, 0, 0.62);
+    }
+
+    .hero.reveal,
+    .values.reveal,
+    .about.reveal,
+    .services.reveal,
+    .work.reveal,
+    .contact.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      inset: -28px -42px -30px -30px;
+      z-index: -1;
+      pointer-events: none;
+      border-left: 1px solid rgba(184, 202, 255, 0.24);
+      background: linear-gradient(90deg, rgba(5, 9, 20, 0.58), rgba(5, 9, 20, 0.22) 72%, transparent);
+      box-shadow: -30px 0 80px rgba(5, 9, 20, 0.45);
+    }
+
+    .hero h1 {
+      color: #f8fbff;
+    }
+
+    .hero h1 span {
+      color: #8fb1ff;
+    }
+
+    .hero .lead {
+      max-width: 590px;
+      color: rgba(237, 243, 255, 0.9);
+    }
+
+    .trust-card,
+    .value-card,
+    .focus-card,
+    .service-card,
+    .work-card,
+    .contact-panel {
+      background:
+        linear-gradient(180deg, rgba(12, 25, 49, 0.9), rgba(5, 12, 27, 0.92));
+      border-color: rgba(184, 202, 255, 0.22);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .value-card:hover,
+    .focus-card:hover,
+    .service-card:hover,
+    .work-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(210, 222, 255, 0.42);
+      box-shadow: 0 30px 90px rgba(21, 92, 255, 0.12);
+    }
+
+    .value-card {
+      min-height: 166px;
+      gap: 18px;
+      padding: 28px 24px;
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+      flex: 0 0 60px;
+      place-self: start center;
+    }
+
+    .icon svg {
+      width: 44px;
+      height: 44px;
+    }
+
+    .service-card {
+      min-height: 176px;
+      grid-template-columns: 84px minmax(0, 1fr) 24px;
+      gap: 22px;
+      padding: 28px 26px;
+      align-items: center;
+    }
+
+    .service-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      flex: 0 0 64px;
+      place-self: center;
+    }
+
+    .service-icon svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .arrow {
+      justify-self: end;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .service-icon {
+      background: linear-gradient(135deg, #2d6dff, #0b3aa8);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 18px 42px rgba(13, 67, 207, 0.24);
+    }
+
+    .services,
+    .about,
+    .work {
+      background:
+        radial-gradient(circle at 88% 16%, rgba(21, 92, 255, 0.13), transparent 24rem),
+        linear-gradient(180deg, #071122, #050914);
+    }
+
+    .meeting-visual {
+      border-color: rgba(184, 202, 255, 0.2);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
+    }
+
+    .meeting-visual img {
+      object-position: center 48%;
+    }
+
+    footer {
+      background: #04070e;
+      border-top-color: rgba(184, 202, 255, 0.14);
+    }
+
+    /* Logo and board alignment refinements */
+    .brand {
+      min-width: 208px;
+    }
+
+    .brand-mark {
+      box-shadow: none;
+    }
+
+    .brand-word {
+      letter-spacing: 9px;
+    }
+
+    .section-heading {
+      grid-template-columns: minmax(0, 760px) auto;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 46px;
+    }
+
+    .section-heading .button {
+      justify-self: end;
+      min-width: 182px;
+      white-space: nowrap;
+    }
+
+    .services-grid {
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .service-card {
+      min-height: 215px;
+      grid-template-columns: 76px minmax(0, 1fr) 24px;
+      gap: 20px;
+      padding: 30px 26px;
+      align-items: center;
+    }
+
+    .service-card h3 {
+      max-width: 250px;
+      line-height: 0.98;
+    }
+
+    .service-card p {
+      max-width: 280px;
+    }
+
+    .arrow {
+      align-self: center;
+    }
+
+    @media (max-width: 720px) {
+      .brand {
+        min-width: auto;
+      }
+
+      .brand-word {
+        letter-spacing: 7px;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .section-heading .button {
+        justify-self: start;
+      }
+
+      .service-card {
+        min-height: auto;
+        grid-template-columns: 64px minmax(0, 1fr) 18px;
+        gap: 16px;
+        padding: 22px 18px;
+      }
+
+      .service-icon {
+        width: 56px;
+        height: 56px;
+        flex-basis: 56px;
+      }
+
+      .service-icon svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .icon {
+        width: 56px;
+        height: 56px;
+        flex-basis: 56px;
+      }
+
+      .icon svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    /* Menu-board service layout */
+    .services .section-heading {
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(184, 202, 255, 0.18);
+    }
+
+    .services-grid {
+      counter-reset: services-menu;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid rgba(184, 202, 255, 0.16);
+      background:
+        linear-gradient(180deg, rgba(8, 20, 42, 0.74), rgba(3, 9, 22, 0.74));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 28px 80px rgba(0,0,0,0.24);
+    }
+
+    .service-card {
+      counter-increment: services-menu;
+      position: relative;
+      min-height: 156px;
+      grid-template-columns: 46px 66px minmax(0, 1fr) 20px;
+      gap: 18px;
+      padding: 26px 24px;
+      border-color: rgba(184, 202, 255, 0.18);
+      background:
+        linear-gradient(90deg, rgba(12, 28, 56, 0.92), rgba(5, 13, 29, 0.92));
+    }
+
+    .value-card.reveal,
+    .focus-card.reveal,
+    .service-card.reveal,
+    .work-card.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-card::before {
+      content: counter(services-menu, decimal-leading-zero);
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      align-self: center;
+      border-right: 1px solid rgba(184, 202, 255, 0.18);
+      color: #8fb1ff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .service-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 4px;
+    }
+
+    .service-icon svg {
+      width: 29px;
+      height: 29px;
+    }
+
+    .service-card h3 {
+      max-width: none;
+      margin-bottom: 8px;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .service-card p {
+      max-width: 360px;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .service-card .arrow {
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 42px;
+      color: #8fb1ff;
+    }
+
+    @media (max-width: 920px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .services-grid {
+        padding: 12px;
+      }
+
+      .service-card {
+        grid-template-columns: 38px 54px minmax(0, 1fr) 16px;
+        gap: 12px;
+        padding: 20px 16px;
+      }
+
+      .service-card::before {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+      }
+
+      .service-icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .digital-product-studio {
+      position: relative;
+      overflow: hidden;
+      margin-top: 28px;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: var(--radius);
+      padding: clamp(26px, 4vw, 44px);
+      background:
+        radial-gradient(circle at 8% 12%, rgba(126, 164, 255, 0.18), transparent 24rem),
+        linear-gradient(135deg, rgba(9, 22, 47, 0.92), rgba(4, 10, 24, 0.98));
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
+    }
+
+    .digital-product-studio::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(184, 202, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(184, 202, 255, 0.04) 1px, transparent 1px);
+      background-size: 96px 96px;
+      mask-image: linear-gradient(90deg, black, transparent 88%);
+      opacity: 0.5;
+    }
+
+    .product-studio-heading {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 0.58fr) minmax(280px, 0.42fr);
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .product-studio-heading h3 {
+      margin-top: 10px;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 0.96;
+    }
+
+    .product-studio-heading p:last-child {
+      color: rgba(222, 232, 255, 0.76);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .product-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .product-card {
+      min-height: 286px;
+      border: 1px solid rgba(184, 202, 255, 0.17);
+      border-radius: var(--radius);
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.045);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .product-kicker {
+      display: block;
+      margin-bottom: 18px;
+      color: #8fb1ff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    .product-icon {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      margin-bottom: 26px;
+      border: 1px solid rgba(184, 202, 255, 0.22);
+      border-radius: 16px;
+      color: #edf3ff;
+      background: linear-gradient(145deg, rgba(143, 177, 255, 0.24), rgba(255, 255, 255, 0.04));
+    }
+
+    .product-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+    }
+
+    .product-card h4 {
+      margin-bottom: 12px;
+      font-size: 24px;
+      line-height: 1.05;
+    }
+
+    .product-card p {
+      color: rgba(222, 232, 255, 0.76);
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .product-card.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1050px) {
+      .product-studio-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .digital-product-studio {
+        padding: 24px 16px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Portfolio experience */
+    .portfolio {
+      position: relative;
+      overflow: hidden;
+      padding-top: 108px;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(126, 164, 255, 0.16), transparent 25rem),
+        radial-gradient(circle at 88% 78%, rgba(21, 92, 255, 0.2), transparent 27rem),
+        linear-gradient(180deg, #050914, #071122 58%, #04070e);
+    }
+
+    .portfolio::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(184, 202, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(184, 202, 255, 0.04) 1px, transparent 1px);
+      background-size: 120px 120px;
+      mask-image: linear-gradient(180deg, transparent, black 14%, black 80%, transparent);
+      opacity: 0.42;
+    }
+
+    .portfolio-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.66fr) minmax(280px, 0.34fr);
+      gap: 46px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .portfolio-heading h2 {
+      max-width: 850px;
+    }
+
+    .portfolio-intro {
+      color: rgba(222, 232, 255, 0.78);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .portfolio-showcase {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 22px;
+    }
+
+    .portfolio-card {
+      display: grid;
+      grid-template-columns: minmax(190px, 0.45fr) minmax(0, 0.55fr);
+      overflow: hidden;
+      min-height: 322px;
+      border: 1px solid rgba(184, 202, 255, 0.2);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(12, 25, 49, 0.88), rgba(5, 12, 27, 0.94));
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+      cursor: pointer;
+    }
+
+    .portfolio-card.is-featured {
+      grid-row: span 2;
+      grid-template-columns: 1fr;
+      min-height: 666px;
+    }
+
+    .portfolio-art {
+      min-height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.9) contrast(1.05);
+      transform: scale(var(--media-scale, 1.02)) translate3d(0, var(--media-y, 0px), 0);
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    .portfolio-card.is-featured .portfolio-art {
+      min-height: 356px;
+    }
+
+    .portfolio-art-pr {
+      background-image:
+        linear-gradient(180deg, rgba(3, 8, 20, 0.02), rgba(3, 8, 20, 0.36)),
+        url("assets/senz-blog-pr-trust.png");
+    }
+
+    .portfolio-art-message {
+      background-image:
+        linear-gradient(180deg, rgba(3, 8, 20, 0.02), rgba(3, 8, 20, 0.36)),
+        url("assets/senz-blog-clear-messaging.png");
+    }
+
+    .portfolio-art-digital {
+      background-image:
+        linear-gradient(180deg, rgba(3, 8, 20, 0.02), rgba(3, 8, 20, 0.36)),
+        url("assets/senz-blog-digital-presence.png");
+    }
+
+    .portfolio-body {
+      display: flex;
+      flex-direction: column;
+      padding: clamp(24px, 3vw, 34px);
+    }
+
+    .portfolio-index {
+      margin-bottom: 24px;
+      color: #8fb1ff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .portfolio-card h3 {
+      margin-bottom: 16px;
+      font-size: clamp(30px, 3.2vw, 48px);
+      line-height: 0.98;
+    }
+
+    .portfolio-card:not(.is-featured) h3 {
+      font-size: clamp(26px, 2.2vw, 34px);
+    }
+
+    .portfolio-card p {
+      color: rgba(222, 232, 255, 0.78);
+      font-size: 15px;
+      line-height: 1.68;
+    }
+
+    .portfolio-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 28px;
+    }
+
+    .portfolio-tags span {
+      border: 1px solid rgba(184, 202, 255, 0.22);
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: rgba(237, 243, 255, 0.82);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .portfolio-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .portfolio-strip-card {
+      border: 1px solid rgba(184, 202, 255, 0.16);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      background: rgba(8, 20, 42, 0.72);
+    }
+
+    .portfolio-strip-card strong {
+      display: block;
+      margin-bottom: 18px;
+      color: #8fb1ff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .portfolio-strip-card span {
+      color: rgba(237, 243, 255, 0.84);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .portfolio-card.reveal,
+    .portfolio-strip-card.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1050px) {
+      .portfolio-heading,
+      .portfolio-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-card,
+      .portfolio-card.is-featured {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .portfolio-art,
+      .portfolio-card.is-featured .portfolio-art {
+        min-height: 280px;
+      }
+
+      .portfolio-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .portfolio-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-art,
+      .portfolio-card.is-featured .portfolio-art {
+        min-height: 220px;
+      }
+    }
+
+    /* Scroll-directed motion system */
+    .scroll-progress {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 82px;
+      z-index: 42;
+      height: 2px;
+      pointer-events: none;
+      background: rgba(184, 202, 255, 0.08);
+    }
+
+    .scroll-progress__bar {
+      width: 100%;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: left center;
+      background: linear-gradient(90deg, #8fb1ff, #155cff);
+      box-shadow: 0 0 24px rgba(21, 92, 255, 0.52);
+    }
+
+    .motion-scene {
+      --scene-y: 0px;
+      --scene-opacity: 1;
+      position: relative;
+      overflow: clip;
+    }
+
+    .motion-scene > .shell {
+      opacity: var(--scene-opacity);
+      transform: translate3d(0, var(--scene-y), 0);
+      will-change: transform, opacity;
+    }
+
+    .hero-copy {
+      transform: translate3d(0, var(--hero-copy-y, 0px), 0);
+      will-change: transform;
+    }
+
+    .trust-card {
+      transform: translate3d(0, var(--trust-y, 0px), 0);
+      will-change: transform;
+    }
+
+    .motion-item {
+      opacity: var(--item-opacity, 1);
+      transform: translate3d(var(--motion-x, 0px), var(--motion-y, 0px), 0);
+      will-change: transform, opacity;
+    }
+
+    .motion-item:hover {
+      transform: translate3d(var(--motion-x, 0px), calc(var(--motion-y, 0px) - 3px), 0);
+    }
+
+    .service-card.is-motion-active,
+    .product-card.is-motion-active,
+    .portfolio-card.is-motion-active,
+    .info-card.is-motion-active,
+    .journal-card.is-motion-active {
+      border-color: rgba(210, 222, 255, 0.52);
+      box-shadow: 0 30px 90px rgba(21, 92, 255, 0.16);
+    }
+
+    .meeting-visual img,
+    .portrait-card img,
+    .portfolio-art {
+      transform: scale(var(--media-scale, 1)) translate3d(0, var(--media-y, 0px), 0);
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    .article-art {
+      background-position: center calc(50% + var(--media-y, 0px));
+      will-change: background-position;
+    }
+
+    @media (max-width: 760px) {
+      .scroll-progress {
+        top: 72px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .motion-scene > .shell,
+      .hero-copy,
+      .trust-card,
+      .motion-item,
+      .meeting-visual img,
+      .portrait-card img,
+      .portfolio-art {
+        transform: none;
+      }
+
+      .motion-scene > .shell,
+      .motion-item {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="shell nav">
       <a class="brand" href="#top" aria-label="SENZ home">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <img class="brand-mark" src="assets/senz-original-mark.png" alt="" aria-hidden="true" />
         <span class="brand-word">SENZ</span>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a class="is-active" href="index.html">Home</a>
+        <a class="is-active" href="#top">Home</a>
         <a href="#services">Services</a>
         <a href="about.html">About</a>
-        <a href="#work">Work</a>
+        <a href="#work">Portfolio</a>
         <a href="#contact">Contact</a>
       </nav>
       <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
@@ -894,9 +1829,9 @@
       <div class="shell">
         <div class="hero-copy">
           <div class="offer-line">PR <span>|</span> Marketing <span>|</span> Digital Solutions</div>
-          <h1>Influence <span>Through Clarity</span></h1>
+          <h1>Strategic Work. <span>Designed to Be Seen.</span></h1>
           <p class="lead">
-            We make brands and leaders clearer, sharper, and harder to ignore.
+            A portfolio of communications, campaigns, digital products, event platforms, AI assistants, and visual direction built to make brands look credible, premium, and impossible to ignore.
           </p>
           <div class="hero-actions">
             <a class="button" href="mailto:info.senz.pr@gmail.com">Get Started</a>
@@ -954,7 +1889,7 @@
               build clarity, strengthen reputation, and drive growth through PR,
               marketing, and digital solutions.
             </p>
-            <a class="button secondary" href="#work">Learn More <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="about.html">Learn More <span aria-hidden="true">→</span></a>
           </div>
           <article class="focus-card">
             <span class="icon" aria-hidden="true">
@@ -975,11 +1910,11 @@
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
             </span>
             <h3>Digital Solutions</h3>
-            <p>We build digital experiences that engage and convert.</p>
+            <p>We build digital products, platforms, and experiences that engage and convert.</p>
           </article>
         </div>
         <div class="meeting-visual">
-          <img src="assets/senz-services.jpeg" alt="Strategic communications meeting in a modern office" />
+          <img src="assets/senz-premium-strategy-team.png" alt="Corporate strategy team collaborating in a modern office facility" />
         </div>
       </div>
     </section>
@@ -991,7 +1926,6 @@
             <p class="eyebrow">Our Services</p>
             <h2>Solutions That Drive Reputation and Growth</h2>
           </div>
-          <a class="button secondary" href="mailto:info.senz.pr@gmail.com">View Services <span aria-hidden="true">→</span></a>
         </div>
 
         <div class="services-grid">
@@ -1061,29 +1995,137 @@
             <span class="arrow">›</span>
           </article>
         </div>
+
+        <div class="digital-product-studio">
+          <div class="product-studio-heading">
+            <div>
+              <p class="eyebrow">Digital Product Studio</p>
+              <h3>Premium systems built for brands, creators, and live events.</h3>
+            </div>
+            <p>SENZ develops digital products that extend a brand beyond content: music-led assets, consent-based clone production, event voting and tabulation platforms with ticket selling, and personal AI assistants.</p>
+          </div>
+
+          <div class="product-grid">
+            <article class="product-card" data-modal-title="Music Products" data-modal-body="Music products cover campaign sound, brand audio, release-ready creative assets, and music-led digital experiences that make a brand easier to remember.">
+              <span class="product-kicker">01 / Music</span>
+              <span class="product-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
+              </span>
+              <h4>Music Products</h4>
+              <p>Audio branding, campaign music, and digital music assets shaped for identity, recall, and launch moments.</p>
+            </article>
+
+            <article class="product-card" data-modal-title="Clone Studio" data-modal-body="Clone Studio is a consent-based production system: one guided shoot captures facial details, body structure, movement references, and visual identity cues so future campaign shoots can be created faster and more consistently.">
+              <span class="product-kicker">02 / Clone</span>
+              <span class="product-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="10" r="3"/><path d="M7.5 18a5 5 0 0 1 9 0"/><path d="M8 2v4M16 2v4M8 18v4M16 18v4"/></svg>
+              </span>
+              <h4>Clone Studio</h4>
+              <p>One guided shoot captures face, body structure, and brand styling for future creative shoots and campaign assets.</p>
+            </article>
+
+            <article class="product-card" data-modal-title="Voting, Tabulation, and Ticketing" data-modal-body="Event platforms combine secure voting, live tabulation, audience participation, ticket selling, and event-ready dashboards for pageants, launches, competitions, and live brand activations.">
+              <span class="product-kicker">03 / Events</span>
+              <span class="product-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 7h16v10H4V7Z"/><path d="M8 7v10M16 7v10"/><path d="m10 13 2 2 4-5"/><path d="M6 3h12M6 21h12"/></svg>
+              </span>
+              <h4>Event Platforms</h4>
+              <p>Voting, tabulation, and ticket selling platforms for pageants, competitions, live shows, and branded events.</p>
+            </article>
+
+            <article class="product-card" data-modal-title="Personal AI Assistants" data-modal-body="Personal AI assistants help founders, teams, creators, and event operators manage messaging, workflows, customer questions, planning, and digital productivity with a custom-trained assistant.">
+              <span class="product-kicker">04 / AI</span>
+              <span class="product-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M5 8a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4h-3l-4 3v-3H9a4 4 0 0 1-4-4V8Z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/><path d="M12 2v2M12 17v2"/></svg>
+              </span>
+              <h4>Personal AI Assistants</h4>
+              <p>Custom AI assistants for founders, personal brands, customer journeys, operations, and event support.</p>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="work" class="work">
+    <section id="work" class="work portfolio">
       <div class="shell">
-        <p class="eyebrow">How SENZ Works</p>
-        <h2>Clear direction before execution.</h2>
-        <div class="work-grid">
-          <article class="work-card">
+        <div class="portfolio-heading">
+          <div>
+            <p class="eyebrow">Selected Portfolio</p>
+            <h2>Corporate strategy with a creative pulse.</h2>
+          </div>
+          <p class="portfolio-intro">SENZ builds public-facing systems: the narrative, digital products, event platforms, AI assistants, campaign direction, and visual language that make a brand feel ready for attention.</p>
+        </div>
+
+        <div class="portfolio-showcase">
+          <article class="portfolio-card is-featured" data-modal-title="Reputation System" data-modal-body="A reputation system brings PR, positioning, message discipline, and public-facing proof into one clear presence. The goal is not just to be visible, but to look credible every time someone searches, clicks, or hears the brand name.">
+            <div class="portfolio-art portfolio-art-pr" aria-hidden="true"></div>
+            <div class="portfolio-body">
+              <span class="portfolio-index">01 / Reputation</span>
+              <h3>Public image and narrative direction</h3>
+              <p>PR strategy, credibility signals, message structure, and public image direction shaped into one premium system.</p>
+              <div class="portfolio-tags">
+                <span>PR Strategy</span>
+                <span>Positioning</span>
+                <span>Credibility</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-card" data-modal-title="Campaign Direction" data-modal-body="Campaign direction turns the brand message into content, visuals, platform rhythm, and audience movement. SENZ makes the campaign feel intentional before it ever goes public.">
+            <div class="portfolio-art portfolio-art-message" aria-hidden="true"></div>
+            <div class="portfolio-body">
+              <span class="portfolio-index">02 / Campaign</span>
+              <h3>Social content and campaign systems</h3>
+              <p>Smart creative direction for campaigns that need to look premium, feel consistent, and move people toward action.</p>
+              <div class="portfolio-tags">
+                <span>Marketing</span>
+                <span>Content</span>
+                <span>Growth</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-card" data-modal-title="Digital Products" data-modal-body="Digital product work includes music products, consent-based clone production, voting and tabulation platforms with ticket selling, and personal AI assistants built around the brand's workflow.">
+            <div class="portfolio-art portfolio-art-digital" aria-hidden="true"></div>
+            <div class="portfolio-body">
+              <span class="portfolio-index">03 / Digital Products</span>
+              <h3>Digital products and platform systems</h3>
+              <p>Music assets, clone production, event voting, tabulation, ticketing, and personal AI assistants built into premium digital systems.</p>
+              <div class="portfolio-tags">
+                <span>Music</span>
+                <span>Clone Studio</span>
+                <span>Event Platforms</span>
+                <span>Personal AI</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="portfolio-strip" aria-label="SENZ portfolio capabilities">
+          <div class="portfolio-strip-card">
             <strong>01</strong>
-            <h3>Clarify</h3>
-            <p>We identify the message, audience, and perception gap.</p>
-          </article>
-          <article class="work-card">
+            <span>Brand Positioning</span>
+          </div>
+          <div class="portfolio-strip-card">
             <strong>02</strong>
-            <h3>Build</h3>
-            <p>We create the strategy, content, visuals, and digital assets.</p>
-          </article>
-          <article class="work-card">
+            <span>Campaign Architecture</span>
+          </div>
+          <div class="portfolio-strip-card">
             <strong>03</strong>
-            <h3>Refine</h3>
-            <p>We polish the public-facing presence so it feels credible and complete.</p>
-          </article>
+            <span>Digital Systems</span>
+          </div>
+          <div class="portfolio-strip-card">
+            <strong>04</strong>
+            <span>Visual Direction</span>
+          </div>
+          <div class="portfolio-strip-card">
+            <strong>05</strong>
+            <span>Event Platforms</span>
+          </div>
+          <div class="portfolio-strip-card">
+            <strong>06</strong>
+            <span>AI Product Systems</span>
+          </div>
         </div>
       </div>
     </section>
@@ -1098,7 +2140,7 @@
           </div>
           <div class="contact-list">
             <a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a>
-            <a href="https://www.instagram.com/senz.pr">Instagram: senz.pr</a>
+            <a href="https://www.instagram.com/senz.pr" target="_blank" rel="noopener noreferrer">Instagram: senz.pr</a>
             <span>Facebook, IG, TikTok: senz.pr</span>
             <a class="button" href="mailto:info.senz.pr@gmail.com">Get Started</a>
           </div>
@@ -1136,6 +2178,7 @@
       const modal = document.querySelector('#infoModal');
       const modalTitle = document.querySelector('#modalTitle');
       const modalBody = document.querySelector('#modalBody');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       requestAnimationFrame(() => body.classList.add('is-ready'));
 
@@ -1145,7 +2188,15 @@
         toggle.textContent = isOpen ? '×' : '☰';
       });
 
-      document.querySelectorAll('section, .value-card, .focus-card, .service-card, .work-card').forEach((el) => {
+      nav?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('is-open');
+          toggle?.setAttribute('aria-expanded', 'false');
+          if (toggle) toggle.textContent = '☰';
+        });
+      });
+
+      document.querySelectorAll('section, .value-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card').forEach((el) => {
         el.classList.add('reveal');
       });
 
@@ -1172,7 +2223,16 @@
       }
 
       document.querySelectorAll('[data-modal-title]').forEach((card) => {
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', `Open ${card.dataset.modalTitle}`);
         card.addEventListener('click', () => openModal(card.dataset.modalTitle, card.dataset.modalBody));
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openModal(card.dataset.modalTitle, card.dataset.modalBody);
+          }
+        });
       });
 
       modal?.addEventListener('click', (event) => {
@@ -1191,6 +2251,74 @@
           setTimeout(() => { window.location.href = link.href; }, 180);
         });
       });
+
+      const progress = document.createElement('div');
+      progress.className = 'scroll-progress';
+      progress.innerHTML = '<span class="scroll-progress__bar"></span>';
+      body.appendChild(progress);
+      const progressBar = progress.querySelector('.scroll-progress__bar');
+
+      const scenes = Array.from(document.querySelectorAll('main > section'));
+      const motionItems = Array.from(document.querySelectorAll('.value-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card, .contact-panel'));
+      const mediaItems = Array.from(document.querySelectorAll('.meeting-visual img, .portfolio-art, .article-art'));
+
+      scenes.forEach((scene) => scene.classList.add('motion-scene'));
+      motionItems.forEach((item, index) => {
+        item.classList.add('motion-item');
+        item.style.setProperty('--motion-index', index);
+      });
+
+      const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+      let ticking = false;
+
+      function syncScrollMotion() {
+        ticking = false;
+        const scrollMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const ratio = clamp(window.scrollY / scrollMax);
+        progressBar.style.transform = `scaleX(${ratio})`;
+
+        if (reduceMotion) return;
+
+        const vh = window.innerHeight || 1;
+        const heroCopy = document.querySelector('.hero-copy');
+        const trustCard = document.querySelector('.trust-card');
+        if (heroCopy) heroCopy.style.setProperty('--hero-copy-y', `${Math.round(window.scrollY * -0.035)}px`);
+        if (trustCard) trustCard.style.setProperty('--trust-y', `${Math.round(window.scrollY * -0.055)}px`);
+
+        scenes.forEach((scene) => {
+          const rect = scene.getBoundingClientRect();
+          const progressInView = clamp((vh - rect.top) / (vh + rect.height));
+          scene.style.setProperty('--scene-y', `${Math.round((1 - progressInView) * 18)}px`);
+          scene.style.setProperty('--scene-opacity', (0.78 + progressInView * 0.22).toFixed(3));
+        });
+
+        motionItems.forEach((item, index) => {
+          const rect = item.getBoundingClientRect();
+          const rowProgress = clamp((vh - rect.top) / (vh * 0.72));
+          const direction = index % 2 === 0 ? -1 : 1;
+          item.style.setProperty('--item-opacity', (0.45 + rowProgress * 0.55).toFixed(3));
+          item.style.setProperty('--motion-x', `${Math.round((1 - rowProgress) * 18 * direction)}px`);
+          item.style.setProperty('--motion-y', `${Math.round((1 - rowProgress) * 10)}px`);
+          item.classList.toggle('is-motion-active', rect.top < vh * 0.62 && rect.bottom > vh * 0.32);
+        });
+
+        mediaItems.forEach((media) => {
+          const rect = media.getBoundingClientRect();
+          const mediaProgress = clamp((vh - rect.top) / (vh + rect.height));
+          media.style.setProperty('--media-y', `${Math.round((0.5 - mediaProgress) * 28)}px`);
+          media.style.setProperty('--media-scale', (1.02 + mediaProgress * 0.035).toFixed(3));
+        });
+      }
+
+      function requestMotionFrame() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(syncScrollMotion);
+      }
+
+      window.addEventListener('scroll', requestMotionFrame, { passive: true });
+      window.addEventListener('resize', requestMotionFrame);
+      syncScrollMotion();
     })();
   </script>
 </body>

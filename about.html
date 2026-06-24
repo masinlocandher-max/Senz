@@ -99,30 +99,16 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 18px;
+      gap: 14px;
       min-width: 235px;
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
-      position: relative;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #83b1ff 0%, #0057ff 54%, #001e88 100%);
-      transform: rotate(45deg);
-      box-shadow: 0 0 30px rgba(0, 87, 255, 0.66);
-    }
-
-    .brand-mark::before {
-      content: "";
-      position: absolute;
-      width: 21px;
-      height: 29px;
-      left: 10px;
-      top: 7px;
-      border-radius: 14px 14px 5px 14px;
-      background: #061020;
-      transform: rotate(-45deg);
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      display: block;
+      filter: none;
     }
 
     .brand-word {
@@ -205,7 +191,7 @@
 
     .info-card:hover,
     .journal-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-3px);
       border-color: rgba(111, 152, 255, 0.7);
       box-shadow: 0 28px 80px rgba(0, 87, 255, 0.16);
     }
@@ -390,23 +376,28 @@
     }
 
     .info-card {
-      min-height: 280px;
-      padding: 28px 24px;
+      min-height: 292px;
+      padding: 32px 26px;
     }
 
     .icon {
-      width: 58px;
-      height: 58px;
+      width: 60px;
+      height: 60px;
       display: grid;
       place-items: center;
-      margin-bottom: 32px;
+      flex: 0 0 60px;
+      margin-bottom: 34px;
       color: #6f98ff;
     }
 
     .icon svg {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
+      display: block;
       stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      overflow: visible;
     }
 
     .info-card h3 {
@@ -421,7 +412,7 @@
     }
 
     .focus-grid .info-card {
-      min-height: 280px;
+      min-height: 292px;
     }
 
     .card-arrow {
@@ -531,7 +522,8 @@
       transition: opacity 620ms ease, transform 620ms ease;
     }
 
-    .reveal.is-visible {
+    .reveal.is-visible,
+    .about-hero.reveal {
       opacity: 1;
       transform: translateY(0);
     }
@@ -672,8 +664,8 @@
       }
 
       .brand-mark {
-        width: 34px;
-        height: 34px;
+        width: 46px;
+        height: 46px;
       }
 
       .brand-word {
@@ -745,20 +737,408 @@
         height: 430px;
       }
     }
+    /* Corporate luxury refinement */
+    :root {
+      --ink: #050914;
+      --panel: rgba(7, 17, 34, 0.86);
+      --line: rgba(158, 180, 235, 0.22);
+      --blue: #155cff;
+      --blue-soft: #7ea4ff;
+      --text: #f8fbff;
+      --muted: #c9d3e7;
+      --radius: 6px;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 78% 0%, rgba(21, 92, 255, 0.18), transparent 28rem),
+        linear-gradient(180deg, #050914 0%, #071122 46%, #04070e 100%);
+      opacity: 1;
+    }
+
+    body.is-leaving {
+      opacity: 1;
+    }
+
+    body::before {
+      background-image: linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+      background-size: 1px 92px;
+      opacity: 0.55;
+      mask-image: linear-gradient(180deg, transparent, black 18%, black 72%, transparent);
+    }
+
+    .site-header {
+      background: rgba(5, 9, 20, 0.82);
+      border-bottom: 1px solid rgba(198, 211, 245, 0.13);
+      box-shadow: 0 18px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand-word {
+      font-weight: 700;
+      letter-spacing: 10px;
+    }
+
+    .brand-mark {
+      box-shadow: 0 18px 44px rgba(21, 92, 255, 0.32);
+    }
+
+    .button,
+    .nav-cta {
+      border-color: rgba(142, 169, 239, 0.42);
+      background: linear-gradient(135deg, #2f73ff, #0d43cf);
+      box-shadow: 0 20px 48px rgba(13, 67, 207, 0.28);
+    }
+
+    .button.secondary {
+      background: rgba(5, 13, 29, 0.68);
+      border-color: rgba(177, 197, 255, 0.3);
+    }
+
+    h1,
+    h2,
+    h3,
+    .modal-title {
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      letter-spacing: 0;
+    }
+
+    .eyebrow,
+    .offer-line {
+      letter-spacing: 6px;
+      text-transform: uppercase;
+    }
+
+    .about-hero::before,
+    .journal::after {
+      opacity: 0.48;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(21, 92, 255, 0.26), transparent 55%),
+        linear-gradient(12deg, transparent 40%, rgba(126, 164, 255, 0.22) 49%, transparent 58%);
+    }
+
+    .hero-copy {
+      text-shadow: 0 3px 24px rgba(0, 0, 0, 0.62);
+    }
+
+    .about-hero.reveal,
+    .split-card-section.reveal,
+    .focus-section.reveal,
+    .journal.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-copy .lead {
+      color: rgba(237, 243, 255, 0.9);
+      font-size: 20px;
+    }
+
+    .portrait-card,
+    .info-card,
+    .journal-card {
+      background:
+        linear-gradient(180deg, rgba(12, 25, 49, 0.9), rgba(5, 12, 27, 0.92));
+      border-color: rgba(184, 202, 255, 0.22);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .portrait-card img {
+      object-position: center 26%;
+    }
+
+    .info-card:hover,
+    .journal-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(210, 222, 255, 0.42);
+      box-shadow: 0 30px 90px rgba(21, 92, 255, 0.12);
+    }
+
+    .info-card {
+      min-height: 292px;
+      padding: 32px 26px;
+    }
+
+    .focus-grid .info-card {
+      min-height: 292px;
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+      flex: 0 0 60px;
+      place-self: start center;
+    }
+
+    .icon svg {
+      width: 44px;
+      height: 44px;
+    }
+
+    .journal {
+      background:
+        radial-gradient(circle at 88% 16%, rgba(21, 92, 255, 0.13), transparent 24rem),
+        linear-gradient(180deg, #071122, #050914);
+    }
+
+    footer {
+      background: #04070e;
+      border-top-color: rgba(184, 202, 255, 0.14);
+    }
+
+    /* Logo alignment refinements */
+    .brand {
+      min-width: 208px;
+    }
+
+    .brand-mark {
+      box-shadow: none;
+    }
+
+    .brand-word {
+      letter-spacing: 9px;
+    }
+
+    [data-modal-title] {
+      cursor: pointer;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    [data-modal-title]:focus-visible {
+      outline: 2px solid rgba(142, 174, 255, 0.95);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 720px) {
+      .brand {
+        min-width: auto;
+      }
+
+      .brand-word {
+        letter-spacing: 7px;
+      }
+
+      .info-card {
+        min-height: auto;
+        padding: 26px 22px;
+      }
+
+      .icon {
+        width: 56px;
+        height: 56px;
+        flex-basis: 56px;
+      }
+
+      .icon svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    /* Tile and journal image refinements */
+    .stand-grid,
+    .focus-grid,
+    .journal-grid {
+      align-items: stretch;
+    }
+
+    .card-columns {
+      grid-template-columns: 1fr;
+      gap: 54px;
+    }
+
+    .stand-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .focus-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 286px;
+      padding: 30px 24px;
+    }
+
+    .info-card.reveal,
+    .journal-card.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .focus-grid .info-card {
+      min-height: 286px;
+    }
+
+    .info-card .icon {
+      margin-bottom: 26px;
+    }
+
+    .info-card h3 {
+      min-height: 56px;
+      margin-bottom: 14px;
+      line-height: 1.04;
+    }
+
+    .info-card p {
+      margin-top: auto;
+    }
+
+    .journal-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-art {
+      min-height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .article-art.pr {
+      background-image:
+        linear-gradient(180deg, rgba(3, 8, 20, 0.04), rgba(3, 8, 20, 0.32)),
+        url("assets/senz-blog-pr-trust.png");
+    }
+
+    .article-art.message {
+      background-image:
+        linear-gradient(180deg, rgba(3, 8, 20, 0.04), rgba(3, 8, 20, 0.32)),
+        url("assets/senz-blog-clear-messaging.png");
+    }
+
+    .article-art.message::after {
+      display: none;
+    }
+
+    .article-art.digital {
+      background-image:
+        linear-gradient(180deg, rgba(3, 8, 20, 0.04), rgba(3, 8, 20, 0.32)),
+        url("assets/senz-blog-digital-presence.png");
+    }
+
+    .journal-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+
+    .journal-body .card-arrow {
+      margin-top: auto;
+    }
+
+    @media (max-width: 720px) {
+      .stand-grid,
+      .focus-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-card h3 {
+        min-height: auto;
+      }
+    }
+
+    /* Scroll-directed motion system */
+    .scroll-progress {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 82px;
+      z-index: 42;
+      height: 2px;
+      pointer-events: none;
+      background: rgba(184, 202, 255, 0.08);
+    }
+
+    .scroll-progress__bar {
+      width: 100%;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: left center;
+      background: linear-gradient(90deg, #8fb1ff, #155cff);
+      box-shadow: 0 0 24px rgba(21, 92, 255, 0.52);
+    }
+
+    .motion-scene {
+      --scene-y: 0px;
+      --scene-opacity: 1;
+      position: relative;
+      overflow: clip;
+    }
+
+    .motion-scene > .shell {
+      opacity: var(--scene-opacity);
+      transform: translate3d(0, var(--scene-y), 0);
+      will-change: transform, opacity;
+    }
+
+    .hero-copy {
+      transform: translate3d(0, var(--hero-copy-y, 0px), 0);
+      will-change: transform;
+    }
+
+    .motion-item {
+      opacity: var(--item-opacity, 1);
+      transform: translate3d(var(--motion-x, 0px), var(--motion-y, 0px), 0);
+      will-change: transform, opacity;
+    }
+
+    .motion-item:hover {
+      transform: translate3d(var(--motion-x, 0px), calc(var(--motion-y, 0px) - 3px), 0);
+    }
+
+    .info-card.is-motion-active,
+    .journal-card.is-motion-active {
+      border-color: rgba(210, 222, 255, 0.52);
+      box-shadow: 0 30px 90px rgba(21, 92, 255, 0.16);
+    }
+
+    .portrait-card img {
+      transform: scale(var(--media-scale, 1)) translate3d(0, var(--media-y, 0px), 0);
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    .article-art {
+      background-position: center calc(50% + var(--media-y, 0px));
+      will-change: background-position;
+    }
+
+    @media (max-width: 760px) {
+      .scroll-progress {
+        top: 72px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .motion-scene > .shell,
+      .hero-copy,
+      .motion-item,
+      .portrait-card img {
+        transform: none;
+      }
+
+      .motion-scene > .shell,
+      .motion-item {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="shell nav">
       <a class="brand" href="index.html" aria-label="SENZ home">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <img class="brand-mark" src="assets/senz-original-mark.png" alt="" aria-hidden="true" />
         <span class="brand-word">SENZ</span>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="index.html#services">Services</a>
         <a class="is-active" href="about.html">About</a>
-        <a href="#journal">Work</a>
+        <a href="#journal">Portfolio</a>
         <a href="index.html#contact">Contact</a>
       </nav>
       <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
@@ -783,7 +1163,7 @@
           </div>
         </div>
         <div class="portrait-card">
-          <img src="assets/senz-founder-profile.jpeg" alt="SENZ founder portrait in a dark strategic communications visual" />
+          <img src="assets/senz-premium-leadership-portrait.png" alt="Executive communications strategist in a modern corporate office" />
         </div>
       </div>
     </section>
@@ -843,12 +1223,12 @@
               <p>Integrated campaigns that engage audiences and accelerate growth.</p>
               <span class="card-arrow">→</span>
             </article>
-            <article class="info-card" data-modal-title="Digital Solutions" data-modal-body="Digital solutions help turn the brand into an experience through websites, digital content, photography, and platform-ready assets.">
+            <article class="info-card" data-modal-title="Digital Solutions" data-modal-body="Digital solutions help turn the brand into an experience through websites, digital content, music products, clone production, event voting and tabulation platforms, ticket selling, and personal AI assistants.">
               <span class="icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
               </span>
               <h3>Digital Solutions</h3>
-              <p>High-performance digital strategies and content that connect and convert.</p>
+              <p>Websites, digital products, event platforms, and AI assistants that connect and convert.</p>
               <span class="card-arrow">→</span>
             </article>
           </div>
@@ -861,9 +1241,8 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow">Insights</p>
-            <h2>From the SENZ Journal</h2>
+            <h2>Creative Intelligence for Public-Facing Brands</h2>
           </div>
-          <a class="button secondary" href="mailto:info.senz.pr@gmail.com">View All Articles <span aria-hidden="true">→</span></a>
         </div>
         <div class="journal-grid">
           <article class="journal-card" data-modal-title="PR That Builds Trust" data-modal-body="Trust is not earned overnight. Strategic PR builds credibility by making the brand's message consistent, visible, and aligned with what the audience needs to believe.">
@@ -927,6 +1306,7 @@
       const modal = document.querySelector('#infoModal');
       const modalTitle = document.querySelector('#modalTitle');
       const modalBody = document.querySelector('#modalBody');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       requestAnimationFrame(() => body.classList.add('is-ready'));
 
@@ -934,6 +1314,14 @@
         const isOpen = nav.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', String(isOpen));
         toggle.textContent = isOpen ? '×' : '☰';
+      });
+
+      nav?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('is-open');
+          toggle?.setAttribute('aria-expanded', 'false');
+          if (toggle) toggle.textContent = '☰';
+        });
       });
 
       document.querySelectorAll('section, .info-card, .journal-card').forEach((el) => {
@@ -963,7 +1351,16 @@
       }
 
       document.querySelectorAll('[data-modal-title]').forEach((card) => {
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', `Open ${card.dataset.modalTitle}`);
         card.addEventListener('click', () => openModal(card.dataset.modalTitle, card.dataset.modalBody));
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openModal(card.dataset.modalTitle, card.dataset.modalBody);
+          }
+        });
       });
 
       modal?.addEventListener('click', (event) => {
@@ -982,6 +1379,72 @@
           setTimeout(() => { window.location.href = link.href; }, 180);
         });
       });
+
+      const progress = document.createElement('div');
+      progress.className = 'scroll-progress';
+      progress.innerHTML = '<span class="scroll-progress__bar"></span>';
+      body.appendChild(progress);
+      const progressBar = progress.querySelector('.scroll-progress__bar');
+
+      const scenes = Array.from(document.querySelectorAll('main > section'));
+      const motionItems = Array.from(document.querySelectorAll('.info-card, .journal-card'));
+      const mediaItems = Array.from(document.querySelectorAll('.portrait-card img, .article-art'));
+
+      scenes.forEach((scene) => scene.classList.add('motion-scene'));
+      motionItems.forEach((item, index) => {
+        item.classList.add('motion-item');
+        item.style.setProperty('--motion-index', index);
+      });
+
+      const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+      let ticking = false;
+
+      function syncScrollMotion() {
+        ticking = false;
+        const scrollMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const ratio = clamp(window.scrollY / scrollMax);
+        progressBar.style.transform = `scaleX(${ratio})`;
+
+        if (reduceMotion) return;
+
+        const vh = window.innerHeight || 1;
+        const heroCopy = document.querySelector('.hero-copy');
+        if (heroCopy) heroCopy.style.setProperty('--hero-copy-y', `${Math.round(window.scrollY * -0.035)}px`);
+
+        scenes.forEach((scene) => {
+          const rect = scene.getBoundingClientRect();
+          const progressInView = clamp((vh - rect.top) / (vh + rect.height));
+          scene.style.setProperty('--scene-y', `${Math.round((1 - progressInView) * 18)}px`);
+          scene.style.setProperty('--scene-opacity', (0.78 + progressInView * 0.22).toFixed(3));
+        });
+
+        motionItems.forEach((item, index) => {
+          const rect = item.getBoundingClientRect();
+          const rowProgress = clamp((vh - rect.top) / (vh * 0.72));
+          const direction = index % 2 === 0 ? -1 : 1;
+          item.style.setProperty('--item-opacity', (0.45 + rowProgress * 0.55).toFixed(3));
+          item.style.setProperty('--motion-x', `${Math.round((1 - rowProgress) * 18 * direction)}px`);
+          item.style.setProperty('--motion-y', `${Math.round((1 - rowProgress) * 10)}px`);
+          item.classList.toggle('is-motion-active', rect.top < vh * 0.62 && rect.bottom > vh * 0.32);
+        });
+
+        mediaItems.forEach((media) => {
+          const rect = media.getBoundingClientRect();
+          const mediaProgress = clamp((vh - rect.top) / (vh + rect.height));
+          media.style.setProperty('--media-y', `${Math.round((0.5 - mediaProgress) * 28)}px`);
+          media.style.setProperty('--media-scale', (1.02 + mediaProgress * 0.035).toFixed(3));
+        });
+      }
+
+      function requestMotionFrame() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(syncScrollMotion);
+      }
+
+      window.addEventListener('scroll', requestMotionFrame, { passive: true });
+      window.addEventListener('resize', requestMotionFrame);
+      syncScrollMotion();
     })();
   </script>
 </body>
