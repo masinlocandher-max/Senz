@@ -178,6 +178,7 @@
     .brand,
     .service-card,
     .value-card,
+    .catalog-card,
     .focus-card,
     .work-card,
     .product-card,
@@ -238,6 +239,7 @@
     .focus-card:hover,
     .service-card:hover,
     .work-card:hover,
+    .catalog-card:hover,
     .product-card:hover,
     .portfolio-card:hover {
       transform: translateY(-3px);
@@ -247,6 +249,7 @@
 
     .service-card,
     .value-card,
+    .catalog-card,
     .focus-card,
     .work-card,
     .product-card {
@@ -500,6 +503,184 @@
 
     .value-card h3 {
       font-size: 27px;
+    }
+
+    .catalog {
+      overflow: hidden;
+      padding-top: 78px;
+      padding-bottom: 78px;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(21, 92, 255, 0.2), transparent 26rem),
+        linear-gradient(180deg, #020713, #061229);
+    }
+
+    .catalog::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, transparent 0 46%, rgba(126, 164, 255, 0.18) 46.2% 46.7%, transparent 47%),
+        linear-gradient(45deg, transparent 0 62%, rgba(126, 164, 255, 0.14) 62.2% 62.7%, transparent 63%);
+      opacity: 0.5;
+    }
+
+    .catalog-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.68fr) minmax(280px, 0.32fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .catalog-heading h2 {
+      max-width: 760px;
+      font-size: clamp(42px, 5vw, 74px);
+    }
+
+    .catalog-heading p:last-child {
+      color: rgba(222, 232, 255, 0.76);
+      font-size: 16px;
+      line-height: 1.72;
+    }
+
+    .catalog-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .catalog-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(11, 28, 61, 0.86), rgba(4, 13, 32, 0.94));
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.26);
+      isolation: isolate;
+    }
+
+    .catalog-carousel {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: #061126;
+    }
+
+    .catalog-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.9) contrast(1.06);
+      transform: scale(1.06);
+      animation: catalogSlide 13.5s ease-in-out infinite;
+    }
+
+    .catalog-slide:nth-child(2) {
+      animation-delay: 4.5s;
+    }
+
+    .catalog-slide:nth-child(3) {
+      animation-delay: 9s;
+    }
+
+    .catalog-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(2, 7, 18, 0.06), rgba(2, 7, 18, 0.86) 72%),
+        linear-gradient(90deg, rgba(2, 7, 18, 0.72), rgba(2, 7, 18, 0.12));
+    }
+
+    .catalog-card::after {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(184, 202, 255, 0.14);
+      pointer-events: none;
+    }
+
+    .catalog-body {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 26px;
+      z-index: 1;
+    }
+
+    .catalog-index {
+      display: inline-flex;
+      margin-bottom: 16px;
+      color: var(--blue-soft);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2.6px;
+      text-transform: uppercase;
+    }
+
+    .catalog-card h3 {
+      max-width: 360px;
+      margin-bottom: 14px;
+      font-size: clamp(34px, 3.2vw, 48px);
+      line-height: 0.96;
+    }
+
+    .catalog-card p {
+      max-width: 360px;
+      color: rgba(237, 243, 255, 0.78);
+      font-size: 15px;
+      line-height: 1.58;
+    }
+
+    .catalog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .catalog-tags span {
+      border: 1px solid rgba(184, 202, 255, 0.2);
+      border-radius: 999px;
+      padding: 8px 10px;
+      color: rgba(237, 243, 255, 0.86);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      background: rgba(3, 12, 31, 0.48);
+      backdrop-filter: blur(12px);
+    }
+
+    .catalog-card.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes catalogSlide {
+      0%,
+      8% {
+        opacity: 0;
+        transform: scale(1.08) translateX(0);
+      }
+
+      16%,
+      36% {
+        opacity: 1;
+        transform: scale(1.02) translateX(-1.5%);
+      }
+
+      44%,
+      100% {
+        opacity: 0;
+        transform: scale(1.08) translateX(1.5%);
+      }
     }
 
     .about {
@@ -1017,12 +1198,14 @@
 
     @media (max-width: 1060px) {
       .value-grid,
+      .catalog-grid,
       .services-grid,
       .work-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .about-grid,
+      .catalog-heading,
       .section-heading,
       .contact-layout {
         grid-template-columns: 1fr;
@@ -1122,6 +1305,7 @@
       }
 
       .value-grid,
+      .catalog-grid,
       .services-grid,
       .work-grid {
         grid-template-columns: 1fr;
@@ -1511,6 +1695,7 @@
     }
 
     .value-card.reveal,
+    .catalog-card.reveal,
     .focus-card.reveal,
     .service-card.reveal,
     .work-card.reveal {
@@ -1714,6 +1899,10 @@
     @media (max-width: 640px) {
       .digital-product-studio {
         padding: 24px 16px;
+      }
+
+      .catalog-card {
+        min-height: 460px;
       }
 
       .product-grid {
@@ -1931,6 +2120,10 @@
     }
 
     @media (max-width: 640px) {
+      .catalog-card {
+        min-height: 460px;
+      }
+
       .portfolio-strip {
         grid-template-columns: 1fr;
       }
@@ -1997,6 +2190,7 @@
 
     .service-card.is-motion-active,
     .product-card.is-motion-active,
+    .catalog-card.is-motion-active,
     .portfolio-card.is-motion-active,
     .info-card.is-motion-active,
     .journal-card.is-motion-active {
@@ -2082,33 +2276,69 @@
       </div>
     </section>
 
-    <section class="values" aria-label="SENZ core values">
+    <section class="catalog" aria-label="SENZ client catalog">
       <div class="shell">
-        <p class="eyebrow">Our Core Values</p>
-        <div class="value-grid">
-          <article class="value-card">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
-            </span>
-            <h3>Clarity</h3>
+        <div class="catalog-heading">
+          <div>
+            <p class="eyebrow">SENZ Catalog</p>
+            <h2>Built for public-facing people and live moments.</h2>
+          </div>
+          <p>Premium communication, visuals, digital systems, and event technology for high-visibility work.</p>
+        </div>
+
+        <div class="catalog-grid">
+          <article class="catalog-card" data-modal-title="Beauty Queens and King" data-modal-body="SENZ supports pageant leaders and titleholders with public image direction, PR, social presence, campaign visuals, and polished digital assets." data-modal-visual="visual-strategist" data-modal-kicker="Pageant Image System" data-modal-items="Public Image|Visual Direction|Campaign Presence" data-modal-chips="Pageants|PR|Digital Assets" data-modal-metric="Crown" data-modal-caption="A premium public-image system for beauty queens, kings, and titleholders.">
+            <div class="catalog-carousel" aria-hidden="true">
+              <span class="catalog-slide" style="background-image: url('assets/senz-premium-leadership-portrait.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-premium-strategy-team.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-blog-clear-messaging.png');"></span>
+            </div>
+            <div class="catalog-body">
+              <span class="catalog-index">01 / Pageant</span>
+              <h3>Beauty Queens and King</h3>
+              <p>Public image, campaign presence, styling direction, and digital assets for titleholders.</p>
+              <div class="catalog-tags">
+                <span>PR</span>
+                <span>Image</span>
+                <span>Campaign</span>
+              </div>
+            </div>
           </article>
-          <article class="value-card">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 3 5 6v5c0 4.5 2.9 8.2 7 10 4.1-1.8 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-5"/></svg>
-            </span>
-            <h3>Credibility</h3>
+
+          <article class="catalog-card" data-modal-title="Politicians or Public Figure" data-modal-body="SENZ helps political personalities and public figures sharpen credibility, narrative, visual presence, audience trust, and public-facing communication systems." data-modal-visual="visual-pr" data-modal-kicker="Public Trust Board" data-modal-items="Narrative|Credibility Signals|Audience Trust" data-modal-chips="Public Figure|Reputation|Message" data-modal-metric="Trust" data-modal-caption="A visibility and credibility system for leaders who need disciplined public presence.">
+            <div class="catalog-carousel" aria-hidden="true">
+              <span class="catalog-slide" style="background-image: url('assets/senz-blog-pr-trust.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-corporate-team-facility.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
+            </div>
+            <div class="catalog-body">
+              <span class="catalog-index">02 / Public Figure</span>
+              <h3>Politicians or Public Figure</h3>
+              <p>Credibility, narrative discipline, PR, and modern digital presence for public trust.</p>
+              <div class="catalog-tags">
+                <span>Reputation</span>
+                <span>Trust</span>
+                <span>Message</span>
+              </div>
+            </div>
           </article>
-          <article class="value-card">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="m3 11 18-7-4 16-5-6-5 4 1-5-5-2Z"/></svg>
-            </span>
-            <h3>Influence</h3>
-          </article>
-          <article class="value-card">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="7"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M12 9v6M9 12h6"/></svg>
-            </span>
-            <h3>Strategy</h3>
+
+          <article class="catalog-card" data-modal-title="Events: Voting and Tabulation" data-modal-body="SENZ builds event systems for voting, tabulation, ticket selling, dashboards, and live audience engagement for pageants, competitions, shows, and brand activations." data-modal-visual="visual-events" data-modal-kicker="Live Event System" data-modal-items="Ticket Sales|Live Voting|Tabulation Dashboard" data-modal-chips="Voting|Tabulation|Ticketing" data-modal-metric="Live" data-modal-caption="A modern event stack for voting, tabulation, ticketing, and live show operations.">
+            <div class="catalog-carousel" aria-hidden="true">
+              <span class="catalog-slide" style="background-image: url('assets/senz-blog-digital-presence.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
+              <span class="catalog-slide" style="background-image: url('assets/senz-corporate-team-facility.png');"></span>
+            </div>
+            <div class="catalog-body">
+              <span class="catalog-index">03 / Events</span>
+              <h3>Events: Voting and Tabulation</h3>
+              <p>Voting, tabulation, ticketing, dashboards, and event-ready digital operations.</p>
+              <div class="catalog-tags">
+                <span>Voting</span>
+                <span>Tabulation</span>
+                <span>Ticketing</span>
+              </div>
+            </div>
           </article>
         </div>
       </div>
@@ -2457,7 +2687,7 @@
         });
       });
 
-      document.querySelectorAll('section, .value-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card').forEach((el) => {
+      document.querySelectorAll('section, .value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card').forEach((el) => {
         el.classList.add('reveal');
       });
 
@@ -2559,7 +2789,7 @@
       const progressBar = progress.querySelector('.scroll-progress__bar');
 
       const scenes = Array.from(document.querySelectorAll('main > section'));
-      const motionItems = Array.from(document.querySelectorAll('.value-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card, .contact-panel'));
+      const motionItems = Array.from(document.querySelectorAll('.value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card, .contact-panel'));
       const mediaItems = Array.from(document.querySelectorAll('.meeting-visual img, .portfolio-art, .article-art'));
 
       scenes.forEach((scene) => scene.classList.add('motion-scene'));
