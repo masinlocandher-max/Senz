@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SENZ Scroll Image Sequence Demo</title>
+    <script type="module" src="components/scroll-image-sequence.js"></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --blue: #4f83ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: #f7f9ff;
+        background: #020713;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: minmax(320px, 0.48fr) minmax(0, 0.52fr);
+      }
+
+      .intro {
+        display: grid;
+        align-content: center;
+        gap: 22px;
+        padding: clamp(28px, 6vw, 76px);
+        background:
+          linear-gradient(90deg, rgba(2, 7, 19, 0.98), rgba(2, 7, 19, 0.72)),
+          url("assets/senz-premium-hero-facility.png") center / cover no-repeat;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        color: #fff;
+        font-weight: 900;
+        letter-spacing: 7px;
+      }
+
+      .brand img {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #8fb1ff;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 620px;
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(48px, 7vw, 88px);
+        font-weight: 500;
+        line-height: 0.95;
+      }
+
+      h1 span {
+        color: #8fb1ff;
+      }
+
+      p {
+        max-width: 560px;
+        margin: 0;
+        color: rgba(237, 243, 255, 0.78);
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      .hint {
+        display: inline-flex;
+        width: fit-content;
+        border: 1px solid rgba(195, 211, 255, 0.22);
+        border-radius: 8px;
+        padding: 12px 16px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.045);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .sequence-wrap {
+        min-height: 100vh;
+        background: #030814;
+      }
+
+      scroll-image-sequence {
+        height: 100vh;
+      }
+
+      @media (max-width: 900px) {
+        .page {
+          grid-template-columns: 1fr;
+        }
+
+        .intro {
+          min-height: 62vh;
+        }
+
+        scroll-image-sequence {
+          height: 78vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="intro">
+        <a class="brand" href="index.html" aria-label="Back to SENZ home">
+          <img src="assets/senz-original-mark.png" alt="" />
+          <span>SENZ</span>
+        </a>
+        <p class="eyebrow">Scroll Sequence Demo</p>
+        <h1>Scroll inside the frame. <span>The browser stays still.</span></h1>
+        <p>
+          This page demonstrates the reusable scroll-driven image sequence component. The image changes frame-by-frame
+          from the component's own internal scroll area.
+        </p>
+        <span class="hint">Scroll the image panel</span>
+      </section>
+
+      <section class="sequence-wrap" aria-label="Scroll-driven frame preview">
+        <scroll-image-sequence
+          images="assets/senz-hero-building.jpeg,assets/senz-clean-hero.jpeg,assets/senz-brand-pillars.jpeg,assets/senz-team-map.jpeg,assets/senz-why-work.jpeg,assets/senz-who-help.jpeg,assets/senz-why-matters.jpeg,assets/senz-services.jpeg"
+          frame-height="100vh"
+          total-scroll-height="520vh"
+          object-fit="cover"
+          sticky="true"
+        ></scroll-image-sequence>
+      </section>
+    </main>
+  </body>
+</html>
