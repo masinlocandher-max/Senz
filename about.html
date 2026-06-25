@@ -1652,8 +1652,8 @@
 
     .portrait-card {
       justify-self: end;
-      width: min(570px, 100%);
-      height: min(640px, calc(100vh - 108px));
+      width: min(590px, 100%);
+      height: min(650px, calc(100vh - 104px));
       border: 0;
       border-radius: 0;
       overflow: visible;
@@ -1665,11 +1665,11 @@
     .portrait-card::before {
       content: "";
       position: absolute;
-      inset: -8% -18% -10% -22%;
+      inset: -8% -20% -10% -20%;
       z-index: -1;
       background:
-        radial-gradient(ellipse at 58% 42%, rgba(47, 106, 255, 0.26), transparent 52%),
-        radial-gradient(ellipse at 64% 86%, rgba(0, 87, 255, 0.22), transparent 46%);
+        radial-gradient(ellipse at 52% 38%, rgba(47, 106, 255, 0.28), transparent 50%),
+        radial-gradient(ellipse at 58% 86%, rgba(0, 87, 255, 0.24), transparent 48%);
       filter: blur(4px);
       opacity: 0.86;
     }
@@ -1680,17 +1680,18 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(90deg, rgba(2, 7, 19, 0.28) 0%, transparent 18%, transparent 78%, rgba(2, 7, 19, 0.18) 100%),
-        linear-gradient(180deg, transparent 54%, rgba(2, 7, 19, 0.28) 78%, rgba(2, 7, 19, 0.92) 100%);
+        linear-gradient(90deg, rgba(2, 7, 19, 0.42) 0%, rgba(2, 7, 19, 0.05) 22%, rgba(2, 7, 19, 0.08) 72%, rgba(2, 7, 19, 0.3) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.05) 0%, transparent 42%, rgba(2, 7, 19, 0.34) 74%, rgba(2, 7, 19, 0.94) 100%),
+        radial-gradient(circle at 58% 38%, rgba(0, 87, 255, 0.16), transparent 22rem);
     }
 
     .portrait-card img {
       border-radius: 0;
-      object-position: 54% center;
+      object-position: 50% center;
       box-shadow: none;
-      filter: contrast(1.05) saturate(1.04) brightness(0.96);
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 9%, black 91%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, black 9%, black 91%, transparent 100%);
+      filter: contrast(1.05) saturate(0.94) brightness(0.88);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 9%, black 88%, transparent 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, black 9%, black 88%, transparent 100%);
     }
 
     .founder-panel {
@@ -1842,7 +1843,7 @@
           </div>
         </div>
         <div class="portrait-card">
-          <img src="assets/senz-premium-leadership-portrait.png" alt="Executive communications strategist in a modern corporate office" />
+          <img src="assets/senz-founder-hero-white.jpg" alt="Francine Marie Bautista, Founder of SENZ, in a modern corporate office" />
           <div class="founder-panel">
             <h2>Francine Marie Bautista</h2>
             <p class="founder-title">Founder</p>
