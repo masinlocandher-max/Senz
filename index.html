@@ -1068,10 +1068,10 @@
     .visual-management { --accent: #8fb1ff; --visual-image: url("assets/senz-corporate-team-facility.png"); }
     .visual-website { --accent: #6f98ff; --visual-image: url("assets/senz-blog-digital-presence.png"); }
     .visual-photo { --accent: #b8caff; --visual-image: url("assets/senz-premium-strategy-team.png"); }
-    .visual-music { --accent: #9eb9ff; --visual-image: linear-gradient(135deg, #07152d, #172d66 52%, #050914); }
-    .visual-clone { --accent: #d1ddff; --visual-image: linear-gradient(135deg, #09162f, #1d3677 48%, #050914); }
-    .visual-events { --accent: #7ea4ff; --visual-image: linear-gradient(135deg, #061225, #173061 50%, #060b15); }
-    .visual-ai { --accent: #c6d5ff; --visual-image: linear-gradient(135deg, #05101f, #15366d 48%, #03070f); }
+    .visual-music { --accent: #9eb9ff; --visual-image: url("assets/senz-product-music.png"); }
+    .visual-clone { --accent: #d1ddff; --visual-image: url("assets/senz-product-clone-studio.png"); }
+    .visual-events { --accent: #7ea4ff; --visual-image: url("assets/senz-product-events-platform.png"); }
+    .visual-ai { --accent: #c6d5ff; --visual-image: url("assets/senz-product-ai-assistant.png"); }
     .visual-portfolio { --accent: #8fb1ff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
 
     .visual-kicker {
@@ -2829,8 +2829,8 @@
 
     .modal-visual {
       background:
-        linear-gradient(180deg, rgba(3, 10, 24, 0.1), rgba(3, 10, 24, 0.54)),
-        url("assets/senz-premium-strategy-team.png") center / cover no-repeat !important;
+        linear-gradient(180deg, rgba(3, 10, 24, 0.12), rgba(3, 10, 24, 0.58)),
+        var(--visual-image) center / cover no-repeat !important;
     }
 
     .modal-visual::before,
