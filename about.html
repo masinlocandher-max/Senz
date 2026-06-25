@@ -1246,6 +1246,166 @@
         opacity: 1;
       }
     }
+
+    /* Reference-aligned founder frame: corporate, cinematic, and motion-ready. */
+    .about-hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(1, 5, 15, 0.98) 0%, rgba(2, 8, 24, 0.78) 47%, rgba(2, 8, 24, 0.34) 100%),
+        radial-gradient(circle at 76% 36%, rgba(0, 87, 255, 0.28), transparent 19rem),
+        url("assets/senz-clean-hero.jpeg") right center / cover no-repeat;
+    }
+
+    .about-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at var(--cursor-x, 72%) var(--cursor-y, 42%), rgba(0, 87, 255, 0.24), transparent 13rem),
+        repeating-linear-gradient(45deg, rgba(80, 130, 255, 0.18) 0 1px, transparent 1px 92px),
+        linear-gradient(112deg, transparent 40%, rgba(0, 87, 255, 0.28) 50%, transparent 60%);
+      opacity: 0.52;
+      mask-image: linear-gradient(90deg, black 0%, transparent 18%, transparent 86%, black 100%);
+      animation: aboutCircuit 9s cubic-bezier(.16, 1, .3, 1) infinite alternate;
+    }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(420px, 0.9fr);
+      gap: clamp(30px, 5vw, 70px);
+    }
+
+    .about-hero h1 {
+      max-width: 620px;
+      font-size: clamp(66px, 7.2vw, 104px);
+      line-height: 0.94;
+    }
+
+    .about-hero h1 span {
+      color: #5f91ff;
+    }
+
+    .hero-copy .lead {
+      max-width: 640px;
+      color: #6f98ff;
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      font-size: clamp(32px, 3vw, 48px);
+      line-height: 1.04;
+    }
+
+    .about-message {
+      max-width: 560px;
+      margin-top: 24px;
+      color: rgba(237, 243, 255, 0.82);
+      font-size: 16px;
+      line-height: 1.72;
+    }
+
+    .about-service-strip {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 690px;
+      margin-top: 24px;
+    }
+
+    .about-service-strip span {
+      min-height: 112px;
+      display: grid;
+      place-items: end center;
+      border: 1px solid rgba(122, 160, 255, 0.3);
+      border-radius: var(--radius);
+      padding: 16px 10px;
+      color: rgba(237, 243, 255, 0.84);
+      background: linear-gradient(180deg, rgba(8, 24, 55, 0.58), rgba(2, 8, 22, 0.78));
+      box-shadow: inset 0 0 24px rgba(0, 87, 255, 0.08);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.22;
+      text-align: center;
+    }
+
+    .about-service-strip span::before {
+      content: "";
+      width: 36px;
+      height: 36px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(105, 160, 255, 0.78);
+      transform: rotate(45deg);
+      box-shadow: 0 0 18px rgba(0, 87, 255, 0.32);
+    }
+
+    .portrait-card {
+      height: min(690px, calc(100vh - 160px));
+      border-color: rgba(105, 160, 255, 0.32);
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .portrait-card img {
+      object-position: 62% center;
+      filter: contrast(1.03) saturate(1.04);
+    }
+
+    .founder-panel {
+      left: auto;
+      right: 26px;
+      bottom: 45%;
+      width: min(340px, calc(100% - 52px));
+      padding: 16px 18px;
+      border-color: rgba(108, 158, 255, 0.34);
+      background: rgba(2, 8, 22, 0.48);
+    }
+
+    .founder-panel h2 {
+      font-size: 19px;
+      line-height: 1.15;
+    }
+
+    .founder-panel p:last-child {
+      margin-top: 2px;
+      color: #6f98ff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .goal-strip {
+      margin-top: 22px;
+    }
+
+    @keyframes aboutCircuit {
+      from { transform: translate3d(-1.2%, 0, 0); opacity: 0.42; }
+      to { transform: translate3d(1.2%, -1%, 0); opacity: 0.68; }
+    }
+
+    @media (max-width: 980px) {
+      .about-service-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .portrait-card {
+        height: 620px;
+      }
+
+      .founder-panel {
+        left: 22px;
+        right: 22px;
+        bottom: 22px;
+        width: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .about-service-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-copy .lead {
+        font-size: 31px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1271,12 +1431,20 @@
     <section class="about-hero">
       <div class="shell hero-grid">
         <div class="hero-copy">
-          <div class="offer-line">PR <span>|</span> Marketing <span>|</span> Digital Solutions</div>
-          <p class="eyebrow">About SENZ</p>
-          <h1>Founder-led. Future-facing. <span>Built for Influence.</span></h1>
+          <p class="eyebrow">Who We Are</p>
+          <h1>About <span>Us</span></h1>
           <p class="lead">
-            SENZ sharpens public image, digital presence, and brand systems for people and companies ready to be seen.
+            Strategic communications for brands that need clarity, influence, and presence.
           </p>
+          <p class="about-message">At SENZ, we help ambitious brands shape perception, sharpen their message, and build influence through strategy, creativity, and digital presence.</p>
+          <div class="about-service-strip" aria-label="SENZ capabilities">
+            <span>Strategic Communications</span>
+            <span>Brand Direction</span>
+            <span>Creative Production</span>
+            <span>Digital Solutions</span>
+            <span>Public Relations</span>
+            <span>Narrative Strategy</span>
+          </div>
           <div class="goal-strip">
             <span>Company Goal</span>
             <strong>Modernize how brands are seen, heard, and experienced.</strong>
@@ -1289,9 +1457,8 @@
         <div class="portrait-card">
           <img src="assets/senz-premium-leadership-portrait.png" alt="Executive communications strategist in a modern corporate office" />
           <div class="founder-panel">
-            <p class="founder-label">Founder</p>
             <h2>Francine Marie Bautista</h2>
-            <p>SENZ exists to turn ideas into clear public image, modern digital systems, and work people remember.</p>
+            <p>Founder</p>
           </div>
         </div>
       </div>
@@ -1455,7 +1622,7 @@
         });
       });
 
-      document.querySelectorAll('section, .info-card, .journal-card').forEach((el) => {
+      document.querySelectorAll('section, .info-card, .journal-card, .about-service-strip span').forEach((el) => {
         el.classList.add('reveal');
       });
 
@@ -1494,6 +1661,13 @@
         });
       });
 
+      document.querySelector('.about-hero')?.addEventListener('pointermove', (event) => {
+        const hero = event.currentTarget;
+        const rect = hero.getBoundingClientRect();
+        hero.style.setProperty('--cursor-x', `${Math.round(((event.clientX - rect.left) / rect.width) * 100)}%`);
+        hero.style.setProperty('--cursor-y', `${Math.round(((event.clientY - rect.top) / rect.height) * 100)}%`);
+      });
+
       modal?.addEventListener('click', (event) => {
         if (event.target === modal || event.target.classList.contains('modal-close')) closeModal();
       });
@@ -1518,7 +1692,7 @@
       const progressBar = progress.querySelector('.scroll-progress__bar');
 
       const scenes = Array.from(document.querySelectorAll('main > section'));
-      const motionItems = Array.from(document.querySelectorAll('.info-card, .journal-card'));
+      const motionItems = Array.from(document.querySelectorAll('.info-card, .journal-card, .about-service-strip span'));
       const mediaItems = Array.from(document.querySelectorAll('.portrait-card img, .article-art'));
 
       scenes.forEach((scene) => scene.classList.add('motion-scene'));

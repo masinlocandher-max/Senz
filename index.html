@@ -2249,9 +2249,394 @@
         opacity: 1;
       }
     }
+
+    /* Cinematic reference pass: motion-driven, glassy, corporate-luxury SENZ system. */
+    .brand-intro {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: #fff;
+      background:
+        radial-gradient(circle at 50% 43%, rgba(0, 87, 255, 0.42), transparent 18rem),
+        radial-gradient(circle at 42% 35%, rgba(95, 145, 255, 0.2), transparent 12rem),
+        linear-gradient(180deg, #01050f 0%, #031028 52%, #01050f 100%);
+      transition: opacity 700ms cubic-bezier(.16, 1, .3, 1), visibility 700ms cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .brand-intro.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .brand-intro::before,
+    .brand-intro::after {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, transparent 35%, rgba(0, 87, 255, 0.34) 49%, transparent 61%),
+        repeating-linear-gradient(45deg, rgba(78, 128, 255, 0.18) 0 1px, transparent 1px 78px);
+      opacity: 0.45;
+      animation: introOrbit 5.8s cubic-bezier(.16, 1, .3, 1) infinite alternate;
+    }
+
+    .brand-intro::after {
+      background:
+        radial-gradient(circle, rgba(102, 151, 255, 0.7) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(0, 87, 255, 0.5) 0 1px, transparent 2px);
+      background-size: 74px 74px, 118px 118px;
+      opacity: 0.28;
+      animation-duration: 7.8s;
+      animation-direction: alternate-reverse;
+    }
+
+    .intro-lockup {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      transform: translateY(10px);
+      animation: introRise 1.2s cubic-bezier(.16, 1, .3, 1) both;
+    }
+
+    .intro-mark {
+      width: clamp(92px, 10vw, 138px);
+      margin-bottom: 22px;
+      filter: drop-shadow(0 0 28px rgba(0, 87, 255, 0.72));
+      animation: introPulse 2.2s ease-in-out infinite alternate;
+    }
+
+    .intro-word {
+      font-size: clamp(54px, 8vw, 90px);
+      font-weight: 500;
+      letter-spacing: clamp(18px, 3vw, 34px);
+      line-height: 0.9;
+      text-indent: clamp(18px, 3vw, 34px);
+    }
+
+    .intro-sub {
+      margin-top: 22px;
+      color: rgba(181, 201, 255, 0.92);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+    }
+
+    .intro-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 46px;
+      color: rgba(255, 255, 255, 0.92);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(18px, 2.2vw, 28px);
+    }
+
+    .intro-tag::before,
+    .intro-tag::after {
+      content: "";
+      width: clamp(72px, 12vw, 170px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(91, 143, 255, 0.82));
+      box-shadow: 0 0 16px rgba(0, 87, 255, 0.78);
+    }
+
+    .intro-tag::after {
+      transform: scaleX(-1);
+    }
+
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.96) 0%, rgba(2, 7, 19, 0.72) 43%, rgba(2, 7, 19, 0.12) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.06) 0%, rgba(2, 7, 19, 0.18) 68%, #020713 100%),
+        url("assets/senz-hero-building.jpeg") 62% center / cover no-repeat;
+    }
+
+    .hero::after {
+      background:
+        radial-gradient(circle at var(--cursor-x, 48%) var(--cursor-y, 42%), rgba(0, 87, 255, 0.28), transparent 14rem),
+        linear-gradient(112deg, transparent 44%, rgba(0, 87, 255, 0.45) 49%, transparent 55%),
+        repeating-linear-gradient(45deg, rgba(0, 87, 255, 0.18) 0 1px, transparent 1px 86px);
+      mask-image: linear-gradient(90deg, black 0%, transparent 18%, transparent 82%, black 100%);
+      animation: heroCircuit 9s cubic-bezier(.16, 1, .3, 1) infinite alternate;
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 210px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0, 87, 255, 0.85), transparent);
+      box-shadow: 0 0 18px rgba(0, 87, 255, 0.7);
+    }
+
+    .hero h1,
+    .section-heading h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      font-size: clamp(64px, 8vw, 106px);
+      line-height: 0.94;
+    }
+
+    .hero .lead {
+      max-width: 560px;
+      font-size: clamp(18px, 1.8vw, 22px);
+    }
+
+    .trust-card {
+      position: relative;
+      overflow: hidden;
+      margin-top: 18px;
+      background: rgba(3, 11, 28, 0.42);
+    }
+
+    .trust-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 30%, rgba(95, 145, 255, 0.22), transparent 68%);
+      animation: boardSweep 4.8s ease-in-out infinite;
+    }
+
+    .services {
+      position: relative;
+      overflow: hidden;
+      padding: 112px 0 104px;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.98), rgba(3, 14, 34, 0.82), rgba(2, 7, 19, 0.74)),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.16), #020713),
+        url("assets/senz-premium-hero-facility.png") right center / cover no-repeat;
+    }
+
+    .services::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(0, 87, 255, 0.24), transparent 22rem),
+        repeating-linear-gradient(90deg, rgba(81, 132, 255, 0.12) 0 1px, transparent 1px 138px),
+        repeating-linear-gradient(0deg, rgba(81, 132, 255, 0.1) 0 1px, transparent 1px 112px);
+      opacity: 0.72;
+      mask-image: linear-gradient(180deg, transparent, black 12%, black 84%, transparent);
+    }
+
+    .services .shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    .services .section-heading {
+      grid-template-columns: minmax(0, 760px);
+      margin-bottom: 44px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(60px, 7vw, 94px);
+      line-height: 0.95;
+    }
+
+    .section-heading h2 span {
+      color: #4f83ff;
+    }
+
+    .section-heading .section-lead {
+      max-width: 680px;
+      margin-top: 22px;
+      color: rgba(232, 239, 255, 0.82);
+      font-size: 17px;
+      line-height: 1.72;
+    }
+
+    .services-grid {
+      position: relative;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 24px;
+      padding: 2px 0;
+      counter-reset: service;
+    }
+
+    .services-grid::before,
+    .services-grid::after {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(87, 142, 255, 0.95), transparent);
+      box-shadow: 0 0 18px rgba(0, 87, 255, 0.8);
+      opacity: 0.78;
+    }
+
+    .services-grid::before {
+      top: calc(50% - 12px);
+      height: 1px;
+    }
+
+    .services-grid::after {
+      top: 50%;
+      bottom: 0;
+      left: 50%;
+      right: auto;
+      width: 1px;
+      height: calc(50% + 10px);
+      background: linear-gradient(180deg, rgba(87, 142, 255, 0.95), transparent);
+    }
+
+    .service-card {
+      position: relative;
+      min-height: 188px;
+      overflow: hidden;
+      grid-template-columns: 88px 1fr 24px;
+      border-color: rgba(111, 152, 255, 0.42);
+      background: linear-gradient(180deg, rgba(6, 20, 48, 0.58), rgba(2, 8, 22, 0.8));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025), 0 24px 80px rgba(0, 0, 0, 0.22);
+      counter-increment: service;
+    }
+
+    .service-card:nth-child(2) {
+      border-color: rgba(105, 160, 255, 0.9);
+      box-shadow: 0 0 0 1px rgba(99, 150, 255, 0.45), 0 0 42px rgba(0, 87, 255, 0.38), 0 34px 90px rgba(0, 0, 0, 0.28);
+    }
+
+    .service-card::before {
+      content: counter(service, decimal-leading-zero);
+      position: absolute;
+      left: 24px;
+      top: 20px;
+      color: rgba(96, 142, 255, 0.88);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--glow-x, 55%) var(--glow-y, 45%), rgba(0, 87, 255, 0.22), transparent 15rem);
+      opacity: 0;
+      transition: opacity 260ms ease;
+    }
+
+    .service-card:hover::after,
+    .service-card.is-motion-active::after {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 68px;
+      height: 68px;
+      border: 1px solid rgba(101, 154, 255, 0.88);
+      background: rgba(4, 14, 34, 0.46);
+      box-shadow: inset 0 0 24px rgba(0, 87, 255, 0.22), 0 0 26px rgba(0, 87, 255, 0.34);
+      transform: rotate(45deg);
+    }
+
+    .service-icon svg {
+      width: 34px;
+      height: 34px;
+      transform: rotate(-45deg);
+    }
+
+    .service-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(26px, 2.4vw, 34px);
+      font-weight: 500;
+    }
+
+    .service-card p {
+      color: rgba(232, 239, 255, 0.75);
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .arrow {
+      color: #3f79ff;
+      text-shadow: 0 0 18px rgba(0, 87, 255, 0.95);
+    }
+
+    @keyframes introRise {
+      from { opacity: 0; transform: translateY(24px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes introPulse {
+      from { transform: translateY(0) scale(1); filter: drop-shadow(0 0 22px rgba(0, 87, 255, 0.62)); }
+      to { transform: translateY(-6px) scale(1.035); filter: drop-shadow(0 0 42px rgba(76, 132, 255, 0.9)); }
+    }
+
+    @keyframes introOrbit {
+      from { transform: translate3d(-1.5%, 1%, 0) rotate(0deg); }
+      to { transform: translate3d(1.5%, -1%, 0) rotate(2deg); }
+    }
+
+    @keyframes heroCircuit {
+      from { transform: translate3d(-1.2%, 0, 0); opacity: 0.28; }
+      to { transform: translate3d(1.2%, -1%, 0); opacity: 0.52; }
+    }
+
+    @keyframes boardSweep {
+      0%, 22% { transform: translateX(-120%); opacity: 0; }
+      42% { opacity: 1; }
+      78%, 100% { transform: translateX(140%); opacity: 0; }
+    }
+
+    @media (max-width: 900px) {
+      .brand-intro {
+        display: none;
+      }
+
+      .hero h1,
+      .section-heading h2 {
+        font-size: clamp(48px, 14vw, 72px);
+      }
+
+      .services-grid::before,
+      .services-grid::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 1050px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .services-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="brand-intro" id="brandIntro" aria-hidden="true">
+    <div class="intro-lockup">
+      <img class="intro-mark" src="assets/senz-original-mark.png" alt="" />
+      <div class="intro-word">SENZ</div>
+      <div class="intro-sub">Strategic Communications</div>
+      <div class="intro-tag">Influence Through Clarity</div>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="shell nav">
       <a class="brand" href="#top" aria-label="SENZ home">
@@ -2406,7 +2791,8 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow">Our Services</p>
-            <h2>Solutions That Drive Reputation and Growth</h2>
+            <h2>What <span>We Do</span></h2>
+            <p class="section-lead">Strategic communications, creative production, and digital systems built to make brands clearer, sharper, and harder to ignore.</p>
           </div>
         </div>
 
@@ -2685,9 +3071,19 @@
       const modalVisualStack = document.querySelector('#modalVisualStack');
       const modalVisualMetric = document.querySelector('#modalVisualMetric');
       const modalVisualCaption = document.querySelector('#modalVisualCaption');
+      const brandIntro = document.querySelector('#brandIntro');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       requestAnimationFrame(() => body.classList.add('is-ready'));
+
+      const closeIntro = () => brandIntro?.classList.add('is-hidden');
+      if (brandIntro) {
+        window.setTimeout(closeIntro, reduceMotion ? 200 : 2300);
+        brandIntro.addEventListener('click', closeIntro);
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' || event.key === 'Enter' || event.key === ' ') closeIntro();
+        }, { once: true });
+      }
 
       toggle?.addEventListener('click', () => {
         const isOpen = nav.classList.toggle('is-open');
@@ -2781,7 +3177,14 @@
         });
       });
 
-      document.querySelectorAll('.catalog-card').forEach((card) => {
+      document.querySelector('.hero')?.addEventListener('pointermove', (event) => {
+        const hero = event.currentTarget;
+        const rect = hero.getBoundingClientRect();
+        hero.style.setProperty('--cursor-x', `${Math.round(((event.clientX - rect.left) / rect.width) * 100)}%`);
+        hero.style.setProperty('--cursor-y', `${Math.round(((event.clientY - rect.top) / rect.height) * 100)}%`);
+      });
+
+      document.querySelectorAll('.catalog-card, .service-card').forEach((card) => {
         card.addEventListener('pointermove', (event) => {
           const rect = card.getBoundingClientRect();
           const x = (event.clientX - rect.left) / rect.width;
