@@ -1695,41 +1695,47 @@
     }
 
     .founder-panel {
-      right: clamp(18px, 4vw, 38px);
-      bottom: clamp(38px, 8vh, 74px);
-      width: min(390px, calc(100% - 48px));
-      padding: 18px 20px 18px 22px;
-      border: 1px solid rgba(151, 179, 255, 0.22) !important;
-      border-left: 2px solid rgba(97, 144, 255, 0.76) !important;
-      background: linear-gradient(135deg, rgba(3, 10, 24, 0.74), rgba(5, 17, 39, 0.52)) !important;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), inset 0 0 24px rgba(81, 130, 255, 0.06);
-      backdrop-filter: blur(20px);
+      left: 50%;
+      right: auto;
+      bottom: clamp(18px, 4.2vh, 42px);
+      width: min(430px, calc(100% - 48px));
+      padding: 0;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none;
+      backdrop-filter: none;
+      text-align: center;
+      transform: translateX(-50%);
       z-index: 2;
     }
 
     .founder-panel h2 {
-      font-size: clamp(18px, 1.45vw, 21px);
+      font-size: clamp(20px, 1.65vw, 25px);
       line-height: 1.08;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.015em;
+      text-shadow: 0 3px 18px rgba(0, 0, 0, 0.72);
     }
 
     .founder-panel .founder-title {
       margin-top: 5px;
-      color: #7ea4ff;
+      color: #8badff;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 14px;
+      font-size: 15px;
       font-style: italic;
+      text-shadow: 0 3px 16px rgba(0, 0, 0, 0.74);
     }
 
     .founder-panel .founder-quote {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(151, 179, 255, 0.18);
-      color: rgba(238, 244, 255, 0.82);
+      max-width: 380px;
+      margin: 12px auto 0;
+      padding-top: 0;
+      border-top: 0;
+      color: rgba(238, 244, 255, 0.86);
       font-family: inherit;
       font-size: 13px;
       font-style: normal;
       line-height: 1.48;
+      text-shadow: 0 3px 18px rgba(0, 0, 0, 0.78);
     }
 
     @media (max-width: 1120px) {
@@ -1743,10 +1749,10 @@
       }
 
       .founder-panel {
-        left: 22px;
-        right: 22px;
-        bottom: 24px;
-        width: auto;
+        left: 50%;
+        right: auto;
+        bottom: 20px;
+        width: min(430px, calc(100% - 44px));
       }
     }
 
@@ -1766,10 +1772,10 @@
       }
 
       .founder-panel {
-        left: 14px;
-        right: 14px;
+        left: 50%;
+        right: auto;
         bottom: 16px;
-        padding: 15px 16px;
+        padding: 0;
       }
 
       .founder-panel .founder-quote {
