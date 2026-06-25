@@ -1652,29 +1652,83 @@
 
     .portrait-card {
       justify-self: end;
-      width: min(560px, 100%);
-      height: min(610px, calc(100vh - 122px));
+      width: min(570px, 100%);
+      height: min(640px, calc(100vh - 108px));
       border: 0;
       border-radius: 0;
       overflow: visible;
       background: transparent;
       box-shadow: none;
+      isolation: isolate;
+    }
+
+    .portrait-card::before {
+      content: "";
+      position: absolute;
+      inset: -8% -18% -10% -22%;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at 58% 42%, rgba(47, 106, 255, 0.26), transparent 52%),
+        radial-gradient(ellipse at 64% 86%, rgba(0, 87, 255, 0.22), transparent 46%);
+      filter: blur(4px);
+      opacity: 0.86;
+    }
+
+    .portrait-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.28) 0%, transparent 18%, transparent 78%, rgba(2, 7, 19, 0.18) 100%),
+        linear-gradient(180deg, transparent 54%, rgba(2, 7, 19, 0.28) 78%, rgba(2, 7, 19, 0.92) 100%);
     }
 
     .portrait-card img {
-      border-radius: 8px 8px 0 0;
-      object-position: 55% center;
-      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.28);
-      mask-image: linear-gradient(180deg, black 0%, black 88%, transparent 100%);
+      border-radius: 0;
+      object-position: 54% center;
+      box-shadow: none;
+      filter: contrast(1.05) saturate(1.04) brightness(0.96);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 9%, black 91%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, black 9%, black 91%, transparent 100%);
     }
 
     .founder-panel {
-      right: 24px;
-      bottom: 34%;
-      width: min(340px, calc(100% - 48px));
-      padding: 16px 18px;
-      background: rgba(3, 10, 24, 0.58) !important;
-      backdrop-filter: blur(18px);
+      right: clamp(18px, 4vw, 38px);
+      bottom: clamp(38px, 8vh, 74px);
+      width: min(390px, calc(100% - 48px));
+      padding: 18px 20px 18px 22px;
+      border: 1px solid rgba(151, 179, 255, 0.22) !important;
+      border-left: 2px solid rgba(97, 144, 255, 0.76) !important;
+      background: linear-gradient(135deg, rgba(3, 10, 24, 0.74), rgba(5, 17, 39, 0.52)) !important;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), inset 0 0 24px rgba(81, 130, 255, 0.06);
+      backdrop-filter: blur(20px);
+      z-index: 2;
+    }
+
+    .founder-panel h2 {
+      font-size: clamp(18px, 1.45vw, 21px);
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+    }
+
+    .founder-panel .founder-title {
+      margin-top: 5px;
+      color: #7ea4ff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .founder-panel .founder-quote {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(151, 179, 255, 0.18);
+      color: rgba(238, 244, 255, 0.82);
+      font-family: inherit;
+      font-size: 13px;
+      font-style: normal;
+      line-height: 1.48;
     }
 
     @media (max-width: 1120px) {
@@ -1685,6 +1739,13 @@
       .portrait-card {
         justify-self: start;
         height: 620px;
+      }
+
+      .founder-panel {
+        left: 22px;
+        right: 22px;
+        bottom: 24px;
+        width: auto;
       }
     }
 
@@ -1697,6 +1758,21 @@
     @media (max-width: 520px) {
       .about-service-strip {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .portrait-card {
+        height: 560px;
+      }
+
+      .founder-panel {
+        left: 14px;
+        right: 14px;
+        bottom: 16px;
+        padding: 15px 16px;
+      }
+
+      .founder-panel .founder-quote {
+        font-size: 12px;
       }
     }
   </style>
@@ -1769,7 +1845,8 @@
           <img src="assets/senz-premium-leadership-portrait.png" alt="Executive communications strategist in a modern corporate office" />
           <div class="founder-panel">
             <h2>Francine Marie Bautista</h2>
-            <p>Founder</p>
+            <p class="founder-title">Founder</p>
+            <p class="founder-quote">"Stay disciplined in private so your work can stand with confidence in public."</p>
           </div>
         </div>
       </div>
