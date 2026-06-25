@@ -2837,6 +2837,72 @@
     .modal-visual::after {
       display: none;
     }
+
+    /* Motion-driven hero: real frame sequence, scroll/pointer responsive, no separate demo. */
+    .hero {
+      overflow: hidden;
+      background: #020713 !important;
+      --hero-pan-x: 0px;
+      --hero-pan-y: 0px;
+      --hero-shift-y: 0px;
+    }
+
+    .hero > .shell {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-motion-stage {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      background: #020713;
+    }
+
+    .hero-frame {
+      position: absolute;
+      inset: -2.5%;
+      opacity: 0;
+      background-position: center;
+      background-size: cover;
+      transform: translate3d(var(--hero-pan-x), calc(var(--hero-pan-y) + var(--hero-shift-y)), 0) scale(1.045);
+      transition: opacity 520ms cubic-bezier(.16, 1, .3, 1), transform 900ms cubic-bezier(.16, 1, .3, 1);
+      will-change: opacity, transform;
+    }
+
+    .hero-frame.is-active {
+      opacity: 1;
+    }
+
+    .hero-motion-stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.96) 0%, rgba(2, 7, 19, 0.68) 48%, rgba(2, 7, 19, 0.26) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.1) 0%, rgba(2, 7, 19, 0.72) 88%, #020713 100%),
+        radial-gradient(circle at var(--cursor-x, 48%) var(--cursor-y, 44%), rgba(79, 131, 255, 0.18), transparent 18rem);
+    }
+
+    .hero-motion-stage::before {
+      content: "";
+      position: absolute;
+      inset: auto -12% -22% -12%;
+      z-index: 1;
+      height: 44%;
+      background: radial-gradient(ellipse at 50% 100%, rgba(0, 87, 255, 0.28), transparent 62%);
+      opacity: 0.6;
+      transform: translate3d(0, calc(var(--hero-shift-y) * -0.35), 0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-frame {
+        transition: none;
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2869,6 +2935,16 @@
 
   <main id="top">
     <section class="hero">
+      <div class="hero-motion-stage" aria-hidden="true">
+        <span class="hero-frame is-active" data-frame-src="assets/senz-premium-hero-facility.png" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-corporate-team-facility.png" style="background-image: url('assets/senz-corporate-team-facility.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-product-music.png" style="background-image: url('assets/senz-product-music.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-product-clone-studio.png" style="background-image: url('assets/senz-product-clone-studio.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-product-events-platform.png" style="background-image: url('assets/senz-product-events-platform.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-product-ai-assistant.png" style="background-image: url('assets/senz-product-ai-assistant.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-catalog-events-01.png" style="background-image: url('assets/senz-catalog-events-01.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-catalog-events-03.png" style="background-image: url('assets/senz-catalog-events-03.png');"></span>
+      </div>
       <div class="shell">
         <div class="hero-copy">
           <div class="offer-line">PR <span>|</span> Marketing <span>|</span> Digital Solutions</div>
@@ -3285,8 +3361,47 @@
       const modalVisualCaption = document.querySelector('#modalVisualCaption');
       const brandIntro = document.querySelector('#brandIntro');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const hero = document.querySelector('.hero');
+      const heroFrames = Array.from(document.querySelectorAll('.hero-frame'));
+      let activeHeroFrame = 0;
 
       requestAnimationFrame(() => body.classList.add('is-ready'));
+
+      heroFrames.forEach((frame) => {
+        const src = frame.dataset.frameSrc;
+        if (!src) return;
+        const image = new Image();
+        image.decoding = 'async';
+        image.src = src;
+      });
+
+      function setHeroFrame(index) {
+        if (!heroFrames.length) return;
+        const next = Math.max(0, Math.min(heroFrames.length - 1, index));
+        if (next === activeHeroFrame && heroFrames[next]?.classList.contains('is-active')) return;
+        activeHeroFrame = next;
+        heroFrames.forEach((frame, frameIndex) => {
+          frame.classList.toggle('is-active', frameIndex === next);
+        });
+      }
+
+      function syncHeroMotion() {
+        if (!hero || !heroFrames.length) return;
+        if (reduceMotion) {
+          setHeroFrame(0);
+          return;
+        }
+
+        const rect = hero.getBoundingClientRect();
+        const vh = window.innerHeight || 1;
+        const progress = clamp((-rect.top) / Math.max(1, rect.height - vh * 0.42));
+        const idleFrame = Math.floor(Date.now() / 1700) % heroFrames.length;
+        const scrollFrame = Math.round(progress * (heroFrames.length - 1));
+        const frame = Math.abs(window.scrollY) < 12 ? idleFrame : scrollFrame;
+
+        hero.style.setProperty('--hero-shift-y', `${Math.round(progress * -26)}px`);
+        setHeroFrame(frame);
+      }
 
       const closeIntro = () => brandIntro?.classList.add('is-hidden');
       if (brandIntro) {
@@ -3389,11 +3504,14 @@
         });
       });
 
-      document.querySelector('.hero')?.addEventListener('pointermove', (event) => {
-        const hero = event.currentTarget;
+      hero?.addEventListener('pointermove', (event) => {
         const rect = hero.getBoundingClientRect();
-        hero.style.setProperty('--cursor-x', `${Math.round(((event.clientX - rect.left) / rect.width) * 100)}%`);
-        hero.style.setProperty('--cursor-y', `${Math.round(((event.clientY - rect.top) / rect.height) * 100)}%`);
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        hero.style.setProperty('--cursor-x', `${Math.round(x * 100)}%`);
+        hero.style.setProperty('--cursor-y', `${Math.round(y * 100)}%`);
+        hero.style.setProperty('--hero-pan-x', `${Math.round((0.5 - x) * 18)}px`);
+        hero.style.setProperty('--hero-pan-y', `${Math.round((0.5 - y) * 10)}px`);
       });
 
       document.querySelectorAll('.catalog-card, .service-card').forEach((card) => {
@@ -3464,6 +3582,7 @@
         const trustCard = document.querySelector('.trust-card');
         if (heroCopy) heroCopy.style.setProperty('--hero-copy-y', `${Math.round(window.scrollY * -0.035)}px`);
         if (trustCard) trustCard.style.setProperty('--trust-y', `${Math.round(window.scrollY * -0.055)}px`);
+        syncHeroMotion();
 
         scenes.forEach((scene) => {
           const rect = scene.getBoundingClientRect();
@@ -3498,6 +3617,9 @@
 
       window.addEventListener('scroll', requestMotionFrame, { passive: true });
       window.addEventListener('resize', requestMotionFrame);
+      if (!reduceMotion && heroFrames.length > 1) {
+        window.setInterval(syncHeroMotion, 850);
+      }
       syncScrollMotion();
     })();
   </script>
