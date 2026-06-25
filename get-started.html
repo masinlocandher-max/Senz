@@ -619,6 +619,94 @@
         font-size: clamp(46px, 16vw, 64px);
       }
     }
+
+    /* Quiet luxury cleanup: consistent virtual-tour background and calmer intake flow. */
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      background: #020713;
+    }
+
+    body::before {
+      z-index: -3;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.96) 0%, rgba(2, 7, 19, 0.7) 50%, rgba(2, 7, 19, 0.88) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.14), #020713 96%),
+        url("assets/senz-premium-hero-facility.png") center / cover fixed no-repeat;
+      background-size: cover;
+      mask-image: none;
+    }
+
+    body::after {
+      background: rgba(2, 7, 19, 0.22);
+    }
+
+    .site-header {
+      background: rgba(2, 7, 19, 0.64);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .hero::before {
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.96) 0%, rgba(2, 7, 19, 0.68) 54%, rgba(2, 7, 19, 0.4) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.06), rgba(2, 7, 19, 0.82)),
+        url("assets/senz-premium-hero-facility.png") center / cover no-repeat;
+      filter: none;
+    }
+
+    .hero,
+    .intake {
+      background: transparent !important;
+    }
+
+    .button,
+    .nav-cta,
+    .sticky-start {
+      border-color: rgba(195, 211, 255, 0.34);
+      background: linear-gradient(135deg, rgba(0, 87, 255, 0.92), rgba(63, 121, 255, 0.82));
+      box-shadow: 0 16px 38px rgba(0, 87, 255, 0.2);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.045);
+      border-color: rgba(195, 211, 255, 0.22);
+      box-shadow: none;
+    }
+
+    .sticky-start {
+      display: none;
+    }
+
+    .steps div,
+    .service-pill,
+    .step-card,
+    .service-choice,
+    .intake-form,
+    .summary-card,
+    .contact-card {
+      border-color: rgba(225, 233, 255, 0.16) !important;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(8, 18, 38, 0.62), rgba(3, 9, 22, 0.72)) !important;
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(18px);
+    }
+
+    input,
+    textarea,
+    select {
+      border-color: rgba(225, 233, 255, 0.16) !important;
+      background: rgba(255, 255, 255, 0.045) !important;
+      box-shadow: none !important;
+    }
+
+    .service-pill:hover,
+    .service-choice:hover,
+    .step-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(225, 233, 255, 0.28) !important;
+    }
   </style>
 </head>
 <body>

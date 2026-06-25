@@ -1406,6 +1406,166 @@
         font-size: 31px;
       }
     }
+
+    /* Quiet luxury cleanup: one virtual-tour environment, fewer hard edges, fewer redundant clicks. */
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      background: #020713;
+    }
+
+    body::before {
+      z-index: -3;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.96) 0%, rgba(2, 7, 19, 0.7) 48%, rgba(2, 7, 19, 0.86) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.12), #020713 96%),
+        url("assets/senz-premium-hero-facility.png") center / cover fixed no-repeat;
+      background-size: cover;
+      mask-image: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background: rgba(2, 7, 19, 0.2);
+    }
+
+    .site-header {
+      background: rgba(2, 7, 19, 0.64);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    section {
+      background: transparent !important;
+    }
+
+    .about-hero::before,
+    .about-hero::after,
+    .journal::after,
+    .info-card::before,
+    .journal-card::before {
+      display: none !important;
+      animation: none !important;
+    }
+
+    .about-hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.96) 0%, rgba(2, 7, 19, 0.7) 52%, rgba(2, 7, 19, 0.32) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.08), rgba(2, 7, 19, 0.82)),
+        url("assets/senz-premium-hero-facility.png") center / cover no-repeat !important;
+    }
+
+    .split-card-section,
+    .journal {
+      display: none !important;
+    }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 0.88fr) minmax(400px, 0.82fr);
+      gap: clamp(28px, 5vw, 66px);
+    }
+
+    .about-hero h1 {
+      max-width: 540px;
+      font-size: clamp(56px, 6.8vw, 92px);
+    }
+
+    .hero-copy .lead {
+      max-width: 560px;
+      color: rgba(188, 206, 255, 0.95);
+      font-size: clamp(28px, 2.8vw, 42px);
+      line-height: 1.08;
+    }
+
+    .about-message {
+      max-width: 540px;
+      color: rgba(237, 243, 255, 0.8);
+    }
+
+    .about-service-strip {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-width: 610px;
+      gap: 12px;
+    }
+
+    .about-service-strip span {
+      min-height: auto;
+      place-items: center;
+      border-color: rgba(225, 233, 255, 0.16);
+      border-radius: 10px;
+      padding: 14px 12px;
+      background: rgba(255, 255, 255, 0.045);
+      box-shadow: none;
+    }
+
+    .about-service-strip span::before {
+      display: none;
+    }
+
+    .portrait-card {
+      height: min(650px, calc(100vh - 176px));
+      border-color: rgba(225, 233, 255, 0.16);
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(8, 18, 38, 0.3), rgba(3, 9, 22, 0.48));
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .founder-panel,
+    .modal-card {
+      border-color: rgba(225, 233, 255, 0.16) !important;
+      border-radius: 10px;
+      background: rgba(3, 10, 24, 0.68) !important;
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    .goal-strip {
+      border-left-color: rgba(143, 177, 255, 0.7);
+    }
+
+    .button,
+    .nav-cta,
+    .sticky-start {
+      border-color: rgba(195, 211, 255, 0.34);
+      background: linear-gradient(135deg, rgba(0, 87, 255, 0.92), rgba(63, 121, 255, 0.82));
+      box-shadow: 0 16px 38px rgba(0, 87, 255, 0.2);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.045);
+      border-color: rgba(195, 211, 255, 0.22);
+      box-shadow: none;
+    }
+
+    .sticky-start {
+      display: none;
+    }
+
+    .modal {
+      background: rgba(1, 5, 14, 0.76);
+      backdrop-filter: blur(16px);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-card {
+        height: 600px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .about-service-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1419,7 +1579,7 @@
         <a href="index.html">Home</a>
         <a href="index.html#services">Services</a>
         <a class="is-active" href="about.html">About</a>
-        <a href="#journal">Portfolio</a>
+        <a href="index.html#work">Portfolio</a>
         <a href="index.html#contact">Contact</a>
       </nav>
       <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>

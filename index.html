@@ -2625,6 +2625,218 @@
         grid-template-columns: 1fr !important;
       }
     }
+
+    /* Quiet luxury cleanup: one visual environment, softer panels, less AI-looking glow. */
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      background: #020713;
+    }
+
+    body::before {
+      z-index: -3;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.96) 0%, rgba(2, 7, 19, 0.68) 48%, rgba(2, 7, 19, 0.84) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.2), #020713 92%),
+        url("assets/senz-premium-hero-facility.png") center / cover fixed no-repeat;
+      background-size: cover;
+      mask-image: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background: rgba(2, 7, 19, 0.22);
+    }
+
+    .brand-intro {
+      display: none;
+    }
+
+    .site-header {
+      background: rgba(2, 7, 19, 0.64);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    section {
+      background: transparent !important;
+    }
+
+    section::before,
+    section::after,
+    .hero::before,
+    .hero::after,
+    .catalog::before,
+    .catalog::after,
+    .services::before,
+    .services::after,
+    .services-grid::before,
+    .services-grid::after,
+    .contact-panel::after {
+      animation: none !important;
+    }
+
+    .hero::after,
+    .catalog::before,
+    .catalog::after,
+    .services::before,
+    .services::after,
+    .services-grid::before,
+    .services-grid::after {
+      display: none !important;
+    }
+
+    .hero {
+      min-height: 94vh;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.95) 0%, rgba(2, 7, 19, 0.66) 50%, rgba(2, 7, 19, 0.28) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.08), rgba(2, 7, 19, 0.88)),
+        url("assets/senz-premium-hero-facility.png") center / cover no-repeat !important;
+    }
+
+    .hero-copy::before {
+      width: 96px;
+      opacity: 0.58;
+      box-shadow: none;
+    }
+
+    .hero h1 {
+      max-width: 680px;
+      font-size: clamp(54px, 7vw, 92px);
+    }
+
+    .hero .lead,
+    .section-heading .section-lead,
+    .catalog-heading p,
+    .product-studio-heading p,
+    .contact-panel p {
+      color: rgba(237, 243, 255, 0.78);
+    }
+
+    .button,
+    .nav-cta,
+    .sticky-start {
+      border-color: rgba(195, 211, 255, 0.34);
+      background: linear-gradient(135deg, rgba(0, 87, 255, 0.92), rgba(63, 121, 255, 0.82));
+      box-shadow: 0 16px 38px rgba(0, 87, 255, 0.2);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.045);
+      border-color: rgba(195, 211, 255, 0.22);
+    }
+
+    .sticky-start {
+      min-height: 46px;
+      padding: 0 18px;
+      border-color: rgba(195, 211, 255, 0.22);
+      background: rgba(5, 15, 33, 0.58);
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
+      font-size: 11px;
+    }
+
+    .sticky-start::before,
+    .trust-card::before {
+      display: none;
+    }
+
+    .catalog,
+    .about,
+    .services,
+    .work,
+    .contact {
+      padding-top: clamp(78px, 10vw, 120px);
+      padding-bottom: clamp(78px, 10vw, 120px);
+    }
+
+    .catalog-card,
+    .focus-card,
+    .service-card,
+    .product-card,
+    .portfolio-card,
+    .contact-panel,
+    .trust-card,
+    .modal-card {
+      border-color: rgba(225, 233, 255, 0.16) !important;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(8, 18, 38, 0.62), rgba(3, 9, 22, 0.72)) !important;
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(18px);
+    }
+
+    .catalog-card::before,
+    .catalog-card::after,
+    .service-card::after,
+    .product-card::after,
+    .portfolio-card::before {
+      opacity: 0 !important;
+    }
+
+    .catalog-card:hover,
+    .focus-card:hover,
+    .service-card:hover,
+    .product-card:hover,
+    .portfolio-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(225, 233, 255, 0.28) !important;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3);
+    }
+
+    .service-icon,
+    .product-icon,
+    .icon {
+      border-radius: 10px !important;
+      border: 1px solid rgba(180, 201, 255, 0.24);
+      background: rgba(255, 255, 255, 0.045) !important;
+      box-shadow: none !important;
+      transform: none !important;
+      color: #b8caff;
+    }
+
+    .service-icon svg {
+      transform: none !important;
+    }
+
+    .service-card {
+      grid-template-columns: 72px 1fr 18px;
+    }
+
+    .service-card:nth-child(2) {
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .section-heading h2 {
+      font-size: clamp(48px, 6vw, 78px);
+    }
+
+    .meeting-visual,
+    .portfolio-art,
+    .article-art,
+    .catalog-carousel {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .modal {
+      background: rgba(1, 5, 14, 0.76);
+      backdrop-filter: blur(16px);
+    }
+
+    .modal-visual {
+      background:
+        linear-gradient(180deg, rgba(3, 10, 24, 0.1), rgba(3, 10, 24, 0.54)),
+        url("assets/senz-premium-strategy-team.png") center / cover no-repeat !important;
+    }
+
+    .modal-visual::before,
+    .modal-visual::after {
+      display: none;
+    }
   </style>
 </head>
 <body>
