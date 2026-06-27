@@ -227,15 +227,18 @@
     }
 
     .sticky-start::before {
-      content: "";
+      display: none;
+    }
+
+    .sticky-icon {
       width: 25px;
-      height: 17px;
-      border: 2px solid rgba(245, 248, 255, 0.92);
-      border-radius: 4px;
-      background:
-        linear-gradient(135deg, transparent 46%, rgba(245, 248, 255, 0.92) 48%, transparent 52%),
-        linear-gradient(225deg, transparent 46%, rgba(245, 248, 255, 0.92) 48%, transparent 52%);
-      box-shadow: 0 0 22px rgba(111, 152, 255, 0.5);
+      height: 25px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 14px rgba(111, 152, 255, 0.58));
     }
 
     .sticky-start span {
@@ -3496,7 +3499,14 @@
     </section>
   </main>
 
-  <a class="sticky-start" href="get-started.html" aria-label="Book a consultation with SENZ"><span>Book a Consultation</span></a>
+  <a class="sticky-start" href="get-started.html" aria-label="Book a consultation with SENZ">
+    <svg class="sticky-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 7.5h14v9H9l-4 3v-12Z"></path>
+      <path d="M9 11h6"></path>
+      <path d="M9 14h3.8"></path>
+    </svg>
+    <span>Book a Consultation</span>
+  </a>
 
   <footer>
     <div class="shell footer-inner">
