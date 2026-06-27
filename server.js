@@ -9,9 +9,34 @@ const { agents, recommendAgent } = require("./agents");
 const rootDir = __dirname;
 const dataDir = path.join(rootDir, "data");
 const inquiryFile = path.join(dataDir, "inquiries.jsonl");
+const ebookOrderFile = path.join(dataDir, "ebook-orders.jsonl");
 const port = Number(process.env.PORT || 4177);
 const siteOrigin = process.env.SITE_ORIGIN || "";
 const adminToken = process.env.ADMIN_TOKEN || "";
+
+const ebooks = [
+  {
+    id: "influence-through-clarity",
+    title: "Influence Through Clarity",
+    price: 1499,
+    currency: "PHP",
+    access: "locked"
+  },
+  {
+    id: "public-image-playbook",
+    title: "Public Image Playbook",
+    price: 1999,
+    currency: "PHP",
+    access: "locked"
+  },
+  {
+    id: "digital-presence-guide",
+    title: "Digital Presence Guide",
+    price: 1799,
+    currency: "PHP",
+    access: "locked"
+  }
+];
 
 const mimeTypes = {
   ".html": "text/html; charset=utf-8",
@@ -64,6 +89,10 @@ function cleanLong(value, maxLength = 3000) {
 
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function money(amount) {
+  return Number.isFinite(amount) ? amount : 0;
 }
 
 function clientIp(req) {
@@ -137,6 +166,69 @@ async function saveInquiry(inquiry) {
   await fsp.appendFile(inquiryFile, `${JSON.stringify(inquiry)}\n`, "utf8");
 }
 
+function buildEbookOrder(input, req) {
+  const requestedItems = Array.isArray(input.items) ? input.items : [];
+  const items = requestedItems
+    .map((item) => {
+      const ebook = ebooks.find((entry) => entry.id === clean(item.id, 120));
+      if (!ebook) return null;
+      const quantity = Math.max(1, Math.min(10, Number.parseInt(item.quantity, 10) || 1));
+      return {
+        id: ebook.id,
+        title: ebook.title,
+        quantity,
+        unitPrice: ebook.price,
+        currency: ebook.currency,
+        lineTotal: ebook.price * quantity
+      };
+    })
+    .filter(Boolean);
+
+  const currency = items[0]?.currency || "PHP";
+  const subtotal = items.reduce((sum, item) => sum + item.lineTotal, 0);
+  const order = {
+    id: crypto.randomUUID(),
+    createdAt: new Date().toISOString(),
+    status: "payment_review",
+    accessStatus: "locked_until_payment_verified",
+    buyer: {
+      name: clean(input.name, 120),
+      email: clean(input.email, 180).toLowerCase(),
+      phone: clean(input.phone, 80),
+      company: clean(input.company, 160),
+      country: clean(input.country, 120)
+    },
+    payment: {
+      method: clean(input.paymentMethod, 120),
+      reference: clean(input.paymentReference, 180),
+      payerName: clean(input.payerName, 120),
+      notes: cleanLong(input.paymentNotes, 1000)
+    },
+    items,
+    currency,
+    subtotal: money(subtotal),
+    source: "ebook-checkout",
+    userAgent: clean(req.headers["user-agent"], 300),
+    ip: clientIp(req)
+  };
+
+  const errors = [];
+  if (!items.length) errors.push("Add at least one ebook to the cart.");
+  if (!order.buyer.name) errors.push("Full name is required.");
+  if (!order.buyer.email || !isEmail(order.buyer.email)) errors.push("A valid email is required.");
+  if (!order.buyer.phone) errors.push("Phone or Messenger contact is required.");
+  if (!order.payment.method) errors.push("Payment method is required.");
+  if (!order.payment.reference) errors.push("Payment reference is required.");
+  if (!order.payment.payerName) errors.push("Payer name is required.");
+
+  return { order, errors };
+}
+
+async function saveEbookOrder(order) {
+  await fsp.mkdir(dataDir, { recursive: true });
+  await fsp.appendFile(ebookOrderFile, `${JSON.stringify(order)}\n`, "utf8");
+}
+
 async function handleInquiry(req, res) {
   try {
     const input = await readJsonBody(req);
@@ -159,6 +251,51 @@ async function handleInquiry(req, res) {
       ok: false,
       errors: [error.message || "Unable to submit inquiry."]
     });
+  }
+}
+
+async function handleEbookOrder(req, res) {
+  try {
+    const input = await readJsonBody(req);
+    const { order, errors } = buildEbookOrder(input, req);
+
+    if (errors.length) {
+      sendJson(res, 422, { ok: false, errors });
+      return;
+    }
+
+    await saveEbookOrder(order);
+    sendJson(res, 201, {
+      ok: true,
+      id: order.id,
+      status: order.status,
+      accessStatus: order.accessStatus,
+      message: "Order received. Ebook access remains locked until SENZ verifies the payment, then access will be sent to the buyer email."
+    });
+  } catch (error) {
+    sendJson(res, error.statusCode || 500, {
+      ok: false,
+      errors: [error.message || "Unable to submit ebook order."]
+    });
+  }
+}
+
+async function handleEbookOrderList(req, res) {
+  if (!adminToken || req.headers.authorization !== `Bearer ${adminToken}`) {
+    sendJson(res, 401, { ok: false, errors: ["Unauthorized."] });
+    return;
+  }
+
+  try {
+    const raw = await fsp.readFile(ebookOrderFile, "utf8").catch(() => "");
+    const orders = raw
+      .split("\n")
+      .filter(Boolean)
+      .map((line) => JSON.parse(line))
+      .reverse();
+    sendJson(res, 200, { ok: true, orders });
+  } catch {
+    sendJson(res, 500, { ok: false, errors: ["Unable to read ebook orders."] });
   }
 }
 
@@ -255,6 +392,11 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  if (req.method === "GET" && url.pathname === "/api/ebooks") {
+    sendJson(res, 200, { ok: true, ebooks });
+    return;
+  }
+
   if (req.method === "POST" && url.pathname === "/api/agents/recommend") {
     await handleAgentRecommendation(req, res);
     return;
@@ -267,6 +409,16 @@ const server = http.createServer(async (req, res) => {
 
   if (req.method === "GET" && url.pathname === "/api/inquiries") {
     await handleInquiryList(req, res);
+    return;
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/ebook-orders") {
+    await handleEbookOrder(req, res);
+    return;
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/ebook-orders") {
+    await handleEbookOrderList(req, res);
     return;
   }
 

@@ -139,9 +139,9 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 34px;
+      gap: clamp(16px, 2vw, 28px);
       color: rgba(255, 255, 255, 0.78);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
     }
 
@@ -2799,6 +2799,285 @@
       }
     }
 
+    /* Ebook storefront: locked reader access after verified payment only. */
+    .ebooks {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(21, 92, 255, 0.16), transparent 24rem),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.98), rgba(7, 16, 34, 0.96));
+    }
+
+    .ebooks::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(184, 202, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(184, 202, 255, 0.04) 1px, transparent 1px);
+      background-size: 82px 82px;
+      mask-image: linear-gradient(90deg, transparent, black 16%, black 78%, transparent);
+      opacity: 0.36;
+      pointer-events: none;
+    }
+
+    .ebooks .shell {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 34px;
+    }
+
+    .ebook-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.36fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .ebook-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .ebook-card {
+      position: relative;
+      min-height: 430px;
+      overflow: hidden;
+      padding: 26px;
+      border: 1px solid rgba(225, 233, 255, 0.16);
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(9, 20, 43, 0.76), rgba(3, 9, 22, 0.84));
+      box-shadow: 0 24px 72px rgba(0, 0, 0, 0.26);
+    }
+
+    .ebook-cover {
+      position: relative;
+      min-height: 210px;
+      margin: -6px -6px 24px;
+      overflow: hidden;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(6, 14, 34, 0.16), rgba(3, 9, 22, 0.86)),
+        var(--ebook-art) center / cover no-repeat;
+      box-shadow: inset 0 0 0 1px rgba(225, 233, 255, 0.12), 0 18px 48px rgba(0, 0, 0, 0.28);
+    }
+
+    .ebook-cover::after {
+      content: "Locked";
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      padding: 7px 10px;
+      border: 1px solid rgba(225, 233, 255, 0.24);
+      border-radius: 999px;
+      background: rgba(2, 7, 19, 0.68);
+      color: rgba(245, 248, 255, 0.88);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .ebook-card h3 {
+      max-width: 260px;
+      font-size: clamp(25px, 2.2vw, 34px);
+      line-height: 1;
+    }
+
+    .ebook-card p {
+      margin-top: 14px;
+      color: rgba(222, 232, 255, 0.72);
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .ebook-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 20px;
+    }
+
+    .ebook-meta span {
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: rgba(225, 233, 255, 0.72);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .ebook-price {
+      display: block;
+      margin-bottom: 18px;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .ebook-card .button {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .ebook-cart {
+      position: sticky;
+      top: 104px;
+      display: grid;
+      gap: 18px;
+      padding: 24px;
+      border: 1px solid rgba(225, 233, 255, 0.16);
+      border-radius: 10px;
+      background: rgba(248, 251, 255, 0.96) !important;
+      color: #071225;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(18px);
+    }
+
+    .ebook-cart h3 {
+      color: #071225;
+      font-size: 28px;
+    }
+
+    .cart-empty,
+    .checkout-note,
+    .order-status {
+      color: rgba(9, 18, 37, 0.64);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .cart-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .cart-list li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border-bottom: 1px solid rgba(9, 18, 37, 0.09);
+      padding-bottom: 10px;
+      color: #071225;
+      font-size: 13px;
+    }
+
+    .cart-list button {
+      border: 0;
+      background: transparent;
+      color: #155cff;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-top: 1px solid rgba(9, 18, 37, 0.12);
+      padding-top: 14px;
+      color: #071225;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .cart-total strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .checkout-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .checkout-form label {
+      display: grid;
+      gap: 6px;
+      color: rgba(9, 18, 37, 0.68);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .checkout-form input,
+    .checkout-form select,
+    .checkout-form textarea {
+      width: 100%;
+      border: 1px solid rgba(9, 18, 37, 0.14);
+      border-radius: 8px;
+      padding: 12px 13px;
+      background: #fff;
+      color: #071225;
+      font: inherit;
+      outline: none;
+    }
+
+    .checkout-form textarea {
+      min-height: 78px;
+      resize: vertical;
+    }
+
+    .checkout-form input:focus,
+    .checkout-form select:focus,
+    .checkout-form textarea:focus {
+      border-color: rgba(21, 92, 255, 0.55);
+      box-shadow: 0 0 0 3px rgba(21, 92, 255, 0.12);
+    }
+
+    .checkout-form .button {
+      width: 100%;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .order-status.is-success {
+      border: 1px solid rgba(21, 92, 255, 0.18);
+      border-radius: 8px;
+      padding: 12px;
+      background: rgba(21, 92, 255, 0.08);
+      color: #0a2b78;
+    }
+
+    .order-status.is-error {
+      border: 1px solid rgba(168, 41, 41, 0.18);
+      border-radius: 8px;
+      padding: 12px;
+      background: rgba(168, 41, 41, 0.08);
+      color: #8a1f1f;
+    }
+
+    @media (max-width: 1050px) {
+      .ebook-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .ebook-cart {
+        position: relative;
+        top: auto;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .ebook-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* Quiet luxury cleanup: one visual environment, softer panels, less AI-looking glow. */
     html {
       scroll-behavior: auto;
@@ -2923,6 +3202,7 @@
     .catalog,
     .about,
     .services,
+    .ebooks,
     .work,
     .contact {
       padding-top: clamp(78px, 10vw, 120px);
@@ -2933,6 +3213,8 @@
     .focus-card,
     .service-card,
     .product-card,
+    .ebook-card,
+    .ebook-cart,
     .portfolio-card,
     .contact-panel,
     .trust-card,
@@ -2956,6 +3238,7 @@
     .focus-card:hover,
     .service-card:hover,
     .product-card:hover,
+    .ebook-card:hover,
     .portfolio-card:hover {
       transform: translateY(-2px);
       border-color: rgba(225, 233, 255, 0.28) !important;
@@ -3206,6 +3489,7 @@
         <a href="#top">Home</a>
         <a href="about.html">About Us</a>
         <a href="#services">Services</a>
+        <a href="#ebooks">Ebooks</a>
         <a href="#contact">Contact</a>
         <a href="#work">Portfolio</a>
       </nav>
@@ -3481,6 +3765,124 @@
       </div>
     </section>
 
+    <section id="ebooks" class="ebooks">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SENZ Ebooks</p>
+            <h2>Reader library for <span>modern influence.</span></h2>
+            <p class="section-lead">Premium digital guides for public image, communication discipline, and digital presence. Ebook files stay locked until payment is verified.</p>
+          </div>
+        </div>
+
+        <div class="ebook-layout">
+          <div class="ebook-grid" aria-label="SENZ ebook catalog">
+            <article class="ebook-card" style="--ebook-art: url('assets/senz-blog-clear-messaging.png')">
+              <div class="ebook-cover" aria-hidden="true"></div>
+              <h3>Influence Through Clarity</h3>
+              <p>A concise reader on message discipline, public presence, and making a brand easier to understand and remember.</p>
+              <div class="ebook-meta">
+                <span>Strategy</span>
+                <span>PDF Ebook</span>
+                <span>Locked Access</span>
+              </div>
+              <strong class="ebook-price">PHP 1,499</strong>
+              <button class="button ebook-add" type="button" data-ebook-id="influence-through-clarity" data-title="Influence Through Clarity" data-price="1499">Add to Cart</button>
+            </article>
+
+            <article class="ebook-card" style="--ebook-art: url('assets/senz-blog-pr-trust.png')">
+              <div class="ebook-cover" aria-hidden="true"></div>
+              <h3>Public Image Playbook</h3>
+              <p>A guide for leaders, titleholders, public figures, and brands that need credibility, presence, and reputation structure.</p>
+              <div class="ebook-meta">
+                <span>PR</span>
+                <span>PDF Ebook</span>
+                <span>Locked Access</span>
+              </div>
+              <strong class="ebook-price">PHP 1,999</strong>
+              <button class="button ebook-add" type="button" data-ebook-id="public-image-playbook" data-title="Public Image Playbook" data-price="1999">Add to Cart</button>
+            </article>
+
+            <article class="ebook-card" style="--ebook-art: url('assets/senz-blog-digital-presence.png')">
+              <div class="ebook-cover" aria-hidden="true"></div>
+              <h3>Digital Presence Guide</h3>
+              <p>A practical guide for websites, content systems, AI tools, and digital products that support a premium brand story.</p>
+              <div class="ebook-meta">
+                <span>Digital</span>
+                <span>PDF Ebook</span>
+                <span>Locked Access</span>
+              </div>
+              <strong class="ebook-price">PHP 1,799</strong>
+              <button class="button ebook-add" type="button" data-ebook-id="digital-presence-guide" data-title="Digital Presence Guide" data-price="1799">Add to Cart</button>
+            </article>
+          </div>
+
+          <aside class="ebook-cart" aria-label="Ebook cart and checkout">
+            <div>
+              <p class="eyebrow">Secure Checkout</p>
+              <h3>Your Cart</h3>
+              <p class="cart-empty" id="cartEmpty">No ebooks added yet. Choose a title to begin checkout.</p>
+            </div>
+
+            <ul class="cart-list" id="cartList"></ul>
+
+            <div class="cart-total">
+              <span>Total</span>
+              <strong id="cartTotal">PHP 0</strong>
+            </div>
+
+            <form class="checkout-form" id="ebookCheckout">
+              <label>
+                Full Name
+                <input name="name" type="text" autocomplete="name" required />
+              </label>
+              <label>
+                Email for Ebook Access
+                <input name="email" type="email" autocomplete="email" required />
+              </label>
+              <label>
+                Phone or Messenger
+                <input name="phone" type="text" autocomplete="tel" required />
+              </label>
+              <label>
+                Company / Public Name
+                <input name="company" type="text" autocomplete="organization" />
+              </label>
+              <label>
+                Country
+                <input name="country" type="text" autocomplete="country-name" />
+              </label>
+              <label>
+                Payment Method
+                <select name="paymentMethod" required>
+                  <option value="">Select method</option>
+                  <option>GCash</option>
+                  <option>Bank Transfer</option>
+                  <option>PayPal</option>
+                  <option>Other Verified Payment</option>
+                </select>
+              </label>
+              <label>
+                Payer Name
+                <input name="payerName" type="text" required />
+              </label>
+              <label>
+                Payment Reference
+                <input name="paymentReference" type="text" placeholder="Transaction ID or reference number" required />
+              </label>
+              <label>
+                Notes
+                <textarea name="paymentNotes" placeholder="Optional details SENZ should verify. Do not enter card numbers."></textarea>
+              </label>
+              <p class="checkout-note">Ebook access is locked until payment is verified by SENZ. After verification, access will be sent to the email above.</p>
+              <button class="button" type="submit">Submit Payment Details</button>
+              <p class="order-status" id="ebookOrderStatus" role="status" aria-live="polite"></p>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section id="work" class="work portfolio">
       <div class="shell">
         <div class="portfolio-heading">
@@ -3648,6 +4050,12 @@
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const hero = document.querySelector('.hero');
       const heroFrames = Array.from(document.querySelectorAll('.hero-frame'));
+      const cartList = document.querySelector('#cartList');
+      const cartEmpty = document.querySelector('#cartEmpty');
+      const cartTotal = document.querySelector('#cartTotal');
+      const ebookCheckout = document.querySelector('#ebookCheckout');
+      const ebookOrderStatus = document.querySelector('#ebookOrderStatus');
+      const ebookCart = [];
       let activeHeroFrame = 0;
 
       requestAnimationFrame(() => body.classList.add('is-ready'));
@@ -3711,7 +4119,112 @@
         });
       });
 
-      document.querySelectorAll('section, .value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card').forEach((el) => {
+      function formatPeso(value) {
+        return `PHP ${Number(value || 0).toLocaleString('en-PH')}`;
+      }
+
+      function cartTotalValue() {
+        return ebookCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      }
+
+      function setOrderStatus(message, type = '') {
+        if (!ebookOrderStatus) return;
+        ebookOrderStatus.textContent = message;
+        ebookOrderStatus.classList.toggle('is-success', type === 'success');
+        ebookOrderStatus.classList.toggle('is-error', type === 'error');
+      }
+
+      function renderCart() {
+        if (!cartList || !cartEmpty || !cartTotal) return;
+        cartList.replaceChildren();
+        cartEmpty.hidden = ebookCart.length > 0;
+        ebookCart.forEach((item) => {
+          const li = document.createElement('li');
+          const label = document.createElement('span');
+          const remove = document.createElement('button');
+          label.textContent = `${item.title} x ${item.quantity} - ${formatPeso(item.price * item.quantity)}`;
+          remove.type = 'button';
+          remove.textContent = 'Remove';
+          remove.addEventListener('click', () => {
+            const index = ebookCart.findIndex((entry) => entry.id === item.id);
+            if (index >= 0) ebookCart.splice(index, 1);
+            renderCart();
+            setOrderStatus('');
+          });
+          li.append(label, remove);
+          cartList.appendChild(li);
+        });
+        cartTotal.textContent = formatPeso(cartTotalValue());
+      }
+
+      document.querySelectorAll('.ebook-add').forEach((button) => {
+        button.addEventListener('click', () => {
+          const id = button.dataset.ebookId;
+          const title = button.dataset.title;
+          const price = Number(button.dataset.price || 0);
+          const existing = ebookCart.find((item) => item.id === id);
+          if (existing) {
+            existing.quantity += 1;
+          } else {
+            ebookCart.push({ id, title, price, quantity: 1 });
+          }
+          renderCart();
+          setOrderStatus(`${title} added. Complete checkout to request locked ebook access.`);
+          ebookCheckout?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
+        });
+      });
+
+      ebookCheckout?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (!ebookCart.length) {
+          setOrderStatus('Please add at least one ebook before submitting payment details.', 'error');
+          return;
+        }
+
+        const formData = new FormData(ebookCheckout);
+        const payload = {
+          items: ebookCart.map(({ id, quantity }) => ({ id, quantity })),
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          company: formData.get('company'),
+          country: formData.get('country'),
+          paymentMethod: formData.get('paymentMethod'),
+          payerName: formData.get('payerName'),
+          paymentReference: formData.get('paymentReference'),
+          paymentNotes: formData.get('paymentNotes')
+        };
+
+        const submitButton = ebookCheckout.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+        setOrderStatus('Submitting payment details. Ebook access remains locked until verification.');
+
+        try {
+          const response = await fetch('/api/ebook-orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json();
+          if (!response.ok || !result.ok) {
+            throw new Error((result.errors || ['Unable to submit ebook order.']).join(' '));
+          }
+          ebookCart.splice(0, ebookCart.length);
+          renderCart();
+          ebookCheckout.reset();
+          setOrderStatus(`Order ${result.id} received. Ebook files are still locked and will be sent to your email after SENZ verifies payment.`, 'success');
+        } catch (error) {
+          setOrderStatus(error.message || 'Unable to submit ebook order.', 'error');
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit Payment Details';
+        }
+      });
+
+      renderCart();
+
+      document.querySelectorAll('section, .value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .ebook-card, .ebook-cart, .portfolio-card, .portfolio-strip-card').forEach((el) => {
         el.classList.add('reveal');
       });
 
@@ -3842,13 +4355,14 @@
       const progressBar = progress.querySelector('.scroll-progress__bar');
 
       const scenes = Array.from(document.querySelectorAll('main > section'));
-      const motionItems = Array.from(document.querySelectorAll('.value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card, .contact-panel'));
+      const motionItems = Array.from(document.querySelectorAll('.value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .ebook-card, .ebook-cart, .portfolio-card, .portfolio-strip-card, .contact-panel'));
       const mediaItems = Array.from(document.querySelectorAll('.meeting-visual img, .portfolio-art, .article-art'));
       const railSections = [
         { id: 'top', label: 'Home', target: document.querySelector('.hero') },
         { id: 'catalog', label: 'Catalog', target: document.querySelector('.catalog') },
         { id: 'about', label: 'About', target: document.querySelector('#about') },
         { id: 'services', label: 'Services', target: document.querySelector('#services') },
+        { id: 'ebooks', label: 'Ebooks', target: document.querySelector('#ebooks') },
         { id: 'work', label: 'Portfolio', target: document.querySelector('#work') },
         { id: 'contact', label: 'Contact', target: document.querySelector('#contact') }
       ].filter((item) => item.target);
