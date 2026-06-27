@@ -136,6 +136,7 @@ function buildInquiry(input, req) {
     brand: clean(input.brand, 160),
     email: clean(input.email, 180).toLowerCase(),
     contact: clean(input.contact, 180),
+    preferredContact: clean(input.preferredContact, 80),
     projectType: clean(input.projectType, 160),
     timeline: clean(input.timeline, 120),
     budget: clean(input.budget, 120),
@@ -154,7 +155,8 @@ function buildInquiry(input, req) {
 
   const errors = [];
   if (!inquiry.name) errors.push("Name is required.");
-  if (!inquiry.email || !isEmail(inquiry.email)) errors.push("A valid email is required.");
+  if (inquiry.email && !isEmail(inquiry.email)) errors.push("Email must be valid when provided.");
+  if (!inquiry.email && !inquiry.contact) errors.push("Email or phone/Messenger contact is required.");
   if (!inquiry.projectType) errors.push("Project type is required.");
   if (!inquiry.message) errors.push("Project goal is required.");
 

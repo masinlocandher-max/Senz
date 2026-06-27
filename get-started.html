@@ -557,7 +557,7 @@
       color: rgba(32, 43, 66, 0.68);
       background:
         radial-gradient(circle at 12% 12%, rgba(0, 87, 255, 0.1), transparent 28rem),
-        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%);
+        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%) !important;
     }
 
     .footer-inner {
@@ -1020,8 +1020,9 @@
           <div class="service-menu" aria-label="SENZ Strategic Communications project categories">
             <div class="service-pill"><strong>PR and Public Image</strong><span>Visibility, reputation, narrative, leadership presence.</span></div>
             <div class="service-pill"><strong>Marketing and Social</strong><span>Campaign systems, content direction, management.</span></div>
+            <div class="service-pill"><strong>Call Center Solutions</strong><span>Customer inquiry flow, support scripts, lead handling.</span></div>
             <div class="service-pill"><strong>Digital Products</strong><span>Music, Clone Studio, event platforms, AI assistants.</span></div>
-            <div class="service-pill"><strong>Website and Visuals</strong><span>Premium websites, photography, visual direction.</span></div>
+            <div class="service-pill"><strong>Websites and Creative</strong><span>Premium websites, production, visual direction.</span></div>
           </div>
           <div class="direct-contact">
             <div class="contact-card">
@@ -1037,8 +1038,8 @@
               <strong>TikTok, IG, FB: senz.pr</strong>
             </div>
             <div class="contact-card">
-              <span>Website</span>
-              <a href="https://www.senzpr.com" target="_blank" rel="noopener noreferrer">www.senzpr.com</a>
+              <span>LinkedIn</span>
+              <a href="https://www.linkedin.com/company/senz-pr" target="_blank" rel="noopener noreferrer">@senz.pr</a>
             </div>
           </div>
         </div>
@@ -1058,13 +1059,24 @@
           <div class="form-row">
             <label>
               Email
-              <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              <input name="email" type="email" autocomplete="email" placeholder="you@example.com" />
             </label>
             <label>
               Phone / Messenger
               <input name="contact" type="text" placeholder="Best contact detail" />
             </label>
           </div>
+
+          <label>
+            Best Way to Reach You
+            <select name="preferredContact">
+              <option>Email</option>
+              <option>Phone Call</option>
+              <option>Messenger</option>
+              <option>Instagram DM</option>
+              <option>WhatsApp / Viber</option>
+            </select>
+          </label>
 
           <label>
             Project Type
@@ -1074,8 +1086,9 @@
               <option>Personal Strategist</option>
               <option>Social Media Marketing</option>
               <option>Social Media Management</option>
-              <option>Website</option>
-              <option>Photography</option>
+              <option>Call Center Solutions</option>
+              <option>Websites and Digital Presence</option>
+              <option>Creative Production</option>
               <option>Music Products</option>
               <option>Clone Studio</option>
               <option>Voting, Tabulation, and Ticketing Platform</option>
@@ -1113,7 +1126,7 @@
 
           <div class="form-actions">
             <button class="button" type="submit">Submit Inquiry</button>
-            <a class="button secondary" href="index.html#services">Explore Services</a>
+            <a class="button secondary" href="get-started.html">Book a Consultation</a>
           </div>
           <p class="form-note">Submitting sends your brief directly to SENZ Strategic Communications. Email fallback remains available if the server is offline.</p>
           <p class="status" id="formStatus" role="status" aria-live="polite"></p>
@@ -1126,23 +1139,23 @@
     <div class="shell footer-inner">
       <div class="footer-brandline">
         <strong>SENZ Strategic Communications</strong>
-        <span>PR | Marketing | Digital Solutions</span>
+        <span>@senz.pr on TikTok, Instagram, Facebook, and LinkedIn</span>
       </div>
       <div class="footer-socials" aria-label="SENZ Strategic Communications contact links">
         <a href="mailto:info.senz.pr@gmail.com" aria-label="Email SENZ Strategic Communications">
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span><span class="social-text">Email</span>
         </a>
         <a href="https://www.tiktok.com/@senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications TikTok">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4v10.1a4.9 4.9 0 1 1-4.9-4.9"/><path d="M14 4c1.1 3.2 3.2 5 6 5.2"/></svg></span><span class="social-text">TikTok</span>
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4v10.1a4.9 4.9 0 1 1-4.9-4.9"/><path d="M14 4c1.1 3.2 3.2 5 6 5.2"/></svg></span><span class="social-text">TikTok @senz.pr</span>
         </a>
         <a href="https://www.instagram.com/senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Instagram">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3.2"/><circle cx="16.4" cy="7.7" r=".8"/></svg></span><span class="social-text">Instagram</span>
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3.2"/><circle cx="16.4" cy="7.7" r=".8"/></svg></span><span class="social-text">IG @senz.pr</span>
         </a>
         <a href="https://www.facebook.com/senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Facebook">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3.2C10.7 4 9 5.8 9 8.7V11H6v4h3v5h4v-5h3.1l.6-4H13V9.1c0-.7.4-1.1 1-1.1Z"/></svg></span><span class="social-text">Facebook</span>
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3.2C10.7 4 9 5.8 9 8.7V11H6v4h3v5h4v-5h3.1l.6-4H13V9.1c0-.7.4-1.1 1-1.1Z"/></svg></span><span class="social-text">FB @senz.pr</span>
         </a>
-        <a href="https://www.senzpr.com" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications website">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.2 2.2 3.2 4.9 3.2 8S14.2 17.8 12 20M12 4c-2.2 2.2-3.2 4.9-3.2 8s1 5.8 3.2 8"/></svg></span><span class="social-text">Website</span>
+        <a href="https://www.linkedin.com/company/senz-pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications LinkedIn">
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 10v8M6.5 6v.01M11 18v-8M11 13.8c0-2.5 1.3-4 3.4-4 2 0 3.1 1.3 3.1 3.8V18"/></svg></span><span class="social-text">LinkedIn @senz.pr</span>
         </a>
       </div>
     </div>
@@ -1232,6 +1245,10 @@
         const data = new FormData(form);
         const submitButton = form.querySelector('button[type="submit"]');
         const payload = Object.fromEntries(data.entries());
+        if (!String(data.get('email') || '').trim() && !String(data.get('contact') || '').trim()) {
+          status.textContent = 'Please provide either an email or phone/Messenger contact so SENZ Strategic Communications can reach you.';
+          return;
+        }
         const lines = [
           'SENZ Strategic Communications Project Inquiry',
           '',
@@ -1239,6 +1256,7 @@
           `Brand / Organization: ${data.get('brand') || ''}`,
           `Email: ${data.get('email') || ''}`,
           `Phone / Messenger: ${data.get('contact') || ''}`,
+          `Preferred Contact: ${data.get('preferredContact') || ''}`,
           `Project Type: ${data.get('projectType') || ''}`,
           `Timeline: ${data.get('timeline') || ''}`,
           `Budget Range: ${data.get('budget') || ''}`,

@@ -1100,16 +1100,17 @@
       z-index: -1;
     }
 
-    .visual-pr { --accent: #8fb1ff; --visual-image: url("assets/senz-blog-pr-trust.png"); }
-    .visual-strategist { --accent: #b8caff; --visual-image: url("assets/senz-premium-leadership-portrait.png"); }
-    .visual-marketing { --accent: #7da2ff; --visual-image: url("assets/senz-blog-clear-messaging.png"); }
-    .visual-management { --accent: #8fb1ff; --visual-image: url("assets/senz-corporate-team-facility.png"); }
-    .visual-website { --accent: #6f98ff; --visual-image: url("assets/senz-blog-digital-presence.png"); }
-    .visual-photo { --accent: #b8caff; --visual-image: url("assets/senz-premium-strategy-team.png"); }
-    .visual-music { --accent: #9eb9ff; --visual-image: url("assets/senz-product-music.png"); }
-    .visual-clone { --accent: #d1ddff; --visual-image: url("assets/senz-product-clone-studio.png"); }
-    .visual-events { --accent: #7ea4ff; --visual-image: url("assets/senz-product-events-platform.png"); }
-    .visual-ai { --accent: #c6d5ff; --visual-image: url("assets/senz-product-ai-assistant.png"); }
+    .visual-pr { --accent: #8fb1ff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
+    .visual-strategist { --accent: #b8caff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
+    .visual-marketing { --accent: #7da2ff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
+    .visual-management { --accent: #8fb1ff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
+    .visual-website { --accent: #6f98ff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
+    .visual-photo { --accent: #b8caff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
+    .visual-callcenter { --accent: #9bb7ff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
+    .visual-music { --accent: #9eb9ff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
+    .visual-clone { --accent: #d1ddff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
+    .visual-events { --accent: #7ea4ff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
+    .visual-ai { --accent: #c6d5ff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
     .visual-portfolio { --accent: #8fb1ff; --visual-image: url("assets/senz-premium-hero-facility.png"); }
 
     .visual-kicker {
@@ -1235,7 +1236,7 @@
       color: rgba(32, 43, 66, 0.68);
       background:
         radial-gradient(circle at 12% 12%, rgba(0, 87, 255, 0.1), transparent 28rem),
-        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%);
+        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%) !important;
     }
 
     .footer-inner {
@@ -1700,7 +1701,8 @@
     footer {
       background:
         radial-gradient(circle at 12% 12%, rgba(0, 87, 255, 0.1), transparent 28rem),
-        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%);
+        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%) !important;
+      color: rgba(32, 43, 66, 0.68) !important;
       border-top-color: rgba(170, 184, 214, 0.42);
     }
 
@@ -2140,19 +2142,19 @@
     .portfolio-art-pr {
       background-image:
         linear-gradient(180deg, rgba(3, 8, 20, 0.02), rgba(3, 8, 20, 0.36)),
-        url("assets/senz-blog-pr-trust.png");
+        url("assets/senz-premium-hero-facility.png");
     }
 
     .portfolio-art-message {
       background-image:
         linear-gradient(180deg, rgba(3, 8, 20, 0.02), rgba(3, 8, 20, 0.36)),
-        url("assets/senz-blog-clear-messaging.png");
+        url("assets/senz-premium-hero-facility.png");
     }
 
     .portfolio-art-digital {
       background-image:
         linear-gradient(180deg, rgba(3, 8, 20, 0.02), rgba(3, 8, 20, 0.36)),
-        url("assets/senz-blog-digital-presence.png");
+        url("assets/senz-premium-hero-facility.png");
     }
 
     .portfolio-body {
@@ -2270,6 +2272,45 @@
       font-weight: 900;
       letter-spacing: 1.6px;
       text-transform: uppercase;
+    }
+
+    .portfolio-strip.is-advocacy {
+      grid-template-columns: 1fr;
+    }
+
+    .portfolio-strip.is-advocacy .portfolio-strip-card {
+      min-height: 280px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.5fr) minmax(280px, 0.5fr);
+      gap: clamp(24px, 5vw, 70px);
+      align-items: end;
+      padding: clamp(28px, 5vw, 54px);
+      background:
+        linear-gradient(90deg, rgba(5, 13, 31, 0.9), rgba(5, 13, 31, 0.66)),
+        url("assets/senz-premium-hero-facility.png") center / cover no-repeat;
+    }
+
+    .portfolio-strip.is-advocacy .portfolio-strip-card strong {
+      max-width: 520px;
+      font-size: clamp(34px, 4vw, 62px);
+      line-height: 0.98;
+    }
+
+    .portfolio-strip.is-advocacy .portfolio-strip-card span {
+      max-width: 560px;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .portfolio-strip.is-advocacy .portfolio-strip-card small {
+      position: static;
+      align-self: start;
+      display: inline-flex;
+      width: max-content;
+      border: 1px solid rgba(184, 202, 255, 0.22);
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: rgba(3, 10, 24, 0.56);
     }
 
     .portfolio-card.reveal,
@@ -2530,7 +2571,7 @@
       background:
         linear-gradient(90deg, rgba(2, 7, 19, 0.96) 0%, rgba(2, 7, 19, 0.72) 43%, rgba(2, 7, 19, 0.12) 100%),
         linear-gradient(180deg, rgba(2, 7, 19, 0.06) 0%, rgba(2, 7, 19, 0.18) 68%, #020713 100%),
-        url("assets/senz-hero-building.jpeg") 62% center / cover no-repeat;
+        url("assets/senz-premium-hero-facility.png") 62% center / cover no-repeat;
     }
 
     .hero::after {
@@ -2745,6 +2786,25 @@
       text-shadow: 0 0 18px rgba(0, 87, 255, 0.95);
     }
 
+    .service-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 24px;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: 10px;
+      padding: 18px 20px;
+      background: rgba(5, 13, 31, 0.62);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .service-cta p {
+      color: rgba(232, 239, 255, 0.82);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
     @keyframes introRise {
       from { opacity: 0; transform: translateY(24px) scale(0.97); }
       to { opacity: 1; transform: translateY(0) scale(1); }
@@ -2784,6 +2844,11 @@
       .services-grid::before,
       .services-grid::after {
         display: none;
+      }
+
+      .service-cta {
+        display: grid;
+        justify-items: start;
       }
     }
 
@@ -3501,13 +3566,11 @@
     <section class="hero">
       <div class="hero-motion-stage" aria-hidden="true">
         <span class="hero-frame is-active" data-frame-src="assets/senz-premium-hero-facility.png" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
-        <span class="hero-frame" data-frame-src="assets/senz-corporate-team-facility.png" style="background-image: url('assets/senz-corporate-team-facility.png');"></span>
-        <span class="hero-frame" data-frame-src="assets/senz-product-music.png" style="background-image: url('assets/senz-product-music.png');"></span>
-        <span class="hero-frame" data-frame-src="assets/senz-product-clone-studio.png" style="background-image: url('assets/senz-product-clone-studio.png');"></span>
-        <span class="hero-frame" data-frame-src="assets/senz-product-events-platform.png" style="background-image: url('assets/senz-product-events-platform.png');"></span>
-        <span class="hero-frame" data-frame-src="assets/senz-product-ai-assistant.png" style="background-image: url('assets/senz-product-ai-assistant.png');"></span>
-        <span class="hero-frame" data-frame-src="assets/senz-catalog-events-01.png" style="background-image: url('assets/senz-catalog-events-01.png');"></span>
-        <span class="hero-frame" data-frame-src="assets/senz-catalog-events-03.png" style="background-image: url('assets/senz-catalog-events-03.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-premium-hero-facility.png" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-premium-hero-facility.png" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-premium-hero-facility.png" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-premium-hero-facility.png" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
+        <span class="hero-frame" data-frame-src="assets/senz-premium-hero-facility.png" style="background-image: url('assets/senz-premium-hero-facility.png');"></span>
       </div>
       <div class="shell">
         <div class="hero-copy">
@@ -3517,7 +3580,7 @@
             Communications, campaigns, digital products, and AI-powered brand systems designed to look credible, premium, and impossible to ignore.
           </p>
           <div class="hero-actions">
-            <a class="button secondary" href="#services">Explore Services <span aria-hidden="true">-></span></a>
+            <a class="button secondary" href="get-started.html">Book a Consultation <span aria-hidden="true">-></span></a>
           </div>
         </div>
         <div class="trust-card" aria-label="SENZ Strategic Communications trusted by brands and leaders">
@@ -3600,14 +3663,12 @@
       <div class="shell">
         <div class="about-grid">
           <div class="about-copy">
-            <p class="eyebrow">About SENZ Strategic Communications</p>
-            <h2>Strategic Communication. Measurable Impact.</h2>
+            <p class="eyebrow">Company Standard</p>
+            <h2>Clear strategy before public attention.</h2>
             <p class="lead">
-              SENZ Strategic Communications is a strategic communications firm helping brands and leaders
-              build clarity, strengthen reputation, and drive growth through PR,
-              marketing, and digital solutions.
+              SENZ Strategic Communications helps brands, leaders, and community-driven projects organize their message, strengthen credibility, and build modern systems for public trust.
             </p>
-            <a class="button secondary" href="about.html">Meet SENZ Strategic Communications <span aria-hidden="true">-></span></a>
+            <a class="button secondary" href="get-started.html">Book a Consultation <span aria-hidden="true">-></span></a>
           </div>
           <article class="focus-card">
             <span class="icon" aria-hidden="true">
@@ -3632,7 +3693,7 @@
           </article>
         </div>
         <div class="meeting-visual">
-          <img src="assets/senz-premium-strategy-team.png" alt="Corporate strategy team collaborating in a modern office facility" />
+          <img src="assets/senz-premium-hero-facility.png" alt="Modern corporate facility exterior with no visible faces" />
         </div>
       </div>
     </section>
@@ -3642,77 +3703,82 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow">Our Services</p>
-            <h2>What <span>We Do</span></h2>
-            <p class="section-lead">Strategic communications, creative production, and digital systems built to make brands clearer, sharper, and harder to ignore.</p>
+            <h2>Built for <span>visibility and trust.</span></h2>
+            <p class="section-lead">A tighter service menu for brands that need strategy, customer connection, digital presence, and premium creative execution without looking noisy.</p>
           </div>
         </div>
 
         <div class="services-grid">
-          <article class="service-card" data-modal-title="PR" data-modal-body="Strategic PR helps SENZ Strategic Communications clients build visibility, earn trust, and shape the public narrative before noise shapes it for them. Ideal for launches, leaders, campaigns, and reputation-building projects." data-modal-visual="visual-pr" data-modal-kicker="PR Visibility Board" data-modal-items="Narrative Map|Media Angle|Trust Proof" data-modal-chips="Reputation|Launch|Public Image" data-modal-metric="Trust" data-modal-caption="A reputation system designed to make the brand easier to believe.">
-            <span class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="m3 11 18-7-4 16-5-6-5 4 1-5-5-2Z"/></svg>
-            </span>
-            <div>
-              <h3>PR</h3>
-              <p>Build visibility, earn trust, and shape the narrative that matters.</p>
-            </div>
-            <span class="arrow">›</span>
-          </article>
-
-          <article class="service-card" data-modal-title="Personal Strategist" data-modal-body="A personal strategist helps founders, pageant leaders, creatives, and public-facing professionals clarify their positioning, messaging, visual image, and communication direction." data-modal-visual="visual-strategist" data-modal-kicker="Personal Brand Suite" data-modal-items="Position|Voice|Visual Image" data-modal-chips="Leadership|Presence|Influence" data-modal-metric="Image" data-modal-caption="A premium direction system for public-facing leaders and creators.">
-            <span class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
-            </span>
-            <div>
-              <h3>Personal Strategist</h3>
-              <p>Executive positioning that elevates influence and leadership.</p>
-            </div>
-            <span class="arrow">›</span>
-          </article>
-
-          <article class="service-card" data-modal-title="Social Media Marketing" data-modal-body="Social media marketing focuses on campaigns that attract attention, build recall, and move audiences toward action through strategy, content direction, and performance thinking." data-modal-visual="visual-marketing" data-modal-kicker="Campaign Control Room" data-modal-items="Audience Hook|Content Arc|Growth Path" data-modal-chips="Campaigns|Content|Growth" data-modal-metric="Reach" data-modal-caption="A campaign system built to make attention turn into action.">
-            <span class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M7 11v9M17 11v9M5 11h4l2-6c.3-.9 1.3-1.3 2.1-.8.6.4.9 1.1.7 1.8L13 11h6a2 2 0 0 1 1.9 2.5l-1.2 5A2 2 0 0 1 17.8 20H7"/></svg>
-            </span>
-            <div>
-              <h3>Social Media Marketing</h3>
-              <p>Data-driven campaigns that grow your brand and audience.</p>
-            </div>
-            <span class="arrow">›</span>
-          </article>
-
-          <article class="service-card" data-modal-title="Social Media Management" data-modal-body="Social media management keeps the brand consistent through content planning, captions, posting rhythm, engagement, and community care." data-modal-visual="visual-management" data-modal-kicker="Content Operations" data-modal-items="Content Calendar|Community Care|Monthly Signals" data-modal-chips="Planning|Posting|Engagement" data-modal-metric="Rhythm" data-modal-caption="A steady operating system for brands that need to look alive and consistent.">
+          <article class="service-card" data-modal-title="Strategic Communications" data-modal-body="Strategic communications organizes the brand message, audience, tone, public position, and proof points so every campaign feels clear and credible." data-modal-visual="visual-pr" data-modal-kicker="Message Architecture" data-modal-items="Positioning|Narrative|Proof Points" data-modal-chips="Strategy|Messaging|Trust" data-modal-metric="Clarity" data-modal-caption="A disciplined communication system before the public ever sees the campaign.">
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M5 7h14v9H8l-3 3V7Z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
             </span>
             <div>
-              <h3>Social Media Management</h3>
-              <p>Consistent content, community, and engagement that builds loyalty.</p>
+              <h3>Strategic Communications</h3>
+              <p>Positioning, message structure, public tone, and communication systems for brands that need clarity.</p>
             </div>
             <span class="arrow">›</span>
           </article>
 
-          <article class="service-card" data-modal-title="Website" data-modal-body="SENZ Strategic Communications websites are designed as credibility platforms: clear message, premium presentation, strong service structure, and conversion-focused user flow." data-modal-visual="visual-website" data-modal-kicker="Digital Credibility Platform" data-modal-items="Hero Message|Service Flow|Conversion Path" data-modal-chips="Website|UX|Conversion" data-modal-metric="Click" data-modal-caption="A polished website experience designed to turn interest into inquiry.">
+          <article class="service-card" data-modal-title="PR and Public Image" data-modal-body="PR and public image work builds visibility, credibility, and reputation discipline for launches, leaders, public-facing brands, and organizations." data-modal-visual="visual-strategist" data-modal-kicker="Public Image System" data-modal-items="Reputation|Media Angle|Leadership Presence" data-modal-chips="PR|Public Image|Reputation" data-modal-metric="Trust" data-modal-caption="A credible public-facing presence that feels intentional and prepared.">
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 3 5 6v5c0 4.5 2.9 8.2 7 10 4.1-1.8 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-5"/></svg>
+            </span>
+            <div>
+              <h3>PR and Public Image</h3>
+              <p>Reputation, visibility, credibility signals, and leadership presence for public-facing work.</p>
+            </div>
+            <span class="arrow">›</span>
+          </article>
+
+          <article class="service-card" data-modal-title="Marketing and Social Media" data-modal-body="Marketing and social media turns strategy into campaign rhythm, content direction, audience movement, and brand recall across the platforms that matter." data-modal-visual="visual-marketing" data-modal-kicker="Campaign Direction" data-modal-items="Campaign Arc|Content System|Audience Path" data-modal-chips="Marketing|Social|Growth" data-modal-metric="Reach" data-modal-caption="A campaign system built to make attention turn into action.">
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M7 11v9M17 11v9M5 11h4l2-6c.3-.9 1.3-1.3 2.1-.8.6.4.9 1.1.7 1.8L13 11h6a2 2 0 0 1 1.9 2.5l-1.2 5A2 2 0 0 1 17.8 20H7"/></svg>
+            </span>
+            <div>
+              <h3>Marketing and Social Media</h3>
+              <p>Campaign planning, content direction, posting rhythm, and audience movement for stronger brand recall.</p>
+            </div>
+            <span class="arrow">›</span>
+          </article>
+
+          <article class="service-card" data-modal-title="Call Center Solutions" data-modal-body="Call center solutions help businesses organize customer inquiries, support scripts, lead handling, service flow, and response systems so customers can reach the brand through a clear and professional process." data-modal-visual="visual-callcenter" data-modal-kicker="Customer Contact System" data-modal-items="Inquiry Flow|Support Scripts|Lead Handling" data-modal-chips="Call Center|Customer Care|Operations" data-modal-metric="Response" data-modal-caption="A customer communication system for brands that need faster, cleaner response handling.">
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M6 8a6 6 0 0 1 12 0v4"/><path d="M5 12h3v5H5zM16 12h3v5h-3z"/><path d="M18 17c0 2-2 3-5 3h-2"/><path d="M10 20h2"/></svg>
+            </span>
+            <div>
+              <h3>Call Center Solutions</h3>
+              <p>Customer inquiry flow, support scripts, lead handling, and response systems for professional service teams.</p>
+            </div>
+            <span class="arrow">›</span>
+          </article>
+
+          <article class="service-card" data-modal-title="Websites and Digital Presence" data-modal-body="Websites and digital presence work turns the brand into a credible online experience through clear messaging, refined design, service structure, and conversion-focused flow." data-modal-visual="visual-website" data-modal-kicker="Digital Credibility Platform" data-modal-items="Website|Service Flow|Conversion Path" data-modal-chips="Website|UX|Conversion" data-modal-metric="Click" data-modal-caption="A polished website experience designed to turn interest into inquiry.">
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
             </span>
             <div>
-              <h3>Website</h3>
-              <p>High-performance websites designed to engage and convert.</p>
+              <h3>Websites and Digital Presence</h3>
+              <p>Premium websites, service pages, conversion paths, and digital presence systems that support credibility.</p>
             </div>
             <span class="arrow">›</span>
           </article>
 
-          <article class="service-card" data-modal-title="Photography" data-modal-body="Photography gives the brand a sharper visual identity through professional imagery for campaigns, profiles, digital pages, and public-facing materials." data-modal-visual="visual-photo" data-modal-kicker="Premium Shoot Direction" data-modal-items="Shot List|Lighting Mood|Asset Library" data-modal-chips="Photography|Campaign Assets|Brand Image" data-modal-metric="Frame" data-modal-caption="A visual asset system for campaigns, profiles, and launch materials.">
+          <article class="service-card" data-modal-title="Creative Production" data-modal-body="Creative production covers photography direction, campaign visuals, content assets, brand materials, and premium production planning without making the brand look generic." data-modal-visual="visual-photo" data-modal-kicker="Creative Production" data-modal-items="Shot Direction|Content Assets|Brand Materials" data-modal-chips="Visuals|Production|Brand Image" data-modal-metric="Frame" data-modal-caption="A visual asset system for campaigns, profiles, and launch materials.">
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 8h4l2-3h4l2 3h4v12H4V8Z"/><circle cx="12" cy="14" r="3.5"/></svg>
             </span>
             <div>
-              <h3>Photography</h3>
-              <p>Professional imagery that captures your brand at its best.</p>
+              <h3>Creative Production</h3>
+              <p>Photography direction, campaign visuals, content assets, and premium materials for public-facing brands.</p>
             </div>
             <span class="arrow">›</span>
           </article>
+        </div>
+
+        <div class="service-cta">
+          <p>Need help choosing the right service?</p>
+          <a class="button" href="get-started.html">Book a Consultation</a>
         </div>
 
         <div class="digital-product-studio">
@@ -3777,7 +3843,7 @@
 
         <div class="ebook-layout">
           <div class="ebook-grid" aria-label="SENZ Strategic Communications ebook catalog">
-            <article class="ebook-card" style="--ebook-art: url('assets/senz-blog-clear-messaging.png')">
+            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')">
               <div class="ebook-cover" aria-hidden="true"></div>
               <h3>Influence Through Clarity</h3>
               <p>A concise reader on message discipline, public presence, and making a brand easier to understand and remember.</p>
@@ -3790,7 +3856,7 @@
               <button class="button ebook-add" type="button" data-ebook-id="influence-through-clarity" data-title="Influence Through Clarity" data-price="1499">Add to Cart</button>
             </article>
 
-            <article class="ebook-card" style="--ebook-art: url('assets/senz-blog-pr-trust.png')">
+            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')">
               <div class="ebook-cover" aria-hidden="true"></div>
               <h3>Public Image Playbook</h3>
               <p>A guide for leaders, titleholders, public figures, and brands that need credibility, presence, and reputation structure.</p>
@@ -3803,7 +3869,7 @@
               <button class="button ebook-add" type="button" data-ebook-id="public-image-playbook" data-title="Public Image Playbook" data-price="1999">Add to Cart</button>
             </article>
 
-            <article class="ebook-card" style="--ebook-art: url('assets/senz-blog-digital-presence.png')">
+            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')">
               <div class="ebook-cover" aria-hidden="true"></div>
               <h3>Digital Presence Guide</h3>
               <p>A practical guide for websites, content systems, AI tools, and digital products that support a premium brand story.</p>
@@ -3938,21 +4004,13 @@
           </article>
         </div>
 
-        <div class="portfolio-strip" aria-label="Masinloc and HER advocacy campaign">
+        <div class="portfolio-strip is-advocacy" aria-label="Masinloc and HER advocacy campaign">
           <div class="portfolio-strip-card">
-            <strong>Masinloc and HER</strong>
-            <span>A women-led advocacy campaign supporting women, helping the community, and building a culture where women stand with women.</span>
-            <small>Advocacy Campaign</small>
-          </div>
-          <div class="portfolio-strip-card">
-            <strong>Closing the Gaps</strong>
-            <span>A community movement focused on connection, access, and practical support for women who need stronger circles around them.</span>
-            <small>Community Work</small>
-          </div>
-          <div class="portfolio-strip-card">
-            <strong>Women Support Women</strong>
-            <span>A clear statement of empowerment: women should support women, lead with care, and create visible change together.</span>
-            <small>Women-Led</small>
+            <div>
+              <small>Advocacy Campaign</small>
+              <strong>Masinloc and HER</strong>
+            </div>
+            <span>Masinloc and HER is a small women-led organization supported by women for the community. As a company, SENZ Strategic Communications supports causes that close gaps between women, strengthen access to support, and make a clear statement: women should support women.</span>
           </div>
         </div>
       </div>
@@ -3967,7 +4025,7 @@
             <p class="lead">You have a vision. SENZ Strategic Communications helps the world see it, understand it, and believe in it.</p>
           </div>
           <div class="contact-list">
-            <a href="mailto:info.senz.pr@gmail.com">Email SENZ Strategic Communications</a>
+            <a href="get-started.html">Send a Message</a>
             <a class="button" href="get-started.html">Book a Consultation</a>
           </div>
         </div>
@@ -3979,23 +4037,23 @@
     <div class="shell footer-inner">
       <div class="footer-brandline">
         <strong>SENZ Strategic Communications</strong>
-        <span>PR | Marketing | Digital Solutions</span>
+        <span>@senz.pr on TikTok, Instagram, Facebook, and LinkedIn</span>
       </div>
       <div class="footer-socials" aria-label="SENZ Strategic Communications contact links">
         <a href="mailto:info.senz.pr@gmail.com" aria-label="Email SENZ Strategic Communications">
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span><span class="social-text">Email</span>
         </a>
         <a href="https://www.tiktok.com/@senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications TikTok">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4v10.1a4.9 4.9 0 1 1-4.9-4.9"/><path d="M14 4c1.1 3.2 3.2 5 6 5.2"/></svg></span><span class="social-text">TikTok</span>
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4v10.1a4.9 4.9 0 1 1-4.9-4.9"/><path d="M14 4c1.1 3.2 3.2 5 6 5.2"/></svg></span><span class="social-text">TikTok @senz.pr</span>
         </a>
         <a href="https://www.instagram.com/senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Instagram">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3.2"/><circle cx="16.4" cy="7.7" r=".8"/></svg></span><span class="social-text">Instagram</span>
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3.2"/><circle cx="16.4" cy="7.7" r=".8"/></svg></span><span class="social-text">IG @senz.pr</span>
         </a>
         <a href="https://www.facebook.com/senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Facebook">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3.2C10.7 4 9 5.8 9 8.7V11H6v4h3v5h4v-5h3.1l.6-4H13V9.1c0-.7.4-1.1 1-1.1Z"/></svg></span><span class="social-text">Facebook</span>
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3.2C10.7 4 9 5.8 9 8.7V11H6v4h3v5h4v-5h3.1l.6-4H13V9.1c0-.7.4-1.1 1-1.1Z"/></svg></span><span class="social-text">FB @senz.pr</span>
         </a>
-        <a href="https://www.senzpr.com" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications website">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.2 2.2 3.2 4.9 3.2 8S14.2 17.8 12 20M12 4c-2.2 2.2-3.2 4.9-3.2 8s1 5.8 3.2 8"/></svg></span><span class="social-text">Website</span>
+        <a href="https://www.linkedin.com/company/senz-pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications LinkedIn">
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 10v8M6.5 6v.01M11 18v-8M11 13.8c0-2.5 1.3-4 3.4-4 2 0 3.1 1.3 3.1 3.8V18"/></svg></span><span class="social-text">LinkedIn @senz.pr</span>
         </a>
       </div>
     </div>
