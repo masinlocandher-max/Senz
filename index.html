@@ -2296,6 +2296,22 @@
       line-height: 0.98;
     }
 
+    .advocacy-brand {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2.4vw, 28px);
+      margin-top: 18px;
+    }
+
+    .advocacy-brand img {
+      width: clamp(82px, 9vw, 126px);
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 20px 70px rgba(103, 46, 170, 0.28);
+    }
+
     .portfolio-strip.is-advocacy .portfolio-strip-card span {
       max-width: 560px;
       font-size: 17px;
@@ -4008,7 +4024,10 @@
           <div class="portfolio-strip-card">
             <div>
               <small>Advocacy Campaign</small>
-              <strong>Masinloc and HER</strong>
+              <div class="advocacy-brand">
+                <img src="assets/masinloc-and-her-mark.jpg" alt="Masinloc and HER butterfly crown logo mark" />
+                <strong>Masinloc and HER</strong>
+              </div>
             </div>
             <span>Masinloc and HER is a small women-led organization supported by women for the community. As a company, SENZ Strategic Communications supports causes that close gaps between women, strengthen access to support, and make a clear statement: women should support women.</span>
           </div>
