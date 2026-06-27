@@ -244,7 +244,7 @@ async function handleInquiry(req, res) {
       ok: true,
       id: inquiry.id,
       assignedAgent: inquiry.assignedAgent,
-      message: "Inquiry received. SENZ will review your brief and respond soon."
+      message: "Inquiry received. SENZ Strategic Communications will review your brief and respond soon."
     });
   } catch (error) {
     sendJson(res, error.statusCode || 500, {
@@ -270,7 +270,7 @@ async function handleEbookOrder(req, res) {
       id: order.id,
       status: order.status,
       accessStatus: order.accessStatus,
-      message: "Order received. Ebook access remains locked until SENZ verifies the payment, then access will be sent to the buyer email."
+      message: "Order received. Ebook access remains locked until SENZ Strategic Communications verifies the payment, then access will be sent to the buyer email."
     });
   } catch (error) {
     sendJson(res, error.statusCode || 500, {
@@ -431,5 +431,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`SENZ website backend running at http://127.0.0.1:${port}`);
+  console.log(`SENZ Strategic Communications website backend running at http://127.0.0.1:${port}`);
 });
