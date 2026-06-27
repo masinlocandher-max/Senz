@@ -99,8 +99,8 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
-      min-width: 235px;
+      gap: 13px;
+      min-width: 318px;
     }
 
     .brand-mark {
@@ -112,11 +112,26 @@
     }
 
     .brand-word {
+      display: block;
       color: white;
-      font-size: 23px;
-      font-weight: 500;
-      letter-spacing: 12px;
+      font-size: 25px;
+      font-weight: 400;
+      letter-spacing: 14px;
       line-height: 1;
+      transform: scaleX(1.08);
+      transform-origin: left center;
+    }
+
+    .brand-subtitle {
+      display: block;
+      margin-top: 7px;
+      color: rgba(143, 177, 255, 0.86);
+      font-size: 7px;
+      font-weight: 900;
+      letter-spacing: 2.3px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -878,7 +893,7 @@
       }
 
       .brand {
-        min-width: auto;
+        min-width: 246px;
       }
 
       .brand-mark {
@@ -887,8 +902,13 @@
       }
 
       .brand-word {
-        font-size: 19px;
-        letter-spacing: 8px;
+        font-size: 20px;
+        letter-spacing: 9px;
+      }
+
+      .brand-subtitle {
+        font-size: 5.6px;
+        letter-spacing: 1.25px;
       }
 
       .nav-links {
@@ -1005,8 +1025,8 @@
     }
 
     .brand-word {
-      font-weight: 700;
-      letter-spacing: 10px;
+      font-weight: 400;
+      letter-spacing: 14px;
     }
 
     .brand-mark {
@@ -1120,7 +1140,7 @@
 
     /* Logo alignment refinements */
     .brand {
-      min-width: 208px;
+      min-width: 318px;
     }
 
     .brand-mark {
@@ -1128,7 +1148,7 @@
     }
 
     .brand-word {
-      letter-spacing: 9px;
+      letter-spacing: 14px;
     }
 
     [data-modal-title] {
@@ -1144,11 +1164,17 @@
 
     @media (max-width: 720px) {
       .brand {
-        min-width: auto;
+        min-width: 246px;
       }
 
       .brand-word {
-        letter-spacing: 7px;
+        font-size: 20px;
+        letter-spacing: 9px;
+      }
+
+      .brand-subtitle {
+        font-size: 5.6px;
+        letter-spacing: 1.25px;
       }
 
       .info-card {
@@ -2147,7 +2173,10 @@
     <div class="shell nav">
       <a class="brand" href="index.html" aria-label="SENZ home">
         <img class="brand-mark" src="assets/senz-original-mark.png" alt="" aria-hidden="true" />
-        <span class="brand-word">SENZ</span>
+        <span>
+          <span class="brand-word">SENZ</span>
+          <span class="brand-subtitle">Strategic Communications and Digital Solutions</span>
+        </span>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html">Home</a>
