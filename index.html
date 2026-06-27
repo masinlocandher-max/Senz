@@ -2182,32 +2182,67 @@
 
     .portfolio-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
-      margin-top: 22px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
     }
 
     .portfolio-strip-card {
+      position: relative;
+      min-height: 210px;
+      overflow: hidden;
       border: 1px solid rgba(184, 202, 255, 0.16);
       border-radius: var(--radius);
-      padding: 22px 20px;
-      background: rgba(8, 20, 42, 0.72);
+      padding: 24px;
+      background:
+        linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(8, 20, 42, 0.58)),
+        rgba(8, 20, 42, 0.72);
+    }
+
+    .portfolio-strip-card::before {
+      content: "";
+      position: absolute;
+      inset: 18px 18px auto auto;
+      width: 54px;
+      height: 74px;
+      border: 1px solid rgba(184, 202, 255, 0.32);
+      border-radius: 6px;
+      background:
+        linear-gradient(90deg, rgba(184, 202, 255, 0.18) 1px, transparent 1px) 14px 0 / 8px 100%,
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(143, 177, 255, 0.08));
+      box-shadow: -10px 10px 36px rgba(0, 0, 0, 0.22);
     }
 
     .portfolio-strip-card strong {
       display: block;
-      margin-bottom: 18px;
-      color: #8fb1ff;
+      max-width: 220px;
+      margin-bottom: 14px;
+      color: #f8fbff;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 32px;
-      line-height: 1;
+      font-size: clamp(24px, 2.4vw, 34px);
+      font-weight: 500;
+      line-height: 1.06;
     }
 
     .portfolio-strip-card span {
-      color: rgba(237, 243, 255, 0.84);
+      display: block;
+      max-width: 280px;
+      color: rgba(237, 243, 255, 0.74);
       font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 2px;
+      font-weight: 650;
+      letter-spacing: 0.3px;
+      line-height: 1.6;
+      text-transform: none;
+    }
+
+    .portfolio-strip-card small {
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      color: #8fb1ff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.6px;
       text-transform: uppercase;
     }
 
@@ -2235,7 +2270,7 @@
       }
 
       .portfolio-strip {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
       }
     }
 
@@ -3472,30 +3507,21 @@
           </article>
         </div>
 
-        <div class="portfolio-strip" aria-label="SENZ portfolio capabilities">
+        <div class="portfolio-strip" aria-label="SENZ reader library">
           <div class="portfolio-strip-card">
-            <strong>01</strong>
-            <span>Brand Positioning</span>
+            <strong>Influence Through Clarity</strong>
+            <span>A short reader on building presence, credibility, and message discipline before a brand becomes visible.</span>
+            <small>Reader Library</small>
           </div>
           <div class="portfolio-strip-card">
-            <strong>02</strong>
-            <span>Campaign Architecture</span>
+            <strong>Public Image Playbook</strong>
+            <span>Notes for leaders, public figures, titleholders, and brands that need a cleaner reputation system.</span>
+            <small>Coming Soon</small>
           </div>
           <div class="portfolio-strip-card">
-            <strong>03</strong>
-            <span>Digital Systems</span>
-          </div>
-          <div class="portfolio-strip-card">
-            <strong>04</strong>
-            <span>Visual Direction</span>
-          </div>
-          <div class="portfolio-strip-card">
-            <strong>05</strong>
-            <span>Event Platforms</span>
-          </div>
-          <div class="portfolio-strip-card">
-            <strong>06</strong>
-            <span>AI Product Systems</span>
+            <strong>Digital Presence Guide</strong>
+            <span>A practical guide for websites, content, AI tools, and digital products that support the brand story.</span>
+            <small>For Readers</small>
           </div>
         </div>
       </div>
