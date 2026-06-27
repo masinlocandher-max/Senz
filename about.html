@@ -1813,31 +1813,55 @@
     }
 
     .about-hero h1 {
-      max-width: 600px;
-      font-size: clamp(58px, 6.2vw, 86px);
+      max-width: 680px;
+      font-size: clamp(56px, 6.5vw, 94px);
       line-height: 0.94;
     }
 
     .hero-copy .lead {
-      max-width: 650px;
+      max-width: 620px;
       margin-top: 14px;
       color: #6f98ff;
-      font-size: clamp(30px, 2.8vw, 40px);
+      font-size: clamp(28px, 2.65vw, 38px);
       line-height: 1.04;
     }
 
     .about-message {
-      max-width: 590px;
-      margin-top: 20px;
+      max-width: 560px;
+      margin-top: 18px;
       font-size: 16px;
       line-height: 1.62;
+    }
+
+    .founder-intro {
+      display: inline-grid;
+      gap: 6px;
+      margin-top: 22px;
+      padding-left: 18px;
+      border-left: 2px solid rgba(111, 152, 255, 0.78);
+    }
+
+    .founder-intro strong {
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(22px, 2vw, 30px);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .founder-intro span {
+      color: rgba(180, 203, 255, 0.78);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
     }
 
     .about-service-strip {
       grid-template-columns: repeat(6, minmax(88px, 1fr));
       gap: 10px;
       max-width: 720px;
-      margin-top: 20px;
+      margin-top: 24px;
     }
 
     .about-service-strip span {
@@ -1869,7 +1893,7 @@
 
     .goal-strip {
       max-width: 610px;
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
     .hero-actions {
@@ -1878,8 +1902,8 @@
 
     .portrait-card {
       justify-self: end;
-      width: min(590px, 100%);
-      height: min(650px, calc(100vh - 104px));
+      width: min(640px, 100%);
+      height: min(700px, calc(100vh - 88px));
       border: 0;
       border-radius: 0;
       overflow: visible;
@@ -1894,8 +1918,8 @@
       inset: -8% -20% -10% -20%;
       z-index: -1;
       background:
-        radial-gradient(ellipse at 52% 38%, rgba(47, 106, 255, 0.28), transparent 50%),
-        radial-gradient(ellipse at 58% 86%, rgba(0, 87, 255, 0.24), transparent 48%);
+        radial-gradient(ellipse at 52% 38%, rgba(47, 106, 255, 0.34), transparent 50%),
+        radial-gradient(ellipse at 58% 86%, rgba(0, 87, 255, 0.26), transparent 48%);
       filter: blur(4px);
       opacity: 0.86;
     }
@@ -1913,9 +1937,9 @@
 
     .portrait-card img {
       border-radius: 0;
-      object-position: 50% center;
+      object-position: 50% 46%;
       box-shadow: none;
-      filter: contrast(1.05) saturate(0.94) brightness(0.88);
+      filter: contrast(1.05) saturate(0.96) brightness(0.92);
       -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 9%, black 88%, transparent 100%);
       mask-image: linear-gradient(180deg, transparent 0%, black 9%, black 88%, transparent 100%);
     }
@@ -1951,6 +1975,12 @@
       text-shadow: 0 3px 16px rgba(0, 0, 0, 0.74);
     }
 
+    .founder-panel .founder-title::after {
+      content: " | Founder-Led Company";
+      color: rgba(238, 244, 255, 0.72);
+      font-style: normal;
+    }
+
     .founder-panel .founder-quote {
       max-width: 380px;
       margin: 12px auto 0;
@@ -1979,6 +2009,71 @@
         right: auto;
         bottom: 20px;
         width: min(430px, calc(100% - 44px));
+      }
+    }
+
+    @media (min-width: 781px) and (max-width: 1120px) {
+      .about-hero {
+        padding-top: 104px;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 0.92fr) minmax(250px, 0.58fr);
+        gap: 20px;
+        align-items: center;
+      }
+
+      .about-hero h1 {
+        font-size: clamp(50px, 6.4vw, 66px);
+      }
+
+      .hero-copy .lead {
+        max-width: 500px;
+        font-size: clamp(24px, 3.1vw, 31px);
+      }
+
+      .about-message {
+        max-width: 470px;
+        font-size: 14px;
+      }
+
+      .founder-intro strong {
+        font-size: 22px;
+      }
+
+      .about-service-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: 480px;
+      }
+
+      .about-service-strip span {
+        min-height: 74px;
+        padding: 10px 8px;
+        font-size: 10px;
+      }
+
+      .about-service-strip span svg {
+        width: 23px;
+        height: 23px;
+      }
+
+      .portrait-card {
+        justify-self: end;
+        width: min(310px, 100%);
+        height: min(610px, calc(100vh - 116px));
+      }
+
+      .portrait-card img {
+        object-position: 54% 44%;
+      }
+
+      .founder-panel {
+        width: min(300px, calc(100% - 24px));
+        bottom: 18px;
+      }
+
+      .founder-panel .founder-quote {
+        display: none;
       }
     }
 
@@ -2193,12 +2288,20 @@
     <section class="about-hero">
       <div class="shell hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Who We Are</p>
-          <h1>About <span>Us</span></h1>
+          <p class="eyebrow">Founder-Led Company</p>
+          <h1>Led by <span>Francine</span></h1>
           <p class="lead">
-            Strategic communications for brands that need clarity, influence, and presence.
+            Strategic communications shaped by clarity, discipline, and modern presence.
           </p>
-          <p class="about-message">At SENZ, we help ambitious brands shape perception, sharpen their message, and build influence through strategy, creativity, and digital presence.</p>
+          <p class="about-message">SENZ is guided by Francine Marie Bautista, building sharp brand direction, public influence, and digital experiences for ambitious leaders and organizations.</p>
+          <div class="founder-intro" aria-label="SENZ founder">
+            <strong>Francine Marie Bautista</strong>
+            <span>Founder | SENZ Strategic Communications</span>
+          </div>
+          <div class="goal-strip">
+            <span>Company Goal</span>
+            <strong>Modernize how brands are seen, heard, and experienced.</strong>
+          </div>
           <div class="about-service-strip" aria-label="SENZ capabilities">
             <span>
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" aria-hidden="true"><path d="M5 7h14v9H8l-3 3V7Z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
@@ -2224,10 +2327,6 @@
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><path d="m9.5 12 1.8 1.8 3.7-4"/></svg>
               Narrative Strategy
             </span>
-          </div>
-          <div class="goal-strip">
-            <span>Company Goal</span>
-            <strong>Modernize how brands are seen, heard, and experienced.</strong>
           </div>
           <div class="hero-actions">
             <a class="button secondary" href="index.html#services">Explore Services <span aria-hidden="true">-></span></a>
