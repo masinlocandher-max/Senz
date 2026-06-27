@@ -3116,7 +3116,7 @@
         <span class="brand-word">SENZ</span>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a class="is-active" href="#top">Home</a>
+        <a href="#top">Home</a>
         <a href="#services">Services</a>
         <a href="about.html">About</a>
         <a href="#work">Portfolio</a>
@@ -3487,26 +3487,13 @@
             <p class="lead">You have a vision. SENZ helps the world see it, understand it, and believe in it.</p>
           </div>
           <div class="contact-list">
-            <a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a>
-            <a href="https://www.instagram.com/senz.pr" target="_blank" rel="noopener noreferrer">Instagram: @senz.pr</a>
-            <a href="https://www.tiktok.com/@senz.pr" target="_blank" rel="noopener noreferrer">TikTok: @senz.pr</a>
-            <a href="https://www.facebook.com/senz.pr" target="_blank" rel="noopener noreferrer">Facebook: senz.pr</a>
-            <a href="https://www.senzpr.com" target="_blank" rel="noopener noreferrer">www.senzpr.com</a>
+            <a href="mailto:info.senz.pr@gmail.com">Email SENZ</a>
             <a class="button" href="get-started.html">Book a Consultation</a>
           </div>
         </div>
       </div>
     </section>
   </main>
-
-  <a class="sticky-start" href="get-started.html" aria-label="Book a consultation with SENZ">
-    <svg class="sticky-icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M5 7.5h14v9H9l-4 3v-12Z"></path>
-      <path d="M9 11h6"></path>
-      <path d="M9 14h3.8"></path>
-    </svg>
-    <span>Book a Consultation</span>
-  </a>
 
   <footer>
     <div class="shell footer-inner">
@@ -3519,16 +3506,16 @@
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span><span class="social-text">Email</span>
         </a>
         <a href="https://www.tiktok.com/@senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ TikTok">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4v10.1a4.9 4.9 0 1 1-4.9-4.9"/><path d="M14 4c1.1 3.2 3.2 5 6 5.2"/></svg></span><span class="social-text">senz.pr</span>
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4v10.1a4.9 4.9 0 1 1-4.9-4.9"/><path d="M14 4c1.1 3.2 3.2 5 6 5.2"/></svg></span><span class="social-text">TikTok</span>
         </a>
         <a href="https://www.instagram.com/senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Instagram">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3.2"/><circle cx="16.4" cy="7.7" r=".8"/></svg></span><span class="social-text">senz.pr</span>
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3.2"/><circle cx="16.4" cy="7.7" r=".8"/></svg></span><span class="social-text">Instagram</span>
         </a>
         <a href="https://www.facebook.com/senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Facebook">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3.2C10.7 4 9 5.8 9 8.7V11H6v4h3v5h4v-5h3.1l.6-4H13V9.1c0-.7.4-1.1 1-1.1Z"/></svg></span><span class="social-text">senz.pr</span>
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3.2C10.7 4 9 5.8 9 8.7V11H6v4h3v5h4v-5h3.1l.6-4H13V9.1c0-.7.4-1.1 1-1.1Z"/></svg></span><span class="social-text">Facebook</span>
         </a>
         <a href="https://www.senzpr.com" target="_blank" rel="noopener noreferrer" aria-label="SENZ website">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.2 2.2 3.2 4.9 3.2 8S14.2 17.8 12 20M12 4c-2.2 2.2-3.2 4.9-3.2 8s1 5.8 3.2 8"/></svg></span><span class="social-text">www.senzpr.com</span>
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.2 2.2 3.2 4.9 3.2 8S14.2 17.8 12 20M12 4c-2.2 2.2-3.2 4.9-3.2 8s1 5.8 3.2 8"/></svg></span><span class="social-text">Website</span>
         </a>
       </div>
     </div>
@@ -3793,6 +3780,7 @@
       rail.innerHTML = railSections.map((item) => `<a href="#${item.id}" aria-label="${item.label}"></a>`).join('');
       body.appendChild(rail);
       const railLinks = Array.from(rail.querySelectorAll('a'));
+      const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
       const aura = document.createElement('div');
       aura.className = 'pointer-aura';
       aura.setAttribute('aria-hidden', 'true');
@@ -3836,6 +3824,9 @@
           if (rect.top <= vh * 0.42 && rect.bottom > vh * 0.2) currentRailIndex = index;
         });
         railLinks.forEach((link, index) => link.classList.toggle('is-active', index === currentRailIndex));
+        navLinks.forEach((link) => {
+          link.classList.toggle('is-active', link.getAttribute('href') === `#${railSections[currentRailIndex].id}`);
+        });
 
         motionItems.forEach((item, index) => {
           const rect = item.getBoundingClientRect();
