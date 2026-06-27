@@ -2299,17 +2299,22 @@
     .advocacy-brand {
       display: flex;
       align-items: center;
-      gap: clamp(16px, 2.4vw, 28px);
+      gap: clamp(18px, 2.6vw, 34px);
       margin-top: 18px;
     }
 
     .advocacy-brand img {
-      width: clamp(82px, 9vw, 126px);
+      width: clamp(170px, 22vw, 310px);
       aspect-ratio: 1;
-      object-fit: cover;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      box-shadow: 0 20px 70px rgba(103, 46, 170, 0.28);
+      object-fit: contain;
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 26px 90px rgba(103, 46, 170, 0.32);
+    }
+
+    .advocacy-brand strong {
+      display: none;
     }
 
     .portfolio-strip.is-advocacy .portfolio-strip-card span {
@@ -4025,7 +4030,7 @@
             <div>
               <small>Advocacy Campaign</small>
               <div class="advocacy-brand">
-                <img src="assets/masinloc-and-her-mark.jpg" alt="Masinloc and HER butterfly crown logo mark" />
+                <img src="assets/masinloc-and-her-logo.jpg" alt="Masinloc and HER logo" />
                 <strong>Masinloc and HER</strong>
               </div>
             </div>
