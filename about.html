@@ -156,19 +156,26 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      min-height: 48px;
-      padding: 0 24px;
-      border: 1px solid rgba(83, 130, 255, 0.55);
-      border-radius: var(--radius);
+      min-height: 52px;
+      padding: 0 26px;
+      border: 1px solid rgba(210, 222, 255, 0.5);
+      border-radius: 999px;
       color: white;
-      background: linear-gradient(135deg, #1c75ff, #0046e8);
-      box-shadow: 0 20px 40px rgba(0, 87, 255, 0.28);
-      font-weight: 800;
+      background:
+        linear-gradient(135deg, rgba(62, 124, 255, 0.98), rgba(0, 61, 210, 0.96)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent);
+      box-shadow: 0 18px 42px rgba(0, 87, 255, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
     }
 
     .button.secondary {
-      background: rgba(3, 12, 31, 0.6);
-      box-shadow: none;
+      color: rgba(244, 248, 255, 0.9);
+      background: rgba(4, 13, 31, 0.48);
+      border-color: rgba(210, 222, 255, 0.28);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .button,
@@ -182,7 +189,8 @@
     .button:hover,
     .nav-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 24px 48px rgba(0, 87, 255, 0.36);
+      border-color: rgba(235, 242, 255, 0.76);
+      box-shadow: 0 24px 54px rgba(0, 87, 255, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
 
     .sticky-start {
@@ -195,16 +203,16 @@
       justify-content: center;
       min-height: 54px;
       overflow: hidden;
-      border: 1px solid rgba(184, 202, 255, 0.46);
-      border-radius: var(--radius);
+      border: 1px solid rgba(210, 222, 255, 0.42);
+      border-radius: 999px;
       padding: 0 22px;
       color: #fff;
       font-size: 12px;
       font-weight: 900;
       letter-spacing: 2px;
       text-transform: uppercase;
-      background: linear-gradient(135deg, rgba(0, 87, 255, 0.98), rgba(37, 108, 255, 0.92));
-      box-shadow: 0 22px 58px rgba(0, 87, 255, 0.38);
+      background: rgba(3, 12, 31, 0.74);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.16);
       backdrop-filter: blur(16px);
     }
 
@@ -241,14 +249,18 @@
 
     .mobile-toggle {
       display: none;
-      width: 42px;
+      min-width: 64px;
       height: 40px;
+      padding: 0 14px;
       border: 1px solid rgba(83, 130, 255, 0.45);
-      border-radius: var(--radius);
+      border-radius: 999px;
       color: white;
       background: rgba(3, 12, 31, 0.66);
-      font-size: 20px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
       line-height: 1;
+      text-transform: uppercase;
     }
 
     main {
@@ -1247,6 +1259,89 @@
       }
     }
 
+    .experience-rail {
+      position: fixed;
+      left: clamp(14px, 2vw, 28px);
+      top: 50%;
+      z-index: 65;
+      display: grid;
+      gap: 12px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .experience-rail a {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      border: 1px solid rgba(184, 202, 255, 0.42);
+      border-radius: 999px;
+      background: rgba(4, 12, 31, 0.72);
+      box-shadow: 0 0 0 rgba(0, 87, 255, 0);
+      pointer-events: auto;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .experience-rail a::after {
+      content: attr(aria-label);
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      width: max-content;
+      padding: 7px 10px;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: 999px;
+      color: rgba(237, 243, 255, 0.82);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      background: rgba(3, 9, 23, 0.78);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
+      opacity: 0;
+      transform: translate(-8px, -50%);
+      transition: opacity 180ms ease, transform 180ms ease;
+      backdrop-filter: blur(14px);
+    }
+
+    .experience-rail a:hover,
+    .experience-rail a.is-active {
+      transform: scale(1.35);
+      border-color: rgba(225, 233, 255, 0.88);
+      background: #0d5bff;
+      box-shadow: 0 0 26px rgba(0, 87, 255, 0.78);
+    }
+
+    .experience-rail a:hover::after {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+
+    .motion-scene.is-current > .shell {
+      filter: drop-shadow(0 24px 70px rgba(0, 87, 255, 0.08));
+    }
+
+    .motion-scene::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(143, 177, 255, 0.16), transparent);
+      opacity: var(--scene-rule, 0);
+      pointer-events: none;
+      transition: opacity 260ms ease;
+    }
+
+    .motion-scene.is-current::after {
+      --scene-rule: 1;
+    }
+
+    @media (max-width: 900px), (prefers-reduced-motion: reduce) {
+      .experience-rail {
+        display: none;
+      }
+    }
+
     /* Reference-aligned founder frame: corporate, cinematic, and motion-ready. */
     .about-hero {
       min-height: 100vh;
@@ -1531,14 +1626,15 @@
     .button,
     .nav-cta,
     .sticky-start {
-      border-color: rgba(195, 211, 255, 0.34);
-      background: linear-gradient(135deg, rgba(0, 87, 255, 0.92), rgba(63, 121, 255, 0.82));
-      box-shadow: 0 16px 38px rgba(0, 87, 255, 0.2);
+      border-color: rgba(210, 222, 255, 0.42);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(30, 100, 255, 0.94), rgba(2, 52, 178, 0.92));
+      box-shadow: 0 16px 38px rgba(0, 87, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.16);
     }
 
     .button.secondary {
       background: rgba(255, 255, 255, 0.045);
-      border-color: rgba(195, 211, 255, 0.22);
+      border-color: rgba(210, 222, 255, 0.28);
       box-shadow: none;
     }
 
@@ -1956,8 +2052,8 @@
         <a href="index.html#work">Portfolio</a>
         <a href="index.html#contact">Contact</a>
       </nav>
-      <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
-      <a class="nav-cta" href="get-started.html">Get Started</a>
+      <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
+      <a class="nav-cta" href="get-started.html">Start Project</a>
     </div>
   </header>
 
@@ -2002,8 +2098,8 @@
             <strong>Modernize how brands are seen, heard, and experienced.</strong>
           </div>
           <div class="hero-actions">
-            <a class="button" href="get-started.html">Work With Us</a>
-            <a class="button secondary" href="index.html#services">View Services <span aria-hidden="true">→</span></a>
+            <a class="button" href="get-started.html">Start Project</a>
+            <a class="button secondary" href="index.html#services">Explore Services <span aria-hidden="true">-></span></a>
           </div>
         </div>
         <div class="portrait-card">
@@ -2084,7 +2180,7 @@
               </span>
               <h3>Strategic Communications</h3>
               <p>Positioning and messaging that elevate reputation and drive influence.</p>
-              <span class="card-arrow">→</span>
+              <span class="card-arrow">-></span>
             </article>
             <article class="info-card" data-modal-title="Marketing" data-modal-body="Marketing translates strategy into campaigns, content, and audience movement that can support awareness, trust, and growth.">
               <span class="icon" aria-hidden="true">
@@ -2092,7 +2188,7 @@
               </span>
               <h3>Marketing</h3>
               <p>Integrated campaigns that engage audiences and accelerate growth.</p>
-              <span class="card-arrow">→</span>
+              <span class="card-arrow">-></span>
             </article>
             <article class="info-card" data-modal-title="Digital Solutions" data-modal-body="Digital solutions help turn the brand into an experience through websites, digital content, music products, clone production, event voting and tabulation platforms, ticket selling, and personal AI assistants.">
               <span class="icon" aria-hidden="true">
@@ -2100,7 +2196,7 @@
               </span>
               <h3>Digital Solutions</h3>
               <p>Websites, digital products, event platforms, and AI assistants that connect and convert.</p>
-              <span class="card-arrow">→</span>
+              <span class="card-arrow">-></span>
             </article>
           </div>
         </div>
@@ -2122,7 +2218,7 @@
               <p class="eyebrow">Public Relations</p>
               <h3>PR That Builds Trust</h3>
               <p>Trust is not earned overnight. Discover how strategic PR creates credibility that lasts.</p>
-              <span class="card-arrow">→</span>
+              <span class="card-arrow">-></span>
             </div>
           </article>
           <article class="journal-card" data-modal-title="How Clear Messaging Shapes Reputation" data-modal-body="Clear messaging does more than inform. It simplifies the brand, builds perception, drives action, and makes reputation easier to protect over time.">
@@ -2131,7 +2227,7 @@
               <p class="eyebrow">Messaging</p>
               <h3>How Clear Messaging Shapes Reputation</h3>
               <p>Clear messaging does more than inform. It builds perception, drives action, and strengthens your brand.</p>
-              <span class="card-arrow">→</span>
+              <span class="card-arrow">-></span>
             </div>
           </article>
           <article class="journal-card" data-modal-title="Why Digital Presence Matters" data-modal-body="A strong digital presence expands reach, builds authority, and keeps the brand top of mind across the platforms where people first judge credibility.">
@@ -2140,7 +2236,7 @@
               <p class="eyebrow">Digital Strategy</p>
               <h3>Why Digital Presence Matters</h3>
               <p>A strong digital presence expands your reach, builds authority, and keeps you top of mind.</p>
-              <span class="card-arrow">→</span>
+              <span class="card-arrow">-></span>
             </div>
           </article>
         </div>
@@ -2161,11 +2257,11 @@
     <div class="modal-card" role="document">
       <div class="modal-top">
         <h3 class="modal-title" id="modalTitle">SENZ</h3>
-        <button class="modal-close" type="button" aria-label="Close modal">×</button>
+        <button class="modal-close" type="button" aria-label="Close modal">x</button>
       </div>
       <p class="modal-body" id="modalBody"></p>
       <div class="modal-actions">
-        <a class="button" href="get-started.html">Start a Project</a>
+        <a class="button" href="get-started.html">Start Project</a>
         <button class="button secondary modal-close" type="button">Close</button>
       </div>
     </div>
@@ -2186,14 +2282,14 @@
       toggle?.addEventListener('click', () => {
         const isOpen = nav.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', String(isOpen));
-        toggle.textContent = isOpen ? '×' : '☰';
+        toggle.textContent = isOpen ? 'Close' : 'Menu';
       });
 
       nav?.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
           nav.classList.remove('is-open');
           toggle?.setAttribute('aria-expanded', 'false');
-          if (toggle) toggle.textContent = '☰';
+          if (toggle) toggle.textContent = 'Menu';
         });
       });
 
@@ -2269,6 +2365,21 @@
       const scenes = Array.from(document.querySelectorAll('main > section'));
       const motionItems = Array.from(document.querySelectorAll('.info-card, .journal-card, .about-service-strip span, .light-metrics span'));
       const mediaItems = Array.from(document.querySelectorAll('.portrait-card img, .article-art, .light-visual img'));
+      const railSections = [
+        { id: 'about-top', label: 'Founder', target: document.querySelector('.about-hero') },
+        { id: 'about-light', label: 'Mission', target: document.querySelector('.light-about') },
+        { id: 'about-catalog', label: 'Catalog', target: document.querySelector('.split-card-section') },
+        { id: 'journal', label: 'Journal', target: document.querySelector('#journal') }
+      ].filter((item) => item.target);
+      railSections.forEach((item) => {
+        if (!item.target.id) item.target.id = item.id;
+      });
+      const rail = document.createElement('nav');
+      rail.className = 'experience-rail';
+      rail.setAttribute('aria-label', 'About sections');
+      rail.innerHTML = railSections.map((item) => `<a href="#${item.target.id}" aria-label="${item.label}"></a>`).join('');
+      body.appendChild(rail);
+      const railLinks = Array.from(rail.querySelectorAll('a'));
 
       scenes.forEach((scene) => scene.classList.add('motion-scene'));
       motionItems.forEach((item, index) => {
@@ -2296,7 +2407,15 @@
           const progressInView = clamp((vh - rect.top) / (vh + rect.height));
           scene.style.setProperty('--scene-y', `${Math.round((1 - progressInView) * 18)}px`);
           scene.style.setProperty('--scene-opacity', (0.78 + progressInView * 0.22).toFixed(3));
+          scene.classList.toggle('is-current', rect.top < vh * 0.48 && rect.bottom > vh * 0.38);
         });
+
+        let currentRailIndex = 0;
+        railSections.forEach((item, index) => {
+          const rect = item.target.getBoundingClientRect();
+          if (rect.top <= vh * 0.42 && rect.bottom > vh * 0.2) currentRailIndex = index;
+        });
+        railLinks.forEach((link, index) => link.classList.toggle('is-active', index === currentRailIndex));
 
         motionItems.forEach((item, index) => {
           const rect = item.getBoundingClientRect();

@@ -158,19 +158,26 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      min-height: 48px;
-      padding: 0 24px;
-      border: 1px solid rgba(83, 130, 255, 0.55);
-      border-radius: var(--radius);
+      min-height: 52px;
+      padding: 0 26px;
+      border: 1px solid rgba(210, 222, 255, 0.5);
+      border-radius: 999px;
       color: white;
-      background: linear-gradient(135deg, #1c75ff, #0046e8);
-      box-shadow: 0 20px 40px rgba(0, 87, 255, 0.28);
-      font-weight: 800;
+      background:
+        linear-gradient(135deg, rgba(62, 124, 255, 0.98), rgba(0, 61, 210, 0.96)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent);
+      box-shadow: 0 18px 42px rgba(0, 87, 255, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
     }
 
     .button.secondary {
-      background: rgba(3, 12, 31, 0.6);
-      box-shadow: none;
+      color: rgba(244, 248, 255, 0.9);
+      background: rgba(4, 13, 31, 0.48);
+      border-color: rgba(210, 222, 255, 0.28);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .button,
@@ -190,7 +197,8 @@
     .button:hover,
     .nav-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 24px 48px rgba(0, 87, 255, 0.36);
+      border-color: rgba(235, 242, 255, 0.76);
+      box-shadow: 0 24px 54px rgba(0, 87, 255, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
 
     .sticky-start {
@@ -203,16 +211,16 @@
       justify-content: center;
       min-height: 54px;
       overflow: hidden;
-      border: 1px solid rgba(184, 202, 255, 0.46);
-      border-radius: var(--radius);
+      border: 1px solid rgba(210, 222, 255, 0.42);
+      border-radius: 999px;
       padding: 0 22px;
       color: #fff;
       font-size: 12px;
       font-weight: 900;
       letter-spacing: 2px;
       text-transform: uppercase;
-      background: linear-gradient(135deg, rgba(0, 87, 255, 0.98), rgba(37, 108, 255, 0.92));
-      box-shadow: 0 22px 58px rgba(0, 87, 255, 0.38);
+      background: rgba(3, 12, 31, 0.74);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.16);
       backdrop-filter: blur(16px);
     }
 
@@ -269,14 +277,18 @@
 
     .mobile-toggle {
       display: none;
-      width: 42px;
+      min-width: 64px;
       height: 40px;
+      padding: 0 14px;
       border: 1px solid rgba(83, 130, 255, 0.45);
-      border-radius: var(--radius);
+      border-radius: 999px;
       color: white;
       background: rgba(3, 12, 31, 0.66);
-      font-size: 20px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
       line-height: 1;
+      text-transform: uppercase;
     }
 
     main {
@@ -2721,20 +2733,21 @@
     .button,
     .nav-cta,
     .sticky-start {
-      border-color: rgba(195, 211, 255, 0.34);
-      background: linear-gradient(135deg, rgba(0, 87, 255, 0.92), rgba(63, 121, 255, 0.82));
-      box-shadow: 0 16px 38px rgba(0, 87, 255, 0.2);
+      border-color: rgba(210, 222, 255, 0.42);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(30, 100, 255, 0.94), rgba(2, 52, 178, 0.92));
+      box-shadow: 0 16px 38px rgba(0, 87, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.16);
     }
 
     .button.secondary {
       background: rgba(255, 255, 255, 0.045);
-      border-color: rgba(195, 211, 255, 0.22);
+      border-color: rgba(210, 222, 255, 0.28);
     }
 
     .sticky-start {
       min-height: 46px;
       padding: 0 18px;
-      border-color: rgba(195, 211, 255, 0.22);
+      border-color: rgba(210, 222, 255, 0.3);
       background: rgba(5, 15, 33, 0.58);
       box-shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
       font-size: 11px;
@@ -2903,6 +2916,109 @@
         transform: none;
       }
     }
+
+    /* Premium scroll experience layer */
+    .experience-rail {
+      position: fixed;
+      left: clamp(14px, 2vw, 28px);
+      top: 50%;
+      z-index: 65;
+      display: grid;
+      gap: 12px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .experience-rail a {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      border: 1px solid rgba(184, 202, 255, 0.42);
+      border-radius: 999px;
+      background: rgba(4, 12, 31, 0.72);
+      box-shadow: 0 0 0 rgba(0, 87, 255, 0);
+      pointer-events: auto;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .experience-rail a::after {
+      content: attr(aria-label);
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      width: max-content;
+      max-width: 190px;
+      padding: 7px 10px;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: 999px;
+      color: rgba(237, 243, 255, 0.82);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      background: rgba(3, 9, 23, 0.78);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
+      opacity: 0;
+      transform: translate(-8px, -50%);
+      transition: opacity 180ms ease, transform 180ms ease;
+      backdrop-filter: blur(14px);
+    }
+
+    .experience-rail a:hover,
+    .experience-rail a.is-active {
+      transform: scale(1.35);
+      border-color: rgba(225, 233, 255, 0.88);
+      background: #0d5bff;
+      box-shadow: 0 0 26px rgba(0, 87, 255, 0.78);
+    }
+
+    .experience-rail a:hover::after {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+
+    .pointer-aura {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      opacity: 0.24;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(47, 115, 255, 0.34), rgba(47, 115, 255, 0.08) 42%, transparent 70%);
+      filter: blur(4px);
+      mix-blend-mode: screen;
+      transform: translate3d(var(--aura-x, -420px), var(--aura-y, -420px), 0);
+      transition: opacity 240ms ease;
+    }
+
+    .motion-scene.is-current > .shell {
+      filter: drop-shadow(0 24px 70px rgba(0, 87, 255, 0.08));
+    }
+
+    .motion-scene::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(143, 177, 255, 0.16), transparent);
+      opacity: var(--scene-rule, 0);
+      pointer-events: none;
+      transition: opacity 260ms ease;
+    }
+
+    .motion-scene.is-current::after {
+      --scene-rule: 1;
+    }
+
+    @media (max-width: 900px), (prefers-reduced-motion: reduce) {
+      .experience-rail,
+      .pointer-aura {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2928,8 +3044,8 @@
         <a href="#work">Portfolio</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
-      <a class="nav-cta" href="get-started.html">Get Started</a>
+      <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
+      <a class="nav-cta" href="get-started.html">Start Project</a>
     </div>
   </header>
 
@@ -2953,8 +3069,8 @@
             Communications, campaigns, digital products, and AI-powered brand systems designed to look credible, premium, and impossible to ignore.
           </p>
           <div class="hero-actions">
-            <a class="button" href="get-started.html">Get Started</a>
-            <a class="button secondary" href="#services">View Services <span aria-hidden="true">→</span></a>
+            <a class="button" href="get-started.html">Start Project</a>
+            <a class="button secondary" href="#services">Explore Services <span aria-hidden="true">-></span></a>
           </div>
         </div>
         <div class="trust-card" aria-label="SENZ trusted by brands and leaders">
@@ -2970,7 +3086,7 @@
         <div class="catalog-heading">
           <div>
             <p class="eyebrow">SENZ Catalog</p>
-            <h2>Built for public-facing people and live moments.</h2>
+          <h2>Built for client-facing leaders and live moments.</h2>
           </div>
           <p>Premium communication, visuals, digital systems, and event technology for high-visibility work.</p>
         </div>
@@ -3044,7 +3160,7 @@
               build clarity, strengthen reputation, and drive growth through PR,
               marketing, and digital solutions.
             </p>
-            <a class="button secondary" href="about.html">Learn More <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="about.html">Meet SENZ <span aria-hidden="true">-></span></a>
           </div>
           <article class="focus-card">
             <span class="icon" aria-hidden="true">
@@ -3298,7 +3414,7 @@
             <a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a>
             <a href="https://www.instagram.com/senz.pr" target="_blank" rel="noopener noreferrer">Instagram: senz.pr</a>
             <span>Facebook, IG, TikTok: senz.pr</span>
-            <a class="button" href="get-started.html">Get Started</a>
+            <a class="button" href="get-started.html">Start Project</a>
           </div>
         </div>
       </div>
@@ -3320,12 +3436,12 @@
         <div class="modal-copy">
           <div class="modal-top">
             <h3 class="modal-title" id="modalTitle">SENZ</h3>
-            <button class="modal-close" type="button" aria-label="Close modal">×</button>
+            <button class="modal-close" type="button" aria-label="Close modal">x</button>
           </div>
           <p class="modal-body" id="modalBody"></p>
           <div class="modal-chips" id="modalChips" aria-label="Highlights"></div>
           <div class="modal-actions">
-            <a class="button" href="get-started.html">Start a Project</a>
+            <a class="button" href="get-started.html">Start Project</a>
             <button class="button secondary modal-close" type="button">Close</button>
           </div>
         </div>
@@ -3415,14 +3531,14 @@
       toggle?.addEventListener('click', () => {
         const isOpen = nav.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', String(isOpen));
-        toggle.textContent = isOpen ? '×' : '☰';
+        toggle.textContent = isOpen ? 'Close' : 'Menu';
       });
 
       nav?.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
           nav.classList.remove('is-open');
           toggle?.setAttribute('aria-expanded', 'false');
-          if (toggle) toggle.textContent = '☰';
+          if (toggle) toggle.textContent = 'Menu';
         });
       });
 
@@ -3559,6 +3675,24 @@
       const scenes = Array.from(document.querySelectorAll('main > section'));
       const motionItems = Array.from(document.querySelectorAll('.value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card, .contact-panel'));
       const mediaItems = Array.from(document.querySelectorAll('.meeting-visual img, .portfolio-art, .article-art'));
+      const railSections = [
+        { id: 'top', label: 'Home', target: document.querySelector('.hero') },
+        { id: 'catalog', label: 'Catalog', target: document.querySelector('.catalog') },
+        { id: 'about', label: 'About', target: document.querySelector('#about') },
+        { id: 'services', label: 'Services', target: document.querySelector('#services') },
+        { id: 'work', label: 'Portfolio', target: document.querySelector('#work') },
+        { id: 'contact', label: 'Contact', target: document.querySelector('#contact') }
+      ].filter((item) => item.target);
+      const rail = document.createElement('nav');
+      rail.className = 'experience-rail';
+      rail.setAttribute('aria-label', 'Page sections');
+      rail.innerHTML = railSections.map((item) => `<a href="#${item.id}" aria-label="${item.label}"></a>`).join('');
+      body.appendChild(rail);
+      const railLinks = Array.from(rail.querySelectorAll('a'));
+      const aura = document.createElement('div');
+      aura.className = 'pointer-aura';
+      aura.setAttribute('aria-hidden', 'true');
+      body.appendChild(aura);
 
       scenes.forEach((scene) => scene.classList.add('motion-scene'));
       motionItems.forEach((item, index) => {
@@ -3589,7 +3723,15 @@
           const progressInView = clamp((vh - rect.top) / (vh + rect.height));
           scene.style.setProperty('--scene-y', `${Math.round((1 - progressInView) * 18)}px`);
           scene.style.setProperty('--scene-opacity', (0.78 + progressInView * 0.22).toFixed(3));
+          scene.classList.toggle('is-current', rect.top < vh * 0.48 && rect.bottom > vh * 0.38);
         });
+
+        let currentRailIndex = 0;
+        railSections.forEach((item, index) => {
+          const rect = item.target.getBoundingClientRect();
+          if (rect.top <= vh * 0.42 && rect.bottom > vh * 0.2) currentRailIndex = index;
+        });
+        railLinks.forEach((link, index) => link.classList.toggle('is-active', index === currentRailIndex));
 
         motionItems.forEach((item, index) => {
           const rect = item.getBoundingClientRect();
@@ -3617,6 +3759,11 @@
 
       window.addEventListener('scroll', requestMotionFrame, { passive: true });
       window.addEventListener('resize', requestMotionFrame);
+      window.addEventListener('pointermove', (event) => {
+        if (reduceMotion) return;
+        aura.style.setProperty('--aura-x', `${event.clientX - 180}px`);
+        aura.style.setProperty('--aura-y', `${event.clientY - 180}px`);
+      }, { passive: true });
       if (!reduceMotion && heroFrames.length > 1) {
         window.setInterval(syncHeroMotion, 850);
       }
