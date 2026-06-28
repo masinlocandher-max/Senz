@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ebook Checkout | SENZ Strategic Communications</title>
+  <style>
+    :root {
+      --blue: #0057ff;
+      --ink: #f7faff;
+      --muted: #b8c6e6;
+      --line: rgba(184, 202, 255, 0.18);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.96), rgba(2, 7, 19, 0.72)),
+        url("assets/senz-premium-hero-facility.png") center / cover fixed no-repeat;
+    }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(184, 202, 255, 0.12);
+      background: rgba(3, 9, 23, 0.78);
+      backdrop-filter: blur(20px);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 82px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; min-width: 300px; }
+    .brand img { width: 44px; height: 44px; object-fit: contain; }
+    .brand-word {
+      display: block;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 400;
+      letter-spacing: 14px;
+      line-height: 1;
+      transform: scaleX(1.08);
+      transform-origin: left center;
+    }
+    .brand-subtitle {
+      display: block;
+      margin-top: 7px;
+      color: rgba(143, 177, 255, 0.86);
+      font-size: 7px;
+      font-weight: 900;
+      letter-spacing: 2.3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2vw, 28px);
+      color: rgba(237, 243, 255, 0.72);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      border: 1px solid rgba(210, 222, 255, 0.5);
+      border-radius: 999px;
+      padding: 0 26px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, rgba(62, 124, 255, 0.98), rgba(0, 61, 210, 0.96));
+      cursor: pointer;
+    }
+    .button.secondary {
+      background: rgba(4, 13, 31, 0.48);
+      border-color: rgba(210, 222, 255, 0.28);
+    }
+
+    main { padding: clamp(62px, 8vw, 108px) 0; }
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(360px, 0.55fr);
+      gap: clamp(24px, 4vw, 54px);
+      align-items: start;
+    }
+    .intro, .checkout-card {
+      border: 1px solid rgba(225, 233, 255, 0.16);
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(8, 18, 38, 0.72), rgba(3, 9, 22, 0.82));
+      box-shadow: 0 26px 90px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(18px);
+    }
+    .intro { padding: clamp(30px, 5vw, 58px); }
+    .eyebrow {
+      color: #8fb1ff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin-top: 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(46px, 7vw, 86px);
+      line-height: 0.96;
+      font-weight: 400;
+    }
+    h1 span { color: #8fb1ff; }
+    .lead {
+      max-width: 660px;
+      margin-top: 24px;
+      color: rgba(237, 243, 255, 0.78);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+    .selected-book {
+      display: grid;
+      gap: 10px;
+      margin-top: 30px;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: 10px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .selected-book strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: 400;
+    }
+    .selected-book span { color: rgba(237, 243, 255, 0.72); line-height: 1.6; }
+
+    .checkout-card {
+      padding: 26px;
+      background: rgba(248, 251, 255, 0.96);
+      color: #071225;
+    }
+    .checkout-card h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      font-weight: 400;
+    }
+    .friendly-note {
+      margin: 12px 0 22px;
+      color: rgba(9, 18, 37, 0.68);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    form { display: grid; gap: 13px; }
+    label {
+      display: grid;
+      gap: 7px;
+      color: rgba(9, 18, 37, 0.68);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(9, 18, 37, 0.14);
+      border-radius: 8px;
+      padding: 12px 13px;
+      background: #fff;
+      color: #071225;
+      font: inherit;
+      outline: none;
+    }
+    textarea { min-height: 82px; resize: vertical; }
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(21, 92, 255, 0.55);
+      box-shadow: 0 0 0 3px rgba(21, 92, 255, 0.12);
+    }
+    .total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border-top: 1px solid rgba(9, 18, 37, 0.12);
+      padding-top: 16px;
+      margin-top: 4px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .total strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 26px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .status {
+      color: rgba(9, 18, 37, 0.68);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .status.is-success, .status.is-error {
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .status.is-success { background: rgba(21, 92, 255, 0.08); color: #0a2b78; }
+    .status.is-error { background: rgba(168, 41, 41, 0.08); color: #8a1f1f; }
+
+    footer {
+      padding: 34px 0;
+      color: rgba(32, 43, 66, 0.68);
+      background: linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .footer-inner strong {
+      display: block;
+      color: #071225;
+      font-size: 13px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .checkout-layout { grid-template-columns: 1fr; }
+      .brand { min-width: 0; }
+      .nav { align-items: flex-start; flex-direction: column; padding: 18px 0; }
+      .nav-links { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="index.html" aria-label="SENZ Strategic Communications home">
+        <img src="assets/senz-original-mark.png" alt="" />
+        <span>
+          <span class="brand-word">SENZ</span>
+          <span class="brand-subtitle">Strategic Communications and Digital Solutions</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#ebooks">Ebooks</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell checkout-layout">
+      <section class="intro">
+        <p class="eyebrow">Reader Library Checkout</p>
+        <h1>Secure your <span>ebook access.</span></h1>
+        <p class="lead">Thank you for choosing a SENZ Strategic Communications reader. To protect the paid library, we verify payment first, then send the ebook access privately to your email.</p>
+        <div class="selected-book">
+          <span>Selected Ebook</span>
+          <strong id="selectedTitle">Influence Through Clarity</strong>
+          <span id="selectedDescription">A concise reader on message discipline, public presence, and brand recall.</span>
+        </div>
+      </section>
+
+      <aside class="checkout-card">
+        <h2>Purchase Details</h2>
+        <p class="friendly-note">Please complete the details below after payment. No card numbers are collected here. SENZ will review the payment reference and send access once verified.</p>
+        <form id="ebookCheckout">
+          <input type="hidden" name="ebookId" id="ebookId" value="influence-through-clarity" />
+          <label>
+            Ebook
+            <select name="ebookSelect" id="ebookSelect" required></select>
+          </label>
+          <label>
+            Full Name
+            <input name="name" type="text" autocomplete="name" required />
+          </label>
+          <label>
+            Email for Ebook Access
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            Phone or Messenger
+            <input name="phone" type="text" autocomplete="tel" required />
+          </label>
+          <label>
+            Company / Public Name
+            <input name="company" type="text" autocomplete="organization" />
+          </label>
+          <label>
+            Country
+            <input name="country" type="text" autocomplete="country-name" />
+          </label>
+          <label>
+            Payment Method
+            <select name="paymentMethod" required>
+              <option value="">Select method</option>
+              <option>GCash</option>
+              <option>Bank Transfer</option>
+              <option>PayPal</option>
+              <option>Other Verified Payment</option>
+            </select>
+          </label>
+          <label>
+            Payer Name
+            <input name="payerName" type="text" required />
+          </label>
+          <label>
+            Payment Reference
+            <input name="paymentReference" type="text" placeholder="Transaction ID or reference number" required />
+          </label>
+          <label>
+            Notes
+            <textarea name="paymentNotes" placeholder="Optional details SENZ Strategic Communications should verify. Do not enter card numbers."></textarea>
+          </label>
+          <div class="total">
+            <span>Total</span>
+            <strong id="selectedPrice">PHP 1,499</strong>
+          </div>
+          <button class="button" type="submit">Submit Payment Details</button>
+          <p class="status" id="orderStatus" role="status" aria-live="polite"></p>
+        </form>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div>
+        <strong>SENZ Strategic Communications</strong>
+        <span>@senz.pr on TikTok, Instagram, Facebook, and LinkedIn</span>
+      </div>
+      <a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const ebooks = [
+        {
+          id: 'influence-through-clarity',
+          title: 'Influence Through Clarity',
+          price: 1499,
+          description: 'A concise reader on message discipline, public presence, and brand recall.'
+        },
+        {
+          id: 'public-image-playbook',
+          title: 'Public Image Playbook',
+          price: 1999,
+          description: 'A guide for leaders, titleholders, public figures, and brands that need credibility and reputation structure.'
+        },
+        {
+          id: 'digital-presence-guide',
+          title: 'Digital Presence Guide',
+          price: 1799,
+          description: 'A practical guide for websites, content systems, AI tools, and digital products that support a premium brand story.'
+        }
+      ];
+
+      const params = new URLSearchParams(window.location.search);
+      const select = document.querySelector('#ebookSelect');
+      const hidden = document.querySelector('#ebookId');
+      const title = document.querySelector('#selectedTitle');
+      const description = document.querySelector('#selectedDescription');
+      const price = document.querySelector('#selectedPrice');
+      const form = document.querySelector('#ebookCheckout');
+      const status = document.querySelector('#orderStatus');
+
+      function formatPeso(value) {
+        return `PHP ${Number(value || 0).toLocaleString('en-PH')}`;
+      }
+
+      ebooks.forEach((ebook) => {
+        const option = document.createElement('option');
+        option.value = ebook.id;
+        option.textContent = `${ebook.title} - ${formatPeso(ebook.price)}`;
+        select.appendChild(option);
+      });
+
+      function setSelected(id) {
+        const ebook = ebooks.find((item) => item.id === id) || ebooks[0];
+        select.value = ebook.id;
+        hidden.value = ebook.id;
+        title.textContent = ebook.title;
+        description.textContent = ebook.description;
+        price.textContent = formatPeso(ebook.price);
+      }
+
+      setSelected(params.get('ebook'));
+      select.addEventListener('change', () => setSelected(select.value));
+
+      function setStatus(message, type = '') {
+        status.textContent = message;
+        status.classList.toggle('is-success', type === 'success');
+        status.classList.toggle('is-error', type === 'error');
+      }
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const ebook = ebooks.find((item) => item.id === formData.get('ebookId')) || ebooks[0];
+        const payload = {
+          items: [{ id: ebook.id, quantity: 1 }],
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          company: formData.get('company'),
+          country: formData.get('country'),
+          paymentMethod: formData.get('paymentMethod'),
+          payerName: formData.get('payerName'),
+          paymentReference: formData.get('paymentReference'),
+          paymentNotes: formData.get('paymentNotes')
+        };
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+        setStatus('Submitting your payment details. Ebook access remains locked until verification.');
+
+        try {
+          const response = await fetch('/api/ebook-orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json();
+          if (!response.ok || !result.ok) {
+            throw new Error((result.errors || ['Unable to submit ebook order.']).join(' '));
+          }
+          form.reset();
+          setSelected(ebook.id);
+          setStatus(`Order ${result.id} received. Thank you. SENZ Strategic Communications will verify payment and send ebook access to your email.`, 'success');
+        } catch (error) {
+          setStatus(error.message || 'Unable to submit ebook order.', 'error');
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit Payment Details';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -2916,7 +2916,7 @@
 
     .ebook-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.36fr);
+      grid-template-columns: 1fr;
       gap: 24px;
       align-items: start;
     }
@@ -3300,7 +3300,6 @@
     .service-card,
     .product-card,
     .ebook-card,
-    .ebook-cart,
     .portfolio-card,
     .contact-panel,
     .trust-card,
@@ -3858,13 +3857,13 @@
           <div>
             <p class="eyebrow">SENZ Strategic Communications Ebooks</p>
             <h2>Reader library for <span>modern influence.</span></h2>
-            <p class="section-lead">Premium digital guides for public image, communication discipline, and digital presence. Ebook files stay locked until payment is verified.</p>
+            <p class="section-lead">Premium digital guides for public image, communication discipline, and digital presence. Click a title to preview the reader details before purchasing.</p>
           </div>
         </div>
 
         <div class="ebook-layout">
           <div class="ebook-grid" aria-label="SENZ Strategic Communications ebook catalog">
-            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')">
+            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')" data-modal-title="Influence Through Clarity" data-modal-body="A concise reader on message discipline, public presence, and making a brand easier to understand and remember. To keep paid reader access protected, SENZ Strategic Communications verifies payment first, then sends the ebook access to your email." data-modal-visual="visual-portfolio" data-modal-kicker="Reader Library" data-modal-items="Message Discipline|Public Presence|Brand Recall" data-modal-chips="Strategy|PDF Ebook|Locked Access" data-modal-metric="PHP 1,499" data-modal-caption="Purchase first, then receive verified ebook access by email." data-modal-cta-text="Purchase Now" data-modal-cta-href="ebook-checkout.html?ebook=influence-through-clarity">
               <div class="ebook-cover" aria-hidden="true"></div>
               <h3>Influence Through Clarity</h3>
               <p>A concise reader on message discipline, public presence, and making a brand easier to understand and remember.</p>
@@ -3874,10 +3873,10 @@
                 <span>Locked Access</span>
               </div>
               <strong class="ebook-price">PHP 1,499</strong>
-              <button class="button ebook-add" type="button" data-ebook-id="influence-through-clarity" data-title="Influence Through Clarity" data-price="1499">Add to Cart</button>
+              <button class="button" type="button">View Details</button>
             </article>
 
-            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')">
+            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')" data-modal-title="Public Image Playbook" data-modal-body="A guide for leaders, titleholders, public figures, and brands that need credibility, presence, and reputation structure. Payment is requested before access so every paid reader receives the official file privately and securely." data-modal-visual="visual-portfolio" data-modal-kicker="Reader Library" data-modal-items="Credibility|Reputation|Leadership Presence" data-modal-chips="PR|PDF Ebook|Locked Access" data-modal-metric="PHP 1,999" data-modal-caption="After payment review, SENZ sends access to your email." data-modal-cta-text="Purchase Now" data-modal-cta-href="ebook-checkout.html?ebook=public-image-playbook">
               <div class="ebook-cover" aria-hidden="true"></div>
               <h3>Public Image Playbook</h3>
               <p>A guide for leaders, titleholders, public figures, and brands that need credibility, presence, and reputation structure.</p>
@@ -3887,10 +3886,10 @@
                 <span>Locked Access</span>
               </div>
               <strong class="ebook-price">PHP 1,999</strong>
-              <button class="button ebook-add" type="button" data-ebook-id="public-image-playbook" data-title="Public Image Playbook" data-price="1999">Add to Cart</button>
+              <button class="button" type="button">View Details</button>
             </article>
 
-            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')">
+            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')" data-modal-title="Digital Presence Guide" data-modal-body="A practical guide for websites, content systems, AI tools, and digital products that support a premium brand story. The ebook stays locked until payment is verified, then access is sent directly to the buyer email." data-modal-visual="visual-portfolio" data-modal-kicker="Reader Library" data-modal-items="Website Clarity|Content Systems|Digital Products" data-modal-chips="Digital|PDF Ebook|Locked Access" data-modal-metric="PHP 1,799" data-modal-caption="A friendly checkout step protects the paid reader library." data-modal-cta-text="Purchase Now" data-modal-cta-href="ebook-checkout.html?ebook=digital-presence-guide">
               <div class="ebook-cover" aria-hidden="true"></div>
               <h3>Digital Presence Guide</h3>
               <p>A practical guide for websites, content systems, AI tools, and digital products that support a premium brand story.</p>
@@ -3900,72 +3899,10 @@
                 <span>Locked Access</span>
               </div>
               <strong class="ebook-price">PHP 1,799</strong>
-              <button class="button ebook-add" type="button" data-ebook-id="digital-presence-guide" data-title="Digital Presence Guide" data-price="1799">Add to Cart</button>
+              <button class="button" type="button">View Details</button>
             </article>
           </div>
 
-          <aside class="ebook-cart" aria-label="Ebook cart and checkout">
-            <div>
-              <p class="eyebrow">Secure Checkout</p>
-              <h3>Your Cart</h3>
-              <p class="cart-empty" id="cartEmpty">No ebooks added yet. Choose a title to begin checkout.</p>
-            </div>
-
-            <ul class="cart-list" id="cartList"></ul>
-
-            <div class="cart-total">
-              <span>Total</span>
-              <strong id="cartTotal">PHP 0</strong>
-            </div>
-
-            <form class="checkout-form" id="ebookCheckout">
-              <label>
-                Full Name
-                <input name="name" type="text" autocomplete="name" required />
-              </label>
-              <label>
-                Email for Ebook Access
-                <input name="email" type="email" autocomplete="email" required />
-              </label>
-              <label>
-                Phone or Messenger
-                <input name="phone" type="text" autocomplete="tel" required />
-              </label>
-              <label>
-                Company / Public Name
-                <input name="company" type="text" autocomplete="organization" />
-              </label>
-              <label>
-                Country
-                <input name="country" type="text" autocomplete="country-name" />
-              </label>
-              <label>
-                Payment Method
-                <select name="paymentMethod" required>
-                  <option value="">Select method</option>
-                  <option>GCash</option>
-                  <option>Bank Transfer</option>
-                  <option>PayPal</option>
-                  <option>Other Verified Payment</option>
-                </select>
-              </label>
-              <label>
-                Payer Name
-                <input name="payerName" type="text" required />
-              </label>
-              <label>
-                Payment Reference
-                <input name="paymentReference" type="text" placeholder="Transaction ID or reference number" required />
-              </label>
-              <label>
-                Notes
-                <textarea name="paymentNotes" placeholder="Optional details SENZ Strategic Communications should verify. Do not enter card numbers."></textarea>
-              </label>
-              <p class="checkout-note">Ebook access is locked until payment is verified by SENZ Strategic Communications. After verification, access will be sent to the email above.</p>
-              <button class="button" type="submit">Submit Payment Details</button>
-              <p class="order-status" id="ebookOrderStatus" role="status" aria-live="polite"></p>
-            </form>
-          </aside>
         </div>
       </div>
     </section>
@@ -4094,7 +4031,7 @@
           <p class="modal-body" id="modalBody"></p>
           <div class="modal-chips" id="modalChips" aria-label="Highlights"></div>
           <div class="modal-actions">
-            <a class="button" href="get-started.html">Work With Us</a>
+            <a class="button" id="modalPrimaryAction" href="get-started.html">Work With Us</a>
             <button class="button secondary modal-close" type="button">Close</button>
           </div>
         </div>
@@ -4128,16 +4065,11 @@
       const modalVisualStack = document.querySelector('#modalVisualStack');
       const modalVisualMetric = document.querySelector('#modalVisualMetric');
       const modalVisualCaption = document.querySelector('#modalVisualCaption');
+      const modalPrimaryAction = document.querySelector('#modalPrimaryAction');
       const brandIntro = document.querySelector('#brandIntro');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const hero = document.querySelector('.hero');
       const heroFrames = Array.from(document.querySelectorAll('.hero-frame'));
-      const cartList = document.querySelector('#cartList');
-      const cartEmpty = document.querySelector('#cartEmpty');
-      const cartTotal = document.querySelector('#cartTotal');
-      const ebookCheckout = document.querySelector('#ebookCheckout');
-      const ebookOrderStatus = document.querySelector('#ebookOrderStatus');
-      const ebookCart = [];
       let activeHeroFrame = 0;
 
       requestAnimationFrame(() => body.classList.add('is-ready'));
@@ -4201,112 +4133,7 @@
         });
       });
 
-      function formatPeso(value) {
-        return `PHP ${Number(value || 0).toLocaleString('en-PH')}`;
-      }
-
-      function cartTotalValue() {
-        return ebookCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      }
-
-      function setOrderStatus(message, type = '') {
-        if (!ebookOrderStatus) return;
-        ebookOrderStatus.textContent = message;
-        ebookOrderStatus.classList.toggle('is-success', type === 'success');
-        ebookOrderStatus.classList.toggle('is-error', type === 'error');
-      }
-
-      function renderCart() {
-        if (!cartList || !cartEmpty || !cartTotal) return;
-        cartList.replaceChildren();
-        cartEmpty.hidden = ebookCart.length > 0;
-        ebookCart.forEach((item) => {
-          const li = document.createElement('li');
-          const label = document.createElement('span');
-          const remove = document.createElement('button');
-          label.textContent = `${item.title} x ${item.quantity} - ${formatPeso(item.price * item.quantity)}`;
-          remove.type = 'button';
-          remove.textContent = 'Remove';
-          remove.addEventListener('click', () => {
-            const index = ebookCart.findIndex((entry) => entry.id === item.id);
-            if (index >= 0) ebookCart.splice(index, 1);
-            renderCart();
-            setOrderStatus('');
-          });
-          li.append(label, remove);
-          cartList.appendChild(li);
-        });
-        cartTotal.textContent = formatPeso(cartTotalValue());
-      }
-
-      document.querySelectorAll('.ebook-add').forEach((button) => {
-        button.addEventListener('click', () => {
-          const id = button.dataset.ebookId;
-          const title = button.dataset.title;
-          const price = Number(button.dataset.price || 0);
-          const existing = ebookCart.find((item) => item.id === id);
-          if (existing) {
-            existing.quantity += 1;
-          } else {
-            ebookCart.push({ id, title, price, quantity: 1 });
-          }
-          renderCart();
-          setOrderStatus(`${title} added. Complete checkout to request locked ebook access.`);
-          ebookCheckout?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
-        });
-      });
-
-      ebookCheckout?.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        if (!ebookCart.length) {
-          setOrderStatus('Please add at least one ebook before submitting payment details.', 'error');
-          return;
-        }
-
-        const formData = new FormData(ebookCheckout);
-        const payload = {
-          items: ebookCart.map(({ id, quantity }) => ({ id, quantity })),
-          name: formData.get('name'),
-          email: formData.get('email'),
-          phone: formData.get('phone'),
-          company: formData.get('company'),
-          country: formData.get('country'),
-          paymentMethod: formData.get('paymentMethod'),
-          payerName: formData.get('payerName'),
-          paymentReference: formData.get('paymentReference'),
-          paymentNotes: formData.get('paymentNotes')
-        };
-
-        const submitButton = ebookCheckout.querySelector('button[type="submit"]');
-        submitButton.disabled = true;
-        submitButton.textContent = 'Submitting...';
-        setOrderStatus('Submitting payment details. Ebook access remains locked until verification.');
-
-        try {
-          const response = await fetch('/api/ebook-orders', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          const result = await response.json();
-          if (!response.ok || !result.ok) {
-            throw new Error((result.errors || ['Unable to submit ebook order.']).join(' '));
-          }
-          ebookCart.splice(0, ebookCart.length);
-          renderCart();
-          ebookCheckout.reset();
-          setOrderStatus(`Order ${result.id} received. Ebook files are still locked and will be sent to your email after SENZ Strategic Communications verifies payment.`, 'success');
-        } catch (error) {
-          setOrderStatus(error.message || 'Unable to submit ebook order.', 'error');
-        } finally {
-          submitButton.disabled = false;
-          submitButton.textContent = 'Submit Payment Details';
-        }
-      });
-
-      renderCart();
-
-      document.querySelectorAll('section, .value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .ebook-card, .ebook-cart, .portfolio-card, .portfolio-strip-card').forEach((el) => {
+      document.querySelectorAll('section, .value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .ebook-card, .portfolio-card, .portfolio-strip-card').forEach((el) => {
         el.classList.add('reveal');
       });
 
@@ -4360,6 +4187,8 @@
         modalVisualKicker.textContent = source?.dataset.modalKicker || 'SENZ Strategic Communications Preview';
         modalVisualMetric.textContent = source?.dataset.modalMetric || 'Premium';
         modalVisualCaption.textContent = source?.dataset.modalCaption || 'A visual system built to make every offer feel intentional.';
+        modalPrimaryAction.textContent = source?.dataset.modalCtaText || 'Work With Us';
+        modalPrimaryAction.href = source?.dataset.modalCtaHref || 'get-started.html';
         modalVisual.classList.remove(...visualClasses);
         modalVisual.classList.add(visual);
         modal.classList.add('is-open');
@@ -4437,7 +4266,7 @@
       const progressBar = progress.querySelector('.scroll-progress__bar');
 
       const scenes = Array.from(document.querySelectorAll('main > section'));
-      const motionItems = Array.from(document.querySelectorAll('.value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .ebook-card, .ebook-cart, .portfolio-card, .portfolio-strip-card, .contact-panel'));
+      const motionItems = Array.from(document.querySelectorAll('.value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .ebook-card, .portfolio-card, .portfolio-strip-card, .contact-panel'));
       const mediaItems = Array.from(document.querySelectorAll('.meeting-visual img, .portfolio-art, .article-art'));
       const railSections = [
         { id: 'top', label: 'Home', target: document.querySelector('.hero') },
