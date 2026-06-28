@@ -1017,17 +1017,77 @@
       width: 38px;
       height: 38px;
       border: 1px solid rgba(111, 152, 255, 0.36);
-      border-radius: var(--radius);
+      border-radius: 999px;
       color: white;
-      background: rgba(255, 255, 255, 0.05);
-      font-size: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 20px;
+      line-height: 1;
       cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .modal-close:hover {
+      transform: rotate(90deg);
+      border-color: rgba(225, 233, 255, 0.44);
+      background: rgba(255, 255, 255, 0.14);
     }
 
     .modal-body {
       color: var(--muted);
       font-size: 16px;
       line-height: 1.72;
+    }
+
+    .modal-insight {
+      margin-top: 20px;
+      border: 1px solid rgba(184, 202, 255, 0.16);
+      border-radius: 12px;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(21, 92, 255, 0.12), transparent 15rem),
+        rgba(255, 255, 255, 0.04);
+    }
+
+    .modal-insight span,
+    .modal-detail-card span {
+      display: block;
+      color: #8fb1ff;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .modal-insight strong {
+      display: block;
+      margin-top: 10px;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    .modal-details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .modal-detail-card {
+      border: 1px solid rgba(184, 202, 255, 0.14);
+      border-radius: 10px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .modal-detail-card strong {
+      display: block;
+      margin-top: 8px;
+      color: rgba(237, 243, 255, 0.9);
+      font-size: 13px;
+      line-height: 1.45;
     }
 
     .modal-chips {
@@ -1203,6 +1263,10 @@
 
       .modal-actions {
         margin-top: 0;
+      }
+
+      .modal-details {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -4334,9 +4398,23 @@
         <div class="modal-copy">
           <div class="modal-top">
             <h3 class="modal-title" id="modalTitle">SENZ Strategic Communications</h3>
-            <button class="modal-close" type="button" aria-label="Close modal">x</button>
+            <button class="modal-close" type="button" aria-label="Close modal">&times;</button>
           </div>
           <p class="modal-body" id="modalBody"></p>
+          <div class="modal-insight">
+            <span>Why it matters</span>
+            <strong id="modalInsight">A sharper public presence starts with a clearer system.</strong>
+          </div>
+          <div class="modal-details" aria-label="Modal details">
+            <div class="modal-detail-card">
+              <span>What SENZ prepares</span>
+              <strong id="modalDeliverable">A focused service path built around your goal.</strong>
+            </div>
+            <div class="modal-detail-card">
+              <span>Best next move</span>
+              <strong id="modalNextMove">Book a consultation so we can recommend the right route.</strong>
+            </div>
+          </div>
           <div class="modal-chips" id="modalChips" aria-label="Highlights"></div>
           <div class="modal-actions">
             <a class="button" id="modalPrimaryAction" href="get-started.html">Work With Us</a>
@@ -4373,6 +4451,9 @@
       const modalVisualStack = document.querySelector('#modalVisualStack');
       const modalVisualMetric = document.querySelector('#modalVisualMetric');
       const modalVisualCaption = document.querySelector('#modalVisualCaption');
+      const modalInsight = document.querySelector('#modalInsight');
+      const modalDeliverable = document.querySelector('#modalDeliverable');
+      const modalNextMove = document.querySelector('#modalNextMove');
       const modalPrimaryAction = document.querySelector('#modalPrimaryAction');
       const brandIntro = document.querySelector('#brandIntro');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -4474,6 +4555,82 @@
         return items.length ? items : fallback;
       }
 
+      const modalCopyBank = {
+        'Strategic Communications': {
+          insight: 'Clear communication turns scattered visibility into a reputation people can understand and repeat.',
+          deliverable: 'Positioning direction, message pillars, audience tone, proof points, and a communication route.',
+          next: 'Bring your current message and goal. We will identify what needs to be clarified first.'
+        },
+        'PR and Public Image': {
+          insight: 'Public image is built before attention arrives, so the brand looks prepared when people start looking.',
+          deliverable: 'Reputation angle, credibility signals, media/public narrative, and leadership presence guidance.',
+          next: 'Tell us the public moment you are preparing for: launch, campaign, pageant, issue, or visibility push.'
+        },
+        'Marketing and Social Media': {
+          insight: 'Good marketing makes the audience feel the brand has rhythm, taste, and a reason to follow.',
+          deliverable: 'Campaign direction, content pillars, posting rhythm, visual tone, and audience movement plan.',
+          next: 'Share the platform you care about most and the action you want people to take.'
+        },
+        'Call Center Solutions': {
+          insight: 'Customer response is part of brand reputation. A clean inquiry flow makes the company feel reliable.',
+          deliverable: 'Inquiry map, support scripts, lead handling route, escalation flow, and response standards.',
+          next: 'Tell us where customer inquiries arrive now so we can clean the path from message to response.'
+        },
+        'Websites and Digital Presence': {
+          insight: 'Your website should make people understand what you do, trust you faster, and know how to act.',
+          deliverable: 'Page structure, service flow, conversion path, visual direction, and credibility sections.',
+          next: 'Bring the offer or services you want to sell. We will shape the clearest digital route.'
+        },
+        'Creative Production': {
+          insight: 'Premium visuals make the brand feel intentional before anyone reads a single line.',
+          deliverable: 'Shot direction, production plan, campaign assets, content materials, and brand image guidance.',
+          next: 'Tell us what needs to be seen: founder, product, event, campaign, or public-facing brand moment.'
+        },
+        'Music Products': {
+          insight: 'Sound can make a campaign easier to remember when it is treated as a brand asset, not decoration.',
+          deliverable: 'Audio direction, campaign music concept, release asset plan, and sonic identity route.',
+          next: 'Tell us where the music will live: campaign, social content, launch video, or event.'
+        },
+        'Clone Studio': {
+          insight: 'A consent-based capture session can make future creative production faster and more consistent.',
+          deliverable: 'Guided capture plan, styling references, body/pose reference route, and future shoot scenarios.',
+          next: 'We start by defining consent, usage, styling, and the future visuals you want to create.'
+        },
+        'Voting, Tabulation, and Ticketing': {
+          insight: 'Live events feel more premium when voting, ticketing, and results are handled with confidence.',
+          deliverable: 'Voting flow, ticket route, tabulation dashboard needs, live operations plan, and access logic.',
+          next: 'Share the event type, audience size, ticket need, and when results must be shown.'
+        },
+        'Personal AI Assistants': {
+          insight: 'A useful AI assistant should feel like a trained operations support system, not a novelty.',
+          deliverable: 'Knowledge base plan, workflow map, response boundaries, and assistant task structure.',
+          next: 'Tell us the repeated questions, tasks, or workflows you want the assistant to handle.'
+        },
+        'Influence Through Clarity': {
+          insight: 'This reader helps turn vague brand presence into sharper message discipline.',
+          deliverable: 'A paid ebook sent after payment verification, with access delivered privately by email.',
+          next: 'Preview the reader, then purchase when you are ready to receive official access.'
+        },
+        'Public Image Playbook': {
+          insight: 'Public image improves when credibility, presence, and reputation are managed as one system.',
+          deliverable: 'A paid ebook sent after payment verification, with access delivered privately by email.',
+          next: 'Use the checkout page to send buyer details and payment reference.'
+        },
+        'Digital Presence Guide': {
+          insight: 'Digital presence should make a brand easier to trust before the first conversation.',
+          deliverable: 'A paid ebook sent after payment verification, with access delivered privately by email.',
+          next: 'Purchase first, then SENZ will verify payment and send access.'
+        }
+      };
+
+      function modalFallback(title, stack) {
+        return {
+          insight: `${title} becomes stronger when strategy, visuals, and execution move in one direction.`,
+          deliverable: `A focused path around ${stack.slice(0, 3).join(', ').toLowerCase()} with SENZ Strategic Communications guidance.`,
+          next: 'Book a consultation and we will recommend the best service route.'
+        };
+      }
+
       function replaceTextItems(container, items) {
         container.replaceChildren();
         items.forEach((item) => {
@@ -4487,9 +4644,13 @@
         const visual = source?.dataset.modalVisual || 'visual-portfolio';
         const chips = splitData(source?.dataset.modalChips, ['Strategy', 'Creative', 'Launch']);
         const stack = splitData(source?.dataset.modalItems, ['Brand System', 'Visual Direction', 'Conversion Path']);
+        const copy = modalCopyBank[title] || modalFallback(title, stack);
 
         modalTitle.textContent = title;
         modalBody.textContent = bodyText;
+        modalInsight.textContent = source?.dataset.modalInsight || copy.insight;
+        modalDeliverable.textContent = source?.dataset.modalDeliverable || copy.deliverable;
+        modalNextMove.textContent = source?.dataset.modalNext || copy.next;
         replaceTextItems(modalChips, chips);
         replaceTextItems(modalVisualStack, stack);
         modalVisualKicker.textContent = source?.dataset.modalKicker || 'SENZ Strategic Communications Preview';
