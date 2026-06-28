@@ -11,8 +11,13 @@ const dataDir = path.join(rootDir, "data");
 const inquiryFile = path.join(dataDir, "inquiries.jsonl");
 const ebookOrderFile = path.join(dataDir, "ebook-orders.jsonl");
 const port = Number(process.env.PORT || 4177);
-const siteOrigin = process.env.SITE_ORIGIN || "";
+const siteOrigins = String(process.env.SITE_ORIGIN || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 const adminToken = process.env.ADMIN_TOKEN || "";
+const supabaseUrl = String(process.env.SUPABASE_URL || "").replace(/\/$/, "");
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
 
 const ebooks = [
   {
@@ -64,11 +69,76 @@ function sendJson(res, statusCode, payload) {
 }
 
 function corsHeaders() {
-  if (!siteOrigin) return {};
+  if (!siteOrigins.length) return {};
   return {
-    "Access-Control-Allow-Origin": siteOrigin,
+    "Access-Control-Allow-Origin": siteOrigins.length === 1 ? siteOrigins[0] : "*",
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type,Authorization"
+  };
+}
+
+function hasSupabase() {
+  return Boolean(supabaseUrl && supabaseServiceRoleKey);
+}
+
+function supabaseHeaders(extra = {}) {
+  return {
+    apikey: supabaseServiceRoleKey,
+    Authorization: `Bearer ${supabaseServiceRoleKey}`,
+    "Content-Type": "application/json",
+    ...extra
+  };
+}
+
+async function supabaseRequest(pathname, options = {}) {
+  if (!hasSupabase()) throw new Error("Supabase is not configured.");
+  const response = await fetch(`${supabaseUrl}/rest/v1/${pathname}`, {
+    ...options,
+    headers: supabaseHeaders(options.headers || {})
+  });
+  const text = await response.text();
+  const payload = text ? JSON.parse(text) : null;
+  if (!response.ok) {
+    const message = payload?.message || payload?.hint || `Supabase request failed with ${response.status}.`;
+    throw new Error(message);
+  }
+  return payload;
+}
+
+function inquiryToRow(inquiry) {
+  return {
+    id: inquiry.id,
+    created_at: inquiry.createdAt,
+    name: inquiry.name,
+    brand: inquiry.brand,
+    email: inquiry.email,
+    contact: inquiry.contact,
+    preferred_contact: inquiry.preferredContact,
+    project_type: inquiry.projectType,
+    timeline: inquiry.timeline,
+    budget: inquiry.budget,
+    message: inquiry.message,
+    source: inquiry.source,
+    user_agent: inquiry.userAgent,
+    ip: inquiry.ip,
+    assigned_agent: inquiry.assignedAgent
+  };
+}
+
+function ebookOrderToRow(order) {
+  return {
+    id: order.id,
+    created_at: order.createdAt,
+    status: order.status,
+    access_status: order.accessStatus,
+    buyer: order.buyer,
+    payment: order.payment,
+    items: order.items,
+    currency: order.currency,
+    subtotal: order.subtotal,
+    source: order.source,
+    user_agent: order.userAgent,
+    ip: order.ip
   };
 }
 
@@ -164,6 +234,14 @@ function buildInquiry(input, req) {
 }
 
 async function saveInquiry(inquiry) {
+  if (hasSupabase()) {
+    await supabaseRequest("inquiries", {
+      method: "POST",
+      headers: { Prefer: "return=minimal" },
+      body: JSON.stringify(inquiryToRow(inquiry))
+    });
+    return;
+  }
   await fsp.mkdir(dataDir, { recursive: true });
   await fsp.appendFile(inquiryFile, `${JSON.stringify(inquiry)}\n`, "utf8");
 }
@@ -227,6 +305,14 @@ function buildEbookOrder(input, req) {
 }
 
 async function saveEbookOrder(order) {
+  if (hasSupabase()) {
+    await supabaseRequest("ebook_orders", {
+      method: "POST",
+      headers: { Prefer: "return=minimal" },
+      body: JSON.stringify(ebookOrderToRow(order))
+    });
+    return;
+  }
   await fsp.mkdir(dataDir, { recursive: true });
   await fsp.appendFile(ebookOrderFile, `${JSON.stringify(order)}\n`, "utf8");
 }
@@ -289,6 +375,11 @@ async function handleEbookOrderList(req, res) {
   }
 
   try {
+    if (hasSupabase()) {
+      const orders = await supabaseRequest("ebook_orders?select=*&order=created_at.desc");
+      sendJson(res, 200, { ok: true, orders });
+      return;
+    }
     const raw = await fsp.readFile(ebookOrderFile, "utf8").catch(() => "");
     const orders = raw
       .split("\n")
@@ -329,6 +420,11 @@ async function handleInquiryList(req, res) {
   }
 
   try {
+    if (hasSupabase()) {
+      const inquiries = await supabaseRequest("inquiries?select=*&order=created_at.desc");
+      sendJson(res, 200, { ok: true, inquiries });
+      return;
+    }
     const raw = await fsp.readFile(inquiryFile, "utf8").catch(() => "");
     const inquiries = raw
       .split("\n")
