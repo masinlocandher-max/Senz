@@ -3782,6 +3782,144 @@
       box-shadow: 0 14px 34px rgba(31, 48, 82, 0.1);
     }
 
+    .hero {
+      min-height: 92vh;
+    }
+
+    .hero-motion-stage::after {
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.9) 0%, rgba(2, 7, 19, 0.58) 45%, rgba(2, 7, 19, 0.12) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.04) 0%, rgba(2, 7, 19, 0.42) 88%, rgba(250, 252, 255, 0.94) 100%),
+        radial-gradient(circle at var(--cursor-x, 48%) var(--cursor-y, 44%), rgba(79, 131, 255, 0.14), transparent 18rem);
+    }
+
+    .arrival {
+      overflow: hidden;
+      padding: clamp(72px, 8vw, 108px) 0;
+      color: #071225 !important;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(21, 92, 255, 0.08), transparent 24rem),
+        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%) !important;
+    }
+
+    .arrival-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.54fr) minmax(430px, 0.46fr);
+      gap: clamp(28px, 5vw, 58px);
+      align-items: center;
+    }
+
+    .arrival-visual {
+      position: relative;
+      min-height: clamp(430px, 52vw, 650px);
+      overflow: hidden;
+      border: 1px solid rgba(170, 184, 214, 0.46);
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0)),
+        url("assets/senz-reception-arrival.png") center / cover no-repeat;
+      box-shadow: 0 28px 90px rgba(31, 48, 82, 0.16);
+    }
+
+    .arrival-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(251, 252, 255, 0.72) 0%, rgba(251, 252, 255, 0.1) 36%, rgba(251, 252, 255, 0) 100%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2));
+    }
+
+    .arrival-marker {
+      position: absolute;
+      left: clamp(18px, 4vw, 42px);
+      bottom: clamp(18px, 4vw, 42px);
+      z-index: 1;
+      display: inline-grid;
+      gap: 6px;
+      max-width: 310px;
+      padding: 18px 20px;
+      border: 1px solid rgba(170, 184, 214, 0.5);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 18px 48px rgba(31, 48, 82, 0.14);
+      backdrop-filter: blur(18px);
+    }
+
+    .arrival-marker strong {
+      color: #071225;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .arrival-marker span {
+      color: rgba(32, 43, 66, 0.72);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .arrival-copy {
+      display: grid;
+      gap: 22px;
+    }
+
+    .arrival-copy .eyebrow {
+      margin-bottom: 0;
+      color: #155cff !important;
+    }
+
+    .arrival-copy h2 {
+      color: #071225 !important;
+      max-width: 620px;
+      font-size: clamp(38px, 4vw, 58px);
+      line-height: 1.03;
+    }
+
+    .arrival-copy .lead {
+      max-width: 520px;
+      color: rgba(32, 43, 66, 0.76) !important;
+    }
+
+    .arrival-path {
+      display: grid;
+      gap: 10px;
+      margin: 10px 0 4px;
+    }
+
+    .arrival-path span {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(32, 43, 66, 0.82);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .arrival-path span::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #155cff;
+      box-shadow: 0 0 0 6px rgba(21, 92, 255, 0.1);
+    }
+
+    .arrival-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .arrival-actions .button.secondary {
+      color: #071225;
+      border-color: rgba(7, 18, 37, 0.18);
+      background: rgba(255, 255, 255, 0.78);
+    }
+
     @media (max-width: 760px) {
       .nav {
         min-height: 74px;
@@ -3793,6 +3931,14 @@
 
       .section-heading h2 {
         font-size: clamp(38px, 12vw, 54px);
+      }
+
+      .arrival-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .arrival-visual {
+        min-height: 390px;
       }
     }
   </style>
@@ -3853,6 +3999,33 @@
           <span>Trusted by</span>
           <strong>100+</strong>
           <span>brands and leaders</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="arrival" id="arrival" aria-label="SENZ Strategic Communications reception experience">
+      <div class="shell arrival-grid">
+        <div class="arrival-visual" aria-hidden="true">
+          <div class="arrival-marker">
+            <span>Reception</span>
+            <strong>SENZ Strategic Communications</strong>
+          </div>
+        </div>
+        <div class="arrival-copy">
+          <p class="eyebrow">Welcome to SENZ</p>
+          <h2>A polished first impression before the work begins.</h2>
+          <p class="lead">
+            Think of this as the reception area: calm, prepared, and built to show you who we are before we talk about what we can build together.
+          </p>
+          <div class="arrival-path" aria-label="SENZ Strategic Communications visitor path">
+            <span>See the standard of the company</span>
+            <span>Understand how we shape public presence</span>
+            <span>Choose the service path that fits your goal</span>
+          </div>
+          <div class="arrival-actions">
+            <a class="button" href="get-started.html">Work With Us</a>
+            <a class="button secondary" href="#services">View Services</a>
+          </div>
         </div>
       </div>
     </section>
@@ -4592,10 +4765,11 @@
       const progressBar = progress.querySelector('.scroll-progress__bar');
 
       const scenes = Array.from(document.querySelectorAll('main > section'));
-      const motionItems = Array.from(document.querySelectorAll('.value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card, .contact-panel'));
+      const motionItems = Array.from(document.querySelectorAll('.arrival-visual, .arrival-copy, .value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card, .contact-panel'));
       const mediaItems = Array.from(document.querySelectorAll('.meeting-visual img, .portfolio-art, .article-art'));
       const railSections = [
         { id: 'top', label: 'Home', target: document.querySelector('.hero') },
+        { id: 'arrival', label: 'Reception', target: document.querySelector('#arrival') },
         { id: 'catalog', label: 'Catalog', target: document.querySelector('.catalog') },
         { id: 'about', label: 'About', target: document.querySelector('#about') },
         { id: 'services', label: 'Services', target: document.querySelector('#services') },
