@@ -29,7 +29,7 @@
     },
     {
       match: ['ebook', 'reader', 'book'],
-      reply: 'The Reader Library is paid access. You can preview an ebook on the site, then purchase through the ebook checkout page. Access is sent after payment verification.'
+      reply: 'The SENZ shop will be connected through Shopify. For now, please use Get Started if you want updates about books, digital products, or upcoming releases.'
     },
     {
       match: ['clone', 'ai', 'assistant', 'music', 'voting', 'tabulation', 'ticket'],
@@ -53,7 +53,7 @@
     const normalized = text.toLowerCase();
     const found = answers.find((item) => item.match.some((word) => normalized.includes(word)));
     if (found) return found.reply;
-    return 'I can answer general questions about SENZ services, ebooks, digital products, and how to start. For project-specific advice, please go to Get Started so SENZ can review your details properly.';
+    return 'I can answer general questions about SENZ services, digital products, and how to start. For project-specific advice, please go to Get Started so SENZ can review your details properly.';
   }
 
   function appendMessage(log, message, type) {
