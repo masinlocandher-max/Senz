@@ -2347,6 +2347,64 @@
         font-size: 20px !important;
       }
     }
+
+    /* Launch cleanup: keep founder page premium, calm, and easy to navigate. */
+    .experience-rail,
+    .pointer-aura {
+      display: none !important;
+    }
+
+    .site-header {
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.16);
+    }
+
+    .nav-links {
+      gap: clamp(20px, 3vw, 42px);
+    }
+
+    .nav-links a {
+      white-space: nowrap;
+    }
+
+    .portrait-card,
+    .info-card,
+    .journal-card,
+    .light-visual {
+      isolation: isolate;
+    }
+
+    .modal-card {
+      max-height: min(760px, calc(100vh - 32px));
+    }
+
+    .modal-close {
+      border-radius: 999px !important;
+      line-height: 1 !important;
+    }
+
+    footer {
+      color: #071225 !important;
+      background: linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%) !important;
+      border-top: 1px solid rgba(170, 184, 214, 0.45) !important;
+    }
+
+    .footer-brandline strong,
+    .footer-brandline span,
+    .footer-socials a {
+      color: #071225 !important;
+    }
+
+    .footer-socials a {
+      background: rgba(255, 255, 255, 0.72) !important;
+      border-color: rgba(170, 184, 214, 0.45) !important;
+      box-shadow: 0 14px 34px rgba(31, 48, 82, 0.1);
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        min-height: 74px;
+      }
+    }
   </style>
   <link rel="stylesheet" href="components/ai-chat.css" />
 </head>
@@ -2364,7 +2422,6 @@
         <a href="index.html">Home</a>
         <a class="is-active" href="about.html">About Us</a>
         <a href="index.html#services">Services</a>
-        <a href="index.html#ebooks">Ebooks</a>
         <a href="index.html#contact">Contact</a>
         <a href="index.html#work">Portfolio</a>
       </nav>

@@ -3210,144 +3210,6 @@
       }
     }
 
-    /* Ebook storefront: locked reader access after verified payment only. */
-    .ebooks {
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 14% 18%, rgba(21, 92, 255, 0.16), transparent 24rem),
-        linear-gradient(180deg, rgba(2, 7, 19, 0.98), rgba(7, 16, 34, 0.96));
-    }
-
-    .ebooks::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(184, 202, 255, 0.06) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(184, 202, 255, 0.04) 1px, transparent 1px);
-      background-size: 82px 82px;
-      mask-image: linear-gradient(90deg, transparent, black 16%, black 78%, transparent);
-      opacity: 0.36;
-      pointer-events: none;
-    }
-
-    .ebooks .shell {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 34px;
-    }
-
-    .ebook-layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .ebook-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .ebook-card {
-      position: relative;
-      min-height: 430px;
-      overflow: hidden;
-      padding: 26px;
-      border: 1px solid rgba(225, 233, 255, 0.16);
-      border-radius: 10px;
-      background: linear-gradient(180deg, rgba(9, 20, 43, 0.76), rgba(3, 9, 22, 0.84));
-      box-shadow: 0 24px 72px rgba(0, 0, 0, 0.26);
-    }
-
-    .ebook-cover {
-      position: relative;
-      min-height: 210px;
-      margin: -6px -6px 24px;
-      overflow: hidden;
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(6, 14, 34, 0.16), rgba(3, 9, 22, 0.86)),
-        var(--ebook-art) center / cover no-repeat;
-      box-shadow: inset 0 0 0 1px rgba(225, 233, 255, 0.12), 0 18px 48px rgba(0, 0, 0, 0.28);
-    }
-
-    .ebook-cover::after {
-      content: "Preview";
-      position: absolute;
-      right: 14px;
-      bottom: 14px;
-      padding: 7px 10px;
-      border: 1px solid rgba(225, 233, 255, 0.24);
-      border-radius: 999px;
-      background: rgba(2, 7, 19, 0.68);
-      color: rgba(245, 248, 255, 0.88);
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .ebook-card h3 {
-      max-width: 260px;
-      font-size: clamp(25px, 2.2vw, 34px);
-      line-height: 1;
-    }
-
-    .ebook-card p {
-      margin-top: 14px;
-      color: rgba(222, 232, 255, 0.72);
-      font-size: 14px;
-      line-height: 1.58;
-    }
-
-    .ebook-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 18px 0 20px;
-    }
-
-    .ebook-meta span {
-      border: 1px solid rgba(184, 202, 255, 0.18);
-      border-radius: 999px;
-      padding: 7px 10px;
-      color: rgba(225, 233, 255, 0.72);
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .ebook-price {
-      display: block;
-      margin-bottom: 18px;
-      color: #fff;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    .ebook-card .button {
-      width: 100%;
-      justify-content: center;
-    }
-
-    @media (max-width: 1050px) {
-      .ebook-layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 820px) {
-      .ebook-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
     /* Quiet luxury cleanup: one visual environment, softer panels, less AI-looking glow. */
     html {
       scroll-behavior: auto;
@@ -3472,7 +3334,6 @@
     .catalog,
     .about,
     .services,
-    .ebooks,
     .work,
     .contact {
       padding-top: clamp(78px, 10vw, 120px);
@@ -3483,7 +3344,6 @@
     .focus-card,
     .service-card,
     .product-card,
-    .ebook-card,
     .portfolio-card,
     .contact-panel,
     .trust-card,
@@ -3507,7 +3367,6 @@
     .focus-card:hover,
     .service-card:hover,
     .product-card:hover,
-    .ebook-card:hover,
     .portfolio-card:hover {
       transform: translateY(-2px);
       border-color: rgba(225, 233, 255, 0.28) !important;
@@ -3750,9 +3609,13 @@
         display: none;
       }
     }
+
+    .experience-rail,
+    .pointer-aura {
+      display: none !important;
+    }
     /* Strategic light sections: warmer visitor flow without losing the corporate mood. */
     .about,
-    .ebooks,
     .contact {
       color: #071225 !important;
       background:
@@ -3761,25 +3624,20 @@
     }
 
     .about .eyebrow,
-    .ebooks .eyebrow,
     .contact .eyebrow {
       color: #155cff !important;
     }
 
     .about h2,
-    .ebooks h2,
     .contact h2,
     .about h3,
-    .ebooks h3,
     .contact h3 {
       color: #071225 !important;
     }
 
     .about p,
-    .ebooks p,
     .contact p,
     .about .section-lead,
-    .ebooks .section-lead,
     .contact .section-lead,
     .about .lead,
     .contact-panel p {
@@ -3787,7 +3645,6 @@
     }
 
     .about .focus-card,
-    .ebooks .ebook-card,
     .contact .contact-panel {
       border-color: rgba(170, 184, 214, 0.45) !important;
       color: #071225 !important;
@@ -3795,19 +3652,10 @@
       box-shadow: 0 24px 70px rgba(31, 48, 82, 0.12) !important;
     }
 
-    .about .icon,
-    .ebooks .ebook-meta span {
+    .about .icon {
       border-color: rgba(21, 92, 255, 0.16) !important;
       color: #155cff !important;
       background: rgba(21, 92, 255, 0.06) !important;
-    }
-
-    .ebooks .ebook-price {
-      color: #071225 !important;
-    }
-
-    .ebooks .ebook-cover {
-      box-shadow: inset 0 0 0 1px rgba(7, 18, 37, 0.08), 0 18px 48px rgba(31, 48, 82, 0.14);
     }
 
     .contact .button.secondary,
@@ -3867,6 +3715,86 @@
         font-size: 20px !important;
       }
     }
+
+    /* Launch cleanup: calm visitor flow while Shopify is prepared separately. */
+    .experience-rail,
+    .pointer-aura {
+      display: none !important;
+    }
+
+    .site-header {
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.16);
+    }
+
+    .nav-links {
+      gap: clamp(20px, 3vw, 42px);
+    }
+
+    .nav-links a {
+      white-space: nowrap;
+    }
+
+    .hero-actions,
+    .contact-list,
+    .modal-actions {
+      gap: 12px;
+    }
+
+    .catalog-card,
+    .service-card,
+    .product-card,
+    .portfolio-card,
+    .focus-card {
+      isolation: isolate;
+    }
+
+    .service-card .arrow,
+    .portfolio-card .portfolio-index,
+    .catalog-index,
+    .product-kicker {
+      opacity: 0.78;
+    }
+
+    .modal-card {
+      max-height: min(760px, calc(100vh - 32px));
+    }
+
+    .modal-close {
+      border-radius: 999px !important;
+      line-height: 1 !important;
+    }
+
+    footer {
+      color: #071225 !important;
+      background: linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%) !important;
+      border-top: 1px solid rgba(170, 184, 214, 0.45) !important;
+    }
+
+    .footer-brandline strong,
+    .footer-brandline span,
+    .footer-socials a {
+      color: #071225 !important;
+    }
+
+    .footer-socials a {
+      background: rgba(255, 255, 255, 0.72) !important;
+      border-color: rgba(170, 184, 214, 0.45) !important;
+      box-shadow: 0 14px 34px rgba(31, 48, 82, 0.1);
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        min-height: 74px;
+      }
+
+      .hero {
+        min-height: 86vh;
+      }
+
+      .section-heading h2 {
+        font-size: clamp(38px, 12vw, 54px);
+      }
+    }
   </style>
   <link rel="stylesheet" href="components/ai-chat.css" />
 </head>
@@ -3893,7 +3821,6 @@
         <a href="#top">Home</a>
         <a href="about.html">About Us</a>
         <a href="#services">Services</a>
-        <a href="#ebooks">Ebooks</a>
         <a href="#contact">Contact</a>
         <a href="#work">Portfolio</a>
       </nav>
@@ -4224,62 +4151,6 @@
       </div>
     </section>
 
-    <section id="ebooks" class="ebooks">
-      <div class="shell">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">SENZ Strategic Communications Ebooks</p>
-            <h2>Reader library for <span>modern influence.</span></h2>
-            <p class="section-lead">Premium digital guides for public image, communication discipline, and digital presence. Click a title to preview the reader details before purchasing.</p>
-          </div>
-        </div>
-
-        <div class="ebook-layout">
-          <div class="ebook-grid" aria-label="SENZ Strategic Communications ebook catalog">
-            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')" data-modal-title="Influence Through Clarity" data-modal-body="A concise reader on message discipline, public presence, and making a brand easier to understand and remember. To keep paid reader access protected, SENZ Strategic Communications verifies payment first, then sends the ebook access to your email." data-modal-visual="visual-portfolio" data-modal-kicker="Reader Library" data-modal-items="Message Discipline|Public Presence|Brand Recall" data-modal-chips="Strategy|PDF Ebook|Locked Access" data-modal-metric="PHP 1,499" data-modal-caption="Purchase first, then receive verified ebook access by email." data-modal-cta-text="Purchase Now" data-modal-cta-href="ebook-checkout.html?ebook=influence-through-clarity">
-              <div class="ebook-cover" aria-hidden="true"></div>
-              <h3>Influence Through Clarity</h3>
-              <p>A concise reader on message discipline, public presence, and making a brand easier to understand and remember.</p>
-              <div class="ebook-meta">
-                <span>Strategy</span>
-                <span>PDF Ebook</span>
-                <span>Locked Access</span>
-              </div>
-              <strong class="ebook-price">PHP 1,499</strong>
-              <button class="button" type="button">View Details</button>
-            </article>
-
-            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')" data-modal-title="Public Image Playbook" data-modal-body="A guide for leaders, titleholders, public figures, and brands that need credibility, presence, and reputation structure. Payment is requested before access so every paid reader receives the official file privately and securely." data-modal-visual="visual-portfolio" data-modal-kicker="Reader Library" data-modal-items="Credibility|Reputation|Leadership Presence" data-modal-chips="PR|PDF Ebook|Locked Access" data-modal-metric="PHP 1,999" data-modal-caption="After payment review, SENZ sends access to your email." data-modal-cta-text="Purchase Now" data-modal-cta-href="ebook-checkout.html?ebook=public-image-playbook">
-              <div class="ebook-cover" aria-hidden="true"></div>
-              <h3>Public Image Playbook</h3>
-              <p>A guide for leaders, titleholders, public figures, and brands that need credibility, presence, and reputation structure.</p>
-              <div class="ebook-meta">
-                <span>PR</span>
-                <span>PDF Ebook</span>
-                <span>Locked Access</span>
-              </div>
-              <strong class="ebook-price">PHP 1,999</strong>
-              <button class="button" type="button">View Details</button>
-            </article>
-
-            <article class="ebook-card" style="--ebook-art: url('assets/senz-premium-hero-facility.png')" data-modal-title="Digital Presence Guide" data-modal-body="A practical guide for websites, content systems, AI tools, and digital products that support a premium brand story. The ebook stays locked until payment is verified, then access is sent directly to the buyer email." data-modal-visual="visual-portfolio" data-modal-kicker="Reader Library" data-modal-items="Website Clarity|Content Systems|Digital Products" data-modal-chips="Digital|PDF Ebook|Locked Access" data-modal-metric="PHP 1,799" data-modal-caption="A friendly checkout step protects the paid reader library." data-modal-cta-text="Purchase Now" data-modal-cta-href="ebook-checkout.html?ebook=digital-presence-guide">
-              <div class="ebook-cover" aria-hidden="true"></div>
-              <h3>Digital Presence Guide</h3>
-              <p>A practical guide for websites, content systems, AI tools, and digital products that support a premium brand story.</p>
-              <div class="ebook-meta">
-                <span>Digital</span>
-                <span>PDF Ebook</span>
-                <span>Locked Access</span>
-              </div>
-              <strong class="ebook-price">PHP 1,799</strong>
-              <button class="button" type="button">View Details</button>
-            </article>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
     <section id="work" class="work portfolio">
       <div class="shell">
         <div class="portfolio-heading">
@@ -4523,7 +4394,7 @@
         });
       });
 
-      document.querySelectorAll('section, .value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .ebook-card, .portfolio-card, .portfolio-strip-card').forEach((el) => {
+      document.querySelectorAll('section, .value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card').forEach((el) => {
         el.classList.add('reveal');
       });
 
@@ -4606,21 +4477,6 @@
           insight: 'A useful AI assistant should feel like a trained operations support system, not a novelty.',
           deliverable: 'Knowledge base plan, workflow map, response boundaries, and assistant task structure.',
           next: 'Tell us the repeated questions, tasks, or workflows you want the assistant to handle.'
-        },
-        'Influence Through Clarity': {
-          insight: 'This reader helps turn vague brand presence into sharper message discipline.',
-          deliverable: 'A paid ebook sent after payment verification, with access delivered privately by email.',
-          next: 'Preview the reader, then purchase when you are ready to receive official access.'
-        },
-        'Public Image Playbook': {
-          insight: 'Public image improves when credibility, presence, and reputation are managed as one system.',
-          deliverable: 'A paid ebook sent after payment verification, with access delivered privately by email.',
-          next: 'Use the checkout page to send buyer details and payment reference.'
-        },
-        'Digital Presence Guide': {
-          insight: 'Digital presence should make a brand easier to trust before the first conversation.',
-          deliverable: 'A paid ebook sent after payment verification, with access delivered privately by email.',
-          next: 'Purchase first, then SENZ will verify payment and send access.'
         }
       };
 
@@ -4736,14 +4592,13 @@
       const progressBar = progress.querySelector('.scroll-progress__bar');
 
       const scenes = Array.from(document.querySelectorAll('main > section'));
-      const motionItems = Array.from(document.querySelectorAll('.value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .ebook-card, .portfolio-card, .portfolio-strip-card, .contact-panel'));
+      const motionItems = Array.from(document.querySelectorAll('.value-card, .catalog-card, .focus-card, .service-card, .work-card, .product-card, .portfolio-card, .portfolio-strip-card, .contact-panel'));
       const mediaItems = Array.from(document.querySelectorAll('.meeting-visual img, .portfolio-art, .article-art'));
       const railSections = [
         { id: 'top', label: 'Home', target: document.querySelector('.hero') },
         { id: 'catalog', label: 'Catalog', target: document.querySelector('.catalog') },
         { id: 'about', label: 'About', target: document.querySelector('#about') },
         { id: 'services', label: 'Services', target: document.querySelector('#services') },
-        { id: 'ebooks', label: 'Ebooks', target: document.querySelector('#ebooks') },
         { id: 'work', label: 'Portfolio', target: document.querySelector('#work') },
         { id: 'contact', label: 'Contact', target: document.querySelector('#contact') }
       ].filter((item) => item.target);
