@@ -2826,6 +2826,188 @@
       font-weight: 800;
     }
 
+    .services-intro-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(340px, 0.44fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .services-proof,
+    .services-visual-board {
+      overflow: hidden;
+      border: 1px solid rgba(225, 233, 255, 0.16);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(8, 18, 38, 0.68), rgba(3, 9, 22, 0.76));
+      box-shadow: 0 26px 86px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(18px);
+    }
+
+    .services-proof {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background:
+        linear-gradient(90deg, rgba(225, 233, 255, 0.12), transparent 68%),
+        rgba(8, 18, 38, 0.68);
+    }
+
+    .proof-item {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      align-items: center;
+      gap: 10px;
+      min-height: 106px;
+      padding: 20px 24px;
+      background: rgba(3, 9, 22, 0.5);
+    }
+
+    .proof-item strong {
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 400;
+      line-height: 0.92;
+    }
+
+    .proof-item span {
+      color: rgba(232, 239, 255, 0.74);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .services-visual-board {
+      position: relative;
+      min-height: 100%;
+      padding: 24px;
+      display: grid;
+      align-content: end;
+      isolation: isolate;
+    }
+
+    .services-visual-board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(180deg, rgba(3, 10, 24, 0.12), rgba(3, 10, 24, 0.72)),
+        url("assets/senz-premium-hero-facility.png") center / cover no-repeat;
+    }
+
+    .services-visual-board::after {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      z-index: -1;
+      border: 1px solid rgba(225, 233, 255, 0.14);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    .services-visual-board small {
+      color: rgba(184, 202, 255, 0.86);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .services-visual-board strong {
+      max-width: 340px;
+      margin-top: 12px;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 3.2vw, 46px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .service-card {
+      align-content: start;
+    }
+
+    .service-card .service-result {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .service-card .service-result span {
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: 999px;
+      padding: 7px 9px;
+      color: rgba(232, 239, 255, 0.78);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .service-journey {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .journey-step {
+      position: relative;
+      min-height: 148px;
+      border: 1px solid rgba(225, 233, 255, 0.14);
+      border-radius: 12px;
+      padding: 20px;
+      background: rgba(5, 13, 31, 0.58);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.2);
+    }
+
+    .journey-step small {
+      color: #6f98ff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .journey-step strong {
+      display: block;
+      margin-top: 14px;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .journey-step span {
+      display: block;
+      margin-top: 10px;
+      color: rgba(232, 239, 255, 0.72);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 760px) {
+      .services-intro-panel,
+      .service-journey {
+        grid-template-columns: 1fr;
+      }
+
+      .services-proof {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @keyframes introRise {
       from { opacity: 0; transform: translateY(24px) scale(0.97); }
       to { opacity: 1; transform: translateY(0) scale(1); }
@@ -3840,8 +4022,29 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow">Our Services</p>
-            <h2>Built for <span>visibility and trust.</span></h2>
-            <p class="section-lead">A tighter service menu for brands that need strategy, customer connection, digital presence, and premium creative execution without looking noisy.</p>
+            <h2>Where strategy becomes <span>visible proof.</span></h2>
+            <p class="section-lead">SENZ Strategic Communications builds the public-facing system around your brand: the message, the reputation, the campaign, the customer touchpoint, the website, and the visuals people remember.</p>
+          </div>
+        </div>
+
+        <div class="services-intro-panel">
+          <div class="services-proof" aria-label="SENZ Strategic Communications service proof points">
+            <div class="proof-item">
+              <strong>01</strong>
+              <span>Strategy before content, so every public move has a reason.</span>
+            </div>
+            <div class="proof-item">
+              <strong>06</strong>
+              <span>Core service systems covering reputation, marketing, operations, and digital presence.</span>
+            </div>
+            <div class="proof-item">
+              <strong>360</strong>
+              <span>Brand experience thinking from first impression to inquiry.</span>
+            </div>
+          </div>
+          <div class="services-visual-board" aria-hidden="true">
+            <small>Service Experience</small>
+            <strong>Designed to make your brand look ready, credible, and easy to trust.</strong>
           </div>
         </div>
 
@@ -3853,8 +4056,9 @@
             <div>
               <h3>Strategic Communications</h3>
               <p>Positioning, message structure, public tone, and communication systems for brands that need clarity.</p>
+              <div class="service-result"><span>Positioning</span><span>Messaging</span><span>Public Tone</span></div>
             </div>
-            <span class="arrow">›</span>
+            <span class="arrow">&rsaquo;</span>
           </article>
 
           <article class="service-card" data-modal-title="PR and Public Image" data-modal-body="PR and public image work builds visibility, credibility, and reputation discipline for launches, leaders, public-facing brands, and organizations." data-modal-visual="visual-strategist" data-modal-kicker="Public Image System" data-modal-items="Reputation|Media Angle|Leadership Presence" data-modal-chips="PR|Public Image|Reputation" data-modal-metric="Trust" data-modal-caption="A credible public-facing presence that feels intentional and prepared.">
@@ -3864,8 +4068,9 @@
             <div>
               <h3>PR and Public Image</h3>
               <p>Reputation, visibility, credibility signals, and leadership presence for public-facing work.</p>
+              <div class="service-result"><span>Reputation</span><span>Credibility</span><span>Presence</span></div>
             </div>
-            <span class="arrow">›</span>
+            <span class="arrow">&rsaquo;</span>
           </article>
 
           <article class="service-card" data-modal-title="Marketing and Social Media" data-modal-body="Marketing and social media turns strategy into campaign rhythm, content direction, audience movement, and brand recall across the platforms that matter." data-modal-visual="visual-marketing" data-modal-kicker="Campaign Direction" data-modal-items="Campaign Arc|Content System|Audience Path" data-modal-chips="Marketing|Social|Growth" data-modal-metric="Reach" data-modal-caption="A campaign system built to make attention turn into action.">
@@ -3875,8 +4080,9 @@
             <div>
               <h3>Marketing and Social Media</h3>
               <p>Campaign planning, content direction, posting rhythm, and audience movement for stronger brand recall.</p>
+              <div class="service-result"><span>Campaigns</span><span>Content</span><span>Growth</span></div>
             </div>
-            <span class="arrow">›</span>
+            <span class="arrow">&rsaquo;</span>
           </article>
 
           <article class="service-card" data-modal-title="Call Center Solutions" data-modal-body="Call center solutions help businesses organize customer inquiries, support scripts, lead handling, service flow, and response systems so customers can reach the brand through a clear and professional process." data-modal-visual="visual-callcenter" data-modal-kicker="Customer Contact System" data-modal-items="Inquiry Flow|Support Scripts|Lead Handling" data-modal-chips="Call Center|Customer Care|Operations" data-modal-metric="Response" data-modal-caption="A customer communication system for brands that need faster, cleaner response handling.">
@@ -3886,8 +4092,9 @@
             <div>
               <h3>Call Center Solutions</h3>
               <p>Customer inquiry flow, support scripts, lead handling, and response systems for professional service teams.</p>
+              <div class="service-result"><span>Inquiry Flow</span><span>Scripts</span><span>Lead Care</span></div>
             </div>
-            <span class="arrow">›</span>
+            <span class="arrow">&rsaquo;</span>
           </article>
 
           <article class="service-card" data-modal-title="Websites and Digital Presence" data-modal-body="Websites and digital presence work turns the brand into a credible online experience through clear messaging, refined design, service structure, and conversion-focused flow." data-modal-visual="visual-website" data-modal-kicker="Digital Credibility Platform" data-modal-items="Website|Service Flow|Conversion Path" data-modal-chips="Website|UX|Conversion" data-modal-metric="Click" data-modal-caption="A polished website experience designed to turn interest into inquiry.">
@@ -3897,8 +4104,9 @@
             <div>
               <h3>Websites and Digital Presence</h3>
               <p>Premium websites, service pages, conversion paths, and digital presence systems that support credibility.</p>
+              <div class="service-result"><span>Website</span><span>UX Flow</span><span>Conversion</span></div>
             </div>
-            <span class="arrow">›</span>
+            <span class="arrow">&rsaquo;</span>
           </article>
 
           <article class="service-card" data-modal-title="Creative Production" data-modal-body="Creative production covers photography direction, campaign visuals, content assets, brand materials, and premium production planning without making the brand look generic." data-modal-visual="visual-photo" data-modal-kicker="Creative Production" data-modal-items="Shot Direction|Content Assets|Brand Materials" data-modal-chips="Visuals|Production|Brand Image" data-modal-metric="Frame" data-modal-caption="A visual asset system for campaigns, profiles, and launch materials.">
@@ -3908,13 +4116,37 @@
             <div>
               <h3>Creative Production</h3>
               <p>Photography direction, campaign visuals, content assets, and premium materials for public-facing brands.</p>
+              <div class="service-result"><span>Visual Direction</span><span>Assets</span><span>Production</span></div>
             </div>
-            <span class="arrow">›</span>
+            <span class="arrow">&rsaquo;</span>
           </article>
         </div>
 
+        <div class="service-journey" aria-label="How SENZ Strategic Communications delivers services">
+          <div class="journey-step">
+            <small>Discover</small>
+            <strong>Clarify the real objective.</strong>
+            <span>We identify the audience, reputation gap, message problem, and growth opportunity.</span>
+          </div>
+          <div class="journey-step">
+            <small>Design</small>
+            <strong>Build the communication system.</strong>
+            <span>We shape the narrative, visual direction, campaign structure, and digital route.</span>
+          </div>
+          <div class="journey-step">
+            <small>Deploy</small>
+            <strong>Launch with discipline.</strong>
+            <span>We prepare content, pages, customer flow, and public-facing assets with consistency.</span>
+          </div>
+          <div class="journey-step">
+            <small>Refine</small>
+            <strong>Improve what the public sees.</strong>
+            <span>We tune the message and experience so the brand becomes clearer over time.</span>
+          </div>
+        </div>
+
         <div class="service-cta">
-          <p>Need help choosing the right service?</p>
+          <p>Tell us what you are building. We will recommend the right service path.</p>
           <a class="button" href="get-started.html">Book a Consultation</a>
         </div>
 
