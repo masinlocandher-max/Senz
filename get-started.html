@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Started | SENZ Strategic Communications</title>
+  <style>
+    :root {
+      --blue: #0057ff;
+      --blue-soft: #8fb1ff;
+      --ink: #f7faff;
+      --muted: #b8c6e6;
+      --line: rgba(184, 202, 255, 0.18);
+      --panel: rgba(7, 18, 39, 0.82);
+      --radius: 8px;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 14% 8%, rgba(0, 87, 255, 0.24), transparent 28rem),
+        radial-gradient(circle at 88% 78%, rgba(143, 177, 255, 0.14), transparent 24rem),
+        linear-gradient(180deg, #050914, #071122 54%, #03060d);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(184, 202, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(184, 202, 255, 0.035) 1px, transparent 1px);
+      background-size: 120px 120px;
+      mask-image: linear-gradient(180deg, black, transparent 86%);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: rgba(2, 7, 18, 0.34);
+      pointer-events: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .shell {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(184, 202, 255, 0.12);
+      background: rgba(3, 9, 23, 0.78);
+      backdrop-filter: blur(20px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 82px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 318px;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(0, 87, 255, 0.22));
+    }
+
+    .brand-word {
+      display: block;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 400;
+      letter-spacing: 14px;
+      line-height: 1;
+      transform: scaleX(1.08);
+      transform-origin: left center;
+    }
+
+    .brand-subtitle {
+      display: block;
+      margin-top: 7px;
+      color: rgba(143, 177, 255, 0.86);
+      font-size: 7px;
+      font-weight: 900;
+      letter-spacing: 2.3px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2vw, 28px);
+      color: rgba(237, 243, 255, 0.72);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.is-active {
+      color: #fff;
+    }
+
+    .nav-cta,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      border: 1px solid rgba(210, 222, 255, 0.5);
+      border-radius: 999px;
+      padding: 0 26px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      background:
+        linear-gradient(135deg, rgba(62, 124, 255, 0.98), rgba(0, 61, 210, 0.96)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent);
+      box-shadow: 0 18px 42px rgba(0, 87, 255, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      cursor: pointer;
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+    }
+
+    .button.secondary {
+      color: rgba(244, 248, 255, 0.9);
+      background: rgba(4, 13, 31, 0.48);
+      border-color: rgba(210, 222, 255, 0.28);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .button:hover,
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      border-color: rgba(235, 242, 255, 0.76);
+      box-shadow: 0 24px 54px rgba(0, 87, 255, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .sticky-start {
+      position: fixed;
+      right: clamp(16px, 3vw, 30px);
+      bottom: clamp(16px, 3vw, 30px);
+      z-index: 72;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      min-height: 58px;
+      overflow: hidden;
+      border: 1px solid rgba(210, 222, 255, 0.42);
+      border-radius: 999px;
+      padding: 0;
+      color: #fff;
+      font-size: 0;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: rgba(3, 12, 31, 0.74);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(16px);
+    }
+
+    .sticky-start::before {
+      content: "";
+      width: 25px;
+      height: 17px;
+      border: 2px solid rgba(245, 248, 255, 0.92);
+      border-radius: 4px;
+      background:
+        linear-gradient(135deg, transparent 46%, rgba(245, 248, 255, 0.92) 48%, transparent 52%),
+        linear-gradient(225deg, transparent 46%, rgba(245, 248, 255, 0.92) 48%, transparent 52%);
+      box-shadow: 0 0 22px rgba(111, 152, 255, 0.5);
+    }
+
+    .sticky-start span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .mobile-toggle {
+      display: none;
+      min-width: 64px;
+      height: 40px;
+      padding: 0 14px;
+      border: 1px solid rgba(143, 177, 255, 0.42);
+      border-radius: 999px;
+      color: white;
+      background: rgba(255, 255, 255, 0.05);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    main {
+      padding-bottom: 76px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 620px;
+      display: grid;
+      align-items: center;
+      padding: 84px 0 54px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(3, 8, 20, 0.96), rgba(3, 8, 20, 0.58) 54%, rgba(3, 8, 20, 0.9)),
+        url("assets/senz-premium-hero-facility.png");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.92) contrast(1.05);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.62fr);
+      gap: 46px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      color: var(--blue-soft);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin-top: 16px;
+      font-size: clamp(58px, 8vw, 104px);
+      line-height: 0.9;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--blue-soft);
+    }
+
+    .lead {
+      max-width: 680px;
+      margin-top: 24px;
+      color: rgba(237, 243, 255, 0.8);
+      font-size: 19px;
+      line-height: 1.72;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .hero-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      background: rgba(4, 11, 27, 0.7);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-panel::before {
+      content: "";
+      display: block;
+      width: 54px;
+      height: 54px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(184, 202, 255, 0.24);
+      border-radius: 16px;
+      background:
+        radial-gradient(circle, rgba(143, 177, 255, 0.9) 0 18%, transparent 19%),
+        conic-gradient(from 120deg, rgba(0, 87, 255, 0), rgba(143, 177, 255, 0.8), rgba(0, 87, 255, 0));
+      box-shadow: 0 0 48px rgba(0, 87, 255, 0.34);
+      animation: spinGlow 9s linear infinite;
+    }
+
+    .hero-panel strong {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 44px;
+      line-height: 1;
+    }
+
+    .hero-panel span {
+      display: block;
+      margin-top: 10px;
+      color: rgba(222, 232, 255, 0.76);
+      line-height: 1.55;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .steps div {
+      border: 1px solid rgba(184, 202, 255, 0.14);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .steps b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--blue-soft);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+    }
+
+    .steps span {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .intake {
+      padding: 88px 0 0;
+    }
+
+    .intake-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(360px, 0.58fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .section-copy {
+      position: sticky;
+      top: 112px;
+    }
+
+    .section-copy h2 {
+      max-width: 640px;
+      margin-top: 14px;
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 0.95;
+    }
+
+    .section-copy p {
+      max-width: 620px;
+      margin-top: 20px;
+      color: rgba(222, 232, 255, 0.76);
+      font-size: 17px;
+      line-height: 1.78;
+    }
+
+    .service-menu {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .service-pill {
+      border: 1px solid rgba(184, 202, 255, 0.16);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .service-pill strong {
+      display: block;
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .service-pill span {
+      display: block;
+      margin-top: 9px;
+      color: rgba(222, 232, 255, 0.68);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .intake-form {
+      border: 1px solid rgba(184, 202, 255, 0.2);
+      border-radius: var(--radius);
+      padding: clamp(22px, 4vw, 34px);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(0, 87, 255, 0.16), transparent 18rem),
+        var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .wizard-progress {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .wizard-step {
+      border: 1px solid rgba(184, 202, 255, 0.2);
+      border-radius: 999px;
+      padding: 10px 12px;
+      color: rgba(222, 232, 255, 0.68);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 1.2px;
+      text-align: center;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .wizard-step.is-active {
+      border-color: rgba(94, 141, 255, 0.72);
+      color: #fff;
+      background: linear-gradient(135deg, rgba(0, 87, 255, 0.78), rgba(98, 135, 255, 0.42));
+      box-shadow: 0 12px 34px rgba(0, 87, 255, 0.22);
+    }
+
+    .form-step[hidden] {
+      display: none;
+    }
+
+    .form-step h3 {
+      margin: 0 0 8px;
+      color: #fff;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1;
+    }
+
+    .step-helper {
+      max-width: 620px;
+      margin: 0 0 22px;
+      color: rgba(222, 232, 255, 0.72);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .service-choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .service-choice {
+      position: relative;
+      display: grid;
+      gap: 8px;
+      min-height: 132px;
+      margin: 0;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: var(--radius);
+      padding: 18px;
+      cursor: pointer;
+      color: rgba(237, 243, 255, 0.82);
+      background: rgba(255, 255, 255, 0.045);
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .service-choice input {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .service-choice strong {
+      color: #fff;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .service-choice span {
+      color: rgba(222, 232, 255, 0.66);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 0;
+      line-height: 1.45;
+      text-transform: none;
+    }
+
+    .service-choice::after {
+      content: "Select";
+      justify-self: start;
+      align-self: end;
+      border: 1px solid rgba(143, 177, 255, 0.32);
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: rgba(222, 232, 255, 0.68);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .service-choice:has(input:checked) {
+      border-color: rgba(70, 126, 255, 0.86);
+      background: linear-gradient(135deg, rgba(0, 87, 255, 0.24), rgba(255, 255, 255, 0.07));
+      box-shadow: 0 18px 42px rgba(0, 87, 255, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .service-choice:has(input:checked)::after {
+      content: "Selected";
+      border-color: rgba(70, 126, 255, 0.88);
+      color: #fff;
+      background: rgba(0, 87, 255, 0.82);
+    }
+
+    .selection-summary {
+      display: grid;
+      gap: 7px;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: var(--radius);
+      margin-bottom: 18px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .selection-summary span {
+      color: rgba(222, 232, 255, 0.62);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .selection-summary strong {
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .process-preview {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .process-preview div {
+      border: 1px solid rgba(184, 202, 255, 0.16);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .process-preview span {
+      color: var(--blue-soft);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .process-preview strong {
+      display: block;
+      margin-top: 8px;
+      color: #fff;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+      color: rgba(237, 243, 255, 0.82);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(184, 202, 255, 0.2);
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      color: #fff;
+      font: inherit;
+      background: rgba(2, 7, 18, 0.62);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 138px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(143, 177, 255, 0.82);
+      box-shadow: 0 0 0 4px rgba(0, 87, 255, 0.16);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .wizard-actions {
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(184, 202, 255, 0.14);
+      padding-top: 18px;
+    }
+
+    .wizard-actions .button[hidden] {
+      display: none;
+    }
+
+    .wizard-hint {
+      flex: 1 1 220px;
+      margin: 0;
+      color: rgba(222, 232, 255, 0.58);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .form-note {
+      margin-top: 16px;
+      color: rgba(222, 232, 255, 0.64);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .status {
+      min-height: 22px;
+      margin-top: 14px;
+      color: var(--blue-soft);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .direct-contact {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .contact-card {
+      border: 1px solid rgba(184, 202, 255, 0.16);
+      border-radius: var(--radius);
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .contact-card span {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--blue-soft);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .contact-card a,
+    .contact-card strong {
+      color: #fff;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    footer {
+      position: relative;
+      padding: clamp(34px, 5vw, 58px) 0;
+      border-top: 1px solid rgba(170, 184, 214, 0.42);
+      color: rgba(32, 43, 66, 0.68);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(0, 87, 255, 0.1), transparent 28rem),
+        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%) !important;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) auto;
+      align-items: center;
+      justify-content: space-between;
+      gap: clamp(18px, 4vw, 42px);
+      font-size: 13px;
+    }
+
+    .footer-brandline {
+      display: grid;
+      gap: 5px;
+    }
+
+    .footer-brandline strong {
+      color: #071225;
+      font-size: 13px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-socials a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 13px 0 8px;
+      border: 1px solid rgba(170, 184, 214, 0.5);
+      border-radius: 999px;
+      color: rgba(7, 18, 37, 0.76);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 12px 30px rgba(28, 48, 86, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .footer-socials a:hover {
+      border-color: rgba(21, 92, 255, 0.32);
+      color: #071225;
+      background: rgba(255, 255, 255, 0.94);
+      transform: translateY(-2px);
+    }
+
+    .social-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      color: #155cff;
+      background: linear-gradient(180deg, #ffffff, #eaf0fb);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 18px rgba(21, 92, 255, 0.1);
+    }
+
+    .social-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .social-text {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+    }
+
+    @media (max-width: 760px) {
+      .footer-inner {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .footer-socials {
+        justify-content: flex-start;
+      }
+
+      .footer-socials a {
+        min-height: 40px;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 620ms ease, transform 620ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-progress {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 90;
+      height: 3px;
+      overflow: hidden;
+      background: rgba(184, 202, 255, 0.08);
+    }
+
+    .scroll-progress__bar {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: linear-gradient(90deg, #0057ff, #8fb1ff, #ffffff);
+      box-shadow: 0 0 22px rgba(0, 87, 255, 0.78);
+    }
+
+    .experience-rail {
+      position: fixed;
+      left: clamp(14px, 2vw, 28px);
+      top: 50%;
+      z-index: 65;
+      display: grid;
+      gap: 12px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .experience-rail a {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      border: 1px solid rgba(184, 202, 255, 0.42);
+      border-radius: 999px;
+      background: rgba(4, 12, 31, 0.72);
+      pointer-events: auto;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .experience-rail a::after {
+      content: attr(aria-label);
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      width: max-content;
+      padding: 7px 10px;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: 999px;
+      color: rgba(237, 243, 255, 0.82);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      background: rgba(3, 9, 23, 0.78);
+      opacity: 0;
+      transform: translate(-8px, -50%);
+      transition: opacity 180ms ease, transform 180ms ease;
+      backdrop-filter: blur(14px);
+    }
+
+    .experience-rail a:hover,
+    .experience-rail a.is-active {
+      transform: scale(1.35);
+      border-color: rgba(225, 233, 255, 0.88);
+      background: #0d5bff;
+      box-shadow: 0 0 26px rgba(0, 87, 255, 0.78);
+    }
+
+    .experience-rail a:hover::after {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+
+    .intake-form {
+      position: relative;
+    }
+
+    .intake-form::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      opacity: var(--form-glow, 0);
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 0%, rgba(0, 87, 255, 0.18), transparent 42%);
+      transition: opacity 260ms ease;
+    }
+
+    .intake-form.is-current {
+      --form-glow: 1;
+    }
+
+    @media (max-width: 900px), (prefers-reduced-motion: reduce) {
+      .experience-rail {
+        display: none;
+      }
+    }
+
+    @keyframes ctaSweep {
+      0% {
+        transform: translateX(0) rotate(18deg);
+      }
+
+      52%,
+      100% {
+        transform: translateX(360%) rotate(18deg);
+      }
+    }
+
+    @keyframes spinGlow {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 940px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .brand {
+        min-width: 246px;
+      }
+
+      .brand-mark {
+        width: 46px;
+        height: 46px;
+      }
+
+      .brand-word {
+        font-size: 20px;
+        letter-spacing: 9px;
+      }
+
+      .brand-subtitle {
+        font-size: 5.6px;
+        letter-spacing: 1.25px;
+      }
+
+      .mobile-toggle {
+        display: grid;
+        place-items: center;
+      }
+
+      .nav-links.is-open {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 76px;
+        display: grid;
+        gap: 0;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 10px;
+        background: rgba(3, 9, 23, 0.96);
+      }
+
+      .nav-links.is-open a {
+        padding: 14px;
+      }
+
+      .hero-grid,
+      .intake-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-copy {
+        position: static;
+      }
+
+      .direct-contact {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .sticky-start {
+        right: 14px;
+        bottom: 14px;
+        left: auto;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 62px;
+      }
+
+      .steps,
+      .service-menu,
+      .service-choice-grid,
+      .wizard-progress,
+      .process-preview,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: clamp(46px, 16vw, 64px);
+      }
+    }
+
+    /* Quiet luxury cleanup: consistent virtual-tour background and calmer intake flow. */
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      background: #020713;
+    }
+
+    body::before {
+      z-index: -3;
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.96) 0%, rgba(2, 7, 19, 0.7) 50%, rgba(2, 7, 19, 0.88) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.14), #020713 96%),
+        url("assets/senz-premium-hero-facility.png") center / cover fixed no-repeat;
+      background-size: cover;
+      mask-image: none;
+    }
+
+    body::after {
+      background: rgba(2, 7, 19, 0.22);
+    }
+
+    .site-header {
+      background: rgba(2, 7, 19, 0.64);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .hero::before {
+      background:
+        linear-gradient(90deg, rgba(2, 7, 19, 0.96) 0%, rgba(2, 7, 19, 0.68) 54%, rgba(2, 7, 19, 0.4) 100%),
+        linear-gradient(180deg, rgba(2, 7, 19, 0.06), rgba(2, 7, 19, 0.82)),
+        url("assets/senz-premium-hero-facility.png") center / cover no-repeat;
+      filter: none;
+    }
+
+    .hero,
+    .intake {
+      background: transparent !important;
+    }
+
+    .button,
+    .nav-cta,
+    .sticky-start {
+      border-color: rgba(210, 222, 255, 0.42);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(30, 100, 255, 0.94), rgba(2, 52, 178, 0.92));
+      box-shadow: 0 16px 38px rgba(0, 87, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.045);
+      border-color: rgba(210, 222, 255, 0.28);
+      box-shadow: none;
+    }
+
+    .sticky-start {
+      display: inline-flex;
+      width: 58px;
+      height: 58px;
+      min-height: 58px;
+      padding: 0;
+      font-size: 0;
+    }
+
+    .steps div,
+    .service-pill,
+    .step-card,
+    .service-choice,
+    .intake-form,
+    .summary-card,
+    .contact-card {
+      border-color: rgba(225, 233, 255, 0.16) !important;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(8, 18, 38, 0.62), rgba(3, 9, 22, 0.72)) !important;
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(18px);
+    }
+
+    input,
+    textarea,
+    select {
+      border-color: rgba(225, 233, 255, 0.16) !important;
+      background: rgba(255, 255, 255, 0.045) !important;
+      box-shadow: none !important;
+    }
+
+    .service-pill:hover,
+    .service-choice:hover,
+    .step-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(225, 233, 255, 0.28) !important;
+    }
+    /* Strategic light intake: clear, friendly, and easier to complete. */
+    .intake {
+      color: #071225 !important;
+      background:
+        radial-gradient(circle at 16% 12%, rgba(21, 92, 255, 0.08), transparent 28rem),
+        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%) !important;
+    }
+
+    .intake .eyebrow {
+      color: #155cff !important;
+    }
+
+    .section-copy h2,
+    .section-copy h2 span,
+    .intake-form h2,
+    .form-step h3 {
+      color: #071225 !important;
+    }
+
+    .section-copy p,
+    .service-pill span,
+    .step-helper,
+    .wizard-hint,
+    .form-note {
+      color: rgba(32, 43, 66, 0.74) !important;
+    }
+
+    .service-pill,
+    .service-choice,
+    .selection-summary,
+    .process-preview div,
+    .wizard-step,
+    .intake-form,
+    .contact-card {
+      border-color: rgba(170, 184, 214, 0.45) !important;
+      color: #071225 !important;
+      background: rgba(255, 255, 255, 0.78) !important;
+      box-shadow: 0 24px 70px rgba(31, 48, 82, 0.12) !important;
+    }
+
+    .service-pill strong,
+    .service-choice strong,
+    .selection-summary strong,
+    .process-preview strong,
+    .contact-card strong,
+    .contact-card a {
+      color: #071225 !important;
+    }
+
+    .service-choice span,
+    .selection-summary span,
+    .process-preview span {
+      color: rgba(32, 43, 66, 0.68) !important;
+    }
+
+    .service-choice::after {
+      border-color: rgba(21, 92, 255, 0.24);
+      color: rgba(32, 43, 66, 0.7);
+      background: rgba(246, 248, 253, 0.74);
+    }
+
+    .service-choice:has(input:checked) {
+      border-color: rgba(21, 92, 255, 0.58) !important;
+      background: linear-gradient(135deg, rgba(21, 92, 255, 0.12), rgba(255, 255, 255, 0.96)) !important;
+    }
+
+    .service-choice:has(input:checked)::after,
+    .wizard-step.is-active {
+      color: #fff !important;
+      background: linear-gradient(135deg, #155cff, #5d86ff) !important;
+    }
+
+    .intake label {
+      color: rgba(7, 18, 37, 0.74) !important;
+    }
+
+    .intake input,
+    .intake textarea,
+    .intake select {
+      border-color: rgba(170, 184, 214, 0.55) !important;
+      color: #071225 !important;
+      background: rgba(255, 255, 255, 0.86) !important;
+    }
+
+    .intake input::placeholder,
+    .intake textarea::placeholder {
+      color: rgba(32, 43, 66, 0.45);
+    }
+
+    .intake .button.secondary {
+      color: #071225;
+      background: rgba(255, 255, 255, 0.76);
+      border-color: rgba(170, 184, 214, 0.5);
+    }
+
+    .site-header {
+      background: rgba(2, 7, 19, 0.9) !important;
+      border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+    }
+
+    /* Brand and hospitality polish */
+    .brand-word {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 0.56em;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 400;
+      letter-spacing: 0 !important;
+      line-height: 1;
+      transform: none !important;
+    }
+
+    .brand-word > span:not(.brand-e) {
+      display: inline-block;
+      min-width: 0.72em;
+      text-align: center;
+    }
+
+    .brand-e {
+      display: inline-grid;
+      gap: 0.18em;
+      width: 0.72em;
+      transform: translateY(0.02em);
+    }
+
+    .brand-e i {
+      display: block;
+      height: 0.09em;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    @media (max-width: 760px) {
+      .brand-word {
+        gap: 0.42em;
+        font-size: 20px !important;
+      }
+    }
+
+    /* Get Started page remake */
+    .hero {
+      min-height: 520px;
+      padding: 76px 0 42px;
+    }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 0.82fr) minmax(320px, 0.42fr);
+    }
+
+    .hero-panel {
+      align-self: stretch;
+    }
+
+    .intake {
+      padding: 54px 0 18px;
+      background:
+        linear-gradient(180deg, rgba(247, 250, 255, 0), rgba(247, 250, 255, 0.98) 12%, rgba(247, 250, 255, 0.98));
+    }
+
+    .intake-grid {
+      grid-template-columns: minmax(0, 0.46fr) minmax(420px, 0.74fr);
+      gap: clamp(22px, 4vw, 48px);
+    }
+
+    .section-copy {
+      position: sticky;
+      top: 112px;
+      border: 1px solid rgba(170, 184, 214, 0.42);
+      border-radius: 22px;
+      padding: clamp(22px, 3vw, 32px);
+      color: #071225;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 24px 70px rgba(31, 48, 82, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .section-copy h2 {
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1;
+    }
+
+    .section-copy p {
+      color: rgba(32, 43, 66, 0.7);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .service-menu {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .service-pill {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 12px;
+      align-items: start;
+      border-color: rgba(170, 184, 214, 0.44);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.66);
+    }
+
+    .service-pill::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      margin-top: 4px;
+      border-radius: 999px;
+      background: #155cff;
+      box-shadow: 0 0 0 5px rgba(21, 92, 255, 0.1);
+    }
+
+    .service-pill span {
+      grid-column: 2;
+      margin-top: 4px;
+    }
+
+    .intake-form {
+      border-color: rgba(170, 184, 214, 0.48);
+      border-radius: 26px;
+      color: #071225;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(21, 92, 255, 0.1), transparent 18rem),
+        rgba(255, 255, 255, 0.92);
+      box-shadow: 0 30px 90px rgba(31, 48, 82, 0.12);
+    }
+
+    .wizard-progress {
+      padding: 8px;
+      border: 1px solid rgba(170, 184, 214, 0.42);
+      border-radius: 999px;
+      background: rgba(246, 248, 253, 0.78);
+    }
+
+    .wizard-step {
+      border-color: transparent;
+      color: rgba(32, 43, 66, 0.58);
+      background: transparent;
+    }
+
+    .form-step h3 {
+      color: #071225;
+      font-size: clamp(28px, 3vw, 40px);
+    }
+
+    .service-choice-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .service-choice {
+      min-height: 154px;
+      border-color: rgba(170, 184, 214, 0.48);
+      border-radius: 18px;
+      padding: 20px;
+      color: #071225;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 248, 253, 0.8));
+      box-shadow: 0 16px 40px rgba(31, 48, 82, 0.06);
+    }
+
+    .service-choice::before {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 22px;
+      height: 22px;
+      border: 1px solid rgba(21, 92, 255, 0.26);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.88);
+    }
+
+    .service-choice:has(input:checked)::before {
+      border-color: #155cff;
+      background: #155cff;
+      box-shadow: inset 0 0 0 5px #fff, 0 0 0 5px rgba(21, 92, 255, 0.12);
+    }
+
+    .selection-summary {
+      border-color: rgba(21, 92, 255, 0.2);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(21, 92, 255, 0.08), rgba(255, 255, 255, 0.86));
+    }
+
+    .selected-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .selected-list span {
+      border: 1px solid rgba(21, 92, 255, 0.22);
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: #071225 !important;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .process-preview {
+      grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+      align-items: center;
+    }
+
+    .direct-contact {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.64);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .intake-grid,
+      .service-choice-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .section-copy {
+        position: relative;
+        top: auto;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="components/ai-chat.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="index.html" aria-label="SENZ Strategic Communications home">
+        <img class="brand-mark" src="assets/senz-original-mark.png" alt="" aria-hidden="true" />
+        <span>
+          <span class="brand-word" aria-hidden="true"><span>S</span><span class="brand-e"><i></i><i></i><i></i></span><span>N</span><span>Z</span></span>
+          <span class="brand-subtitle">Strategic Communications and Digital Solutions</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#ebooks">Ebooks</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html#work">Portfolio</a>
+      </nav>
+      <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Start With SENZ Strategic Communications</p>
+          <h1>Tell us the goal. <span>We will shape the system.</span></h1>
+          <p class="lead">Brief SENZ Strategic Communications on your brand, campaign, event, digital product, website, AI assistant, or public image project.</p>
+          <div class="hero-actions">
+            <a class="button" href="#intake">Start Inquiry</a>
+            <a class="button secondary" href="mailto:info.senz.pr@gmail.com">Email SENZ Strategic Communications</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="SENZ Strategic Communications intake process">
+          <strong>3 Steps</strong>
+          <span>Choose the offer, send the brief, and start with a clear direction.</span>
+          <div class="steps">
+            <div><b>01</b><span>Brief</span></div>
+            <div><b>02</b><span>Direction</span></div>
+            <div><b>03</b><span>Build</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="intake" id="intake">
+      <div class="shell intake-grid">
+        <div class="section-copy">
+          <p class="eyebrow">Project Intake</p>
+          <h2>A simple consultation path, built around what you need.</h2>
+          <p>Select all the services that fit. SENZ Strategic Communications will review the combination and recommend the cleanest next move.</p>
+          <div class="service-menu" aria-label="SENZ Strategic Communications project categories">
+            <div class="service-pill"><strong>1. Choose services</strong><span>Pick one or several. Nothing moves until you press Next.</span></div>
+            <div class="service-pill"><strong>2. Add contact details</strong><span>Name plus email, phone, Messenger, or social handle is enough.</span></div>
+            <div class="service-pill"><strong>3. Send a short goal</strong><span>We keep the form light and clarify the rest during consultation.</span></div>
+          </div>
+          <div class="direct-contact">
+            <div class="contact-card">
+              <span>Email</span>
+              <a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a>
+            </div>
+            <div class="contact-card">
+              <span>Instagram</span>
+              <a href="https://www.instagram.com/senz.pr" target="_blank" rel="noopener noreferrer">@senz.pr</a>
+            </div>
+            <div class="contact-card">
+              <span>Social Handles</span>
+              <strong>TikTok, IG, FB: senz.pr</strong>
+            </div>
+            <div class="contact-card">
+              <span>LinkedIn</span>
+              <a href="https://www.linkedin.com/company/senz-pr" target="_blank" rel="noopener noreferrer">@senz.pr</a>
+            </div>
+          </div>
+        </div>
+
+        <form class="intake-form" id="projectForm">
+          <div class="wizard-progress" aria-label="Inquiry progress">
+            <span class="wizard-step is-active" data-step-indicator="1">1. Service</span>
+            <span class="wizard-step" data-step-indicator="2">2. Contact</span>
+            <span class="wizard-step" data-step-indicator="3">3. Details</span>
+          </div>
+
+          <section class="form-step is-active" data-form-step="1">
+            <h3>What should we help you with?</h3>
+            <p class="step-helper">Select one or more services. This page will not jump forward until you click Next.</p>
+            <input id="projectType" name="projectType" type="hidden" required />
+            <div class="service-choice-grid" role="group" aria-label="Choose one or more services">
+              <label class="service-choice">
+                <input name="serviceOptions" type="checkbox" value="PR and Public Image" />
+                <strong>PR and Reputation</strong>
+                <span>Public image, credibility, visibility, message discipline, and reputation care.</span>
+              </label>
+              <label class="service-choice">
+                <input name="serviceOptions" type="checkbox" value="Marketing and Social Media" />
+                <strong>Marketing and Social Media</strong>
+                <span>Campaign direction, content rhythm, social management, and audience growth.</span>
+              </label>
+              <label class="service-choice">
+                <input name="serviceOptions" type="checkbox" value="Call Center Solutions" />
+                <strong>Call Center Solutions</strong>
+                <span>Inquiry flow, customer support scripts, lead handling, and response operations.</span>
+              </label>
+              <label class="service-choice">
+                <input name="serviceOptions" type="checkbox" value="Websites and Digital Presence" />
+                <strong>Websites and Digital Presence</strong>
+                <span>Premium websites, service flow, digital trust, and conversion-ready pages.</span>
+              </label>
+              <label class="service-choice">
+                <input name="serviceOptions" type="checkbox" value="Digital Products" />
+                <strong>Digital Products</strong>
+                <span>Music, Clone Studio, event voting, tabulation, ticketing, and AI assistants.</span>
+              </label>
+              <label class="service-choice">
+                <input name="serviceOptions" type="checkbox" value="Creative Production" />
+                <strong>Creative Production</strong>
+                <span>Visual direction, campaign assets, photo/video planning, and launch-ready materials.</span>
+              </label>
+              <label class="service-choice">
+                <input name="serviceOptions" type="checkbox" value="Full Brand System" />
+                <strong>Full Brand System</strong>
+                <span>Strategy, visuals, public presence, digital systems, and launch support together.</span>
+              </label>
+              <label class="service-choice">
+                <input name="serviceOptions" type="checkbox" value="Not Sure Yet" />
+                <strong>Not Sure Yet</strong>
+                <span>Tell us what you are trying to achieve and we will recommend the right path.</span>
+              </label>
+            </div>
+          </section>
+
+          <section class="form-step" data-form-step="2" hidden>
+            <h3>How should we reach you?</h3>
+            <p class="step-helper">Share one reliable contact method. Email or phone/Messenger is enough to continue.</p>
+            <div class="process-preview" aria-label="What happens after you send the inquiry">
+              <div><span>01</span><strong>We review the service path you selected.</strong></div>
+              <div><span>02</span><strong>We prepare the best consultation angle.</strong></div>
+              <div><span>03</span><strong>We reach out through your preferred contact.</strong></div>
+            </div>
+            <div class="form-row">
+              <label>
+                Name
+                <input name="name" type="text" autocomplete="name" placeholder="Your name" required />
+              </label>
+              <label>
+                Brand / Organization
+                <input name="brand" type="text" placeholder="Brand name" />
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Email
+                <input name="email" type="email" autocomplete="email" placeholder="you@example.com" />
+              </label>
+              <label>
+                Phone / Messenger
+                <input name="contact" type="text" placeholder="Best contact detail" />
+              </label>
+            </div>
+
+            <label>
+              Best Way to Reach You
+              <select name="preferredContact">
+                <option>Email</option>
+                <option>Phone Call</option>
+                <option>Messenger</option>
+                <option>Instagram DM</option>
+                <option>WhatsApp / Viber</option>
+              </select>
+            </label>
+          </section>
+
+          <section class="form-step" data-form-step="3" hidden>
+            <h3>What should SENZ know first?</h3>
+            <p class="step-helper">A short note is enough. We will clarify the rest during consultation.</p>
+            <div class="selection-summary">
+              <span>Selected Services</span>
+              <strong id="serviceSummary">Choose at least one service first</strong>
+              <div class="selected-list" id="selectedList" aria-label="Selected service list"></div>
+            </div>
+            <div class="form-row">
+              <label>
+                Timeline
+                <select name="timeline">
+                  <option>As soon as possible</option>
+                  <option>Within 2 to 4 weeks</option>
+                  <option>Within 1 to 2 months</option>
+                  <option>Still planning</option>
+                </select>
+              </label>
+              <label>
+                Budget Range
+                <select name="budget">
+                  <option>To be discussed</option>
+                  <option>Starter project</option>
+                  <option>Mid-scale campaign</option>
+                  <option>Premium build</option>
+                  <option>Long-term partnership</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              What do you want SENZ Strategic Communications to help you achieve?
+              <textarea name="message" placeholder="Example: We need a cleaner public image, a website, social direction, or a system for our next event." required></textarea>
+            </label>
+          </section>
+
+          <div class="form-actions wizard-actions">
+            <button class="button secondary" type="button" id="prevStep" hidden>Back</button>
+            <p class="wizard-hint" id="wizardHint">Choose one or more services, then click Next.</p>
+            <button class="button" type="button" id="nextStep">Next</button>
+            <button class="button" type="submit" id="submitInquiry" hidden>Submit Inquiry</button>
+          </div>
+          <p class="form-note">Your inquiry goes directly to SENZ Strategic Communications. If the server is offline, the page will prepare the same brief by email.</p>
+          <p class="status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div class="footer-brandline">
+        <strong>SENZ Strategic Communications</strong>
+        <span>@senz.pr on TikTok, Instagram, Facebook, and LinkedIn</span>
+      </div>
+      <div class="footer-socials" aria-label="SENZ Strategic Communications contact links">
+        <a href="mailto:info.senz.pr@gmail.com" aria-label="Email SENZ Strategic Communications">
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span><span class="social-text">Email</span>
+        </a>
+        <a href="https://www.tiktok.com/@senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications TikTok">
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4v10.1a4.9 4.9 0 1 1-4.9-4.9"/><path d="M14 4c1.1 3.2 3.2 5 6 5.2"/></svg></span><span class="social-text">TikTok @senz.pr</span>
+        </a>
+        <a href="https://www.instagram.com/senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Instagram">
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3.2"/><circle cx="16.4" cy="7.7" r=".8"/></svg></span><span class="social-text">IG @senz.pr</span>
+        </a>
+        <a href="https://www.facebook.com/senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Facebook">
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3.2C10.7 4 9 5.8 9 8.7V11H6v4h3v5h4v-5h3.1l.6-4H13V9.1c0-.7.4-1.1 1-1.1Z"/></svg></span><span class="social-text">FB @senz.pr</span>
+        </a>
+        <a href="https://www.linkedin.com/company/senz-pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications LinkedIn">
+          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 10v8M6.5 6v.01M11 18v-8M11 13.8c0-2.5 1.3-4 3.4-4 2 0 3.1 1.3 3.1 3.8V18"/></svg></span><span class="social-text">LinkedIn @senz.pr</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const body = document.body;
+      const nav = document.querySelector('.nav-links');
+      const toggle = document.querySelector('.mobile-toggle');
+      const form = document.querySelector('#projectForm');
+      const status = document.querySelector('#formStatus');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      toggle?.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.textContent = isOpen ? 'Close' : 'Menu';
+      });
+
+      nav?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('is-open');
+          toggle?.setAttribute('aria-expanded', 'false');
+          if (toggle) toggle.textContent = 'Menu';
+        });
+      });
+
+      document.querySelectorAll('.hero > .shell, .section-copy, .intake-form, .service-pill, .service-choice, .contact-card').forEach((el) => {
+        el.classList.add('reveal');
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+      const progress = document.createElement('div');
+      progress.className = 'scroll-progress';
+      progress.innerHTML = '<span class="scroll-progress__bar"></span>';
+      body.appendChild(progress);
+      const progressBar = progress.querySelector('.scroll-progress__bar');
+      const railSections = [
+        { label: 'Start', target: document.querySelector('.hero') },
+        { label: 'Intake', target: document.querySelector('#intake') },
+        { label: 'Form', target: form }
+      ].filter((item) => item.target);
+      const rail = document.createElement('nav');
+      rail.className = 'experience-rail';
+      rail.setAttribute('aria-label', 'Intake sections');
+      rail.innerHTML = railSections.map((item, index) => {
+        const id = item.target.id || `intake-section-${index}`;
+        item.target.id = id;
+        return `<a href="#${id}" aria-label="${item.label}"></a>`;
+      }).join('');
+      body.appendChild(rail);
+      const railLinks = Array.from(rail.querySelectorAll('a'));
+
+      function syncScrollExperience() {
+        const scrollMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const ratio = Math.min(1, Math.max(0, window.scrollY / scrollMax));
+        progressBar.style.transform = `scaleX(${ratio})`;
+
+        if (reduceMotion) return;
+        const vh = window.innerHeight || 1;
+        let currentIndex = 0;
+        railSections.forEach((item, index) => {
+          const rect = item.target.getBoundingClientRect();
+          const isCurrent = rect.top < vh * 0.54 && rect.bottom > vh * 0.28;
+          item.target.classList.toggle('is-current', isCurrent);
+          if (isCurrent) currentIndex = index;
+        });
+        railLinks.forEach((link, index) => link.classList.toggle('is-active', index === currentIndex));
+      }
+
+      window.addEventListener('scroll', syncScrollExperience, { passive: true });
+      window.addEventListener('resize', syncScrollExperience);
+      syncScrollExperience();
+
+      const steps = Array.from(document.querySelectorAll('[data-form-step]'));
+      const indicators = Array.from(document.querySelectorAll('[data-step-indicator]'));
+      const prevStepButton = document.querySelector('#prevStep');
+      const nextStepButton = document.querySelector('#nextStep');
+      const submitInquiryButton = document.querySelector('#submitInquiry');
+      const wizardHint = document.querySelector('#wizardHint');
+      const serviceSummary = document.querySelector('#serviceSummary');
+      const selectedList = document.querySelector('#selectedList');
+      const projectTypeInput = document.querySelector('#projectType');
+      let currentStep = 1;
+
+      function selectedServices() {
+        return Array.from(form?.querySelectorAll('input[name="serviceOptions"]:checked') || [])
+          .map((input) => input.value);
+      }
+
+      function syncSelectedServices() {
+        const services = selectedServices();
+        const serviceText = services.join(', ');
+        if (projectTypeInput) projectTypeInput.value = serviceText;
+        if (serviceSummary) serviceSummary.textContent = serviceText || 'Choose at least one service first';
+        if (selectedList) {
+          selectedList.replaceChildren();
+          (services.length ? services : ['No service selected yet']).forEach((service) => {
+            const chip = document.createElement('span');
+            chip.textContent = service;
+            selectedList.appendChild(chip);
+          });
+        }
+        return services;
+      }
+
+      function setStatus(message) {
+        if (status) status.textContent = message || '';
+      }
+
+      function updateWizard() {
+        steps.forEach((step) => {
+          const isActive = Number(step.dataset.formStep) === currentStep;
+          step.hidden = !isActive;
+          step.classList.toggle('is-active', isActive);
+        });
+        indicators.forEach((indicator) => {
+          indicator.classList.toggle('is-active', Number(indicator.dataset.stepIndicator) === currentStep);
+        });
+
+        const services = syncSelectedServices();
+        if (prevStepButton) prevStepButton.hidden = currentStep === 1;
+        if (nextStepButton) nextStepButton.hidden = currentStep === steps.length;
+        if (submitInquiryButton) submitInquiryButton.hidden = currentStep !== steps.length;
+
+        if (wizardHint) {
+          wizardHint.textContent = currentStep === 1
+            ? services.length
+              ? `${services.length} selected. Click Next when ready.`
+              : 'Choose one or more services, then click Next.'
+            : currentStep === 2
+              ? 'Back is always available if you need to change the services.'
+              : 'Review the selected services and send only when ready.';
+        }
+      }
+
+      function validateStep(stepNumber) {
+        if (!form) return true;
+        if (stepNumber === 1) {
+          if (!selectedServices().length) {
+            setStatus('Please choose at least one service first. If you are unsure, select "Not Sure Yet."');
+            return false;
+          }
+        }
+
+        if (stepNumber === 2) {
+          const name = form.elements['name'];
+          const email = form.elements['email'];
+          const contact = form.elements['contact'];
+          if (!String(name.value || '').trim()) {
+            name.focus();
+            setStatus('Please add your name so SENZ Strategic Communications knows who to contact.');
+            return false;
+          }
+          if (!String(email.value || '').trim() && !String(contact.value || '').trim()) {
+            email.focus();
+            setStatus('Please provide either an email or phone/Messenger contact.');
+            return false;
+          }
+          if (email.value && !email.checkValidity()) {
+            email.focus();
+            setStatus('Please enter a valid email address, or leave email blank and use phone/Messenger instead.');
+            return false;
+          }
+        }
+
+        if (stepNumber === 3) {
+          const message = form.elements['message'];
+          if (!String(message.value || '').trim()) {
+            message.focus();
+            setStatus('Please add a short note about what you want to achieve.');
+            return false;
+          }
+        }
+
+        setStatus('');
+        return true;
+      }
+
+      form?.querySelectorAll('input[name="serviceOptions"]').forEach((input) => {
+        input.addEventListener('change', () => {
+          syncSelectedServices();
+          updateWizard();
+          setStatus('');
+        });
+      });
+
+      nextStepButton?.addEventListener('click', () => {
+        if (!validateStep(currentStep)) return;
+        currentStep = Math.min(steps.length, currentStep + 1);
+        updateWizard();
+      });
+
+      prevStepButton?.addEventListener('click', () => {
+        currentStep = Math.max(1, currentStep - 1);
+        setStatus('');
+        updateWizard();
+      });
+
+      updateWizard();
+
+      form?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (!validateStep(1) || !validateStep(2) || !validateStep(3)) return;
+        const data = new FormData(form);
+        const submitButton = submitInquiryButton || form.querySelector('button[type="submit"]');
+        syncSelectedServices();
+        const payload = Object.fromEntries(data.entries());
+        payload.projectType = selectedServices().join(', ');
+        if (!String(data.get('email') || '').trim() && !String(data.get('contact') || '').trim()) {
+          status.textContent = 'Please provide either an email or phone/Messenger contact so SENZ Strategic Communications can reach you.';
+          return;
+        }
+        const lines = [
+          'SENZ Strategic Communications Project Inquiry',
+          '',
+          `Name: ${data.get('name') || ''}`,
+          `Brand / Organization: ${data.get('brand') || ''}`,
+          `Email: ${data.get('email') || ''}`,
+          `Phone / Messenger: ${data.get('contact') || ''}`,
+          `Preferred Contact: ${data.get('preferredContact') || ''}`,
+          `Selected Services: ${payload.projectType || ''}`,
+          `Timeline: ${data.get('timeline') || ''}`,
+          `Budget Range: ${data.get('budget') || ''}`,
+          '',
+          'Project Goal:',
+          data.get('message') || ''
+        ];
+        const subject = `SENZ Strategic Communications Project Inquiry - ${payload.projectType || 'New Project'}`;
+        const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+
+        status.textContent = 'Sending your inquiry...';
+        if (submitButton) submitButton.disabled = true;
+
+        try {
+          const response = await fetch('/api/inquiries', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json();
+
+          if (!response.ok || !result.ok) {
+            throw new Error((result.errors || ['Unable to submit inquiry.']).join(' '));
+          }
+
+          const agent = result.assignedAgent ? ` Routed to ${result.assignedAgent.label}.` : '';
+          status.textContent = `Inquiry received. Reference: ${result.id}.${agent}`;
+          form.reset();
+          currentStep = 1;
+          updateWizard();
+        } catch (error) {
+          status.textContent = 'Server unavailable. Opening your email app with the project brief.';
+          window.location.href = mailto;
+        } finally {
+          if (submitButton) submitButton.disabled = false;
+        }
+      });
+    })();
+  </script>
+  <script src="components/ai-chat.js" defer></script>
+</body>
+</html>
