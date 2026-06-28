@@ -2262,6 +2262,83 @@
         display: grid;
       }
     }
+    /* Strategic light sections: founder-led, professional, and hospitable. */
+    .light-about {
+      color: #071225 !important;
+      background:
+        radial-gradient(circle at 14% 14%, rgba(21, 92, 255, 0.08), transparent 28rem),
+        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%) !important;
+    }
+
+    .light-about .eyebrow {
+      color: #155cff !important;
+    }
+
+    .light-about h2,
+    .light-about h2 span {
+      color: #071225 !important;
+    }
+
+    .light-about p,
+    .light-about .light-metrics span {
+      color: rgba(32, 43, 66, 0.74) !important;
+    }
+
+    .light-about .light-metrics span,
+    .light-about .light-visual {
+      border-color: rgba(170, 184, 214, 0.45) !important;
+      background: rgba(255, 255, 255, 0.78) !important;
+      box-shadow: 0 24px 70px rgba(31, 48, 82, 0.12) !important;
+    }
+
+    .light-about .light-metrics strong {
+      color: #155cff !important;
+    }
+
+    .site-header {
+      background: rgba(2, 7, 19, 0.9) !important;
+      border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+    }
+
+    /* Brand and hospitality polish */
+    .brand-word {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 0.56em;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 400;
+      letter-spacing: 0 !important;
+      line-height: 1;
+      transform: none !important;
+    }
+
+    .brand-word > span:not(.brand-e) {
+      display: inline-block;
+      min-width: 0.72em;
+      text-align: center;
+    }
+
+    .brand-e {
+      display: inline-grid;
+      gap: 0.18em;
+      width: 0.72em;
+      transform: translateY(0.02em);
+    }
+
+    .brand-e i {
+      display: block;
+      height: 0.09em;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    @media (max-width: 760px) {
+      .brand-word {
+        gap: 0.42em;
+        font-size: 20px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2270,7 +2347,7 @@
       <a class="brand" href="index.html" aria-label="SENZ Strategic Communications home">
         <img class="brand-mark" src="assets/senz-original-mark.png" alt="" aria-hidden="true" />
         <span>
-          <span class="brand-word">SENZ</span>
+          <span class="brand-word" aria-hidden="true"><span>S</span><span class="brand-e"><i></i><i></i><i></i></span><span>N</span><span>Z</span></span>
           <span class="brand-subtitle">Strategic Communications and Digital Solutions</span>
         </span>
       </a>

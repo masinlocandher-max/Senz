@@ -2951,7 +2951,7 @@
     }
 
     .ebook-cover::after {
-      content: "Locked";
+      content: "Preview";
       position: absolute;
       right: 14px;
       bottom: 14px;
@@ -3549,6 +3549,123 @@
         display: none;
       }
     }
+    /* Strategic light sections: warmer visitor flow without losing the corporate mood. */
+    .about,
+    .ebooks,
+    .contact {
+      color: #071225 !important;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(21, 92, 255, 0.09), transparent 28rem),
+        linear-gradient(180deg, #fbfcff 0%, #eef3fb 100%) !important;
+    }
+
+    .about .eyebrow,
+    .ebooks .eyebrow,
+    .contact .eyebrow {
+      color: #155cff !important;
+    }
+
+    .about h2,
+    .ebooks h2,
+    .contact h2,
+    .about h3,
+    .ebooks h3,
+    .contact h3 {
+      color: #071225 !important;
+    }
+
+    .about p,
+    .ebooks p,
+    .contact p,
+    .about .section-lead,
+    .ebooks .section-lead,
+    .contact .section-lead,
+    .about .lead,
+    .contact-panel p {
+      color: rgba(32, 43, 66, 0.74) !important;
+    }
+
+    .about .focus-card,
+    .ebooks .ebook-card,
+    .contact .contact-panel {
+      border-color: rgba(170, 184, 214, 0.45) !important;
+      color: #071225 !important;
+      background: rgba(255, 255, 255, 0.78) !important;
+      box-shadow: 0 24px 70px rgba(31, 48, 82, 0.12) !important;
+    }
+
+    .about .icon,
+    .ebooks .ebook-meta span {
+      border-color: rgba(21, 92, 255, 0.16) !important;
+      color: #155cff !important;
+      background: rgba(21, 92, 255, 0.06) !important;
+    }
+
+    .ebooks .ebook-price {
+      color: #071225 !important;
+    }
+
+    .ebooks .ebook-cover {
+      box-shadow: inset 0 0 0 1px rgba(7, 18, 37, 0.08), 0 18px 48px rgba(31, 48, 82, 0.14);
+    }
+
+    .contact .button.secondary,
+    .about .button.secondary {
+      color: #071225;
+      border-color: rgba(7, 18, 37, 0.18);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .work {
+      background:
+        linear-gradient(180deg, rgba(2, 7, 19, 0.9), rgba(2, 7, 19, 0.96)),
+        url("assets/senz-premium-hero-facility.png") center / cover fixed no-repeat !important;
+    }
+
+    .site-header {
+      background: rgba(2, 7, 19, 0.9) !important;
+      border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+    }
+
+    /* Brand and hospitality polish */
+    .brand-word {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 0.56em;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 400;
+      letter-spacing: 0 !important;
+      line-height: 1;
+      transform: none !important;
+    }
+
+    .brand-word > span:not(.brand-e) {
+      display: inline-block;
+      min-width: 0.72em;
+      text-align: center;
+    }
+
+    .brand-e {
+      display: inline-grid;
+      gap: 0.18em;
+      width: 0.72em;
+      transform: translateY(0.02em);
+    }
+
+    .brand-e i {
+      display: block;
+      height: 0.09em;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    @media (max-width: 760px) {
+      .brand-word {
+        gap: 0.42em;
+        font-size: 20px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -3566,7 +3683,7 @@
       <a class="brand" href="#top" aria-label="SENZ Strategic Communications home">
         <img class="brand-mark" src="assets/senz-original-mark.png" alt="" aria-hidden="true" />
         <span>
-          <span class="brand-word">SENZ</span>
+          <span class="brand-word" aria-hidden="true"><span>S</span><span class="brand-e"><i></i><i></i><i></i></span><span>N</span><span>Z</span></span>
           <span class="brand-subtitle">Strategic Communications and Digital Solutions</span>
         </span>
       </a>
