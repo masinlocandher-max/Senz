@@ -461,6 +461,178 @@
       gap: 14px;
     }
 
+    .wizard-progress {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .wizard-step {
+      border: 1px solid rgba(184, 202, 255, 0.2);
+      border-radius: 999px;
+      padding: 10px 12px;
+      color: rgba(222, 232, 255, 0.68);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 1.2px;
+      text-align: center;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .wizard-step.is-active {
+      border-color: rgba(94, 141, 255, 0.72);
+      color: #fff;
+      background: linear-gradient(135deg, rgba(0, 87, 255, 0.78), rgba(98, 135, 255, 0.42));
+      box-shadow: 0 12px 34px rgba(0, 87, 255, 0.22);
+    }
+
+    .form-step[hidden] {
+      display: none;
+    }
+
+    .form-step h3 {
+      margin: 0 0 8px;
+      color: #fff;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1;
+    }
+
+    .step-helper {
+      max-width: 620px;
+      margin: 0 0 22px;
+      color: rgba(222, 232, 255, 0.72);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .service-choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .service-choice {
+      position: relative;
+      display: grid;
+      gap: 8px;
+      min-height: 132px;
+      margin: 0;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: var(--radius);
+      padding: 18px;
+      cursor: pointer;
+      color: rgba(237, 243, 255, 0.82);
+      background: rgba(255, 255, 255, 0.045);
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .service-choice input {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .service-choice strong {
+      color: #fff;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .service-choice span {
+      color: rgba(222, 232, 255, 0.66);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 0;
+      line-height: 1.45;
+      text-transform: none;
+    }
+
+    .service-choice::after {
+      content: "Select";
+      justify-self: start;
+      align-self: end;
+      border: 1px solid rgba(143, 177, 255, 0.32);
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: rgba(222, 232, 255, 0.68);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .service-choice:has(input:checked) {
+      border-color: rgba(70, 126, 255, 0.86);
+      background: linear-gradient(135deg, rgba(0, 87, 255, 0.24), rgba(255, 255, 255, 0.07));
+      box-shadow: 0 18px 42px rgba(0, 87, 255, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .service-choice:has(input:checked)::after {
+      content: "Selected";
+      border-color: rgba(70, 126, 255, 0.88);
+      color: #fff;
+      background: rgba(0, 87, 255, 0.82);
+    }
+
+    .selection-summary {
+      display: grid;
+      gap: 7px;
+      border: 1px solid rgba(184, 202, 255, 0.18);
+      border-radius: var(--radius);
+      margin-bottom: 18px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .selection-summary span {
+      color: rgba(222, 232, 255, 0.62);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .selection-summary strong {
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .process-preview {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .process-preview div {
+      border: 1px solid rgba(184, 202, 255, 0.16);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .process-preview span {
+      color: var(--blue-soft);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .process-preview strong {
+      display: block;
+      margin-top: 8px;
+      color: #fff;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
     label {
       display: grid;
       gap: 8px;
@@ -502,6 +674,25 @@
       flex-wrap: wrap;
       gap: 12px;
       margin-top: 8px;
+    }
+
+    .wizard-actions {
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(184, 202, 255, 0.14);
+      padding-top: 18px;
+    }
+
+    .wizard-actions .button[hidden] {
+      display: none;
+    }
+
+    .wizard-hint {
+      flex: 1 1 220px;
+      margin: 0;
+      color: rgba(222, 232, 255, 0.58);
+      font-size: 12px;
+      line-height: 1.45;
     }
 
     .form-note {
@@ -861,6 +1052,9 @@
 
       .steps,
       .service-menu,
+      .service-choice-grid,
+      .wizard-progress,
+      .process-preview,
       .form-row {
         grid-template-columns: 1fr;
       }
@@ -977,16 +1171,24 @@
 
     .section-copy h2,
     .section-copy h2 span,
-    .intake-form h2 {
+    .intake-form h2,
+    .form-step h3 {
       color: #071225 !important;
     }
 
     .section-copy p,
-    .service-pill span {
+    .service-pill span,
+    .step-helper,
+    .wizard-hint,
+    .form-note {
       color: rgba(32, 43, 66, 0.74) !important;
     }
 
     .service-pill,
+    .service-choice,
+    .selection-summary,
+    .process-preview div,
+    .wizard-step,
     .intake-form,
     .contact-card {
       border-color: rgba(170, 184, 214, 0.45) !important;
@@ -996,9 +1198,58 @@
     }
 
     .service-pill strong,
+    .service-choice strong,
+    .selection-summary strong,
+    .process-preview strong,
     .contact-card strong,
     .contact-card a {
       color: #071225 !important;
+    }
+
+    .service-choice span,
+    .selection-summary span,
+    .process-preview span {
+      color: rgba(32, 43, 66, 0.68) !important;
+    }
+
+    .service-choice::after {
+      border-color: rgba(21, 92, 255, 0.24);
+      color: rgba(32, 43, 66, 0.7);
+      background: rgba(246, 248, 253, 0.74);
+    }
+
+    .service-choice:has(input:checked) {
+      border-color: rgba(21, 92, 255, 0.58) !important;
+      background: linear-gradient(135deg, rgba(21, 92, 255, 0.12), rgba(255, 255, 255, 0.96)) !important;
+    }
+
+    .service-choice:has(input:checked)::after,
+    .wizard-step.is-active {
+      color: #fff !important;
+      background: linear-gradient(135deg, #155cff, #5d86ff) !important;
+    }
+
+    .intake label {
+      color: rgba(7, 18, 37, 0.74) !important;
+    }
+
+    .intake input,
+    .intake textarea,
+    .intake select {
+      border-color: rgba(170, 184, 214, 0.55) !important;
+      color: #071225 !important;
+      background: rgba(255, 255, 255, 0.86) !important;
+    }
+
+    .intake input::placeholder,
+    .intake textarea::placeholder {
+      color: rgba(32, 43, 66, 0.45);
+    }
+
+    .intake .button.secondary {
+      color: #071225;
+      background: rgba(255, 255, 255, 0.76);
+      border-color: rgba(170, 184, 214, 0.5);
     }
 
     .site-header {
@@ -1127,90 +1378,138 @@
         </div>
 
         <form class="intake-form" id="projectForm">
-          <div class="form-row">
-            <label>
-              Name
-              <input name="name" type="text" autocomplete="name" placeholder="Your name" required />
-            </label>
-            <label>
-              Brand / Organization
-              <input name="brand" type="text" placeholder="Brand name" />
-            </label>
+          <div class="wizard-progress" aria-label="Inquiry progress">
+            <span class="wizard-step is-active" data-step-indicator="1">1. Service</span>
+            <span class="wizard-step" data-step-indicator="2">2. Contact</span>
+            <span class="wizard-step" data-step-indicator="3">3. Details</span>
           </div>
 
-          <div class="form-row">
-            <label>
-              Email
-              <input name="email" type="email" autocomplete="email" placeholder="you@example.com" />
-            </label>
-            <label>
-              Phone / Messenger
-              <input name="contact" type="text" placeholder="Best contact detail" />
-            </label>
-          </div>
+          <section class="form-step is-active" data-form-step="1">
+            <h3>What should we help you with?</h3>
+            <p class="step-helper">Start with the closest service. If the work is a mix, choose Full Brand System. You can go back before sending.</p>
+            <div class="service-choice-grid" role="radiogroup" aria-label="Choose a service">
+              <label class="service-choice">
+                <input name="projectType" type="radio" value="PR and Reputation" required />
+                <strong>PR and Reputation</strong>
+                <span>Public image, credibility, visibility, message discipline, and reputation care.</span>
+              </label>
+              <label class="service-choice">
+                <input name="projectType" type="radio" value="Marketing and Social Media" required />
+                <strong>Marketing and Social Media</strong>
+                <span>Campaign direction, content rhythm, social management, and audience growth.</span>
+              </label>
+              <label class="service-choice">
+                <input name="projectType" type="radio" value="Call Center Solutions" required />
+                <strong>Call Center Solutions</strong>
+                <span>Inquiry flow, customer support scripts, lead handling, and response operations.</span>
+              </label>
+              <label class="service-choice">
+                <input name="projectType" type="radio" value="Websites and Digital Presence" required />
+                <strong>Websites and Digital Presence</strong>
+                <span>Premium websites, service flow, digital trust, and conversion-ready pages.</span>
+              </label>
+              <label class="service-choice">
+                <input name="projectType" type="radio" value="Digital Products" required />
+                <strong>Digital Products</strong>
+                <span>Music, Clone Studio, event voting, tabulation, ticketing, and AI assistants.</span>
+              </label>
+              <label class="service-choice">
+                <input name="projectType" type="radio" value="Full Brand System" required />
+                <strong>Full Brand System</strong>
+                <span>Strategy, visuals, public presence, digital systems, and launch support together.</span>
+              </label>
+              <label class="service-choice">
+                <input name="projectType" type="radio" value="Not Sure Yet" required />
+                <strong>Not Sure Yet</strong>
+                <span>Tell us what you are trying to achieve and we will recommend the right path.</span>
+              </label>
+            </div>
+          </section>
 
-          <label>
-            Best Way to Reach You
-            <select name="preferredContact">
-              <option>Email</option>
-              <option>Phone Call</option>
-              <option>Messenger</option>
-              <option>Instagram DM</option>
-              <option>WhatsApp / Viber</option>
-            </select>
-          </label>
+          <section class="form-step" data-form-step="2" hidden>
+            <h3>How should we reach you?</h3>
+            <p class="step-helper">Share one reliable contact method. Email or phone/Messenger is enough to continue.</p>
+            <div class="process-preview" aria-label="What happens after you send the inquiry">
+              <div><span>01</span><strong>We review the service path you selected.</strong></div>
+              <div><span>02</span><strong>We prepare the best consultation angle.</strong></div>
+              <div><span>03</span><strong>We reach out through your preferred contact.</strong></div>
+            </div>
+            <div class="form-row">
+              <label>
+                Name
+                <input name="name" type="text" autocomplete="name" placeholder="Your name" required />
+              </label>
+              <label>
+                Brand / Organization
+                <input name="brand" type="text" placeholder="Brand name" />
+              </label>
+            </div>
 
-          <label>
-            Project Type
-            <select name="projectType" required>
-              <option value="">Select one</option>
-              <option>PR and Reputation</option>
-              <option>Personal Strategist</option>
-              <option>Social Media Marketing</option>
-              <option>Social Media Management</option>
-              <option>Call Center Solutions</option>
-              <option>Websites and Digital Presence</option>
-              <option>Creative Production</option>
-              <option>Music Products</option>
-              <option>Clone Studio</option>
-              <option>Voting, Tabulation, and Ticketing Platform</option>
-              <option>Personal AI Assistant</option>
-              <option>Full Brand System</option>
-            </select>
-          </label>
+            <div class="form-row">
+              <label>
+                Email
+                <input name="email" type="email" autocomplete="email" placeholder="you@example.com" />
+              </label>
+              <label>
+                Phone / Messenger
+                <input name="contact" type="text" placeholder="Best contact detail" />
+              </label>
+            </div>
 
-          <div class="form-row">
             <label>
-              Timeline
-              <select name="timeline">
-                <option>As soon as possible</option>
-                <option>Within 2 to 4 weeks</option>
-                <option>Within 1 to 2 months</option>
-                <option>Still planning</option>
+              Best Way to Reach You
+              <select name="preferredContact">
+                <option>Email</option>
+                <option>Phone Call</option>
+                <option>Messenger</option>
+                <option>Instagram DM</option>
+                <option>WhatsApp / Viber</option>
               </select>
             </label>
+          </section>
+
+          <section class="form-step" data-form-step="3" hidden>
+            <h3>What should SENZ know first?</h3>
+            <p class="step-helper">A short note is enough. We will clarify the rest during consultation.</p>
+            <div class="selection-summary">
+              <span>Selected Service</span>
+              <strong id="serviceSummary">Choose a service first</strong>
+            </div>
+            <div class="form-row">
+              <label>
+                Timeline
+                <select name="timeline">
+                  <option>As soon as possible</option>
+                  <option>Within 2 to 4 weeks</option>
+                  <option>Within 1 to 2 months</option>
+                  <option>Still planning</option>
+                </select>
+              </label>
+              <label>
+                Budget Range
+                <select name="budget">
+                  <option>To be discussed</option>
+                  <option>Starter project</option>
+                  <option>Mid-scale campaign</option>
+                  <option>Premium build</option>
+                  <option>Long-term partnership</option>
+                </select>
+              </label>
+            </div>
+
             <label>
-              Budget Range
-              <select name="budget">
-                <option>To be discussed</option>
-                <option>Starter project</option>
-                <option>Mid-scale campaign</option>
-                <option>Premium build</option>
-                <option>Long-term partnership</option>
-              </select>
+              What do you want SENZ Strategic Communications to help you achieve?
+              <textarea name="message" placeholder="Example: We need a cleaner public image, a website, social direction, or a system for our next event." required></textarea>
             </label>
-          </div>
+          </section>
 
-          <label>
-            What do you want SENZ Strategic Communications to help you achieve?
-            <textarea name="message" placeholder="Tell us the goal, audience, event date, platform needs, and anything important." required></textarea>
-          </label>
-
-          <div class="form-actions">
-            <button class="button" type="submit">Submit Inquiry</button>
-            <a class="button secondary" href="get-started.html">Book a Consultation</a>
+          <div class="form-actions wizard-actions">
+            <button class="button secondary" type="button" id="prevStep" hidden>Back</button>
+            <p class="wizard-hint" id="wizardHint">Choose one service to begin.</p>
+            <button class="button" type="button" id="nextStep">Next</button>
+            <button class="button" type="submit" id="submitInquiry" hidden>Submit Inquiry</button>
           </div>
-          <p class="form-note">Submitting sends your brief directly to SENZ Strategic Communications. Email fallback remains available if the server is offline.</p>
+          <p class="form-note">Your inquiry goes directly to SENZ Strategic Communications. If the server is offline, the page will prepare the same brief by email.</p>
           <p class="status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -1266,7 +1565,7 @@
         });
       });
 
-      document.querySelectorAll('.hero > .shell, .section-copy, .intake-form, .service-pill, .contact-card').forEach((el) => {
+      document.querySelectorAll('.hero > .shell, .section-copy, .intake-form, .service-pill, .service-choice, .contact-card').forEach((el) => {
         el.classList.add('reveal');
       });
 
@@ -1322,10 +1621,117 @@
       window.addEventListener('resize', syncScrollExperience);
       syncScrollExperience();
 
+      const steps = Array.from(document.querySelectorAll('[data-form-step]'));
+      const indicators = Array.from(document.querySelectorAll('[data-step-indicator]'));
+      const prevStepButton = document.querySelector('#prevStep');
+      const nextStepButton = document.querySelector('#nextStep');
+      const submitInquiryButton = document.querySelector('#submitInquiry');
+      const wizardHint = document.querySelector('#wizardHint');
+      const serviceSummary = document.querySelector('#serviceSummary');
+      let currentStep = 1;
+
+      function selectedService() {
+        return form?.querySelector('input[name="projectType"]:checked')?.value || '';
+      }
+
+      function setStatus(message) {
+        if (status) status.textContent = message || '';
+      }
+
+      function updateWizard() {
+        steps.forEach((step) => {
+          const isActive = Number(step.dataset.formStep) === currentStep;
+          step.hidden = !isActive;
+          step.classList.toggle('is-active', isActive);
+        });
+        indicators.forEach((indicator) => {
+          indicator.classList.toggle('is-active', Number(indicator.dataset.stepIndicator) === currentStep);
+        });
+
+        const service = selectedService();
+        if (serviceSummary) serviceSummary.textContent = service || 'Choose a service first';
+        if (prevStepButton) prevStepButton.hidden = currentStep === 1;
+        if (nextStepButton) nextStepButton.hidden = currentStep === steps.length;
+        if (submitInquiryButton) submitInquiryButton.hidden = currentStep !== steps.length;
+
+        if (wizardHint) {
+          wizardHint.textContent = currentStep === 1
+            ? 'Choose one service to begin.'
+            : currentStep === 2
+              ? 'Back is always available if you need to change the service.'
+              : 'Review the service and send only when ready.';
+        }
+      }
+
+      function validateStep(stepNumber) {
+        if (!form) return true;
+        if (stepNumber === 1) {
+          if (!selectedService()) {
+            setStatus('Please choose one service first. If you are unsure, select "Not Sure Yet."');
+            return false;
+          }
+        }
+
+        if (stepNumber === 2) {
+          const name = form.elements['name'];
+          const email = form.elements['email'];
+          const contact = form.elements['contact'];
+          if (!String(name.value || '').trim()) {
+            name.focus();
+            setStatus('Please add your name so SENZ Strategic Communications knows who to contact.');
+            return false;
+          }
+          if (!String(email.value || '').trim() && !String(contact.value || '').trim()) {
+            email.focus();
+            setStatus('Please provide either an email or phone/Messenger contact.');
+            return false;
+          }
+          if (email.value && !email.checkValidity()) {
+            email.focus();
+            setStatus('Please enter a valid email address, or leave email blank and use phone/Messenger instead.');
+            return false;
+          }
+        }
+
+        if (stepNumber === 3) {
+          const message = form.elements['message'];
+          if (!String(message.value || '').trim()) {
+            message.focus();
+            setStatus('Please add a short note about what you want to achieve.');
+            return false;
+          }
+        }
+
+        setStatus('');
+        return true;
+      }
+
+      form?.querySelectorAll('input[name="projectType"]').forEach((input) => {
+        input.addEventListener('change', () => {
+          if (serviceSummary) serviceSummary.textContent = selectedService();
+          setStatus('');
+        });
+      });
+
+      nextStepButton?.addEventListener('click', () => {
+        if (!validateStep(currentStep)) return;
+        currentStep = Math.min(steps.length, currentStep + 1);
+        updateWizard();
+      });
+
+      prevStepButton?.addEventListener('click', () => {
+        currentStep = Math.max(1, currentStep - 1);
+        setStatus('');
+        updateWizard();
+      });
+
+      updateWizard();
+
       form?.addEventListener('submit', async (event) => {
         event.preventDefault();
+        if (!validateStep(1) || !validateStep(2) || !validateStep(3)) return;
         const data = new FormData(form);
-        const submitButton = form.querySelector('button[type="submit"]');
+        const submitButton = submitInquiryButton || form.querySelector('button[type="submit"]');
         const payload = Object.fromEntries(data.entries());
         if (!String(data.get('email') || '').trim() && !String(data.get('contact') || '').trim()) {
           status.textContent = 'Please provide either an email or phone/Messenger contact so SENZ Strategic Communications can reach you.';
@@ -1367,6 +1773,8 @@
           const agent = result.assignedAgent ? ` Routed to ${result.assignedAgent.label}.` : '';
           status.textContent = `Inquiry received. Reference: ${result.id}.${agent}`;
           form.reset();
+          currentStep = 1;
+          updateWizard();
         } catch (error) {
           status.textContent = 'Server unavailable. Opening your email app with the project brief.';
           window.location.href = mailto;
