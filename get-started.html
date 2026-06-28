@@ -1296,6 +1296,204 @@
         font-size: 20px !important;
       }
     }
+
+    /* Get Started page remake */
+    .hero {
+      min-height: 520px;
+      padding: 76px 0 42px;
+    }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 0.82fr) minmax(320px, 0.42fr);
+    }
+
+    .hero-panel {
+      align-self: stretch;
+    }
+
+    .intake {
+      padding: 54px 0 18px;
+      background:
+        linear-gradient(180deg, rgba(247, 250, 255, 0), rgba(247, 250, 255, 0.98) 12%, rgba(247, 250, 255, 0.98));
+    }
+
+    .intake-grid {
+      grid-template-columns: minmax(0, 0.46fr) minmax(420px, 0.74fr);
+      gap: clamp(22px, 4vw, 48px);
+    }
+
+    .section-copy {
+      position: sticky;
+      top: 112px;
+      border: 1px solid rgba(170, 184, 214, 0.42);
+      border-radius: 22px;
+      padding: clamp(22px, 3vw, 32px);
+      color: #071225;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 24px 70px rgba(31, 48, 82, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .section-copy h2 {
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1;
+    }
+
+    .section-copy p {
+      color: rgba(32, 43, 66, 0.7);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .service-menu {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .service-pill {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 12px;
+      align-items: start;
+      border-color: rgba(170, 184, 214, 0.44);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.66);
+    }
+
+    .service-pill::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      margin-top: 4px;
+      border-radius: 999px;
+      background: #155cff;
+      box-shadow: 0 0 0 5px rgba(21, 92, 255, 0.1);
+    }
+
+    .service-pill span {
+      grid-column: 2;
+      margin-top: 4px;
+    }
+
+    .intake-form {
+      border-color: rgba(170, 184, 214, 0.48);
+      border-radius: 26px;
+      color: #071225;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(21, 92, 255, 0.1), transparent 18rem),
+        rgba(255, 255, 255, 0.92);
+      box-shadow: 0 30px 90px rgba(31, 48, 82, 0.12);
+    }
+
+    .wizard-progress {
+      padding: 8px;
+      border: 1px solid rgba(170, 184, 214, 0.42);
+      border-radius: 999px;
+      background: rgba(246, 248, 253, 0.78);
+    }
+
+    .wizard-step {
+      border-color: transparent;
+      color: rgba(32, 43, 66, 0.58);
+      background: transparent;
+    }
+
+    .form-step h3 {
+      color: #071225;
+      font-size: clamp(28px, 3vw, 40px);
+    }
+
+    .service-choice-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .service-choice {
+      min-height: 154px;
+      border-color: rgba(170, 184, 214, 0.48);
+      border-radius: 18px;
+      padding: 20px;
+      color: #071225;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 248, 253, 0.8));
+      box-shadow: 0 16px 40px rgba(31, 48, 82, 0.06);
+    }
+
+    .service-choice::before {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 22px;
+      height: 22px;
+      border: 1px solid rgba(21, 92, 255, 0.26);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.88);
+    }
+
+    .service-choice:has(input:checked)::before {
+      border-color: #155cff;
+      background: #155cff;
+      box-shadow: inset 0 0 0 5px #fff, 0 0 0 5px rgba(21, 92, 255, 0.12);
+    }
+
+    .selection-summary {
+      border-color: rgba(21, 92, 255, 0.2);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(21, 92, 255, 0.08), rgba(255, 255, 255, 0.86));
+    }
+
+    .selected-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .selected-list span {
+      border: 1px solid rgba(21, 92, 255, 0.22);
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: #071225 !important;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .process-preview {
+      grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+      align-items: center;
+    }
+
+    .direct-contact {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.64);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .intake-grid,
+      .service-choice-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .section-copy {
+        position: relative;
+        top: auto;
+      }
+    }
   </style>
   <link rel="stylesheet" href="components/ai-chat.css" />
 </head>
@@ -1349,14 +1547,12 @@
       <div class="shell intake-grid">
         <div class="section-copy">
           <p class="eyebrow">Project Intake</p>
-          <h2>Choose the kind of work you want SENZ Strategic Communications to build.</h2>
-          <p>Pick the closest category. For combined work, choose "Full Brand System."</p>
+          <h2>A simple consultation path, built around what you need.</h2>
+          <p>Select all the services that fit. SENZ Strategic Communications will review the combination and recommend the cleanest next move.</p>
           <div class="service-menu" aria-label="SENZ Strategic Communications project categories">
-            <div class="service-pill"><strong>PR and Public Image</strong><span>Visibility, reputation, narrative, leadership presence.</span></div>
-            <div class="service-pill"><strong>Marketing and Social</strong><span>Campaign systems, content direction, management.</span></div>
-            <div class="service-pill"><strong>Call Center Solutions</strong><span>Customer inquiry flow, support scripts, lead handling.</span></div>
-            <div class="service-pill"><strong>Digital Products</strong><span>Music, Clone Studio, event platforms, AI assistants.</span></div>
-            <div class="service-pill"><strong>Websites and Creative</strong><span>Premium websites, production, visual direction.</span></div>
+            <div class="service-pill"><strong>1. Choose services</strong><span>Pick one or several. Nothing moves until you press Next.</span></div>
+            <div class="service-pill"><strong>2. Add contact details</strong><span>Name plus email, phone, Messenger, or social handle is enough.</span></div>
+            <div class="service-pill"><strong>3. Send a short goal</strong><span>We keep the form light and clarify the rest during consultation.</span></div>
           </div>
           <div class="direct-contact">
             <div class="contact-card">
@@ -1387,40 +1583,46 @@
 
           <section class="form-step is-active" data-form-step="1">
             <h3>What should we help you with?</h3>
-            <p class="step-helper">Start with the closest service. If the work is a mix, choose Full Brand System. You can go back before sending.</p>
-            <div class="service-choice-grid" role="radiogroup" aria-label="Choose a service">
+            <p class="step-helper">Select one or more services. This page will not jump forward until you click Next.</p>
+            <input id="projectType" name="projectType" type="hidden" required />
+            <div class="service-choice-grid" role="group" aria-label="Choose one or more services">
               <label class="service-choice">
-                <input name="projectType" type="radio" value="PR and Reputation" required />
+                <input name="serviceOptions" type="checkbox" value="PR and Public Image" />
                 <strong>PR and Reputation</strong>
                 <span>Public image, credibility, visibility, message discipline, and reputation care.</span>
               </label>
               <label class="service-choice">
-                <input name="projectType" type="radio" value="Marketing and Social Media" required />
+                <input name="serviceOptions" type="checkbox" value="Marketing and Social Media" />
                 <strong>Marketing and Social Media</strong>
                 <span>Campaign direction, content rhythm, social management, and audience growth.</span>
               </label>
               <label class="service-choice">
-                <input name="projectType" type="radio" value="Call Center Solutions" required />
+                <input name="serviceOptions" type="checkbox" value="Call Center Solutions" />
                 <strong>Call Center Solutions</strong>
                 <span>Inquiry flow, customer support scripts, lead handling, and response operations.</span>
               </label>
               <label class="service-choice">
-                <input name="projectType" type="radio" value="Websites and Digital Presence" required />
+                <input name="serviceOptions" type="checkbox" value="Websites and Digital Presence" />
                 <strong>Websites and Digital Presence</strong>
                 <span>Premium websites, service flow, digital trust, and conversion-ready pages.</span>
               </label>
               <label class="service-choice">
-                <input name="projectType" type="radio" value="Digital Products" required />
+                <input name="serviceOptions" type="checkbox" value="Digital Products" />
                 <strong>Digital Products</strong>
                 <span>Music, Clone Studio, event voting, tabulation, ticketing, and AI assistants.</span>
               </label>
               <label class="service-choice">
-                <input name="projectType" type="radio" value="Full Brand System" required />
+                <input name="serviceOptions" type="checkbox" value="Creative Production" />
+                <strong>Creative Production</strong>
+                <span>Visual direction, campaign assets, photo/video planning, and launch-ready materials.</span>
+              </label>
+              <label class="service-choice">
+                <input name="serviceOptions" type="checkbox" value="Full Brand System" />
                 <strong>Full Brand System</strong>
                 <span>Strategy, visuals, public presence, digital systems, and launch support together.</span>
               </label>
               <label class="service-choice">
-                <input name="projectType" type="radio" value="Not Sure Yet" required />
+                <input name="serviceOptions" type="checkbox" value="Not Sure Yet" />
                 <strong>Not Sure Yet</strong>
                 <span>Tell us what you are trying to achieve and we will recommend the right path.</span>
               </label>
@@ -1473,8 +1675,9 @@
             <h3>What should SENZ know first?</h3>
             <p class="step-helper">A short note is enough. We will clarify the rest during consultation.</p>
             <div class="selection-summary">
-              <span>Selected Service</span>
-              <strong id="serviceSummary">Choose a service first</strong>
+              <span>Selected Services</span>
+              <strong id="serviceSummary">Choose at least one service first</strong>
+              <div class="selected-list" id="selectedList" aria-label="Selected service list"></div>
             </div>
             <div class="form-row">
               <label>
@@ -1506,7 +1709,7 @@
 
           <div class="form-actions wizard-actions">
             <button class="button secondary" type="button" id="prevStep" hidden>Back</button>
-            <p class="wizard-hint" id="wizardHint">Choose one service to begin.</p>
+            <p class="wizard-hint" id="wizardHint">Choose one or more services, then click Next.</p>
             <button class="button" type="button" id="nextStep">Next</button>
             <button class="button" type="submit" id="submitInquiry" hidden>Submit Inquiry</button>
           </div>
@@ -1629,10 +1832,29 @@
       const submitInquiryButton = document.querySelector('#submitInquiry');
       const wizardHint = document.querySelector('#wizardHint');
       const serviceSummary = document.querySelector('#serviceSummary');
+      const selectedList = document.querySelector('#selectedList');
+      const projectTypeInput = document.querySelector('#projectType');
       let currentStep = 1;
 
-      function selectedService() {
-        return form?.querySelector('input[name="projectType"]:checked')?.value || '';
+      function selectedServices() {
+        return Array.from(form?.querySelectorAll('input[name="serviceOptions"]:checked') || [])
+          .map((input) => input.value);
+      }
+
+      function syncSelectedServices() {
+        const services = selectedServices();
+        const serviceText = services.join(', ');
+        if (projectTypeInput) projectTypeInput.value = serviceText;
+        if (serviceSummary) serviceSummary.textContent = serviceText || 'Choose at least one service first';
+        if (selectedList) {
+          selectedList.replaceChildren();
+          (services.length ? services : ['No service selected yet']).forEach((service) => {
+            const chip = document.createElement('span');
+            chip.textContent = service;
+            selectedList.appendChild(chip);
+          });
+        }
+        return services;
       }
 
       function setStatus(message) {
@@ -1649,26 +1871,27 @@
           indicator.classList.toggle('is-active', Number(indicator.dataset.stepIndicator) === currentStep);
         });
 
-        const service = selectedService();
-        if (serviceSummary) serviceSummary.textContent = service || 'Choose a service first';
+        const services = syncSelectedServices();
         if (prevStepButton) prevStepButton.hidden = currentStep === 1;
         if (nextStepButton) nextStepButton.hidden = currentStep === steps.length;
         if (submitInquiryButton) submitInquiryButton.hidden = currentStep !== steps.length;
 
         if (wizardHint) {
           wizardHint.textContent = currentStep === 1
-            ? 'Choose one service to begin.'
+            ? services.length
+              ? `${services.length} selected. Click Next when ready.`
+              : 'Choose one or more services, then click Next.'
             : currentStep === 2
-              ? 'Back is always available if you need to change the service.'
-              : 'Review the service and send only when ready.';
+              ? 'Back is always available if you need to change the services.'
+              : 'Review the selected services and send only when ready.';
         }
       }
 
       function validateStep(stepNumber) {
         if (!form) return true;
         if (stepNumber === 1) {
-          if (!selectedService()) {
-            setStatus('Please choose one service first. If you are unsure, select "Not Sure Yet."');
+          if (!selectedServices().length) {
+            setStatus('Please choose at least one service first. If you are unsure, select "Not Sure Yet."');
             return false;
           }
         }
@@ -1707,9 +1930,10 @@
         return true;
       }
 
-      form?.querySelectorAll('input[name="projectType"]').forEach((input) => {
+      form?.querySelectorAll('input[name="serviceOptions"]').forEach((input) => {
         input.addEventListener('change', () => {
-          if (serviceSummary) serviceSummary.textContent = selectedService();
+          syncSelectedServices();
+          updateWizard();
           setStatus('');
         });
       });
@@ -1733,7 +1957,9 @@
         if (!validateStep(1) || !validateStep(2) || !validateStep(3)) return;
         const data = new FormData(form);
         const submitButton = submitInquiryButton || form.querySelector('button[type="submit"]');
+        syncSelectedServices();
         const payload = Object.fromEntries(data.entries());
+        payload.projectType = selectedServices().join(', ');
         if (!String(data.get('email') || '').trim() && !String(data.get('contact') || '').trim()) {
           status.textContent = 'Please provide either an email or phone/Messenger contact so SENZ Strategic Communications can reach you.';
           return;
@@ -1746,14 +1972,14 @@
           `Email: ${data.get('email') || ''}`,
           `Phone / Messenger: ${data.get('contact') || ''}`,
           `Preferred Contact: ${data.get('preferredContact') || ''}`,
-          `Project Type: ${data.get('projectType') || ''}`,
+          `Selected Services: ${payload.projectType || ''}`,
           `Timeline: ${data.get('timeline') || ''}`,
           `Budget Range: ${data.get('budget') || ''}`,
           '',
           'Project Goal:',
           data.get('message') || ''
         ];
-        const subject = `SENZ Strategic Communications Project Inquiry - ${data.get('projectType') || 'New Project'}`;
+        const subject = `SENZ Strategic Communications Project Inquiry - ${payload.projectType || 'New Project'}`;
         const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
 
         status.textContent = 'Sending your inquiry...';
