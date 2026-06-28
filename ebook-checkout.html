@@ -432,6 +432,7 @@
     </div>
   </footer>
 
+  <script src="components/site-config.js"></script>
   <script>
     (() => {
       const ebooks = [
@@ -463,6 +464,11 @@
       const price = document.querySelector('#selectedPrice');
       const form = document.querySelector('#ebookCheckout');
       const status = document.querySelector('#orderStatus');
+      const apiBase = String(window.SENZ_API_BASE_URL || '').replace(/\/$/, '');
+
+      function apiUrl(path) {
+        return `${apiBase}${path}`;
+      }
 
       function formatPeso(value) {
         return `PHP ${Number(value || 0).toLocaleString('en-PH')}`;
@@ -516,7 +522,7 @@
         setStatus('Submitting your payment details. Ebook access remains locked until verification.');
 
         try {
-          const response = await fetch('/api/ebook-orders', {
+          const response = await fetch(apiUrl('/api/ebook-orders'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)

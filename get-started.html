@@ -1746,6 +1746,7 @@
     </div>
   </footer>
 
+  <script src="components/site-config.js"></script>
   <script>
     (() => {
       const body = document.body;
@@ -1753,7 +1754,12 @@
       const toggle = document.querySelector('.mobile-toggle');
       const form = document.querySelector('#projectForm');
       const status = document.querySelector('#formStatus');
+      const apiBase = String(window.SENZ_API_BASE_URL || '').replace(/\/$/, '');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function apiUrl(path) {
+        return `${apiBase}${path}`;
+      }
 
       toggle?.addEventListener('click', () => {
         const isOpen = nav.classList.toggle('is-open');
@@ -1986,7 +1992,7 @@
         if (submitButton) submitButton.disabled = true;
 
         try {
-          const response = await fetch('/api/inquiries', {
+          const response = await fetch(apiUrl('/api/inquiries'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
