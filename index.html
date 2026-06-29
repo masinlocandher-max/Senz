@@ -4071,6 +4071,23 @@
       gap: 12px;
     }
 
+    .tour-actions.is-floating {
+      position: fixed;
+      right: clamp(18px, 3vw, 34px);
+      bottom: 102px;
+      z-index: 92;
+      display: grid;
+      gap: 10px;
+      justify-items: end;
+    }
+
+    .tour-actions.is-floating .button {
+      min-height: 42px;
+      padding-inline: 14px;
+      font-size: 11px;
+      box-shadow: 0 16px 42px rgba(31, 48, 82, 0.18);
+    }
+
     .tour-menu a,
     .tour-tag,
     .tour-ghost {
@@ -4094,6 +4111,77 @@
     .is-dark .tour-tag,
     .is-dark .tour-ghost {
       color: #f7f9ff;
+      border-color: rgba(225, 233, 255, 0.22);
+      background: rgba(3, 12, 31, 0.58);
+    }
+
+    .tour-menu.is-button-grid,
+    .help-grid,
+    .brand-kit-grid,
+    .filter-tabs,
+    .scene-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .scene-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tour-menu.is-button-grid a,
+    .help-option,
+    .brand-kit-grid span,
+    .filter-tabs button,
+    .scene-list li {
+      justify-content: flex-start;
+      min-height: 64px;
+      border: 1px solid rgba(170, 184, 214, 0.46);
+      border-radius: 18px;
+      gap: 12px;
+      padding: 14px;
+      color: #071225;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 14px 34px rgba(31, 48, 82, 0.08);
+      text-align: left;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .help-option,
+    .filter-tabs button {
+      cursor: pointer;
+    }
+
+    .help-option:hover,
+    .filter-tabs button:hover,
+    .tour-menu.is-button-grid a:hover {
+      border-color: rgba(21, 92, 255, 0.42);
+      transform: translateY(-2px);
+    }
+
+    .tour-icon {
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      color: #155cff;
+      background: rgba(21, 92, 255, 0.1);
+      font-weight: 950;
+    }
+
+    .is-dark .scene-list li,
+    .is-dark .help-option,
+    .is-dark .filter-tabs button,
+    .is-dark .tour-menu.is-button-grid a {
+      color: rgba(247, 249, 255, 0.9);
       border-color: rgba(225, 233, 255, 0.22);
       background: rgba(3, 12, 31, 0.58);
     }
@@ -4249,6 +4337,80 @@
       cursor: pointer;
     }
 
+    .audio-dock {
+      position: fixed;
+      left: clamp(16px, 3vw, 28px);
+      bottom: clamp(16px, 3vw, 28px);
+      z-index: 94;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(170, 184, 214, 0.42);
+      border-radius: 999px;
+      padding: 9px 12px;
+      color: #071225;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 18px 48px rgba(31, 48, 82, 0.14);
+      backdrop-filter: blur(16px);
+    }
+
+    .audio-dock button {
+      border: 0;
+      border-radius: 999px;
+      padding: 9px 12px;
+      color: #fff;
+      background: #155cff;
+      font-size: 11px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .audio-dock input {
+      width: 86px;
+      accent-color: #155cff;
+    }
+
+    .tour-help-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(7, 18, 37, 0.36);
+      backdrop-filter: blur(16px);
+    }
+
+    .tour-help-modal.is-open {
+      display: grid;
+    }
+
+    .tour-help-card {
+      width: min(520px, 100%);
+      border: 1px solid rgba(225, 233, 255, 0.5);
+      border-radius: 24px;
+      padding: 26px;
+      color: #071225;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 34px 100px rgba(7, 18, 37, 0.24);
+    }
+
+    .tour-help-card h3 {
+      margin: 0 0 10px;
+      color: #071225;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+    }
+
+    .tour-help-card p {
+      color: rgba(32, 43, 66, 0.76);
+      line-height: 1.65;
+    }
+
+    .tour-help-card .tour-actions {
+      margin-top: 20px;
+    }
+
     .tour-progress {
       position: fixed;
       left: 0;
@@ -4272,7 +4434,12 @@
       .tour-grid,
       .service-tour-grid,
       .gallery-grid,
-      .faq-grid {
+      .faq-grid,
+      .tour-menu.is-button-grid,
+      .help-grid,
+      .brand-kit-grid,
+      .filter-tabs,
+      .scene-list {
         grid-template-columns: 1fr;
       }
 
@@ -4281,6 +4448,10 @@
       }
 
       .monitor-logo {
+        display: none;
+      }
+
+      .tour-actions.is-floating {
         display: none;
       }
     }
@@ -4301,6 +4472,12 @@
 
       .tour-section.is-dark::after {
         background: linear-gradient(180deg, rgba(2, 7, 19, 0.86), rgba(2, 7, 19, 0.62) 56%, rgba(2, 7, 19, 0.22));
+      }
+
+      .audio-dock {
+        right: 14px;
+        left: 14px;
+        justify-content: space-between;
       }
     }
   </style>
@@ -4333,6 +4510,7 @@
         <a href="#community">Community Works</a>
         <a href="#shop">Shop</a>
         <a href="#faq">FAQ</a>
+        <a href="get-started.html">Talk to Reception</a>
       </nav>
       <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
     </div>
@@ -4779,23 +4957,21 @@
     <div class="shell footer-inner">
       <div class="footer-brandline">
         <strong>SENZ Strategic Communications</strong>
-        <span>@senz.pr on TikTok, Instagram, Facebook, and LinkedIn</span>
+        <span>Park Triangle Corporate Plaza, North Tower, 32nd Street Corner 11th Ave., Bonifacio Global City, Taguig</span>
+        <span>All rights reserved.</span>
       </div>
       <div class="footer-socials" aria-label="SENZ Strategic Communications contact links">
         <a href="mailto:info.senz.pr@gmail.com" aria-label="Email SENZ Strategic Communications">
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span><span class="social-text">Email</span>
         </a>
-        <a href="https://www.tiktok.com/@senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications TikTok">
+        <a href="https://www.tiktok.com/@senz.pr?_r=1&_t=ZS-97bs7BHj1Ov" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications TikTok">
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4v10.1a4.9 4.9 0 1 1-4.9-4.9"/><path d="M14 4c1.1 3.2 3.2 5 6 5.2"/></svg></span><span class="social-text">TikTok @senz.pr</span>
         </a>
-        <a href="https://www.instagram.com/senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Instagram">
+        <a href="https://www.instagram.com/senz.pr?igsh=MWxxamFrZmJqc28wcw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Instagram">
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3.2"/><circle cx="16.4" cy="7.7" r=".8"/></svg></span><span class="social-text">IG @senz.pr</span>
         </a>
-        <a href="https://www.facebook.com/senz.pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Facebook">
+        <a href="https://www.facebook.com/share/1BM7Etwi9R/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Facebook">
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3.2C10.7 4 9 5.8 9 8.7V11H6v4h3v5h4v-5h3.1l.6-4H13V9.1c0-.7.4-1.1 1-1.1Z"/></svg></span><span class="social-text">FB @senz.pr</span>
-        </a>
-        <a href="https://www.linkedin.com/company/senz-pr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications LinkedIn">
-          <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 10v8M6.5 6v.01M11 18v-8M11 13.8c0-2.5 1.3-4 3.4-4 2 0 3.1 1.3 3.1 3.8V18"/></svg></span><span class="social-text">LinkedIn @senz.pr</span>
         </a>
       </div>
     </div>
@@ -5237,7 +5413,7 @@
       if (!main) return;
 
       main.innerHTML = `
-        <section id="top" class="tour-section is-dark" style="--tour-image: url('assets/senz-tour-reception-hero.png');">
+        <section id="top" class="tour-section" style="--tour-image: url('assets/senz-tour-reception-hero.png');">
           <div class="tour-photo" aria-hidden="true"></div>
           <div class="monitor-logo" aria-hidden="true">
             <img src="assets/senz-original-mark.png" alt="" />
@@ -5245,23 +5421,54 @@
           </div>
           <div class="tour-shell tour-grid">
             <div class="tour-copy">
-              <p class="tour-kicker">Welcome to SENZ</p>
-              <h1 class="tour-title">How can we help?</h1>
-              <p class="tour-lead">Choose a service, ask a quick question, or send us your project details.</p>
+              <p class="tour-kicker">Mabuhay! Ready to make SENZ online?</p>
+              <h1 class="tour-title">Welcome to SENZ.</h1>
+              <p class="tour-lead">How can we help you today? Strategic communications, creative direction, digital presence, and public visibility for brands that want to be clearer, sharper, and harder to ignore.</p>
               <div class="tour-actions">
                 <a class="button" href="#services">Choose Services</a>
-                <a class="button secondary" href="get-started.html">Work With Us</a>
-                <button class="button secondary" type="button" data-open-chat-support>Chat Support</button>
-                <button class="button secondary audio-control" type="button" data-audio-toggle>Ambient Music</button>
+                <a class="button secondary" href="get-started.html">Talk to Reception</a>
+                <button class="button secondary" type="button" data-open-chat-support>Start with AI Chat</button>
               </div>
-              <div class="tour-menu" aria-label="Tour menu">
-                <a href="#about">About Us</a>
-                <a href="#services">Services</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#community">Community Works</a>
-                <a href="#shop">Shop</a>
-                <a href="#faq">FAQ</a>
+              <div class="tour-menu is-button-grid" aria-label="Tour menu">
+                <a href="#help"><span class="tour-icon">?</span> Help Menu</a>
+                <a href="#about"><span class="tour-icon">01</span> About Us</a>
+                <a href="#services"><span class="tour-icon">02</span> Services</a>
+                <a href="#gallery"><span class="tour-icon">03</span> Gallery</a>
+                <a href="#community"><span class="tour-icon">04</span> Community Works</a>
+                <a href="#shop"><span class="tour-icon">05</span> Shop</a>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="help" class="tour-section" style="--tour-image: url('assets/senz-tour-reception-hero.png');">
+          <div class="tour-photo" aria-hidden="true"></div>
+          <div class="tour-shell">
+            <div class="tour-copy">
+              <p class="tour-kicker">Reception Help Menu</p>
+              <h2 class="tour-title">What do you need help with?</h2>
+              <p class="tour-lead">Choose the closest need. We will guide you to the right service path without making the first step overwhelming.</p>
+            </div>
+            <div class="help-grid">
+              <button class="help-option" data-help-title="A stronger brand" data-help-body="We can help clarify your positioning, message, offer, public image, and visual direction so people understand your value faster."><span class="tour-icon">B</span>I need a stronger brand.</button>
+              <button class="help-option" data-help-title="Website and digital presence" data-help-body="We can shape a website that explains who you are, what you offer, and why people should trust you."><span class="tour-icon">W</span>I need a website.</button>
+              <button class="help-option" data-help-title="Content system" data-help-body="We can plan content pillars, captions, campaign rhythm, and social direction so your brand shows up with purpose."><span class="tour-icon">C</span>I need content.</button>
+              <button class="help-option" data-help-title="PR and visibility" data-help-body="We can guide public messaging, reputation signals, media angles, and campaign communication."><span class="tour-icon">PR</span>I need PR.</button>
+              <button class="help-option" data-help-title="Creative production" data-help-body="We can plan photo, video, scripts, campaign visuals, and creative supervision around your message."><span class="tour-icon">P</span>I need creative production.</button>
+              <button class="help-option" data-help-title="Brand clarity" data-help-body="If the brand feels unclear, we begin with clarity: audience, offer, message, proof, and next action."><span class="tour-icon">CL</span>I need help making my brand clearer.</button>
+              <button class="help-option" data-help-title="Not sure yet" data-help-body="That is okay. Start with a short inquiry and we will recommend the cleanest route."><span class="tour-icon">...</span>I am not sure yet.</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="lounge" class="tour-section" style="--tour-image: url('assets/senz-tour-waiting-lounge.png');">
+          <div class="tour-photo" aria-hidden="true"></div>
+          <div class="tour-shell tour-grid">
+            <div class="tour-copy">
+              <p class="tour-kicker">Waiting Lounge</p>
+              <h2 class="tour-title">Before people meet you, they meet your brand online.</h2>
+              <p class="tour-lead">Your website, content, visuals, and public presence act like your digital reception. If they feel unclear, people leave before they understand your value.</p>
+              <div class="tour-actions"><a class="button" href="#services">See How SENZ Helps</a></div>
             </div>
           </div>
         </section>
@@ -5271,13 +5478,15 @@
           <div class="tour-shell tour-grid">
             <div class="tour-copy">
               <p class="tour-kicker">About Us</p>
-              <h2 class="tour-title">A founder-led office with a clear standard.</h2>
-              <p class="tour-lead">SENZ Strategic Communications helps brands, leaders, and community-driven projects become easier to understand, trust, and remember.</p>
+              <h2 class="tour-title">About SENZ</h2>
+              <p class="tour-lead">SENZ is a strategic communications and creative direction studio helping brands, people, and organizations become clearer, more credible, and more visible.</p>
               <div class="tour-tags">
-                <span class="tour-tag">Strategic Communications</span>
-                <span class="tour-tag">Digital Solutions</span>
-                <span class="tour-tag">Public Presence</span>
+                <span class="tour-tag">Led by Francine Marie Bautista</span>
+                <span class="tour-tag">Creative Director</span>
+                <span class="tour-tag">Strategist</span>
+                <span class="tour-tag">Storyteller</span>
               </div>
+              <div class="tour-actions"><a class="button" href="about.html">Meet the Mind Behind SENZ</a></div>
             </div>
             <article class="tour-card">
               <img src="assets/senz-founder-hero-white.jpg" alt="Francine Marie Bautista, Founder and CEO of SENZ Strategic Communications" />
@@ -5289,21 +5498,65 @@
           </div>
         </section>
 
-        <section id="services" class="tour-section" style="--tour-image: url('assets/senz-tour-production-studio.png');">
+        <section id="strategy" class="tour-section" style="--tour-image: url('assets/senz-tour-strategy-wall.png');">
+          <div class="tour-photo" aria-hidden="true"></div>
+          <div class="tour-shell tour-grid">
+            <div class="tour-copy">
+              <p class="tour-kicker">Strategy Wall</p>
+              <h2 class="tour-title">We do not start with decoration. We start with clarity.</h2>
+              <p class="tour-lead">SENZ helps organize how people see, understand, and remember your brand.</p>
+              <ul class="scene-list">
+                <li>Clarity before visibility.</li>
+                <li>Strategy before content.</li>
+                <li>Trust before attention.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="brand-kit" class="tour-section" style="--tour-image: url('assets/senz-tour-brand-kit-room.png');">
+          <div class="tour-photo" aria-hidden="true"></div>
+          <div class="tour-shell tour-grid">
+            <div class="tour-copy">
+              <p class="tour-kicker">SENZ Brand Kit</p>
+              <h2 class="tour-title">The visual and verbal system behind SENZ.</h2>
+              <p class="tour-lead">A clear brand is easier to trust, easier to remember, and easier to recognize. The SENZ Brand Kit brings together our logo system, colors, typography, tone, visual direction, and usage rules.</p>
+              <div class="brand-kit-grid">
+                <span>Logo System</span><span>Color Palette</span><span>Typography</span><span>Visual Language</span><span>Tone of Voice</span><span>Brand Applications</span>
+              </div>
+              <p class="tour-lead">Brand assets are available for approved partners, press, collaborators, and official SENZ projects.</p>
+              <div class="tour-actions"><a class="button" href="get-started.html">Request Brand Assets</a><a class="button secondary" href="#gallery">View Brand Guidelines</a></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="hospitality" class="tour-section" style="--tour-image: url('assets/senz-tour-waiting-lounge.png');">
+          <div class="tour-photo" aria-hidden="true"></div>
+          <div class="tour-shell tour-grid">
+            <div class="tour-copy">
+              <p class="tour-kicker">Hospitality Meeting Lounge</p>
+              <h2 class="tour-title">Professional, but never cold.</h2>
+              <p class="tour-lead">We guide clients with the calm, care, and attentiveness of hospitality. Clear directions, thoughtful service, and a smooth experience from inquiry to launch.</p>
+              <div class="tour-actions"><a class="button" href="get-started.html">Work With SENZ</a></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="services" class="tour-section" style="--tour-image: url('assets/senz-tour-production-area.png');">
           <div class="tour-photo" aria-hidden="true"></div>
           <div class="tour-shell">
             <div class="tour-copy">
-              <p class="tour-kicker">Service Menu</p>
+              <p class="tour-kicker">Production Area Entrance</p>
               <h2 class="tour-title">Choose where we can help.</h2>
-              <p class="tour-lead">A practical menu, not a long lecture. Pick a path and we will take it from there.</p>
+              <p class="tour-lead">Every service station is built around clarity, visibility, and a smoother path from interest to action.</p>
             </div>
             <div class="service-tour-grid" aria-label="SENZ Strategic Communications services">
-              <article class="tour-tile"><strong>PR and Public Image</strong><p>Reputation, visibility, credibility, and message discipline.</p></article>
-              <article class="tour-tile"><strong>Marketing and Social Media</strong><p>Campaign direction, content rhythm, and audience movement.</p></article>
-              <article class="tour-tile"><strong>Websites and Digital Presence</strong><p>Premium websites, service flow, and conversion-ready pages.</p></article>
-              <article class="tour-tile"><strong>Call Center Solutions</strong><p>Inquiry flow, support scripts, and response operations.</p></article>
-              <article class="tour-tile"><strong>Creative Production</strong><p>Visual direction, campaign assets, and production planning.</p></article>
-              <article class="tour-tile"><strong>Digital Products</strong><p>Music, Clone Studio, event platforms, ticketing, and Digital Assistants.</p></article>
+              <article class="tour-tile"><strong>Brand Strategy Room</strong><p>Positioning, messaging, brand direction, audience clarity, and offer structure.</p></article>
+              <article class="tour-tile"><strong>Website &amp; Digital Desk</strong><p>Landing pages, service pages, mobile-first design, and inquiry flow.</p></article>
+              <article class="tour-tile"><strong>Content Studio</strong><p>Content strategy, captions, reels concepts, campaign calendar, and visual planning.</p></article>
+              <article class="tour-tile"><strong>PR &amp; Communications Room</strong><p>Public messaging, media angles, reputation guidance, and statements.</p></article>
+              <article class="tour-tile"><strong>Creative Production Area</strong><p>Photoshoot direction, video concepts, scripts, and production supervision.</p></article>
+              <article class="tour-tile"><strong>Analytics &amp; Intelligence Panel</strong><p>Performance review, audience insights, audits, and recommendations.</p></article>
             </div>
             <div class="tour-actions" style="margin-top: 24px;">
               <a class="button" href="get-started.html">Work With Us</a>
@@ -5312,13 +5565,21 @@
           </div>
         </section>
 
-        <section id="gallery" class="tour-section" style="--tour-image: url('assets/senz-tour-gallery-community.png');">
+        <section id="brand-strategy" class="tour-section" style="--tour-image: url('assets/senz-tour-strategy-wall.png');"><div class="tour-photo" aria-hidden="true"></div><div class="tour-shell tour-grid"><div class="tour-copy"><p class="tour-kicker">Brand Strategy & Identity</p><h2 class="tour-title">For brands that need a sharper position.</h2><p class="tour-lead">For brands that need a clearer message and stronger public identity.</p><ul class="scene-list"><li>Positioning</li><li>Messaging</li><li>Brand direction</li><li>Visual identity guidance</li><li>Audience clarity</li><li>Offer structure</li></ul><div class="tour-actions"><a class="button" href="get-started.html">Build My Brand Strategy</a></div></div></div></section>
+        <section id="website" class="tour-section" style="--tour-image: url('assets/senz-tour-brand-kit-room.png');"><div class="tour-photo" aria-hidden="true"></div><div class="tour-shell tour-grid"><div class="tour-copy"><p class="tour-kicker">Website & Digital Presence</p><h2 class="tour-title">A website that explains who you are.</h2><p class="tour-lead">A website that explains what you offer and why people should trust you.</p><ul class="scene-list"><li>Landing pages</li><li>Website copy</li><li>Service pages</li><li>Mobile-first design</li><li>Inquiry flow</li><li>Digital credibility audit</li></ul><div class="tour-actions"><a class="button" href="get-started.html">Create My Website</a></div></div></div></section>
+        <section id="content" class="tour-section" style="--tour-image: url('assets/senz-tour-production-area.png');"><div class="tour-photo" aria-hidden="true"></div><div class="tour-shell tour-grid"><div class="tour-copy"><p class="tour-kicker">Content & Social Media</p><h2 class="tour-title">Show up with purpose.</h2><p class="tour-lead">Content systems that help your brand show up with purpose, not random posting.</p><ul class="scene-list"><li>Content strategy</li><li>Captions</li><li>Reels concepts</li><li>Campaign calendar</li><li>Posting direction</li><li>Visual content planning</li></ul><div class="tour-actions"><a class="button" href="get-started.html">Plan My Content</a></div></div></div></section>
+        <section id="pr" class="tour-section" style="--tour-image: url('assets/senz-tour-strategy-wall.png');"><div class="tour-photo" aria-hidden="true"></div><div class="tour-shell tour-grid"><div class="tour-copy"><p class="tour-kicker">PR & Strategic Communications</p><h2 class="tour-title">Be seen clearly.</h2><p class="tour-lead">For brands, leaders, and campaigns that need to be seen clearly and spoken about carefully.</p><ul class="scene-list"><li>PR strategy</li><li>Public messaging</li><li>Media angles</li><li>Reputation guidance</li><li>Statement writing</li><li>Campaign communication</li></ul><div class="tour-actions"><a class="button" href="get-started.html">Shape My Public Image</a></div></div></div></section>
+        <section id="production" class="tour-section" style="--tour-image: url('assets/senz-tour-production-area.png');"><div class="tour-photo" aria-hidden="true"></div><div class="tour-shell tour-grid"><div class="tour-copy"><p class="tour-kicker">Creative Production</p><h2 class="tour-title">Built around your message.</h2><p class="tour-lead">Photo, video, scripts, campaign visuals, and creative direction built around your message.</p><ul class="scene-list"><li>Photoshoot direction</li><li>Video concepts</li><li>Scriptwriting</li><li>Campaign visuals</li><li>Production planning</li><li>Creative supervision</li></ul><div class="tour-actions"><a class="button" href="get-started.html">Plan a Production</a></div></div></div></section>
+        <section id="analytics" class="tour-section" style="--tour-image: url('assets/senz-tour-shop-helpdesk.png');"><div class="tour-photo" aria-hidden="true"></div><div class="tour-shell tour-grid"><div class="tour-copy"><p class="tour-kicker">Analytics & Intelligence</p><h2 class="tour-title">Review what people see.</h2><p class="tour-lead">We review what people see, what they respond to, and what needs to become stronger.</p><ul class="scene-list"><li>Performance review</li><li>Audience insights</li><li>Content audit</li><li>Digital presence audit</li><li>Campaign analysis</li><li>Recommendation report</li></ul><div class="tour-actions"><a class="button" href="get-started.html">Review My Brand</a></div></div></div></section>
+
+        <section id="gallery" class="tour-section" style="--tour-image: url('assets/senz-tour-gallery-hallway.png');">
           <div class="tour-photo" aria-hidden="true"></div>
           <div class="tour-shell tour-grid">
             <div class="tour-copy">
-              <p class="tour-kicker">Gallery</p>
+              <p class="tour-kicker">Portfolio Hall</p>
               <h2 class="tour-title">A look around the work.</h2>
-              <p class="tour-lead">Campaigns, public moments, digital systems, and visual direction are organized here as the company grows.</p>
+              <p class="tour-lead">A look inside the work, visuals, campaigns, and creative direction shaped by SENZ.</p>
+              <div class="filter-tabs" aria-label="Gallery filters"><button>All</button><button>Websites</button><button>Branding</button><button>Campaigns</button><button>Photography</button><button>Social Media</button><button>PR</button></div>
               <div class="tour-actions">
                 <a class="button" href="get-started.html">Plan a Project</a>
               </div>
@@ -5336,10 +5597,11 @@
           <div class="tour-shell tour-grid">
             <div class="tour-copy">
               <p class="tour-kicker">Community Works</p>
-              <h2 class="tour-title">Women supporting women.</h2>
-              <p class="tour-lead">SENZ Strategic Communications supports causes that close gaps, build access, and help women show up for one another.</p>
+              <h2 class="tour-title">Beyond brands.</h2>
+              <p class="tour-lead">Beyond brands, SENZ supports stories, communities, culture, and public-interest projects that deserve clearer visibility.</p>
+              <div class="brand-kit-grid"><span>Cultural Projects</span><span>Community Campaigns</span><span>Training & Education</span><span>Tourism & Heritage</span><span>Youth Initiatives</span><span>Public Service</span></div>
               <div class="tour-actions">
-                <a class="button secondary" href="get-started.html">Connect With Us</a>
+                <a class="button secondary" href="get-started.html">Collaborate With SENZ</a>
               </div>
             </div>
             <article class="tour-panel">
@@ -5350,36 +5612,34 @@
           </div>
         </section>
 
-        <section id="shop" class="tour-section" style="--tour-image: url('assets/senz-tour-shop-faq.png');">
+        <section id="shop" class="tour-section" style="--tour-image: url('assets/senz-tour-shop-helpdesk.png');">
           <div class="tour-photo" aria-hidden="true"></div>
           <div class="tour-shell tour-grid">
             <div class="tour-copy">
-              <p class="tour-kicker">Shop</p>
-              <h2 class="tour-title">The shop opens soon.</h2>
-              <p class="tour-lead">Books, digital products, and selected resources will be connected through Shopify.</p>
+              <p class="tour-kicker">SENZ Shop Counter</p>
+              <h2 class="tour-title">SENZ Shop</h2>
+              <p class="tour-lead">Tools, guides, templates, and creative resources for brands and individuals building their public presence. The SENZ Shop is being prepared. Join the list for first access.</p>
               <div class="tour-actions">
-                <a class="button" href="get-started.html">Ask for Updates</a>
+                <a class="button" href="get-started.html">Join the List</a>
               </div>
             </div>
             <article class="tour-panel">
-              <h3>Coming Next</h3>
-              <p>Shopify checkout, product pages, and secure customer access will be added when the shop catalog is ready.</p>
+              <h3>Resource Categories</h3>
+              <p>The SENZ Brand Kit is a request-access resource, not a public free download.</p>
               <div class="tour-tags">
-                <span class="tour-tag">Books</span>
-                <span class="tour-tag">Digital Products</span>
-                <span class="tour-tag">Resources</span>
+                <span class="tour-tag">Brand Kits</span><span class="tour-tag">Website Templates</span><span class="tour-tag">Content Planners</span><span class="tour-tag">PR Templates</span><span class="tour-tag">Pageant Kits</span><span class="tour-tag">Digital Products</span>
               </div>
             </article>
           </div>
         </section>
 
-        <section id="faq" class="tour-section" style="--tour-image: url('assets/senz-tour-shop-faq.png');">
+        <section id="faq" class="tour-section" style="--tour-image: url('assets/senz-tour-shop-helpdesk.png');">
           <div class="tour-photo" aria-hidden="true"></div>
           <div class="tour-shell">
             <div class="tour-copy">
-              <p class="tour-kicker">FAQ</p>
-              <h2 class="tour-title">Before we begin.</h2>
-              <p class="tour-lead">Quick answers for first-time visitors.</p>
+              <p class="tour-kicker">FAQ Help Desk</p>
+              <h2 class="tour-title">How can we help?</h2>
+              <p class="tour-lead">Quick answers by category: Working With SENZ, Services, Pricing, Timelines, Revisions, Meetings, Deliverables, and Payments.</p>
             </div>
             <div class="faq-grid">
               <details class="faq-item" open><summary>What is included in Call Center Solutions?</summary><p>We help organize inquiry flow, customer scripts, response standards, lead handling, and the handoff process so customers are answered professionally.</p></details>
@@ -5390,11 +5650,29 @@
               <details class="faq-item"><summary>Can we combine services?</summary><p>Yes. Many projects combine PR, marketing, website, production, call center solutions, and digital products into one clear service path.</p></details>
             </div>
             <div class="tour-actions" style="margin-top: 24px;">
-              <a class="button" href="get-started.html">Work With Us</a>
-              <a class="button secondary" href="#top">Back to Top</a>
+              <button class="button" type="button" data-open-chat-support>AI Chat</button>
+              <a class="button secondary" href="get-started.html">Reception Call</a>
+              <a class="button secondary" href="get-started.html">Book Consultation</a>
             </div>
           </div>
         </section>
+        <div class="tour-actions is-floating" aria-label="Visitor controls">
+          <button class="button secondary" type="button" data-open-chat-support>AI Chat</button>
+          <a class="button secondary" href="get-started.html">Reception Call</a>
+          <a class="button" href="get-started.html">Book Consultation</a>
+        </div>
+        <div class="audio-dock" aria-label="Reception music controls">
+          <button type="button" data-audio-toggle>Play Reception Music</button>
+          <button type="button" data-audio-mute>Mute</button>
+          <input type="range" min="0" max="1" step="0.05" value="0.45" data-audio-volume aria-label="Reception music volume" />
+        </div>
+        <div class="tour-help-modal" aria-hidden="true" role="dialog" aria-modal="true">
+          <div class="tour-help-card" role="document">
+            <h3 data-help-modal-title>How can we help?</h3>
+            <p data-help-modal-body>Choose a service path and we will guide the next step.</p>
+            <div class="tour-actions"><a class="button" href="get-started.html">Continue</a><button class="button secondary" type="button" data-help-close>Close</button></div>
+          </div>
+        </div>
         <audio id="receptionAmbient" src="assets/reception-ambient.mp3" loop preload="none"></audio>
       `;
 
@@ -5453,10 +5731,41 @@
 
       const ambient = document.querySelector('#receptionAmbient');
       const audioToggle = document.querySelector('[data-audio-toggle]');
-      const chatSupportButton = document.querySelector('[data-open-chat-support]');
-      chatSupportButton?.addEventListener('click', () => {
-        document.querySelector('.senz-chat-button')?.click();
+      const audioMute = document.querySelector('[data-audio-mute]');
+      const audioVolume = document.querySelector('[data-audio-volume]');
+      const helpModal = document.querySelector('.tour-help-modal');
+      const helpTitle = document.querySelector('[data-help-modal-title]');
+      const helpBody = document.querySelector('[data-help-modal-body]');
+
+      document.querySelectorAll('[data-open-chat-support]').forEach((button) => {
+        button.addEventListener('click', () => {
+          document.querySelector('.senz-chat-button')?.click();
+        });
       });
+
+      document.querySelectorAll('.help-option').forEach((button) => {
+        button.addEventListener('click', () => {
+          if (!helpModal) return;
+          helpTitle.textContent = button.dataset.helpTitle || 'How can we help?';
+          helpBody.textContent = button.dataset.helpBody || 'Choose a service path and we will guide the next step.';
+          helpModal.classList.add('is-open');
+          helpModal.setAttribute('aria-hidden', 'false');
+        });
+      });
+
+      document.querySelector('[data-help-close]')?.addEventListener('click', () => {
+        helpModal?.classList.remove('is-open');
+        helpModal?.setAttribute('aria-hidden', 'true');
+      });
+
+      helpModal?.addEventListener('click', (event) => {
+        if (event.target === helpModal) {
+          helpModal.classList.remove('is-open');
+          helpModal.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      if (ambient && audioVolume) ambient.volume = Number(audioVolume.value || 0.45);
       audioToggle?.addEventListener('click', async () => {
         if (!ambient) return;
         try {
@@ -5465,10 +5774,23 @@
             audioToggle.textContent = 'Pause Music';
           } else {
             ambient.pause();
-            audioToggle.textContent = 'Ambient Music';
+            audioToggle.textContent = 'Play Reception Music';
           }
         } catch {
           audioToggle.textContent = 'Music File Pending';
+        }
+      });
+      audioMute?.addEventListener('click', () => {
+        if (!ambient) return;
+        ambient.muted = !ambient.muted;
+        audioMute.textContent = ambient.muted ? 'Unmute' : 'Mute';
+      });
+      audioVolume?.addEventListener('input', () => {
+        if (!ambient) return;
+        ambient.volume = Number(audioVolume.value || 0.45);
+        if (ambient.muted && ambient.volume > 0) {
+          ambient.muted = false;
+          if (audioMute) audioMute.textContent = 'Mute';
         }
       });
     })();

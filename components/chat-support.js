@@ -67,29 +67,29 @@
   function initChat() {
     const root = document.createElement('aside');
     root.className = 'senz-chat';
-    root.setAttribute('aria-label', 'Chat Support');
+    root.setAttribute('aria-label', 'AI Chat');
     root.innerHTML = `
-      <div class="senz-chat-panel" role="dialog" aria-label="Chat Support" aria-hidden="true">
+      <div class="senz-chat-panel" role="dialog" aria-label="AI Chat" aria-hidden="true">
         <div class="senz-chat-head">
           <div>
-            <span class="senz-chat-kicker">Chat Support</span>
+            <span class="senz-chat-kicker">AI Chat</span>
             <h2 class="senz-chat-title">How can we help?</h2>
           </div>
-          <button class="senz-chat-close" type="button" aria-label="Close chat support">&times;</button>
+          <button class="senz-chat-close" type="button" aria-label="Close AI chat">&times;</button>
         </div>
         <div class="senz-chat-log" aria-live="polite"></div>
         <div class="senz-chat-prompts" aria-label="Suggested questions"></div>
-        <p class="senz-chat-note">Chat Support answers general questions. For pricing, scope, and booking, continue to Get Started.</p>
+        <p class="senz-chat-note">AI Chat answers general questions. For pricing, scope, and booking, continue to Get Started.</p>
         <a class="senz-chat-cta" href="get-started.html">Go to Get Started</a>
         <form class="senz-chat-form">
           <input class="senz-chat-input" type="text" autocomplete="off" placeholder="Ask a general question..." aria-label="Ask a general question" />
           <button class="senz-chat-send" type="submit">Send</button>
         </form>
       </div>
-      <button class="senz-chat-button" type="button" aria-label="Open chat support" aria-expanded="false">
+      <button class="senz-chat-button" type="button" aria-label="Open AI chat" aria-expanded="false">
         <span class="senz-chat-pulse" aria-hidden="true"></span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4h-3l-4 3v-3H9a4 4 0 0 1-4-4V8Z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg>
-        <span class="senz-chat-label">Chat Support</span>
+        <span class="senz-chat-label">AI Chat</span>
       </button>
     `;
 
