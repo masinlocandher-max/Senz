@@ -1,6 +1,6 @@
 (() => {
-  if (window.__senzAiChatLoaded) return;
-  window.__senzAiChatLoaded = true;
+  if (window.__senzChatSupportLoaded) return;
+  window.__senzChatSupportLoaded = true;
 
   const answers = [
     {
@@ -32,8 +32,8 @@
       reply: 'The SENZ shop will be connected through Shopify. For now, please use Get Started if you want updates about books, digital products, or upcoming releases.'
     },
     {
-      match: ['clone', 'ai', 'assistant', 'music', 'voting', 'tabulation', 'ticket'],
-      reply: 'Digital products include music assets, consent-based Clone Studio, voting/tabulation and ticketing platforms, and personal AI assistants. SENZ can recommend the best product path after a quick inquiry.'
+      match: ['clone', 'assistant', 'representative', 'music', 'voting', 'tabulation', 'ticket'],
+      reply: 'Digital products include music assets, consent-based Clone Studio, voting/tabulation and ticketing platforms, and Digital Assistants or Digital Representatives. SENZ can recommend the best product path after a quick inquiry.'
     },
     {
       match: ['contact', 'email', 'message', 'book', 'consultation'],
@@ -58,7 +58,7 @@
 
   function appendMessage(log, message, type) {
     const bubble = document.createElement('div');
-    bubble.className = `senz-ai-message ${type}`;
+    bubble.className = `senz-chat-message ${type}`;
     bubble.textContent = message;
     log.appendChild(bubble);
     log.scrollTop = log.scrollHeight;
@@ -66,48 +66,48 @@
 
   function initChat() {
     const root = document.createElement('aside');
-    root.className = 'senz-ai-chat';
+    root.className = 'senz-chat';
     root.setAttribute('aria-label', 'Chat Support');
     root.innerHTML = `
-      <div class="senz-ai-panel" role="dialog" aria-label="Chat Support" aria-hidden="true">
-        <div class="senz-ai-head">
+      <div class="senz-chat-panel" role="dialog" aria-label="Chat Support" aria-hidden="true">
+        <div class="senz-chat-head">
           <div>
-            <span class="senz-ai-kicker">Chat Support</span>
-            <h2 class="senz-ai-title">How can we help?</h2>
+            <span class="senz-chat-kicker">Chat Support</span>
+            <h2 class="senz-chat-title">How can we help?</h2>
           </div>
-          <button class="senz-ai-close" type="button" aria-label="Close chat support">&times;</button>
+          <button class="senz-chat-close" type="button" aria-label="Close chat support">&times;</button>
         </div>
-        <div class="senz-ai-log" aria-live="polite"></div>
-        <div class="senz-ai-prompts" aria-label="Suggested questions"></div>
-        <p class="senz-ai-note">This assistant answers general questions. For pricing, scope, and booking, continue to Get Started.</p>
-        <a class="senz-ai-cta" href="get-started.html">Go to Get Started</a>
-        <form class="senz-ai-form">
-          <input class="senz-ai-input" type="text" autocomplete="off" placeholder="Ask a general question..." aria-label="Ask a general question" />
-          <button class="senz-ai-send" type="submit">Send</button>
+        <div class="senz-chat-log" aria-live="polite"></div>
+        <div class="senz-chat-prompts" aria-label="Suggested questions"></div>
+        <p class="senz-chat-note">Chat Support answers general questions. For pricing, scope, and booking, continue to Get Started.</p>
+        <a class="senz-chat-cta" href="get-started.html">Go to Get Started</a>
+        <form class="senz-chat-form">
+          <input class="senz-chat-input" type="text" autocomplete="off" placeholder="Ask a general question..." aria-label="Ask a general question" />
+          <button class="senz-chat-send" type="submit">Send</button>
         </form>
       </div>
-      <button class="senz-ai-button" type="button" aria-label="Open chat support" aria-expanded="false">
-        <span class="senz-ai-pulse" aria-hidden="true"></span>
+      <button class="senz-chat-button" type="button" aria-label="Open chat support" aria-expanded="false">
+        <span class="senz-chat-pulse" aria-hidden="true"></span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4h-3l-4 3v-3H9a4 4 0 0 1-4-4V8Z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg>
-        <span class="senz-ai-label">Chat Support</span>
+        <span class="senz-chat-label">Chat Support</span>
       </button>
     `;
 
     document.body.appendChild(root);
 
-    const toggle = root.querySelector('.senz-ai-button');
-    const panel = root.querySelector('.senz-ai-panel');
-    const close = root.querySelector('.senz-ai-close');
-    const log = root.querySelector('.senz-ai-log');
-    const prompts = root.querySelector('.senz-ai-prompts');
-    const form = root.querySelector('.senz-ai-form');
-    const input = root.querySelector('.senz-ai-input');
+    const toggle = root.querySelector('.senz-chat-button');
+    const panel = root.querySelector('.senz-chat-panel');
+    const close = root.querySelector('.senz-chat-close');
+    const log = root.querySelector('.senz-chat-log');
+    const prompts = root.querySelector('.senz-chat-prompts');
+    const form = root.querySelector('.senz-chat-form');
+    const input = root.querySelector('.senz-chat-input');
 
     appendMessage(log, 'Hi, I can answer general questions about SENZ Strategic Communications and guide you to the right service path.', 'bot');
 
     quickPrompts.forEach((prompt) => {
       const button = document.createElement('button');
-      button.className = 'senz-ai-chip';
+      button.className = 'senz-chat-chip';
       button.type = 'button';
       button.textContent = prompt;
       button.addEventListener('click', () => {
