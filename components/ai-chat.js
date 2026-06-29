@@ -67,15 +67,15 @@
   function initChat() {
     const root = document.createElement('aside');
     root.className = 'senz-ai-chat';
-    root.setAttribute('aria-label', 'SENZ AI assistant');
+    root.setAttribute('aria-label', 'Chat Support');
     root.innerHTML = `
-      <div class="senz-ai-panel" role="dialog" aria-label="SENZ AI assistant" aria-hidden="true">
+      <div class="senz-ai-panel" role="dialog" aria-label="Chat Support" aria-hidden="true">
         <div class="senz-ai-head">
           <div>
-            <span class="senz-ai-kicker">AI Concierge</span>
-            <h2 class="senz-ai-title">Ask SENZ</h2>
+            <span class="senz-ai-kicker">Chat Support</span>
+            <h2 class="senz-ai-title">How can we help?</h2>
           </div>
-          <button class="senz-ai-close" type="button" aria-label="Close AI chat">&times;</button>
+          <button class="senz-ai-close" type="button" aria-label="Close chat support">&times;</button>
         </div>
         <div class="senz-ai-log" aria-live="polite"></div>
         <div class="senz-ai-prompts" aria-label="Suggested questions"></div>
@@ -86,10 +86,10 @@
           <button class="senz-ai-send" type="submit">Send</button>
         </form>
       </div>
-      <button class="senz-ai-button" type="button" aria-label="Open SENZ AI assistant" aria-expanded="false">
+      <button class="senz-ai-button" type="button" aria-label="Open chat support" aria-expanded="false">
         <span class="senz-ai-pulse" aria-hidden="true"></span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4h-3l-4 3v-3H9a4 4 0 0 1-4-4V8Z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg>
-        <span class="senz-ai-label">Ask SENZ AI</span>
+        <span class="senz-ai-label">Chat Support</span>
       </button>
     `;
 
