@@ -514,6 +514,81 @@
       margin-bottom: 8px;
     }
 
+    .package-builder {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(220px, 0.42fr);
+      gap: 14px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(143, 177, 255, 0.24);
+      border-radius: var(--radius);
+      padding: 16px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0, 87, 255, 0.18), transparent 16rem),
+        rgba(255, 255, 255, 0.052);
+      box-shadow: 0 18px 46px rgba(0, 24, 80, 0.16);
+    }
+
+    .package-builder h4 {
+      margin: 0;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .package-builder p {
+      margin: 8px 0 0;
+      color: rgba(222, 232, 255, 0.68);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .package-meter {
+      display: grid;
+      align-content: center;
+      justify-items: start;
+      border: 1px solid rgba(184, 202, 255, 0.16);
+      border-radius: calc(var(--radius) - 4px);
+      padding: 14px;
+      background: rgba(2, 7, 18, 0.34);
+    }
+
+    .package-meter strong {
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .package-meter span {
+      margin-top: 6px;
+      color: var(--blue-soft);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .package-live-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      grid-column: 1 / -1;
+      min-height: 34px;
+    }
+
+    .package-live-list span,
+    .selected-list span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border: 1px solid rgba(143, 177, 255, 0.28);
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: rgba(237, 243, 255, 0.82);
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
     .service-choice {
       position: relative;
       display: grid;
@@ -527,6 +602,20 @@
       color: rgba(237, 243, 255, 0.82);
       background: rgba(255, 255, 255, 0.045);
       transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .service-choice::before {
+      content: attr(data-code);
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      color: var(--blue-soft);
+      background: rgba(143, 177, 255, 0.1);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0.04em;
     }
 
     .service-choice input {
@@ -1295,6 +1384,39 @@
         gap: 0.42em;
         font-size: 20px !important;
       }
+
+      .package-builder,
+      .service-choice-grid,
+      .form-row,
+      .process-preview,
+      .direct-contact {
+        grid-template-columns: 1fr;
+      }
+
+      .package-builder {
+        padding: 14px;
+      }
+
+      .package-meter {
+        justify-items: start;
+      }
+
+      .service-choice {
+        min-height: auto;
+        padding: 16px;
+      }
+
+      .wizard-progress {
+        grid-template-columns: 1fr;
+      }
+
+      .wizard-actions {
+        align-items: stretch;
+      }
+
+      .wizard-actions .button {
+        width: 100%;
+      }
     }
 
     /* Get Started page remake */
@@ -1641,45 +1763,58 @@
 
           <section class="form-step is-active" data-form-step="1">
             <h3>What should we help you with?</h3>
-            <p class="step-helper">Select one or more services. This page will not jump forward until you click Next.</p>
+            <p class="step-helper">Build your own SENZ package. Select one service or combine several, then click Next when the set feels right.</p>
             <input id="projectType" name="projectType" type="hidden" required />
+            <div class="package-builder" aria-live="polite">
+              <div>
+                <h4>Your Custom Package</h4>
+                <p>Choose ala carte services below. SENZ will review the mix and recommend the smartest path for your brand.</p>
+              </div>
+              <div class="package-meter">
+                <strong id="packageCount">0</strong>
+                <span>Selected Services</span>
+              </div>
+              <div class="package-live-list" id="packageLiveList" aria-label="Current package selections">
+                <span>No service selected yet</span>
+              </div>
+            </div>
             <div class="service-choice-grid" role="group" aria-label="Choose one or more services">
-              <label class="service-choice">
+              <label class="service-choice" data-code="PR">
                 <input name="serviceOptions" type="checkbox" value="PR and Public Image" />
                 <strong>PR and Reputation</strong>
                 <span>Public image, credibility, visibility, message discipline, and reputation care.</span>
               </label>
-              <label class="service-choice">
+              <label class="service-choice" data-code="SOC">
                 <input name="serviceOptions" type="checkbox" value="Marketing and Social Media" />
                 <strong>Marketing and Social Media</strong>
                 <span>Campaign direction, content rhythm, social management, and audience growth.</span>
               </label>
-              <label class="service-choice">
+              <label class="service-choice" data-code="CX">
                 <input name="serviceOptions" type="checkbox" value="Call Center Solutions" />
                 <strong>Call Center Solutions</strong>
                 <span>Inquiry flow, customer support scripts, lead handling, and response operations.</span>
               </label>
-              <label class="service-choice">
+              <label class="service-choice" data-code="WEB">
                 <input name="serviceOptions" type="checkbox" value="Websites and Digital Presence" />
                 <strong>Websites and Digital Presence</strong>
                 <span>Premium websites, service flow, digital trust, and conversion-ready pages.</span>
               </label>
-              <label class="service-choice">
+              <label class="service-choice" data-code="DIG">
                 <input name="serviceOptions" type="checkbox" value="Digital Products" />
                 <strong>Digital Products</strong>
                 <span>Music, Clone Studio, event voting, tabulation, ticketing, and Digital Assistants.</span>
               </label>
-              <label class="service-choice">
+              <label class="service-choice" data-code="PRO">
                 <input name="serviceOptions" type="checkbox" value="Creative Production" />
                 <strong>Creative Production</strong>
                 <span>Visual direction, campaign assets, photo/video planning, and launch-ready materials.</span>
               </label>
-              <label class="service-choice">
+              <label class="service-choice" data-code="ALL">
                 <input name="serviceOptions" type="checkbox" value="Full Brand System" />
                 <strong>Full Brand System</strong>
                 <span>Strategy, visuals, public presence, digital systems, and launch support together.</span>
               </label>
-              <label class="service-choice">
+              <label class="service-choice" data-code="?">
                 <input name="serviceOptions" type="checkbox" value="Not Sure Yet" />
                 <strong>Not Sure Yet</strong>
                 <span>Tell us what you are trying to achieve and we will recommend the right path.</span>
@@ -1895,6 +2030,8 @@
       const wizardHint = document.querySelector('#wizardHint');
       const serviceSummary = document.querySelector('#serviceSummary');
       const selectedList = document.querySelector('#selectedList');
+      const packageCount = document.querySelector('#packageCount');
+      const packageLiveList = document.querySelector('#packageLiveList');
       const projectTypeInput = document.querySelector('#projectType');
       let currentStep = 1;
 
@@ -1914,6 +2051,15 @@
             const chip = document.createElement('span');
             chip.textContent = service;
             selectedList.appendChild(chip);
+          });
+        }
+        if (packageCount) packageCount.textContent = String(services.length);
+        if (packageLiveList) {
+          packageLiveList.replaceChildren();
+          (services.length ? services : ['No service selected yet']).forEach((service) => {
+            const chip = document.createElement('span');
+            chip.textContent = service;
+            packageLiveList.appendChild(chip);
           });
         }
         return services;
@@ -1941,7 +2087,7 @@
         if (wizardHint) {
           wizardHint.textContent = currentStep === 1
             ? services.length
-              ? `${services.length} selected. Click Next when ready.`
+              ? `${services.length} selected for your custom package. Click Next when ready.`
               : 'Choose one or more services, then click Next.'
             : currentStep === 2
               ? 'Back is always available if you need to change the services.'
