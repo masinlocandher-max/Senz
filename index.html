@@ -4685,6 +4685,144 @@
     }
   </style>
   <link rel="stylesheet" href="components/chat-support.css" />
+
+  <!-- SENZ Office Tour: Premium Motion Layer ─────────────────────────── -->
+  <style>
+    /* Smooth scroll (overrides scroll-behavior: auto set earlier) */
+    html { scroll-behavior: smooth !important; }
+
+    /* Nav active-indicator: animated scale-in underline */
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 18px;
+      height: 2px;
+      background: var(--blue, #155cff);
+      box-shadow: 0 0 10px rgba(21, 92, 255, 0.5);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-links a.is-active::after,
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* Elements initially hidden — stagger via JS (Web Animations API) */
+    .action-card,
+    .tour-menu.is-button-grid a,
+    .gallery-card,
+    .help-option,
+    .brand-kit-grid span { opacity: 0; will-change: opacity, transform; }
+
+    /* Hero (Reception): let background settle before copy reveals */
+    #top .tour-copy { transition-delay: 180ms; }
+
+    /* Stagger service tiles (existing CSS transition system) */
+    .tour-tile:nth-child(1) { transition-delay:   0ms; }
+    .tour-tile:nth-child(2) { transition-delay:  80ms; }
+    .tour-tile:nth-child(3) { transition-delay: 160ms; }
+    .tour-tile:nth-child(4) { transition-delay: 240ms; }
+    .tour-tile:nth-child(5) { transition-delay: 320ms; }
+    .tour-tile:nth-child(6) { transition-delay: 400ms; }
+
+    /* Stagger FAQ items (existing CSS transition system) */
+    .faq-item:nth-child(1) { transition-delay:   0ms; }
+    .faq-item:nth-child(2) { transition-delay:  65ms; }
+    .faq-item:nth-child(3) { transition-delay: 130ms; }
+    .faq-item:nth-child(4) { transition-delay: 195ms; }
+    .faq-item:nth-child(5) { transition-delay: 260ms; }
+    .faq-item:nth-child(6) { transition-delay: 325ms; }
+    .faq-item:nth-child(7) { transition-delay: 390ms; }
+    .faq-item:nth-child(8) { transition-delay: 455ms; }
+    .faq-item:nth-child(9) { transition-delay: 520ms; }
+
+    /* Tour tile: extend transition to include box-shadow for hover */
+    .tour-tile {
+      transition: opacity 620ms ease, transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 220ms ease, box-shadow 220ms ease;
+    }
+    .tour-tile:hover {
+      border-color: rgba(21, 92, 255, 0.28);
+      box-shadow: 0 24px 66px rgba(31, 48, 82, 0.15);
+    }
+
+    /* Gallery card: scale hover */
+    .gallery-card {
+      transform-origin: center;
+      transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 320ms ease;
+    }
+    .gallery-card:hover {
+      transform: scale(1.024);
+      box-shadow: 0 36px 90px rgba(31, 48, 82, 0.2);
+    }
+
+    /* Tour card and panel: extend transition for hover border/shadow */
+    .tour-card,
+    .tour-panel {
+      transition: opacity 760ms ease 120ms, transform 760ms cubic-bezier(0.16, 1, 0.3, 1) 120ms,
+                  border-color 220ms ease, box-shadow 220ms ease;
+    }
+    .tour-card:hover,
+    .tour-panel:hover {
+      border-color: rgba(21, 92, 255, 0.22);
+      box-shadow: 0 30px 84px rgba(31, 48, 82, 0.17);
+    }
+
+    /* FAQ accordion: open/close indicator */
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      flex-shrink: 0;
+      margin-left: 12px;
+      color: #155cff;
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1;
+      transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+
+    /* FAQ accordion: smooth content height */
+    .faq-item > p {
+      overflow: hidden;
+      transition: max-height 380ms cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 280ms ease, margin-top 280ms ease;
+    }
+
+    /* GPU compositing for parallax and progress */
+    .tour-photo { will-change: transform; backface-visibility: hidden; }
+    .tour-progress span { transition: transform 60ms linear; will-change: transform; }
+
+    /* prefers-reduced-motion: remove all motion additions */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+      .action-card, .tour-menu.is-button-grid a, .gallery-card,
+      .help-option, .brand-kit-grid span {
+        opacity: 1 !important; transform: none !important; will-change: auto;
+      }
+      .tour-tile, .faq-item { transition-delay: 0ms !important; }
+      .tour-tile {
+        transition: border-color 220ms ease, box-shadow 220ms ease !important;
+      }
+      .tour-card, .tour-panel {
+        transition: border-color 220ms ease, box-shadow 220ms ease !important;
+      }
+      .faq-item > p { transition: none !important; }
+      .gallery-card { transition: box-shadow 220ms ease !important; }
+      .nav-links a::after { transition: none !important; }
+      .tour-photo { will-change: auto; }
+      .tour-progress span { transition: none !important; }
+      #top .tour-copy { transition-delay: 0ms; }
+    }
+  </style>
 </head>
 <body>
   <div class="brand-intro" id="brandIntro" aria-hidden="true">
@@ -6025,6 +6163,93 @@
         }
       });
     })();
+  </script>
+  <script>
+  /* SENZ Premium Motion: stagger reveals + smooth FAQ — runs after tour injection */
+  (() => {
+    'use strict';
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const EASING = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
+    function staggerIn(parent, selector, { start = 0, step = 80, dur = 560, y = 18 } = {}) {
+      parent.querySelectorAll(selector).forEach((el, i) => {
+        el.animate(
+          [{ opacity: 0, transform: `translateY(${y}px)` },
+           { opacity: 1, transform: 'translateY(0)' }],
+          { duration: dur, delay: start + i * step, fill: 'forwards', easing: EASING }
+        );
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(({ isIntersecting, target: s }) => {
+        if (!isIntersecting) return;
+        if (s.id === 'top') {
+          staggerIn(s, '.action-card',               { start: 280, step: 100, dur: 620, y: 18 });
+          staggerIn(s, '.tour-menu.is-button-grid a', { start: 520, step:  65, dur: 500, y: 16 });
+        }
+        staggerIn(s, '.help-option',         { start: 120, step:  65, dur: 520, y: 16 });
+        staggerIn(s, '.gallery-card',        { start: 100, step: 120, dur: 640, y: 20 });
+        staggerIn(s, '.brand-kit-grid span', { start: 180, step:  55, dur: 500, y: 14 });
+        observer.unobserve(s);
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.tour-section').forEach(s => observer.observe(s));
+
+    document.querySelectorAll('.faq-item').forEach((det) => {
+      const sum = det.querySelector('summary');
+      const body = det.querySelector('p');
+      if (!sum || !body) return;
+      if (det.open) {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        body.style.opacity = '1';
+        body.style.marginTop = '10px';
+      } else {
+        body.style.maxHeight = '0';
+        body.style.opacity = '0';
+        body.style.marginTop = '0';
+      }
+      sum.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (det.open) {
+          body.style.maxHeight = body.scrollHeight + 'px';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            body.style.maxHeight = '0';
+            body.style.opacity = '0';
+            body.style.marginTop = '0';
+          }));
+          setTimeout(() => det.removeAttribute('open'), 390);
+        } else {
+          det.setAttribute('open', '');
+          body.style.maxHeight = '0';
+          body.style.opacity = '0';
+          body.style.marginTop = '0';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            body.style.maxHeight = body.scrollHeight + 'px';
+            body.style.opacity = '1';
+            body.style.marginTop = '10px';
+          }));
+          setTimeout(() => { if (det.open) body.style.maxHeight = ''; }, 400);
+        }
+      });
+    });
+
+    document.querySelectorAll('.tour-card').forEach((card) => {
+      let leaving = null;
+      card.addEventListener('pointermove', (e) => {
+        clearTimeout(leaving);
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(900px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(0)`;
+      });
+      card.addEventListener('pointerleave', () => {
+        leaving = setTimeout(() => { card.style.transform = ''; }, 80);
+      });
+    });
+  })();
   </script>
   <script src="components/chat-support.js" defer></script>
 </body>
