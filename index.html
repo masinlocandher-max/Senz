@@ -4692,6 +4692,92 @@
     html { scroll-behavior: smooth !important; }
     html.lenis { scroll-behavior: auto !important; }
 
+    /* ── Hologram mark ─────────────────────────────────────── */
+    .holo-wrap {
+      position: relative;
+      display: block;
+      line-height: 0;
+      flex-shrink: 0;
+    }
+
+    /* Static scanlines etched over the mark */
+    .holo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      background: repeating-linear-gradient(
+        180deg,
+        transparent 0px, transparent 3px,
+        rgba(0, 240, 255, 0.06) 3px, rgba(0, 240, 255, 0.06) 4px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Moving scan-sweep highlight */
+    .holo-wrap::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 38%;
+      top: -38%;
+      background: linear-gradient(
+        180deg,
+        transparent 0%, rgba(0, 220, 255, 0.18) 40%,
+        rgba(0, 220, 255, 0.24) 50%, rgba(0, 220, 255, 0.18) 60%,
+        transparent 100%
+      );
+      animation: holo-sweep 3.8s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes holo-sweep {
+      0%   { top: -38%; }
+      100% { top: 100%; }
+    }
+
+    /* hue-rotate(310deg): blue(~232°) → 542° → 182° = cyan */
+    .brand-mark,
+    .monitor-logo img {
+      filter:
+        hue-rotate(310deg) saturate(3.5) brightness(2.2)
+        drop-shadow(0 0 5px rgba(0, 230, 255, 1))
+        drop-shadow(0 0 14px rgba(0, 200, 255, 0.85))
+        drop-shadow(0 0 32px rgba(0, 160, 255, 0.55));
+      mix-blend-mode: screen;
+      animation: holo-flicker 6s step-start infinite;
+      opacity: 0.95;
+    }
+
+    .intro-mark {
+      filter:
+        hue-rotate(310deg) saturate(3) brightness(2.2)
+        drop-shadow(0 0 28px rgba(0, 200, 255, 0.95))
+        drop-shadow(0 0 60px rgba(0, 150, 255, 0.55));
+      animation: holo-flicker 6s step-start infinite,
+                 introPulse 2.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes holo-flicker {
+      0%, 91%, 93%, 95%, 100% { opacity: 0.95; }
+      92%  { opacity: 0.48; }
+      94%  { opacity: 0.78; }
+      96%  { opacity: 0.38; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .holo-wrap::after { animation: none !important; }
+      .brand-mark, .monitor-logo img, .intro-mark {
+        animation: none !important;
+      }
+    }
+
+    /* Mobile: push page content above the fixed audio dock */
+    @media (max-width: 760px) {
+      main { padding-bottom: 140px; }
+    }
+
     /* Nav active-indicator: animated scale-in underline */
     .nav-links a::after {
       content: "";
@@ -4828,7 +4914,7 @@
 <body>
   <div class="brand-intro" id="brandIntro" aria-hidden="true">
     <div class="intro-lockup">
-      <img class="intro-mark" src="assets/senz-original-mark.png" alt="" />
+      <img class="intro-mark" src="assets/senz-mark-holo.png" alt="" />
       <div class="intro-word">SENZ</div>
       <div class="intro-sub">SENZ Strategic Communications</div>
       <div class="intro-tag">Influence Through Clarity</div>
@@ -4838,7 +4924,7 @@
   <header class="site-header">
     <div class="shell nav">
       <a class="brand" href="#top" aria-label="SENZ Strategic Communications home">
-        <img class="brand-mark" src="assets/senz-original-mark.png" alt="" aria-hidden="true" />
+        <span class="holo-wrap"><img class="brand-mark" src="assets/senz-mark-holo.png" alt="" aria-hidden="true" /></span>
         <span>
           <span class="brand-word" aria-hidden="true"><span>S</span><span class="brand-e"><i></i><i></i><i></i></span><span>N</span><span>Z</span></span>
           <span class="brand-subtitle">Strategic Communications and Digital Solutions</span>
@@ -5758,7 +5844,7 @@
         <section id="top" class="tour-section" style="--tour-image: url('assets/senz-tour-reception-hero.png');">
           <div class="tour-photo" aria-hidden="true"></div>
           <div class="monitor-logo" aria-hidden="true">
-            <img src="assets/senz-original-mark.png" alt="" />
+            <span class="holo-wrap"><img src="assets/senz-mark-holo.png" alt="" /></span>
             <span>SENZ</span>
           </div>
           <div class="tour-shell tour-grid">
@@ -6176,9 +6262,10 @@
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     gsap.registerPlugin(ScrollTrigger);
 
-    /* Lenis inertia scroll — hooked into GSAP's ticker so ScrollTrigger
-       reads the virtual scroll position on every frame */
-    if (!reduced) {
+    /* Lenis inertia scroll — desktop only; touch devices keep native scroll
+       so iOS/Android momentum and overscroll work naturally */
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (!reduced && !isTouch) {
       const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => { lenis.raf(time * 1000); });
