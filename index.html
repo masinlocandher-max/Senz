@@ -2,542 +2,847 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SENZ Strategic Communications</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #070a10;
-  --panel: #0d1420;
-  --panel-soft: #111a2a;
-  --white: #ffffff;
-  --muted: rgba(255,255,255,0.64);
-  --faint: rgba(255,255,255,0.12);
+  --dark: #0b111b;
+  --dark2: #101827;
+  --light: #f3f5f8;
+  --text: #ffffff;
+  --ink: #08101d;
+  --muted: rgba(255,255,255,0.66);
+  --muted-dark: rgba(8,16,29,0.66);
   --blue: #2f6bff;
-  --blue-soft: rgba(47,107,255,0.28);
+  --blue2: #6fa0ff;
+  --line: rgba(255,255,255,0.1);
+  --radius: 24px;
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 html {
   scroll-behavior: smooth;
 }
-
 body {
-  font-family: "Inter", sans-serif;
   background: var(--bg);
-  color: var(--white);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
   overflow-x: hidden;
 }
-
-/* GLOBAL MOTION */
-.reveal {
-  opacity: 0;
-  transform: translateY(34px) scale(0.985);
-  filter: blur(10px);
-  transition:
-    opacity 900ms cubic-bezier(.16, 1, .3, 1),
-    transform 900ms cubic-bezier(.16, 1, .3, 1),
-    filter 900ms cubic-bezier(.16, 1, .3, 1);
+button,
+input,
+textarea {
+  font-family: inherit;
 }
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+a {
+  color: inherit;
+  text-decoration: none;
 }
-
-/* SCROLL PROGRESS */
-.progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background: linear-gradient(90deg, transparent, #7fa2ff, #ffffff);
-  z-index: 999;
-}
-
 /* NAV */
 .nav {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 72px;
-  padding: 0 56px;
+  height: 78px;
+  padding: 0 72px;
+  background: rgba(7,10,16,0.74);
+  backdrop-filter: blur(22px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+}
+.logo-wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  z-index: 100;
-  background: rgba(7,10,16,0.42);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  gap: 14px;
 }
-
-.logo {
-  letter-spacing: 7px;
-  font-size: 15px;
-  font-weight: 600;
+.logo-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #0048ff, #2f8cff);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  box-shadow: 0 14px 40px rgba(47,107,255,0.35);
+  transform: rotate(-8deg);
 }
-
+.logo-text {
+  line-height: 1;
+}
+.logo-text strong {
+  display: block;
+  letter-spacing: 8px;
+  font-size: 23px;
+  font-weight: 500;
+}
+.logo-text span {
+  display: block;
+  margin-top: 7px;
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.62);
+}
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 28px;
-  font-size: 13px;
-  color: var(--muted);
+  font-size: 14px;
 }
-
 .nav-links a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 250ms ease;
+  color: rgba(255,255,255,0.72);
+  transition: color 0.25s ease;
 }
-
 .nav-links a:hover {
   color: white;
 }
-
+.nav-cta {
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
 /* HERO */
 .hero {
-  position: relative;
   min-height: 100vh;
-  padding: 120px 64px 64px;
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 520px;
+  grid-template-columns: 1fr 440px;
   align-items: center;
-  gap: 54px;
-  overflow: hidden;
+  gap: 56px;
+  padding: 130px 72px 80px;
   background:
-    radial-gradient(circle at 70% 40%, rgba(47,107,255,0.22), transparent 38%),
-    radial-gradient(circle at 25% 70%, rgba(255,255,255,0.08), transparent 35%),
-    linear-gradient(135deg, #070a10 0%, #101827 55%, #070a10 100%);
+    radial-gradient(circle at 42% 44%, rgba(47,107,255,0.23), transparent 28%),
+    radial-gradient(circle at 70% 40%, rgba(255,255,255,0.08), transparent 25%),
+    linear-gradient(135deg, #05080d 0%, #101827 52%, #05080d 100%);
+  position: relative;
+  overflow: hidden;
 }
-
-.hero::before {
+.hero::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
     linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 54px 54px;
+  background-size: 56px 56px;
   mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
   opacity: 0.55;
   pointer-events: none;
 }
-
-.hero-copy {
-  position: relative;
+.glow {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(47,107,255,0.25), transparent 60%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(45px);
+  pointer-events: none;
+}
+.text {
+  max-width: 620px;
   z-index: 2;
-  max-width: 680px;
 }
-
-.eyebrow {
+.eyebrow,
+.section-label {
+  color: var(--blue);
   font-size: 12px;
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.55);
-  margin-bottom: 20px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 18px;
 }
-
-.hero h1 {
-  font-size: clamp(48px, 7vw, 94px);
-  line-height: 0.95;
-  letter-spacing: -4px;
+h1,
+h2,
+.display {
+  font-family: "Playfair Display", serif;
   font-weight: 500;
+  letter-spacing: -1px;
 }
-
-.hero p {
-  max-width: 560px;
-  margin-top: 24px;
-  color: var(--muted);
-  font-size: 17px;
+.text h1 {
+  font-size: clamp(48px, 6vw, 78px);
+  line-height: 1.02;
+}
+.text p {
+  margin-top: 22px;
+  max-width: 540px;
+  opacity: 0.72;
   line-height: 1.8;
+  font-size: 17px;
 }
-
-.hero-actions {
+.actions {
   margin-top: 34px;
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
 }
-
-.btn {
-  position: relative;
-  border: 0;
+.btn,
+button {
+  min-height: 44px;
+  padding: 13px 22px;
   border-radius: 999px;
-  padding: 14px 22px;
-  font-size: 14px;
+  border: none;
   cursor: pointer;
-  overflow: hidden;
-  transform: translate3d(0,0,0);
-  transition:
-    transform 240ms cubic-bezier(.16, 1, .3, 1),
-    box-shadow 240ms cubic-bezier(.16, 1, .3, 1);
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.35s cubic-bezier(.16,1,.3,1);
 }
-
-.btn.primary {
-  color: white;
-  background: linear-gradient(135deg, #2f6bff, #7fa2ff);
-  box-shadow: 0 16px 48px rgba(47,107,255,0.22);
-}
-
-.btn.secondary {
-  color: white;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.14);
-  backdrop-filter: blur(18px);
-}
-
-.btn:hover {
+.btn:hover,
+button:hover {
   transform: translateY(-2px);
 }
-
-/* RECEPTION OBJECT */
-.reception-wrap {
-  position: relative;
-  z-index: 2;
-  height: 520px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.primary {
+  background: linear-gradient(135deg, var(--blue), var(--blue2));
+  color: white;
+  box-shadow: 0 16px 42px rgba(47,107,255,0.32);
 }
-
-.reception-card {
+.secondary {
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: white;
+  backdrop-filter: blur(14px);
+}
+.reception {
   width: 100%;
-  max-width: 500px;
-  min-height: 360px;
-  border-radius: 34px;
+  min-height: 300px;
   background:
-    linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.03)),
-    linear-gradient(135deg, #121b2d, #070a10);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow:
-    0 40px 120px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.14);
-  padding: 34px;
-  transform-style: preserve-3d;
-  transition: transform 600ms cubic-bezier(.16, 1, .3, 1);
-}
-
-.reception-card:hover {
-  transform: rotateX(2deg) rotateY(-3deg) translateY(-6px);
-}
-
-.card-top {
-  display: flex;
-  justify-content: space-between;
-  color: rgba(255,255,255,0.52);
-  font-size: 12px;
-  letter-spacing: 2px;
-}
-
-.screen {
-  margin-top: 38px;
+    linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)),
+    linear-gradient(145deg, #1a2233, #0b0f17);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 26px;
-  padding: 28px;
-  min-height: 170px;
-  background:
-    radial-gradient(circle at 80% 10%, rgba(47,107,255,0.28), transparent 45%),
-    rgba(255,255,255,0.055);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.screen h2 {
-  font-size: 28px;
-  line-height: 1.18;
-  font-weight: 500;
-}
-
-.screen p {
-  margin-top: 14px;
-  color: rgba(255,255,255,0.62);
-  line-height: 1.6;
-  font-size: 14px;
-}
-
-.status {
-  margin-top: 28px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  color: rgba(255,255,255,0.55);
-  font-size: 13px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  background: #7fa2ff;
-  border-radius: 999px;
-  box-shadow: 0 0 20px #7fa2ff;
-}
-
-/* SECTION BASE */
-section {
-  position: relative;
-}
-
-.section {
-  padding: 120px 64px;
-}
-
-.section-header {
-  max-width: 760px;
-  margin-bottom: 54px;
-}
-
-.section-header h2 {
-  font-size: clamp(34px, 5vw, 68px);
-  line-height: 1;
-  letter-spacing: -2px;
-  font-weight: 500;
-}
-
-.section-header p {
-  margin-top: 18px;
-  color: var(--muted);
-  font-size: 16px;
-  line-height: 1.8;
-}
-
-/* WAITING AREA */
-.waiting {
-  background:
-    radial-gradient(circle at 20% 40%, rgba(47,107,255,0.13), transparent 36%),
-    #0a0f18;
-  overflow: hidden;
-}
-
-.mag-track-wrap {
-  overflow: hidden;
-  width: 100%;
-}
-
-.mag-track {
-  display: flex;
-  gap: 24px;
-  width: max-content;
-  animation: drift 45s linear infinite;
-  padding: 20px 0 35px;
-}
-
-.mag-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes drift {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.mag {
-  width: 280px;
-  height: 390px;
-  border-radius: 28px;
-  padding: 26px;
+  z-index: 2;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background:
-    linear-gradient(160deg, rgba(255,255,255,0.16), rgba(255,255,255,0.035)),
-    radial-gradient(circle at 75% 20%, rgba(47,107,255,0.34), transparent 38%),
-    #111827;
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 30px 90px rgba(0,0,0,0.42);
-  transition:
-    transform 500ms cubic-bezier(.16, 1, .3, 1),
-    box-shadow 500ms cubic-bezier(.16, 1, .3, 1);
-  cursor: pointer;
+  box-shadow:
+    0 35px 100px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.12);
 }
-
-.mag:hover {
-  transform: translateY(-14px) scale(1.035);
-  box-shadow: 0 44px 130px rgba(0,0,0,0.58);
+.reception .top {
+  font-size: 12px;
+  opacity: 0.62;
+  letter-spacing: 2px;
 }
-
-.mag small {
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 3px;
-  font-size: 11px;
-}
-
-.mag h3 {
+.reception .mid {
+  font-family: "Playfair Display", serif;
   font-size: 31px;
-  line-height: 0.98;
-  letter-spacing: -1.2px;
   font-weight: 500;
+  line-height: 1.18;
 }
-
-.mag p {
-  color: rgba(255,255,255,0.62);
-  line-height: 1.55;
-  font-size: 13px;
+.reception .bottom {
+  font-size: 12px;
+  opacity: 0.5;
 }
-
-/* ABOUT */
-.about {
-  background: #080c13;
+.tag {
+  position: absolute;
+  bottom: 42px;
+  left: 72px;
+  font-size: 12px;
+  opacity: 0.5;
+  z-index: 2;
 }
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
+/* GENERAL SECTIONS */
+.section {
+  padding: 96px 72px;
 }
-
-.about-panel {
-  min-height: 360px;
-  padding: 36px;
-  border-radius: 34px;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)),
-    #101827;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.about-panel h3 {
-  font-size: 28px;
-  line-height: 1.1;
-  font-weight: 500;
+.section-title {
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.05;
   margin-bottom: 18px;
 }
-
-.about-panel p {
-  color: var(--muted);
+.section-copy {
+  max-width: 560px;
   line-height: 1.8;
+  color: var(--muted);
 }
-
-/* SERVICES */
-.services {
+.light {
+  background: var(--light);
+  color: var(--ink);
+}
+.light .section-copy {
+  color: var(--muted-dark);
+}
+.dark {
+  background: #070a10;
+}
+/* IMAGE PLACEHOLDERS */
+.image-box {
+  border-radius: 22px;
+  min-height: 220px;
   background:
-    radial-gradient(circle at 70% 10%, rgba(47,107,255,0.14), transparent 34%),
-    #0b0f17;
+    linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.48)),
+    linear-gradient(135deg, #1a2233, #0b0f17);
+  border: 1px solid rgba(255,255,255,0.12);
+  overflow: hidden;
+  position: relative;
 }
-
+.image-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(47,107,255,0.22), transparent 32%),
+    linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  opacity: 0.65;
+}
+.image-box span {
+  position: absolute;
+  left: 22px;
+  bottom: 18px;
+  z-index: 2;
+  color: rgba(255,255,255,0.78);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.45fr;
+  gap: 54px;
+  align-items: center;
+}
+.about-gallery {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 14px;
+}
+.about-stack {
+  display: grid;
+  gap: 14px;
+}
+.about-stack .image-box {
+  min-height: 103px;
+}
+/* SERVICES */
+.service-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.7fr;
+  gap: 54px;
+  align-items: start;
+}
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
 }
-
 .service-card {
-  min-height: 230px;
-  padding: 28px;
-  border-radius: 28px;
+  min-height: 205px;
+  padding: 24px;
+  border-radius: 22px;
   background: rgba(255,255,255,0.045);
   border: 1px solid rgba(255,255,255,0.08);
-  transition:
-    transform 400ms cubic-bezier(.16, 1, .3, 1),
-    background 400ms cubic-bezier(.16, 1, .3, 1),
-    border 400ms cubic-bezier(.16, 1, .3, 1);
+  transition: 0.35s cubic-bezier(.16,1,.3,1);
 }
-
 .service-card:hover {
-  transform: translateY(-10px);
-  background: rgba(255,255,255,0.075);
-  border-color: rgba(255,255,255,0.18);
+  transform: translateY(-8px);
+  border-color: rgba(47,107,255,0.72);
+  box-shadow: 0 22px 70px rgba(47,107,255,0.14);
 }
-
-.service-card span {
-  color: rgba(255,255,255,0.45);
-  font-size: 12px;
-  letter-spacing: 3px;
+.icon {
+  color: var(--blue);
+  font-size: 28px;
+  margin-bottom: 26px;
 }
-
 .service-card h3 {
-  margin-top: 28px;
-  font-size: 25px;
-  line-height: 1.1;
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+.service-card p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.62);
+}
+/* WAITING AREA */
+.waiting-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.8fr;
+  gap: 44px;
+  align-items: center;
+}
+.mag-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 0 24px;
+  cursor: grab;
+}
+.mag-track::-webkit-scrollbar,
+.room-track::-webkit-scrollbar,
+.gallery-track::-webkit-scrollbar {
+  display: none;
+}
+.mag {
+  min-width: 190px;
+  height: 270px;
+  border-radius: 18px;
+  padding: 20px;
+  color: white;
+  scroll-snap-align: center;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.78)),
+    radial-gradient(circle at 70% 25%, rgba(47,107,255,0.28), transparent 36%),
+    linear-gradient(145deg, #1a2233, #0b0f17);
+  border: 1px solid rgba(255,255,255,0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.35s cubic-bezier(.16,1,.3,1);
+  cursor: pointer;
+}
+.mag:nth-child(2) {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.78)),
+    radial-gradient(circle at 40% 25%, rgba(255,255,255,0.16), transparent 35%),
+    linear-gradient(145deg, #202124, #05070b);
+}
+.mag:nth-child(3) {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.65)),
+    linear-gradient(145deg, #d8d3c8, #91897d);
+}
+.mag:nth-child(4) {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.78)),
+    linear-gradient(145deg, #34291f, #0b0f17);
+}
+.mag:nth-child(5) {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.78)),
+    linear-gradient(145deg, #1d2529, #05070b);
+}
+.mag:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+.mag small {
+  letter-spacing: 4px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.72);
+}
+.mag h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 27px;
+  line-height: 1;
   font-weight: 500;
 }
-
-.service-card p {
-  margin-top: 14px;
-  color: var(--muted);
-  line-height: 1.65;
-  font-size: 14px;
+.read-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  font-weight: 700;
 }
-
-/* FOOTER CTA */
-.final {
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 80px 24px;
+/* STRATEGY ROOMS */
+.rooms {
   background:
-    radial-gradient(circle at center, rgba(47,107,255,0.16), transparent 42%),
+    radial-gradient(circle at 75% 20%, rgba(47,107,255,0.16), transparent 38%),
     #070a10;
 }
-
-.final h2 {
-  font-size: clamp(40px, 6vw, 80px);
+.rooms-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.8fr;
+  gap: 44px;
+  align-items: center;
+}
+.room-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 8px 0 24px;
+}
+.room-card {
+  min-width: 205px;
+  height: 260px;
+  border-radius: 22px;
+  padding: 22px;
+  scroll-snap-align: center;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.72)),
+    radial-gradient(circle at 80% 22%, rgba(47,107,255,0.22), transparent 32%),
+    linear-gradient(145deg, #111a28, #070a10);
+  border: 1px solid rgba(47,107,255,0.35);
+  box-shadow: inset 0 0 34px rgba(47,107,255,0.07);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.35s cubic-bezier(.16,1,.3,1);
+}
+.room-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(47,107,255,0.9);
+  box-shadow:
+    0 24px 80px rgba(47,107,255,0.18),
+    inset 0 0 38px rgba(47,107,255,0.13);
+}
+.room-no {
+  color: rgba(255,255,255,0.34);
+  font-size: 27px;
+  margin-bottom: 20px;
+}
+.room-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 23px;
   font-weight: 500;
-  letter-spacing: -3px;
+  margin-bottom: 10px;
   line-height: 1;
 }
-
-.final p {
-  max-width: 620px;
-  margin: 22px auto 32px;
-  color: var(--muted);
-  line-height: 1.8;
+.room-card p {
+  color: rgba(255,255,255,0.62);
+  font-size: 12px;
+  line-height: 1.55;
 }
-
-/* MOBILE */
-@media (max-width: 900px) {
+.enter {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+/* GALLERY */
+.gallery-layout {
+  display: grid;
+  grid-template-columns: 0.72fr 1.9fr;
+  gap: 44px;
+  align-items: center;
+}
+.gallery-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 8px 0 18px;
+}
+.gallery-card {
+  min-width: 230px;
+  height: 160px;
+  border-radius: 18px;
+  scroll-snap-align: center;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.62)),
+    linear-gradient(135deg, #1a2233, #0b0f17);
+  border: 1px solid rgba(255,255,255,0.12);
+  position: relative;
+  overflow: hidden;
+}
+.gallery-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 75% 25%, rgba(47,107,255,0.22), transparent 35%);
+}
+.gallery-card span {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 2;
+}
+/* COMMUNITY */
+.community-grid {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.community-card {
+  min-height: 190px;
+  border-radius: 20px;
+  padding: 22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.018)),
+    linear-gradient(145deg, #111a28, #070a10);
+  border: 1px solid rgba(255,255,255,0.09);
+}
+.community-card h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.community-card p {
+  color: rgba(255,255,255,0.62);
+  font-size: 13px;
+  line-height: 1.6;
+}
+/* BOTTOM */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+.shop-items {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+}
+.product {
+  width: 88px;
+  height: 120px;
+  border-radius: 12px;
+  background:
+    linear-gradient(145deg, #1a2233, #070a10);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+}
+.faq-item {
+  border-bottom: 1px solid rgba(8,16,29,0.12);
+  padding: 16px 0;
+}
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+.faq-item p {
+  margin-top: 10px;
+  color: var(--muted-dark);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.contact-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+input,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(8,16,29,0.13);
+  background: rgba(255,255,255,0.78);
+  border-radius: 12px;
+  padding: 13px 14px;
+  outline: none;
+}
+textarea {
+  min-height: 108px;
+  resize: vertical;
+}
+.submit {
+  background: linear-gradient(135deg, var(--blue), var(--blue2));
+  color: white;
+  width: fit-content;
+}
+/* READER MODAL */
+.issue-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 6, 12, 0.82);
+  backdrop-filter: blur(22px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.issue-modal.active {
+  display: flex;
+}
+.issue-reader {
+  width: min(760px, 100%);
+  min-height: 520px;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(47,107,255,0.18), transparent 38%),
+    linear-gradient(145deg, #111a28, #070a10);
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 40px 120px rgba(0,0,0,0.55);
+  padding: 42px;
+  position: relative;
+  color: white;
+  animation: readerIn 0.55s cubic-bezier(.16,1,.3,1);
+}
+@keyframes readerIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+.close-reader {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: white;
+  font-size: 24px;
+}
+.reader-top small {
+  color: #2f6bff;
+  letter-spacing: 5px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.reader-top h2 {
+  margin-top: 14px;
+  font-family: "Playfair Display", serif;
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1;
+}
+.reader-page {
+  margin-top: 42px;
+  padding: 34px;
+  min-height: 250px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.45s cubic-bezier(.16,1,.3,1);
+}
+.reader-page.turning {
+  opacity: 0;
+  transform: rotateY(-12deg) translateX(14px);
+  filter: blur(5px);
+}
+.reader-page h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.reader-page p {
+  color: rgba(255,255,255,0.72);
+  line-height: 1.85;
+  font-size: 16px;
+}
+.reader-controls {
+  margin-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+.reader-controls button {
+  background: rgba(255,255,255,0.08);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.16);
+}
+.reader-controls span {
+  color: rgba(255,255,255,0.58);
+  font-size: 13px;
+}
+/* MOTION */
+.reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  filter: blur(8px);
+  transition: 0.9s cubic-bezier(.16,1,.3,1);
+}
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+/* RESPONSIVE */
+@media (max-width: 1050px) {
   .nav {
     padding: 0 24px;
   }
-
   .nav-links {
     display: none;
   }
-
   .hero {
     grid-template-columns: 1fr;
-    padding: 110px 24px 60px;
+    padding: 110px 24px 70px;
   }
-
-  .hero h1 {
-    letter-spacing: -2px;
+  .tag {
+    left: 24px;
   }
-
-  .reception-wrap {
-    height: auto;
-  }
-
   .section {
-    padding: 90px 24px;
+    padding: 76px 24px;
   }
-
   .about-grid,
-  .service-grid {
+  .service-layout,
+  .waiting-layout,
+  .rooms-layout,
+  .gallery-layout,
+  .bottom-grid {
     grid-template-columns: 1fr;
   }
-
-  .mag {
-    width: 240px;
-    height: 340px;
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .community-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* REDUCED MOTION */
+@media (max-width: 640px) {
+  .logo-text strong {
+    font-size: 18px;
+  }
+  .logo-text span {
+    display: none;
+  }
+  .text h1 {
+    font-size: 43px;
+  }
+  .reception .mid {
+    font-size: 25px;
+  }
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .service-grid,
+  .community-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-gallery {
+    grid-template-columns: 1fr;
+  }
+  .about-stack {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mag {
+    min-width: 220px;
+  }
+  .room-card {
+    min-width: 240px;
+  }
+  .issue-reader {
+    min-height: auto;
+    padding: 30px 22px;
+  }
+  .reader-top h2 {
+    font-size: 34px;
+  }
+  .reader-page {
+    padding: 24px;
+  }
+  .reader-controls {
+    flex-direction: column;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   * {
-    animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
   }
-
   .reveal {
     opacity: 1;
     transform: none;
@@ -546,306 +851,585 @@ section {
 }
 </style>
 </head>
-
 <body>
-
-<div class="progress" id="progress"></div>
-
 <nav class="nav">
-  <div class="logo">SENZ</div>
+  <div class="logo-wrap">
+    <div class="logo-mark">S</div>
+    <div class="logo-text">
+      <strong>SENZ</strong>
+      <span>STRATEGIC COMMUNICATIONS AND DIGITAL SOLUTIONS</span>
+    </div>
+  </div>
   <div class="nav-links">
-    <a href="#waiting">Waiting Area</a>
-    <a href="#about">About</a>
+    <a href="#top">Home</a>
+    <a href="#about">About Us</a>
     <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#community">Community Works</a>
+    <a href="#shop">Shop</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact" class="nav-cta">Talk to Reception</a>
   </div>
 </nav>
-
-<header class="hero" id="hero">
-  <div class="hero-copy reveal">
-    <div class="eyebrow">STRATEGIC COMMUNICATIONS OFFICE</div>
-    <h1>Strategic clarity. Creative execution.</h1>
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="text reveal">
+    <div class="eyebrow">Welcome to SENZ</div>
+    <h1>Strategic Clarity.<br>Creative Execution.</h1>
     <p>
-      SENZ helps brands become clearer, sharper, and harder to ignore through perception strategy, narrative systems, digital presence, and creative direction.
+      SENZ is a strategic communications system built to shape perception, visibility, and narrative clarity.
     </p>
-
-    <div class="hero-actions">
-      <button class="btn primary magnetic">Talk to Reception</button>
-      <button class="btn secondary magnetic" onclick="document.querySelector('#waiting').scrollIntoView()">Enter Waiting Area</button>
+    <div class="actions">
+      <button class="primary" onclick="document.querySelector('#contact').scrollIntoView()">Talk to Reception</button>
+      <button class="secondary" onclick="document.querySelector('#waiting').scrollIntoView()">Enter Waiting Area</button>
     </div>
   </div>
-
-  <div class="reception-wrap reveal parallax" data-speed="0.08">
-    <div class="reception-card">
-      <div class="card-top">
-        <span>SENZ RECEPTION</span>
-        <span>ONLINE</span>
-      </div>
-
-      <div class="screen">
-        <h2>Good day. How can we shape your visibility today?</h2>
-        <p>
-          Browse insights, explore services, or start with a guided consultation.
-        </p>
-      </div>
-
-      <div class="status">
-        <div class="dot"></div>
-        <span>Reception is ready</span>
-      </div>
+  <div class="reception reveal">
+    <div class="top">SENZ RECEPTION</div>
+    <div class="mid">
+      Good day.<br>
+      How can we shape your visibility today?
     </div>
+    <div class="bottom">Strategic Communications Office</div>
   </div>
+  <div class="tag">Digital Reception Experience v1</div>
 </header>
-
-<section class="section waiting" id="waiting">
-  <div class="section-header reveal">
-    <div class="eyebrow">WAITING AREA</div>
-    <h2>Browse the SENZ insight shelf.</h2>
-    <p>
-      A quiet editorial space where visitors can browse ideas on visibility, reputation, branding, and public perception before choosing a service path.
-    </p>
-  </div>
-
-  <div class="mag-track-wrap reveal">
-    <div class="mag-track">
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Visibility Issue</h3>
-        <p>Being seen is not the same as being understood.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Reputation Reset</h3>
-        <p>Trust is rebuilt through consistency, not panic.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Quiet Power</h3>
-        <p>Strong brands do not shout. They anchor meaning.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Case Files</h3>
-        <p>The unseen strategy behind visible impact.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Perception Value</h3>
-        <p>What people believe about you becomes business currency.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Behind the Image</h3>
-        <p>Every strong image has a system behind it.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Visibility Issue</h3>
-        <p>Being seen is not the same as being understood.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Reputation Reset</h3>
-        <p>Trust is rebuilt through consistency, not panic.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Quiet Power</h3>
-        <p>Strong brands do not shout. They anchor meaning.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Case Files</h3>
-        <p>The unseen strategy behind visible impact.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Perception Value</h3>
-        <p>What people believe about you becomes business currency.</p>
-      </article>
-
-      <article class="mag">
-        <small>SENZ INSIGHT</small>
-        <h3>Behind the Image</h3>
-        <p>Every strong image has a system behind it.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section about" id="about">
-  <div class="section-header reveal">
-    <div class="eyebrow">ABOUT SENZ</div>
-    <h2>We design how people understand you.</h2>
-    <p>
-      SENZ works at the intersection of public perception, storytelling, reputation, digital presence, and creative systems.
-    </p>
-  </div>
-
+<section class="section light" id="about">
   <div class="about-grid">
-    <div class="about-panel reveal">
-      <h3>Clarity before visibility.</h3>
-      <p>
-        A brand does not become memorable by posting more. It becomes memorable when its message, visuals, offers, and behavior finally point in the same direction.
+    <div class="reveal">
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">The Strategy Behind Every Impact.</h2>
+      <p class="section-copy">
+        SENZ is a strategic communications and digital solutions firm helping brands build clarity, credibility, and influence. We combine strategy, creativity, and data to shape narratives that connect and convert.
       </p>
+      <br>
+      <button class="secondary" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Learn More About Us</button>
     </div>
-
-    <div class="about-panel reveal">
-      <h3>Strategy before decoration.</h3>
-      <p>
-        We do not treat design as surface. We treat it as a system of memory, trust, and recognition. Every visual choice should support a public meaning.
-      </p>
+    <div class="about-gallery reveal">
+      <div class="image-box"><span>Strategy Room</span></div>
+      <div class="about-stack">
+        <div class="image-box"><span>Team Work</span></div>
+        <div class="image-box"><span>Clarity Board</span></div>
+      </div>
     </div>
   </div>
 </section>
-
-<section class="section services" id="services">
-  <div class="section-header reveal">
-    <div class="eyebrow">SERVICES</div>
-    <h2>Choose the outcome you need.</h2>
-    <p>
-      Instead of starting with generic service names, SENZ starts with the perception problem you want to solve.
-    </p>
-  </div>
-
-  <div class="service-grid">
-    <div class="service-card reveal">
-      <span>01</span>
-      <h3>Make them understand you.</h3>
-      <p>Brand strategy, messaging, positioning, and identity clarity.</p>
+<section class="section dark" id="services">
+  <div class="service-layout">
+    <div class="reveal">
+      <div class="section-label">Services</div>
+      <h2 class="section-title">Solutions That Build, Stories That Last.</h2>
+      <p class="section-copy">
+        From strategy to execution, we provide end-to-end solutions that help brands grow with intention and impact.
+      </p>
+      <br>
+      <button class="secondary">Explore All Services</button>
     </div>
-
-    <div class="service-card reveal">
-      <span>02</span>
-      <h3>Make them trust you.</h3>
-      <p>Public relations, reputation support, credibility systems, and narrative discipline.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <span>03</span>
-      <h3>Make them remember you.</h3>
-      <p>Creative direction, visual storytelling, campaigns, content systems, and brand memory cues.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <span>04</span>
-      <h3>Make your online presence work.</h3>
-      <p>Website direction, digital content, social media structure, and conversion-focused visibility.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <span>05</span>
-      <h3>Make your launch feel intentional.</h3>
-      <p>Launch planning, campaign flow, press angles, digital rollout, and audience buildup.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <span>06</span>
-      <h3>Make your image match your value.</h3>
-      <p>Personal branding, pageant visibility, founder positioning, and public-facing identity systems.</p>
+    <div class="service-grid">
+      <article class="service-card reveal">
+        <div class="icon">◎</div>
+        <h3>Strategic Communications</h3>
+        <p>Clear messaging, stronger narratives, measurable impact.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="icon">▣</div>
+        <h3>Public Relations &amp; Media</h3>
+        <p>Build credibility, strengthen reputation, and earn trust.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="icon">◻</div>
+        <h3>Digital Presence &amp; Web Solutions</h3>
+        <p>High-performing websites and digital experiences.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="icon">✎</div>
+        <h3>Content Creation &amp; Social Media</h3>
+        <p>Content that connects, converts, and creates conversations.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="icon">◇</div>
+        <h3>Brand Strategy &amp; Positioning</h3>
+        <p>Define your edge, own your space, and lead your category.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="icon">▷</div>
+        <h3>Creative Production</h3>
+        <p>Visuals, videos, and campaigns that bring ideas to life.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="icon">▥</div>
+        <h3>Analytics &amp; Performance</h3>
+        <p>Data that informs. Insights that drive growth.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="icon">☆</div>
+        <h3>Personal PR Strategist</h3>
+        <p>Image, presence, and story designed to stand out.</p>
+      </article>
     </div>
   </div>
 </section>
-
-<section class="final" id="contact">
+<section class="section light" id="waiting">
+  <div class="waiting-layout">
+    <div class="reveal">
+      <div class="section-label">Waiting Area</div>
+      <h2 class="section-title">Enjoy the read while you wait.</h2>
+      <p class="section-copy">
+        Browse SENZ issues, insights on branding, reputation, public image, digital presence, and visibility.
+      </p>
+      <br>
+      <button class="secondary" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Browse All Issues</button>
+    </div>
+    <div class="mag-track reveal">
+      <article class="mag" onclick="openIssue(0)">
+        <small>SENZ INSIGHTS</small>
+        <h3>Visibility Issue</h3>
+        <span class="read-label">Read Issue →</span>
+      </article>
+      <article class="mag" onclick="openIssue(1)">
+        <small>SENZ INSIGHTS</small>
+        <h3>Reputation Reset</h3>
+        <span class="read-label">Read Issue →</span>
+      </article>
+      <article class="mag" onclick="openIssue(2)">
+        <small>SENZ INSIGHTS</small>
+        <h3>Quiet Power of Branding</h3>
+        <span class="read-label">Read Issue →</span>
+      </article>
+      <article class="mag" onclick="openIssue(3)">
+        <small>SENZ INSIGHTS</small>
+        <h3>Case Files</h3>
+        <span class="read-label">Read Issue →</span>
+      </article>
+      <article class="mag" onclick="openIssue(4)">
+        <small>SENZ INSIGHTS</small>
+        <h3>Behind The Image</h3>
+        <span class="read-label">Read Issue →</span>
+      </article>
+      <article class="mag" onclick="openIssue(5)">
+        <small>SENZ INSIGHTS</small>
+        <h3>From Unknown to Unavoidable</h3>
+        <span class="read-label">Read Issue →</span>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section rooms" id="rooms">
+  <div class="rooms-layout">
+    <div class="reveal">
+      <div class="section-label">Strategy Rooms</div>
+      <h2 class="section-title">Choose your strategy room.</h2>
+      <p class="section-copy">
+        Every brand enters SENZ with a different problem. Start with the room that matches yours.
+      </p>
+    </div>
+    <div class="room-track reveal">
+      <article class="room-card">
+        <div>
+          <div class="room-no">01</div>
+          <h3>Visibility Room</h3>
+          <p>For brands that need to be seen, remembered, and searched.</p>
+        </div>
+        <div class="enter">Enter Room →</div>
+      </article>
+      <article class="room-card">
+        <div>
+          <div class="room-no">02</div>
+          <h3>Reputation Room</h3>
+          <p>For people or brands that need trust, control, and narrative repair.</p>
+        </div>
+        <div class="enter">Enter Room →</div>
+      </article>
+      <article class="room-card">
+        <div>
+          <div class="room-no">03</div>
+          <h3>Launch Room</h3>
+          <p>For businesses, projects, campaigns, and public figures preparing to go public.</p>
+        </div>
+        <div class="enter">Enter Room →</div>
+      </article>
+      <article class="room-card">
+        <div>
+          <div class="room-no">04</div>
+          <h3>Digital Presence Room</h3>
+          <p>For websites, social media systems, content direction, and online visibility.</p>
+        </div>
+        <div class="enter">Enter Room →</div>
+      </article>
+      <article class="room-card">
+        <div>
+          <div class="room-no">05</div>
+          <h3>Creative Production Room</h3>
+          <p>For visuals, campaigns, shoots, videos, brand assets, and storytelling materials.</p>
+        </div>
+        <div class="enter">Enter Room →</div>
+      </article>
+      <article class="room-card">
+        <div>
+          <div class="room-no">06</div>
+          <h3>Personal PR Room</h3>
+          <p>For pageant queens, founders, creators, leaders, and public-facing personalities.</p>
+        </div>
+        <div class="enter">Enter Room →</div>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section light" id="gallery">
+  <div class="gallery-layout">
+    <div class="reveal">
+      <div class="section-label">Gallery</div>
+      <h2 class="section-title">A glimpse of our work.</h2>
+      <p class="section-copy">
+        Projects, campaigns, and brand transformations we are proud of.
+      </p>
+      <br>
+      <button class="secondary" style="color:#08101d;border-color:rgba(8,16,29,0.18)">View Full Gallery</button>
+    </div>
+    <div class="gallery-track reveal">
+      <div class="gallery-card"><span>Brand Strategy</span></div>
+      <div class="gallery-card"><span>Campaign</span></div>
+      <div class="gallery-card"><span>Digital Experience</span></div>
+      <div class="gallery-card"><span>Content Creation</span></div>
+      <div class="gallery-card"><span>Event &amp; PR</span></div>
+    </div>
+  </div>
+</section>
+<section class="section dark" id="community">
   <div class="reveal">
-    <h2>Ready when your brand is.</h2>
-    <p>
-      Start at reception. Browse the waiting area. Or walk straight into strategy.
+    <div class="section-label">Community Works</div>
+    <h2 class="section-title">Impact beyond our clients.</h2>
+    <p class="section-copy">
+      Because communication is stronger when it uplifts.
     </p>
-    <button class="btn primary magnetic">Book a Consultation</button>
+  </div>
+  <div class="community-grid">
+    <article class="community-card reveal">
+      <h3>Youth Communication Workshops</h3>
+      <p>Helping young voices express ideas with clarity and confidence.</p>
+    </article>
+    <article class="community-card reveal">
+      <h3>Community Storytelling Project</h3>
+      <p>Documenting local stories and turning them into meaningful visibility.</p>
+    </article>
+    <article class="community-card reveal">
+      <h3>Digital Literacy Initiative</h3>
+      <p>Helping communities understand online presence, safety, and opportunity.</p>
+    </article>
+    <article class="community-card reveal">
+      <h3>Environmental Awareness Campaign</h3>
+      <p>Turning public concerns into stronger messages and public participation.</p>
+    </article>
   </div>
 </section>
-
+<section class="section light" id="shop">
+  <div class="bottom-grid">
+    <div class="reveal">
+      <div class="section-label">Shop</div>
+      <h2 class="section-title">Tools, templates, and resources.</h2>
+      <p class="section-copy">
+        Equip your brand with SENZ-curated resources.
+      </p>
+      <div class="shop-items">
+        <div class="product"></div>
+        <div class="product"></div>
+        <div class="product"></div>
+      </div>
+    </div>
+    <div class="reveal" id="faq">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Questions? We've got answers.</h2>
+      <details class="faq-item">
+        <summary>What does SENZ do?</summary>
+        <p>SENZ helps brands with strategy, communications, digital presence, creative direction, and public visibility.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How does the process work?</summary>
+        <p>We start with your current brand situation, clarify your goal, then design a strategy and execution plan.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Who do you work with?</summary>
+        <p>We work with brands, entrepreneurs, organizations, public-facing personalities, and pageant talents.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How long does a project take?</summary>
+        <p>It depends on the scope. Smaller strategy work can be faster, while full brand or digital projects need a longer timeline.</p>
+      </details>
+    </div>
+    <div class="reveal" id="contact">
+      <div class="section-label">Talk to Reception</div>
+      <h2 class="section-title">We are ready to assist you.</h2>
+      <p class="section-copy">
+        Send us a message and our reception team will respond shortly.
+      </p>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Email Address">
+        <textarea placeholder="Your Message"></textarea>
+        <button class="submit" type="button">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="issue-modal" id="issueModal">
+  <div class="issue-reader">
+    <button class="close-reader" onclick="closeIssue()">×</button>
+    <div class="reader-top">
+      <small id="issueLabel">SENZ INSIGHTS</small>
+      <h2 id="issueTitle">Visibility Issue</h2>
+    </div>
+    <div class="reader-page" id="readerPage">
+      <h3 id="pageTitle">Page Title</h3>
+      <p id="pageText">Page content goes here.</p>
+    </div>
+    <div class="reader-controls">
+      <button onclick="prevIssuePage()">← Previous</button>
+      <span id="pageCount">1 / 5</span>
+      <button onclick="nextIssuePage()">Next →</button>
+    </div>
+  </div>
+</div>
 <script>
-const progress = document.getElementById("progress");
-
-function updateProgress() {
-  const scrollTop = window.scrollY;
-  const docHeight = document.body.scrollHeight - window.innerHeight;
-  const progressWidth = (scrollTop / docHeight) * 100;
-  progress.style.width = progressWidth + "%";
-}
-
-window.addEventListener("scroll", updateProgress);
-
-/* REVEAL ON SCROLL */
-const reveals = document.querySelectorAll(".reveal");
-
+const revealItems = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add("show");
     }
   });
-}, {
-  threshold: 0.18
+}, { threshold: 0.14 });
+revealItems.forEach(item => observer.observe(item));
+
+document.querySelectorAll(".mag-track, .room-track, .gallery-track").forEach(track => {
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  track.addEventListener("mousedown", e => {
+    isDown = true;
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+    track.style.cursor = "grabbing";
+  });
+  track.addEventListener("mouseleave", () => {
+    isDown = false;
+    track.style.cursor = "grab";
+  });
+  track.addEventListener("mouseup", () => {
+    isDown = false;
+    track.style.cursor = "grab";
+  });
+  track.addEventListener("mousemove", e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.2;
+    track.scrollLeft = scrollLeft - walk;
+  });
 });
 
-reveals.forEach((item) => observer.observe(item));
+const issueData = [
+  {
+    title: "Visibility Issue",
+    pages: [
+      {
+        title: "Visibility Is Not Noise",
+        text: "Visibility is not about being everywhere. It is about being remembered in the right place, by the right people, for the right reason."
+      },
+      {
+        title: "Be Seen With Direction",
+        text: "A brand becomes visible when its message, visuals, offers, and behavior point to one clear meaning. Without direction, attention becomes clutter."
+      },
+      {
+        title: "Recognition Over Reach",
+        text: "Reach can give you numbers. Recognition gives you value. The goal is not only for people to see you. The goal is for people to know what to do with you."
+      },
+      {
+        title: "The Visibility System",
+        text: "A strong visibility system includes positioning, visual identity, message repetition, content rhythm, audience understanding, and proof of credibility."
+      },
+      {
+        title: "SENZ Note",
+        text: "Do not chase visibility before clarity. If people see you before they understand you, they may remember the wrong thing."
+      }
+    ]
+  },
+  {
+    title: "Reputation Reset",
+    pages: [
+      {
+        title: "Reputation Is Memory",
+        text: "Reputation is the memory people keep about you when you are no longer explaining yourself."
+      },
+      {
+        title: "Repair Needs Rhythm",
+        text: "Reputation repair is not one big statement. It is a disciplined rhythm of clearer choices, better signals, and consistent behavior."
+      },
+      {
+        title: "Do Not Over-Explain",
+        text: "When a brand is misunderstood, the instinct is to explain everything. But too much explanation can make the problem louder."
+      },
+      {
+        title: "Control The Signal",
+        text: "The reset begins when the brand stops reacting to every opinion and starts controlling the message, timing, and tone."
+      },
+      {
+        title: "SENZ Note",
+        text: "A reset is not pretending the past did not happen. It is designing the next version with more discipline."
+      }
+    ]
+  },
+  {
+    title: "Quiet Power of Branding",
+    pages: [
+      {
+        title: "Strong Brands Do Not Shout",
+        text: "The strongest brands do not need to explain themselves loudly. They create a feeling of certainty through consistency."
+      },
+      {
+        title: "Design Is Memory",
+        text: "Design is not decoration. It is a system that helps people remember what the brand stands for."
+      },
+      {
+        title: "Less Noise, More Meaning",
+        text: "A premium brand does not fill every space. It knows when to speak, when to pause, and when to let silence create value."
+      },
+      {
+        title: "The Brand Anchor",
+        text: "Every brand needs an anchor: one idea people can return to again and again. Without an anchor, the brand becomes visually busy but mentally forgettable."
+      },
+      {
+        title: "SENZ Note",
+        text: "If your brand looks beautiful but people cannot explain what you do, the branding is not finished."
+      }
+    ]
+  },
+  {
+    title: "Case Files",
+    pages: [
+      {
+        title: "The Work Behind The Work",
+        text: "A campaign is not only what people see. It is the thinking, pressure, decisions, and timing behind the public result."
+      },
+      {
+        title: "Before The Launch",
+        text: "Before a brand becomes visible, the message must be organized. The audience must know why it should care."
+      },
+      {
+        title: "During Execution",
+        text: "Execution is where strategy gets tested. A strong idea still needs rhythm, visual discipline, and timing."
+      },
+      {
+        title: "After Visibility",
+        text: "The work does not end when people notice you. The next job is to convert attention into trust, action, and memory."
+      },
+      {
+        title: "SENZ Note",
+        text: "Case files matter because they show that good branding is not magic. It is organized decision-making."
+      }
+    ]
+  },
+  {
+    title: "Behind The Image",
+    pages: [
+      {
+        title: "Image Is A Strategy",
+        text: "A public image is not just a photo, outfit, logo, or caption. It is the total meaning people receive from your presence."
+      },
+      {
+        title: "Every Detail Teaches",
+        text: "Color, type, posture, tone, background, pacing, and repetition all teach the audience how to understand you."
+      },
+      {
+        title: "Do Not Copy Aesthetic",
+        text: "An aesthetic can be copied. A point of view cannot. The best image systems are built from identity, not trend."
+      },
+      {
+        title: "Visual Trust",
+        text: "People trust what feels consistent. If your image changes too often without reason, your audience has to restart their understanding of you."
+      },
+      {
+        title: "SENZ Note",
+        text: "The image should not only look good. It should explain your value before you speak."
+      }
+    ]
+  },
+  {
+    title: "From Unknown to Unavoidable",
+    pages: [
+      {
+        title: "Unknown Is Not The Problem",
+        text: "Every strong brand starts unknown. The problem is not being unknown. The problem is staying unclear."
+      },
+      {
+        title: "Create A Reason To Remember",
+        text: "People do not remember brands because they posted once. They remember brands that repeat a clear meaning in different forms."
+      },
+      {
+        title: "Build Demand Slowly",
+        text: "Being unavoidable does not mean forcing attention. It means becoming relevant enough that people keep encountering your value."
+      },
+      {
+        title: "Visibility With Proof",
+        text: "Attention becomes stronger when supported by proof: work, testimonials, results, process, presence, and consistency."
+      },
+      {
+        title: "SENZ Note",
+        text: "The goal is not to be loud. The goal is to become the name people think of when the need appears."
+      }
+    ]
+  }
+];
 
-/* SOFT PARALLAX */
-const parallaxItems = document.querySelectorAll(".parallax");
+let activeIssue = 0;
+let activePage = 0;
 
-let currentScroll = 0;
-let targetScroll = 0;
-
-function parallaxLoop() {
-  targetScroll = window.scrollY;
-  currentScroll += (targetScroll - currentScroll) * 0.08;
-
-  parallaxItems.forEach((item) => {
-    const speed = parseFloat(item.dataset.speed || 0.08);
-    item.style.transform = `translate3d(0, ${currentScroll * speed}px, 0)`;
-  });
-
-  requestAnimationFrame(parallaxLoop);
+function openIssue(index) {
+  activeIssue = index;
+  activePage = 0;
+  document.getElementById("issueModal").classList.add("active");
+  document.body.style.overflow = "hidden";
+  renderIssuePage();
 }
 
-parallaxLoop();
+function closeIssue() {
+  document.getElementById("issueModal").classList.remove("active");
+  document.body.style.overflow = "auto";
+}
 
-/* MAGNETIC BUTTONS */
-const magneticButtons = document.querySelectorAll(".magnetic");
+function renderIssuePage() {
+  const issue = issueData[activeIssue];
+  const page = issue.pages[activePage];
+  const readerPage = document.getElementById("readerPage");
+  readerPage.classList.add("turning");
+  setTimeout(() => {
+    document.getElementById("issueTitle").textContent = issue.title;
+    document.getElementById("pageTitle").textContent = page.title;
+    document.getElementById("pageText").textContent = page.text;
+    document.getElementById("pageCount").textContent = `${activePage + 1} / ${issue.pages.length}`;
+    readerPage.classList.remove("turning");
+  }, 220);
+}
 
-magneticButtons.forEach((btn) => {
-  btn.addEventListener("mousemove", (e) => {
-    const rect = btn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+function nextIssuePage() {
+  const issue = issueData[activeIssue];
+  if (activePage < issue.pages.length - 1) {
+    activePage++;
+    renderIssuePage();
+  }
+}
 
-    btn.style.transform = `translate(${x * 0.16}px, ${y * 0.16}px)`;
-  });
+function prevIssuePage() {
+  if (activePage > 0) {
+    activePage--;
+    renderIssuePage();
+  }
+}
 
-  btn.addEventListener("mouseleave", () => {
-    btn.style.transform = "translate(0,0)";
-  });
-});
-
-/* HERO MOUSE DEPTH */
-const hero = document.querySelector(".hero");
-const reception = document.querySelector(".reception-card");
-
-hero.addEventListener("mousemove", (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 10;
-  const y = (e.clientY / window.innerHeight - 0.5) * 10;
-
-  reception.style.transform = `rotateX(${-y}deg) rotateY(${x}deg) translateY(-4px)`;
-});
-
-hero.addEventListener("mouseleave", () => {
-  reception.style.transform = "rotateX(0) rotateY(0) translateY(0)";
+document.getElementById("issueModal").addEventListener("click", function(e) {
+  if (e.target === this) {
+    closeIssue();
+  }
 });
 </script>
-
 </body>
 </html>
