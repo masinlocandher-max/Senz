@@ -63,32 +63,27 @@ a {
   align-items: center;
   gap: 14px;
 }
-.logo-mark {
-  width: 38px;
-  height: 38px;
-  border-radius: 13px;
-  background: linear-gradient(135deg, #0048ff, #2f8cff);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  box-shadow: 0 14px 40px rgba(47,107,255,0.35);
-  transform: rotate(-8deg);
+.logo-icon {
+  flex-shrink: 0;
+  filter: drop-shadow(0 10px 28px rgba(47,107,255,0.38));
 }
 .logo-text {
   line-height: 1;
 }
 .logo-text strong {
   display: block;
-  letter-spacing: 8px;
-  font-size: 23px;
-  font-weight: 500;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 5px;
+  font-size: 20px;
+  font-weight: 600;
 }
 .logo-text span {
   display: block;
-  margin-top: 7px;
-  font-size: 8px;
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.62);
+  margin-top: 6px;
+  font-size: 7.5px;
+  letter-spacing: 2.5px;
+  color: rgba(255,255,255,0.52);
+  text-transform: uppercase;
 }
 .nav-links {
   display: flex;
@@ -854,10 +849,33 @@ textarea {
 <body>
 <nav class="nav">
   <div class="logo-wrap">
-    <div class="logo-mark">S</div>
+    <svg class="logo-icon" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="SENZ logo mark">
+      <defs>
+        <linearGradient id="senzBg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#003de0"/>
+          <stop offset="100%" stop-color="#3a8fff"/>
+        </linearGradient>
+        <linearGradient id="senzStroke" x1="10" y1="10" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0.78)"/>
+        </linearGradient>
+      </defs>
+      <!-- Background tile -->
+      <rect width="44" height="44" rx="13" fill="url(#senzBg)"/>
+      <!-- Subtle grid texture -->
+      <line x1="0" y1="22" x2="44" y2="22" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <line x1="22" y1="0" x2="22" y2="44" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <!-- Geometric S mark: two arcs connected through centre -->
+      <!-- Top arc: upper bowl of S -->
+      <path d="M29 16C29 12.8 26.2 11 22 11C17.8 11 14 13.2 14 16.5C14 19.2 16.2 20.6 19.8 21.4" stroke="url(#senzStroke)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <!-- Bottom arc: lower bowl of S -->
+      <path d="M15 28C15 31.2 17.8 33 22 33C26.2 33 30 30.8 30 27.5C30 24.8 27.8 23.4 24.2 22.6" stroke="url(#senzStroke)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <!-- Centre accent dot -->
+      <circle cx="22" cy="22" r="1.6" fill="rgba(255,255,255,0.5)"/>
+    </svg>
     <div class="logo-text">
       <strong>SENZ</strong>
-      <span>STRATEGIC COMMUNICATIONS AND DIGITAL SOLUTIONS</span>
+      <span>Strategic Communications &amp; Digital Solutions</span>
     </div>
   </div>
   <div class="nav-links">
