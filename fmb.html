@@ -247,6 +247,7 @@
       .portrait { min-height: 430px; }
     }
   </style>
+  <link rel="stylesheet" href="components/site-menu.css" />
 </head>
 <body>
   <nav class="nav">
@@ -264,6 +265,7 @@
       <a href="index.html#faq">FAQ</a>
       <a href="get-started.html">Talk to Reception</a>
     </div>
+    <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
   </nav>
   <main>
     <section class="hero">
@@ -346,5 +348,6 @@
     window.addEventListener('resize', syncScrollMotion);
     syncScrollMotion();
   </script>
+  <script src="components/site-menu.js" defer></script>
 </body>
 </html>

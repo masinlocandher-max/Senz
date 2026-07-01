@@ -974,6 +974,7 @@
       .footer-socials { justify-content: flex-start; }
     }
   </style>
+  <link rel="stylesheet" href="components/site-menu.css" />
   <link rel="stylesheet" href="components/chat-support.css" />
 </head>
 <body>
@@ -1236,21 +1237,6 @@
       }, { passive: true });
 
       /* nav mobile toggle */
-      const navLinks = document.querySelector('.nav-links');
-      const toggle = document.querySelector('.mobile-toggle');
-      toggle?.addEventListener('click', () => {
-        const open = navLinks.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded', String(open));
-        toggle.textContent = open ? 'Close' : 'Menu';
-      });
-      navLinks?.querySelectorAll('a').forEach((a) => {
-        a.addEventListener('click', () => {
-          navLinks.classList.remove('is-open');
-          toggle?.setAttribute('aria-expanded', 'false');
-          if (toggle) toggle.textContent = 'Menu';
-        });
-      });
-
       /* reveal on scroll */
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
@@ -1503,6 +1489,7 @@
       });
     })();
   </script>
+  <script src="components/site-menu.js" defer></script>
   <script src="components/chat-support.js" defer></script>
 </body>
 </html>
