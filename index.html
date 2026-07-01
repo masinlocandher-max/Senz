@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -89,12 +89,13 @@ a {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: clamp(16px, 2vw, 28px);
   font-size: 14px;
 }
 .nav-links a {
   color: rgba(255,255,255,0.72);
   transition: color 0.25s ease;
+  white-space: nowrap;
 }
 .nav-links a:hover {
   color: white;
@@ -107,6 +108,7 @@ a {
   font-weight: 700;
   letter-spacing: 0.7px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 /* HERO */
 .hero {
@@ -114,9 +116,9 @@ a {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 130px 72px 80px;
+  padding: 110px 72px 68px;
   background:
-    linear-gradient(90deg, rgba(5,8,13,0.94) 0%, rgba(5,8,13,0.72) 43%, rgba(5,8,13,0.22) 100%),
+    linear-gradient(90deg, rgba(5,8,13,0.92) 0%, rgba(5,8,13,0.68) 48%, rgba(5,8,13,0.2) 100%),
     radial-gradient(circle at 42% 44%, rgba(47,107,255,0.23), transparent 28%),
     url("assets/senz-tour-reception-hero.png") center / cover no-repeat,
     linear-gradient(135deg, #05080d 0%, #101827 52%, #05080d 100%);
@@ -156,7 +158,7 @@ a {
   pointer-events: none;
 }
 .text {
-  max-width: 620px;
+  max-width: 560px;
   z-index: 2;
   position: relative;
 }
@@ -177,18 +179,18 @@ h2,
   letter-spacing: -1px;
 }
 .text h1 {
-  font-size: clamp(48px, 6vw, 78px);
+  font-size: clamp(44px, 5.4vw, 68px);
   line-height: 1.02;
 }
 .text p {
   margin-top: 22px;
-  max-width: 540px;
+  max-width: 520px;
   opacity: 0.72;
   line-height: 1.8;
   font-size: 17px;
 }
 .actions {
-  margin-top: 34px;
+  margin-top: 28px;
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
@@ -227,22 +229,22 @@ button:hover {
   display: grid;
   justify-items: center;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.52;
   filter:
     drop-shadow(0 0 22px rgba(47,107,255,0.34))
     drop-shadow(0 30px 70px rgba(0,0,0,0.62));
 }
 .hero-signage img {
-  width: clamp(92px, 10vw, 140px);
+  width: clamp(72px, 8vw, 112px);
   display: block;
 }
 .hero-signage span {
   display: block;
   margin-top: 12px;
   padding-left: 14px;
-  color: rgba(255,255,255,0.84);
-  font-size: clamp(18px, 2vw, 26px);
-  letter-spacing: 14px;
+  color: rgba(255,255,255,0.58);
+  font-size: clamp(14px, 1.6vw, 20px);
+  letter-spacing: 11px;
   font-weight: 500;
 }
 .tag {
@@ -393,10 +395,22 @@ button:hover {
 }
 .icon {
   color: var(--blue);
-  font-size: 28px;
+  width: 38px;
+  height: 38px;
   margin-bottom: 18px;
+  display: grid;
+  place-items: center;
   position: relative;
   z-index: 2;
+}
+.icon svg {
+  width: 34px;
+  height: 34px;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .service-card h3 {
   font-size: 16px;
@@ -958,7 +972,7 @@ textarea {
 .reveal {
   opacity: 0;
   transform: translateY(34px);
-  filter: blur(8px);
+  filter: none;
   transition: 0.9s cubic-bezier(.16,1,.3,1);
 }
 .reveal.show {
@@ -1119,7 +1133,6 @@ textarea {
     <div class="actions">
       <button class="primary" onclick="document.querySelector('#contact').scrollIntoView()">Talk to Reception</button>
       <a class="btn secondary" href="get-started.html">Book Consultation</a>
-      <button class="secondary" onclick="document.querySelector('#waiting').scrollIntoView()">Free Ebooks</button>
     </div>
   </div>
   <div class="hero-signage" aria-hidden="true">
@@ -1157,46 +1170,46 @@ textarea {
         From strategy to execution, we provide end-to-end solutions that help brands grow with intention and impact.
       </p>
       <br>
-      <button class="secondary">Explore All Services</button>
+      <a class="btn secondary" href="get-started.html">Explore All Services</a>
     </div>
     <div class="service-grid">
       <article class="service-card reveal">
-        <div class="icon">◎</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 5v14M5 12h14"/></svg></div>
         <h3>Strategic Communications</h3>
         <p>Clear messaging, stronger narratives, measurable impact.</p>
       </article>
       <article class="service-card reveal">
-        <div class="icon">▣</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13h4l9-6v10l-9-6H4z"/><path d="M19 9c1 1 1 5 0 6"/></svg></div>
         <h3>Public Relations &amp; Media</h3>
         <p>Build credibility, strengthen reputation, and earn trust.</p>
       </article>
       <article class="service-card reveal">
-        <div class="icon">◻</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M9 20h6M12 16v4"/></svg></div>
         <h3>Digital Presence &amp; Web Solutions</h3>
         <p>High-performing websites and digital experiences.</p>
       </article>
       <article class="service-card reveal">
-        <div class="icon">✎</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4l11-11-4-4L4 16z"/><path d="M13 7l4 4"/></svg></div>
         <h3>Content Creation &amp; Social Media</h3>
         <p>Content that connects, converts, and creates conversations.</p>
       </article>
       <article class="service-card reveal">
-        <div class="icon">◇</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 21 9l-9 12L3 9z"/><path d="M3 9h18M8 9l4 12 4-12"/></svg></div>
         <h3>Brand Strategy &amp; Positioning</h3>
         <p>Define your edge, own your space, and lead your category.</p>
       </article>
       <article class="service-card reveal">
-        <div class="icon">▷</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 5v14l11-7z"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg></div>
         <h3>Creative Production</h3>
         <p>Visuals, videos, and campaigns that bring ideas to life.</p>
       </article>
       <article class="service-card reveal">
-        <div class="icon">▥</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/></svg></div>
         <h3>Analytics &amp; Performance</h3>
         <p>Data that informs. Insights that drive growth.</p>
       </article>
       <article class="service-card reveal">
-        <div class="icon">☆</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9z"/></svg></div>
         <h3>Personal PR Strategist</h3>
         <p>Image, presence, and story designed to stand out.</p>
       </article>
@@ -1299,7 +1312,7 @@ textarea {
           <h3>Visibility Room</h3>
           <p>For brands that need to be seen, remembered, and searched.</p>
         </div>
-        <div class="enter">Enter Room →</div>
+        <div class="enter">Enter Room</div>
       </article>
       <article class="room-card">
         <div>
@@ -1307,7 +1320,7 @@ textarea {
           <h3>Reputation Room</h3>
           <p>For people or brands that need trust, control, and narrative repair.</p>
         </div>
-        <div class="enter">Enter Room →</div>
+        <div class="enter">Enter Room</div>
       </article>
       <article class="room-card">
         <div>
@@ -1315,7 +1328,7 @@ textarea {
           <h3>Launch Room</h3>
           <p>For businesses, projects, campaigns, and public figures preparing to go public.</p>
         </div>
-        <div class="enter">Enter Room →</div>
+        <div class="enter">Enter Room</div>
       </article>
       <article class="room-card">
         <div>
@@ -1323,7 +1336,7 @@ textarea {
           <h3>Digital Presence Room</h3>
           <p>For websites, social media systems, content direction, and online visibility.</p>
         </div>
-        <div class="enter">Enter Room →</div>
+        <div class="enter">Enter Room</div>
       </article>
       <article class="room-card">
         <div>
@@ -1331,7 +1344,7 @@ textarea {
           <h3>Creative Production Room</h3>
           <p>For visuals, campaigns, shoots, videos, brand assets, and storytelling materials.</p>
         </div>
-        <div class="enter">Enter Room →</div>
+        <div class="enter">Enter Room</div>
       </article>
       <article class="room-card">
         <div>
@@ -1339,7 +1352,7 @@ textarea {
           <h3>Personal PR Room</h3>
           <p>For pageant queens, founders, creators, leaders, and public-facing personalities.</p>
         </div>
-        <div class="enter">Enter Room →</div>
+        <div class="enter">Enter Room</div>
       </article>
     </div>
   </div>
@@ -1421,7 +1434,7 @@ textarea {
         <input type="text" placeholder="Your Name">
         <input type="email" placeholder="Email Address">
         <textarea placeholder="Your Message"></textarea>
-        <button class="submit" type="button">Send Message →</button>
+        <a class="btn submit" href="get-started.html">Send Message</a>
       </form>
     </div>
   </div>
@@ -1444,7 +1457,7 @@ textarea {
 </footer>
 <div class="issue-modal" id="issueModal">
   <div class="issue-reader">
-    <button class="close-reader" onclick="closeIssue()">×</button>
+    <button class="close-reader" onclick="closeIssue()" aria-label="Close reader">×</button>
     <div class="reader-top">
       <small id="issueLabel">WITH LOVE, FMB</small>
       <h2 id="issueTitle">Story, Strategy, Impact</h2>
@@ -1454,9 +1467,9 @@ textarea {
       <p id="pageText">Page content goes here.</p>
     </div>
     <div class="reader-controls">
-      <button onclick="prevIssuePage()">← Previous</button>
+      <button onclick="prevIssuePage()">Previous</button>
       <span id="pageCount">1 / 5</span>
-      <button onclick="nextIssuePage()">Next →</button>
+      <button onclick="nextIssuePage()">Next</button>
     </div>
   </div>
 </div>
@@ -1704,3 +1717,4 @@ document.getElementById("issueModal").addEventListener("click", function(e) {
 </script>
 </body>
 </html>
+
