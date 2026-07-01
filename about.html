@@ -2492,6 +2492,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="components/site-menu.css" />
   <link rel="stylesheet" href="components/chat-support.css" />
 </head>
 <body>
@@ -2766,28 +2767,12 @@
   <script>
     (() => {
       const body = document.body;
-      const nav = document.querySelector('.nav-links');
-      const toggle = document.querySelector('.mobile-toggle');
       const modal = document.querySelector('#infoModal');
       const modalTitle = document.querySelector('#modalTitle');
       const modalBody = document.querySelector('#modalBody');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       requestAnimationFrame(() => body.classList.add('is-ready'));
-
-      toggle?.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded', String(isOpen));
-        toggle.textContent = isOpen ? 'Close' : 'Menu';
-      });
-
-      nav?.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          nav.classList.remove('is-open');
-          toggle?.setAttribute('aria-expanded', 'false');
-          if (toggle) toggle.textContent = 'Menu';
-        });
-      });
 
       document.querySelectorAll('section, .info-card, .journal-card, .about-service-strip span, .light-metrics span, .founder-story-panel, .founder-lesson-card').forEach((el) => {
         el.classList.add('reveal');
@@ -2943,6 +2928,7 @@
       syncScrollMotion();
     })();
   </script>
+  <script src="components/site-menu.js" defer></script>
   <script src="components/chat-support.js" defer></script>
 </body>
 </html>
