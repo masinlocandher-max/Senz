@@ -27,6 +27,7 @@
 }
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 92px;
 }
 body {
   background: var(--bg);
@@ -73,11 +74,31 @@ a {
 .logo-text {
   line-height: 1;
 }
-.logo-text strong {
-  display: block;
-  letter-spacing: 8px;
+.brand-word {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.46em;
+  color: #fff;
   font-size: 23px;
   font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.brand-word > span:not(.brand-e) {
+  min-width: 0.72em;
+  text-align: center;
+}
+.brand-e {
+  display: inline-grid;
+  gap: 0.18em;
+  width: 0.72em;
+  transform: translateY(0.02em);
+}
+.brand-e i {
+  display: block;
+  height: 0.09em;
+  border-radius: 999px;
+  background: currentColor;
 }
 .logo-text span {
   display: block;
@@ -221,32 +242,6 @@ button:hover {
   color: white;
   backdrop-filter: blur(14px);
 }
-.hero-signage {
-  position: absolute;
-  right: clamp(80px, 13vw, 190px);
-  top: 25%;
-  z-index: 2;
-  display: grid;
-  justify-items: center;
-  pointer-events: none;
-  opacity: 0.52;
-  filter:
-    drop-shadow(0 0 22px rgba(47,107,255,0.34))
-    drop-shadow(0 30px 70px rgba(0,0,0,0.62));
-}
-.hero-signage img {
-  width: clamp(72px, 8vw, 112px);
-  display: block;
-}
-.hero-signage span {
-  display: block;
-  margin-top: 12px;
-  padding-left: 14px;
-  color: rgba(255,255,255,0.58);
-  font-size: clamp(14px, 1.6vw, 20px);
-  letter-spacing: 11px;
-  font-weight: 500;
-}
 .tag {
   position: absolute;
   bottom: 42px;
@@ -260,6 +255,11 @@ button:hover {
 /* GENERAL SECTIONS */
 .section {
   padding: 96px 72px;
+  scroll-margin-top: 92px;
+}
+header,
+footer {
+  scroll-margin-top: 92px;
 }
 .section-title {
   font-size: clamp(36px, 4vw, 56px);
@@ -991,11 +991,6 @@ textarea {
   .hero {
     padding: 110px 24px 70px;
   }
-  .hero-signage {
-    right: 11%;
-    top: 24%;
-    opacity: 0.58;
-  }
   .tag {
     left: 24px;
   }
@@ -1026,7 +1021,7 @@ textarea {
   }
 }
 @media (max-width: 640px) {
-  .logo-text strong {
+  .brand-word {
     font-size: 18px;
   }
   .logo-text span {
@@ -1034,17 +1029,6 @@ textarea {
   }
   .text h1 {
     font-size: 43px;
-  }
-  .hero-signage {
-    right: 8%;
-    top: 18%;
-    opacity: 0.42;
-  }
-  .hero-signage img {
-    width: 70px;
-  }
-  .hero-signage span {
-    display: none;
   }
   .actions {
     flex-direction: column;
@@ -1107,7 +1091,7 @@ textarea {
   <div class="logo-wrap">
     <div class="logo-mark" aria-hidden="true"></div>
     <div class="logo-text">
-      <strong>SENZ</strong>
+      <strong class="brand-word" aria-label="SENZ"><span>S</span><span class="brand-e"><i></i><i></i><i></i></span><span>N</span><span>Z</span></strong>
       <span>STRATEGIC COMMUNICATIONS AND DIGITAL SOLUTIONS</span>
     </div>
   </div>
@@ -1131,13 +1115,9 @@ textarea {
       SENZ is a strategic communications system built to shape perception, visibility, and narrative clarity.
     </p>
     <div class="actions">
-      <button class="primary" onclick="document.querySelector('#contact').scrollIntoView()">Talk to Reception</button>
+      <a class="btn primary" href="get-started.html">Work With SENZ</a>
       <a class="btn secondary" href="get-started.html">Book Consultation</a>
     </div>
-  </div>
-  <div class="hero-signage" aria-hidden="true">
-    <img src="assets/senz-original-mark.png" alt="">
-    <span>SENZ</span>
   </div>
   <div class="tag">Influence Through Clarity</div>
 </header>
@@ -1402,7 +1382,7 @@ textarea {
         Read a free ebook, explore digital products, or send a quick inquiry. SENZ will guide you from there.
       </p>
       <br>
-      <a class="btn primary" href="get-started.html">Talk to Reception</a>
+      <a class="btn primary" href="get-started.html">Start an Inquiry</a>
     </div>
     <div class="reveal">
       <div class="section-label">FAQ</div>
