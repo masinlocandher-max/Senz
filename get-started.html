@@ -914,6 +914,18 @@
       transform: translateY(0);
     }
 
+    .motion-item {
+      transform: translate3d(var(--motion-x, 0px), var(--motion-y, 0px), 0);
+      opacity: var(--item-opacity, 1);
+      transition: transform 220ms linear, opacity 220ms linear, border-color 240ms ease, box-shadow 240ms ease;
+      will-change: transform, opacity;
+    }
+
+    .motion-item.is-motion-active {
+      box-shadow: 0 22px 58px rgba(21,92,255,0.22);
+      border-color: rgba(143,177,255,0.4);
+    }
+
     /* RESPONSIVE */
     @media (max-width: 960px) {
       .nav-links, .nav-cta { display: none; }
@@ -976,7 +988,7 @@
       </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html#top">Home</a>
-        <a href="fmb.html">About Us</a>
+        <a href="about.html">About Us</a>
         <a href="index.html#services">Services</a>
         <a href="index.html#gallery">Gallery</a>
         <a href="index.html#community">Community Works</a>
@@ -1246,6 +1258,31 @@
         });
       }, { threshold: 0.1 });
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const motionItems = Array.from(document.querySelectorAll('.gs-service-toggle, .form-field, .form-actions'));
+      motionItems.forEach((item, index) => {
+        item.classList.add('motion-item');
+        item.style.setProperty('--motion-index', index);
+      });
+
+      function syncIntakeMotion() {
+        if (reduceMotion) return;
+        const vh = window.innerHeight || 1;
+        motionItems.forEach((item, index) => {
+          const rect = item.getBoundingClientRect();
+          const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh * 0.72)));
+          const direction = index % 2 === 0 ? -1 : 1;
+          item.style.setProperty('--item-opacity', (0.58 + progress * 0.42).toFixed(3));
+          item.style.setProperty('--motion-x', `${Math.round((1 - progress) * 10 * direction)}px`);
+          item.style.setProperty('--motion-y', `${Math.round((1 - progress) * 10)}px`);
+          item.classList.toggle('is-motion-active', rect.top < vh * 0.68 && rect.bottom > vh * 0.22);
+        });
+      }
+
+      window.addEventListener('scroll', syncIntakeMotion, { passive: true });
+      window.addEventListener('resize', syncIntakeMotion);
+      syncIntakeMotion();
 
       /* calendar */
       const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
