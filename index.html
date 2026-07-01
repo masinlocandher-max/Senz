@@ -112,10 +112,8 @@ a {
 .hero {
   min-height: 100vh;
   width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 0.86fr) minmax(340px, 0.72fr);
+  display: flex;
   align-items: center;
-  gap: clamp(30px, 5vw, 72px);
   padding: 130px 72px 80px;
   background:
     linear-gradient(90deg, rgba(5,8,13,0.94) 0%, rgba(5,8,13,0.72) 43%, rgba(5,8,13,0.22) 100%),
@@ -160,6 +158,7 @@ a {
 .text {
   max-width: 620px;
   z-index: 2;
+  position: relative;
 }
 .eyebrow,
 .section-label {
@@ -220,91 +219,31 @@ button:hover {
   color: white;
   backdrop-filter: blur(14px);
 }
-.hero-brand-wall {
-  position: relative;
-  z-index: 2;
-  min-height: 440px;
-  display: grid;
-  place-items: center;
-  align-self: stretch;
-}
-.hero-brand-wall::before {
-  content: "";
+.hero-signage {
   position: absolute;
-  inset: 28px 0 48px;
-  border-radius: 34px;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.015)),
-    linear-gradient(90deg, rgba(255,255,255,0.05), transparent 44%, rgba(255,255,255,0.06));
-  border: 1px solid rgba(255,255,255,0.11);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.12),
-    0 40px 120px rgba(0,0,0,0.3);
-  backdrop-filter: blur(2px);
-  opacity: 0.78;
-}
-.hero-mark {
-  position: relative;
+  right: clamp(80px, 13vw, 190px);
+  top: 25%;
   z-index: 2;
-  width: min(220px, 48vw);
-  text-align: center;
-  color: white;
+  display: grid;
+  justify-items: center;
+  pointer-events: none;
+  opacity: 0.9;
   filter:
-    drop-shadow(0 0 18px rgba(47,107,255,0.34))
-    drop-shadow(0 24px 54px rgba(0,0,0,0.55));
+    drop-shadow(0 0 22px rgba(47,107,255,0.34))
+    drop-shadow(0 30px 70px rgba(0,0,0,0.62));
 }
-.hero-mark img {
-  width: 118px;
-  margin: 0 auto 20px;
+.hero-signage img {
+  width: clamp(92px, 10vw, 140px);
   display: block;
 }
-.hero-mark span {
+.hero-signage span {
   display: block;
-  letter-spacing: 18px;
-  padding-left: 18px;
-  font-size: 28px;
+  margin-top: 12px;
+  padding-left: 14px;
+  color: rgba(255,255,255,0.84);
+  font-size: clamp(18px, 2vw, 26px);
+  letter-spacing: 14px;
   font-weight: 500;
-}
-.hero-mark small {
-  display: block;
-  margin-top: 18px;
-  color: rgba(255,255,255,0.54);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-.hero-assist {
-  position: absolute;
-  left: 0;
-  bottom: 18px;
-  z-index: 3;
-  display: grid;
-  gap: 10px;
-}
-.hero-pill {
-  width: fit-content;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.16);
-  background: rgba(2,7,19,0.5);
-  color: rgba(255,255,255,0.78);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  backdrop-filter: blur(16px);
-}
-.hero-pill::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #2f6bff;
-  box-shadow: 0 0 18px rgba(47,107,255,0.9);
 }
 .tag {
   position: absolute;
@@ -1036,20 +975,12 @@ textarea {
     display: none;
   }
   .hero {
-    grid-template-columns: 1fr;
     padding: 110px 24px 70px;
   }
-  .hero-brand-wall {
-    min-height: 300px;
-  }
-  .hero-brand-wall::before {
-    inset: 8px 0 32px;
-  }
-  .hero-assist {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    margin-top: 22px;
+  .hero-signage {
+    right: 11%;
+    top: 24%;
+    opacity: 0.58;
   }
   .tag {
     left: 24px;
@@ -1090,17 +1021,20 @@ textarea {
   .text h1 {
     font-size: 43px;
   }
+  .hero-signage {
+    right: 8%;
+    top: 18%;
+    opacity: 0.42;
+  }
+  .hero-signage img {
+    width: 70px;
+  }
+  .hero-signage span {
+    display: none;
+  }
   .actions {
     flex-direction: column;
     align-items: flex-start;
-  }
-  .hero-mark img {
-    width: 92px;
-  }
-  .hero-mark span {
-    font-size: 22px;
-    letter-spacing: 12px;
-    padding-left: 12px;
   }
   .service-grid,
   .community-grid {
@@ -1188,16 +1122,9 @@ textarea {
       <button class="secondary" onclick="document.querySelector('#waiting').scrollIntoView()">Free Ebooks</button>
     </div>
   </div>
-  <div class="hero-brand-wall reveal" aria-label="SENZ reception wall logo">
-    <div class="hero-mark">
-      <img src="assets/senz-original-mark.png" alt="" aria-hidden="true">
-      <span>SENZ</span>
-      <small>Strategic Communications</small>
-    </div>
-    <div class="hero-assist" aria-label="Reception quick actions">
-      <a class="hero-pill" href="get-started.html">Book Consultation</a>
-      <a class="hero-pill" href="#shop">Digital Products</a>
-    </div>
+  <div class="hero-signage" aria-hidden="true">
+    <img src="assets/senz-original-mark.png" alt="">
+    <span>SENZ</span>
   </div>
   <div class="tag">Influence Through Clarity</div>
 </header>
