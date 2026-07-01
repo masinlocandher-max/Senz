@@ -64,15 +64,11 @@ a {
   gap: 14px;
 }
 .logo-mark {
-  width: 38px;
-  height: 38px;
-  border-radius: 13px;
-  background: linear-gradient(135deg, #0048ff, #2f8cff);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  box-shadow: 0 14px 40px rgba(47,107,255,0.35);
-  transform: rotate(-8deg);
+  width: 42px;
+  height: 42px;
+  border-radius: 0;
+  background: url("assets/senz-original-mark.png") center / contain no-repeat;
+  filter: drop-shadow(0 12px 24px rgba(47,107,255,0.36));
 }
 .logo-text {
   line-height: 1;
@@ -117,12 +113,12 @@ a {
   min-height: 100vh;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 440px;
+  grid-template-columns: minmax(0, 0.86fr) minmax(340px, 0.72fr);
   align-items: center;
-  gap: 56px;
+  gap: clamp(30px, 5vw, 72px);
   padding: 130px 72px 80px;
   background:
-    linear-gradient(90deg, rgba(5,8,13,0.9) 0%, rgba(5,8,13,0.68) 46%, rgba(5,8,13,0.18) 100%),
+    linear-gradient(90deg, rgba(5,8,13,0.94) 0%, rgba(5,8,13,0.72) 43%, rgba(5,8,13,0.22) 100%),
     radial-gradient(circle at 42% 44%, rgba(47,107,255,0.23), transparent 28%),
     url("assets/senz-tour-reception-hero.png") center / cover no-repeat,
     linear-gradient(135deg, #05080d 0%, #101827 52%, #05080d 100%);
@@ -138,8 +134,17 @@ a {
     linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
-  opacity: 0.55;
+  opacity: 0.36;
   pointer-events: none;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 160px;
+  background: linear-gradient(180deg, transparent, rgba(5,8,13,0.72));
+  pointer-events: none;
+  z-index: 1;
 }
 .glow {
   position: absolute;
@@ -215,45 +220,100 @@ button:hover {
   color: white;
   backdrop-filter: blur(14px);
 }
-.reception {
-  width: 100%;
-  min-height: 300px;
-  background:
-    linear-gradient(180deg, rgba(3,8,18,0.08), rgba(3,8,18,0.74)),
-    url("assets/senz-reception-arrival.png") center / cover no-repeat,
-    linear-gradient(145deg, #1a2233, #0b0f17);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 26px;
+.hero-brand-wall {
+  position: relative;
   z-index: 2;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  min-height: 440px;
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+}
+.hero-brand-wall::before {
+  content: "";
+  position: absolute;
+  inset: 28px 0 48px;
+  border-radius: 34px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.015)),
+    linear-gradient(90deg, rgba(255,255,255,0.05), transparent 44%, rgba(255,255,255,0.06));
+  border: 1px solid rgba(255,255,255,0.11);
   box-shadow:
-    0 35px 100px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.12);
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 40px 120px rgba(0,0,0,0.3);
+  backdrop-filter: blur(2px);
+  opacity: 0.78;
 }
-.reception .top {
-  font-size: 12px;
-  opacity: 0.62;
-  letter-spacing: 2px;
+.hero-mark {
+  position: relative;
+  z-index: 2;
+  width: min(220px, 48vw);
+  text-align: center;
+  color: white;
+  filter:
+    drop-shadow(0 0 18px rgba(47,107,255,0.34))
+    drop-shadow(0 24px 54px rgba(0,0,0,0.55));
 }
-.reception .mid {
-  font-family: "Playfair Display", serif;
-  font-size: 31px;
+.hero-mark img {
+  width: 118px;
+  margin: 0 auto 20px;
+  display: block;
+}
+.hero-mark span {
+  display: block;
+  letter-spacing: 18px;
+  padding-left: 18px;
+  font-size: 28px;
   font-weight: 500;
-  line-height: 1.18;
 }
-.reception .bottom {
-  font-size: 12px;
-  opacity: 0.5;
+.hero-mark small {
+  display: block;
+  margin-top: 18px;
+  color: rgba(255,255,255,0.54);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.hero-assist {
+  position: absolute;
+  left: 0;
+  bottom: 18px;
+  z-index: 3;
+  display: grid;
+  gap: 10px;
+}
+.hero-pill {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(2,7,19,0.5);
+  color: rgba(255,255,255,0.78);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  backdrop-filter: blur(16px);
+}
+.hero-pill::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2f6bff;
+  box-shadow: 0 0 18px rgba(47,107,255,0.9);
 }
 .tag {
   position: absolute;
   bottom: 42px;
   left: 72px;
   font-size: 12px;
-  opacity: 0.5;
+  opacity: 0.62;
+  letter-spacing: 4px;
+  text-transform: uppercase;
   z-index: 2;
 }
 /* GENERAL SECTIONS */
@@ -979,6 +1039,18 @@ textarea {
     grid-template-columns: 1fr;
     padding: 110px 24px 70px;
   }
+  .hero-brand-wall {
+    min-height: 300px;
+  }
+  .hero-brand-wall::before {
+    inset: 8px 0 32px;
+  }
+  .hero-assist {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    margin-top: 22px;
+  }
   .tag {
     left: 24px;
   }
@@ -1018,12 +1090,17 @@ textarea {
   .text h1 {
     font-size: 43px;
   }
-  .reception .mid {
-    font-size: 25px;
-  }
   .actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .hero-mark img {
+    width: 92px;
+  }
+  .hero-mark span {
+    font-size: 22px;
+    letter-spacing: 12px;
+    padding-left: 12px;
   }
   .service-grid,
   .community-grid {
@@ -1080,7 +1157,7 @@ textarea {
 <body>
 <nav class="nav">
   <div class="logo-wrap">
-    <div class="logo-mark">S</div>
+    <div class="logo-mark" aria-hidden="true"></div>
     <div class="logo-text">
       <strong>SENZ</strong>
       <span>STRATEGIC COMMUNICATIONS AND DIGITAL SOLUTIONS</span>
@@ -1107,18 +1184,22 @@ textarea {
     </p>
     <div class="actions">
       <button class="primary" onclick="document.querySelector('#contact').scrollIntoView()">Talk to Reception</button>
+      <a class="btn secondary" href="get-started.html">Book Consultation</a>
       <button class="secondary" onclick="document.querySelector('#waiting').scrollIntoView()">Free Ebooks</button>
     </div>
   </div>
-  <div class="reception reveal">
-    <div class="top">SENZ RECEPTION</div>
-    <div class="mid">
-      Good day.<br>
-      How can we shape your visibility today?
+  <div class="hero-brand-wall reveal" aria-label="SENZ reception wall logo">
+    <div class="hero-mark">
+      <img src="assets/senz-original-mark.png" alt="" aria-hidden="true">
+      <span>SENZ</span>
+      <small>Strategic Communications</small>
     </div>
-    <div class="bottom">Strategic Communications Office</div>
+    <div class="hero-assist" aria-label="Reception quick actions">
+      <a class="hero-pill" href="get-started.html">Book Consultation</a>
+      <a class="hero-pill" href="#shop">Digital Products</a>
+    </div>
   </div>
-  <div class="tag">Digital Reception Experience v1</div>
+  <div class="tag">Influence Through Clarity</div>
 </header>
 <section class="section light" id="about">
   <div class="about-grid">
