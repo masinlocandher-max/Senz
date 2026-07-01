@@ -34,7 +34,11 @@ body {
   color: var(--text);
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
+  opacity: 0;
+  transition: opacity 260ms ease;
 }
+body.is-ready { opacity: 1; }
+body.is-leaving { opacity: 0; }
 button,
 input,
 textarea {
@@ -1454,6 +1458,17 @@ textarea {
   </div>
 </div>
 <script>
+document.body.classList.add("is-ready");
+document.querySelectorAll('a[href]').forEach((link) => {
+  const href = link.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('http')) return;
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    document.body.classList.add('is-leaving');
+    setTimeout(() => { window.location.href = href; }, 180);
+  });
+});
+
 const revealItems = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
