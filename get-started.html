@@ -270,6 +270,7 @@
 
     /* STAT CARD */
     .gs-stat-card {
+      display: none;
       border: 1px solid rgba(184,202,255,0.18);
       border-radius: 20px;
       padding: 28px 24px;
@@ -323,15 +324,15 @@
 
     .gs-booking-inner {
       display: grid;
-      grid-template-columns: minmax(360px,0.58fr) minmax(0,1fr);
+      grid-template-columns: minmax(0,1fr);
       gap: 32px;
       align-items: start;
+      max-width: 920px;
     }
 
     /* CALENDAR */
     .cal-wrap {
-      position: sticky;
-      top: 100px;
+      display: none;
     }
 
     .cal-card {
@@ -1007,7 +1008,7 @@
       </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html#top">Home</a>
-        <a href="about.html">About Us</a>
+        <a href="fmb.html">About Us</a>
         <a href="index.html#services">Services</a>
         <a href="index.html#gallery">Gallery</a>
         <a href="index.html#community">Community Works</a>
@@ -1023,11 +1024,11 @@
     <section class="gs-hero">
       <div class="shell gs-hero-inner">
         <div>
-          <span class="gs-eyebrow">Schedule a Consultation</span>
-          <h1>Pick a date.<br /><em>We handle the rest.</em></h1>
-          <p class="gs-hero-lead">Select an open slot on the calendar, choose your services, and send us a quick note. SENZ Strategic Communications will confirm your consultation within 24 hours.</p>
+          <span class="gs-eyebrow">Talk to Reception</span>
+          <h1>Tell us what you need.<br /><em>We will guide you.</em></h1>
+          <p class="gs-hero-lead">Choose the services you are interested in, leave your contact details, and send a short note. SENZ Strategic Communications will review your inquiry and respond with the next best step.</p>
           <div class="gs-hero-actions">
-            <a class="button" href="#booking">Book a Slot</a>
+            <a class="button" href="#booking">Start Inquiry</a>
             <a class="button secondary" href="mailto:info.senz.pr@gmail.com">Email Directly</a>
           </div>
         </div>
@@ -1091,9 +1092,9 @@
         <!-- FORM COLUMN -->
         <div class="gs-form-wrap">
           <div class="gs-form-head reveal">
-            <span class="gs-eyebrow">Consultation Booking</span>
-            <h2>Tell us what you need.</h2>
-            <p>Fill in your details below. Your selected calendar date will appear in the Date field automatically.</p>
+          <span class="gs-eyebrow">Simple Intake</span>
+          <h2>Create your own package.</h2>
+          <p>Select one or more services, then share your best contact details. A short note is enough.</p>
           </div>
 
           <!-- SERVICE TOGGLES -->
@@ -1169,8 +1170,8 @@
                 <input id="gsName" name="name" type="text" autocomplete="name" placeholder="Your name" required />
               </div>
               <div class="form-field">
-                <label for="gsDate">Preferred Date</label>
-                <div class="form-date-field" id="gsDateDisplay">Select a date from the calendar</div>
+                <label for="gsDate">Preferred Timing</label>
+                <div class="form-date-field" id="gsDateDisplay">We will coordinate the schedule after your inquiry</div>
                 <input id="gsDate" name="date" type="hidden" />
               </div>
               <div class="form-field">

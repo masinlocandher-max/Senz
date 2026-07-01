@@ -674,6 +674,142 @@ button:hover {
   border: 1px solid rgba(255,255,255,0.12);
   box-shadow: 0 18px 50px rgba(0,0,0,0.22);
 }
+.digital-products {
+  background:
+    linear-gradient(90deg, rgba(5,8,13,0.94), rgba(5,8,13,0.48), rgba(5,8,13,0.88)),
+    url("assets/senz-product-events-platform-v2.png") center / cover no-repeat,
+    #070a10;
+}
+.digital-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.45fr);
+  gap: 44px;
+  align-items: center;
+}
+.digital-strip {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 0 24px;
+}
+.digital-strip::-webkit-scrollbar {
+  display: none;
+}
+.digital-card {
+  min-width: 230px;
+  height: 310px;
+  padding: 22px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background:
+    linear-gradient(180deg, rgba(3,7,16,0.06), rgba(3,7,16,0.78)),
+    var(--digital-image, url("assets/senz-product-events-platform.png")) center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  scroll-snap-align: center;
+  box-shadow: 0 28px 80px rgba(0,0,0,0.34);
+}
+.digital-card:nth-child(2) { --digital-image: url("assets/senz-product-clone-studio-v2.png"); }
+.digital-card:nth-child(3) { --digital-image: url("assets/senz-product-music-v2.png"); }
+.digital-card:nth-child(4) { --digital-image: url("assets/senz-product-digital-assistant-v2.png"); }
+.digital-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1;
+}
+.digital-card p {
+  margin-top: 10px;
+  color: rgba(255,255,255,0.72);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.digital-card a {
+  width: fit-content;
+  margin-top: 18px;
+  padding: 10px 15px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.92);
+  color: #07101d;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.community-feature {
+  display: grid;
+  grid-template-columns: 0.85fr 1.4fr;
+  gap: 34px;
+  align-items: center;
+  margin-top: 34px;
+}
+.community-logo-panel,
+.community-photo {
+  min-height: 280px;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    linear-gradient(180deg, rgba(7,10,16,0.08), rgba(7,10,16,0.62)),
+    var(--community-photo, url("assets/masinloc-and-her-logo.png")) center / cover no-repeat;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.24);
+}
+.community-logo-panel {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.78)),
+    url("assets/masinloc-and-her-logo.png") center / contain no-repeat;
+  background-color: #fff;
+}
+.community-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.community-photo:nth-child(1) { --community-photo: url("assets/masinloc-her-gallery-01.jpg"); }
+.community-photo:nth-child(2) { --community-photo: url("assets/masinloc-her-gallery-02.jpg"); }
+.site-footer {
+  color: #07101d;
+  background:
+    radial-gradient(circle at 82% 12%, rgba(47,107,255,0.12), transparent 34%),
+    linear-gradient(180deg, #ffffff, #eef3fb);
+  border-top: 1px solid rgba(8,16,29,0.08);
+  padding: 42px 72px;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 28px;
+  align-items: center;
+}
+.footer-brand strong {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+.footer-brand span {
+  display: block;
+  margin-top: 8px;
+  color: rgba(8,16,29,0.62);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.footer-links a {
+  padding: 11px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(8,16,29,0.08);
+  color: rgba(8,16,29,0.72);
+  font-size: 12px;
+  font-weight: 800;
+}
 .faq-item {
   border-bottom: 1px solid rgba(8,16,29,0.12);
   padding: 16px 0;
@@ -852,8 +988,10 @@ textarea {
   .about-grid,
   .service-layout,
   .waiting-layout,
+  .digital-layout,
   .rooms-layout,
   .gallery-layout,
+  .community-feature,
   .bottom-grid {
     grid-template-columns: 1fr;
   }
@@ -862,6 +1000,12 @@ textarea {
   }
   .community-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+  .footer-links {
+    justify-content: flex-start;
   }
 }
 @media (max-width: 640px) {
@@ -896,6 +1040,15 @@ textarea {
   }
   .room-card {
     min-width: 240px;
+  }
+  .digital-card {
+    min-width: 245px;
+  }
+  .community-photo-grid {
+    grid-template-columns: 1fr;
+  }
+  .site-footer {
+    padding: 34px 24px;
   }
   .issue-reader {
     min-height: auto;
@@ -935,13 +1088,13 @@ textarea {
   </div>
   <div class="nav-links">
     <a href="#top">Home</a>
-    <a href="#about">About Us</a>
+    <a href="fmb.html">About Us</a>
     <a href="#services">Services</a>
     <a href="#gallery">Gallery</a>
     <a href="#community">Community Works</a>
     <a href="#shop">Shop</a>
     <a href="#faq">FAQ</a>
-    <a href="#contact" class="nav-cta">Talk to Reception</a>
+    <a href="get-started.html" class="nav-cta">Talk to Reception</a>
   </div>
 </nav>
 <header class="hero" id="top">
@@ -954,7 +1107,7 @@ textarea {
     </p>
     <div class="actions">
       <button class="primary" onclick="document.querySelector('#contact').scrollIntoView()">Talk to Reception</button>
-      <button class="secondary" onclick="document.querySelector('#waiting').scrollIntoView()">Enter Waiting Area</button>
+      <button class="secondary" onclick="document.querySelector('#waiting').scrollIntoView()">Free Ebooks</button>
     </div>
   </div>
   <div class="reception reveal">
@@ -976,7 +1129,7 @@ textarea {
         SENZ is a strategic communications and digital solutions firm helping brands build clarity, credibility, and influence. We combine strategy, creativity, and data to shape narratives that connect and convert.
       </p>
       <br>
-      <button class="secondary" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Learn More About Us</button>
+      <a class="btn secondary" href="fmb.html" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Learn More About FMB</a>
     </div>
     <div class="about-gallery reveal">
       <div class="image-box"><span>Strategy Room</span></div>
@@ -1045,44 +1198,79 @@ textarea {
 <section class="section light" id="waiting">
   <div class="waiting-layout">
     <div class="reveal">
-      <div class="section-label">Waiting Area</div>
-      <h2 class="section-title">Enjoy the read while you wait.</h2>
+      <div class="section-label">With Love, FMB</div>
+      <h2 class="section-title">Free ebooks by FMB herself.</h2>
       <p class="section-copy">
-        Browse SENZ issues, insights on branding, reputation, public image, digital presence, and visibility.
+        A small reader library for women, founders, creatives, and public-facing dreamers who want clarity, presence, and confidence.
       </p>
       <br>
-      <button class="secondary" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Browse All Issues</button>
+      <button class="secondary" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Browse Free Ebooks</button>
     </div>
     <div class="mag-track reveal">
       <article class="mag" onclick="openIssue(0)">
-        <small>SENZ INSIGHTS</small>
-        <h3>Visibility Issue</h3>
-        <span class="read-label">Read Issue →</span>
+        <small>WITH LOVE, FMB</small>
+        <h3>Story, Strategy, Impact</h3>
+        <span class="read-label">Read Free</span>
       </article>
       <article class="mag" onclick="openIssue(1)">
-        <small>SENZ INSIGHTS</small>
+        <small>WITH LOVE, FMB</small>
         <h3>Reputation Reset</h3>
-        <span class="read-label">Read Issue →</span>
+        <span class="read-label">Read Free</span>
       </article>
       <article class="mag" onclick="openIssue(2)">
-        <small>SENZ INSIGHTS</small>
+        <small>WITH LOVE, FMB</small>
         <h3>Quiet Power of Branding</h3>
-        <span class="read-label">Read Issue →</span>
+        <span class="read-label">Read Free</span>
       </article>
       <article class="mag" onclick="openIssue(3)">
-        <small>SENZ INSIGHTS</small>
-        <h3>Case Files</h3>
-        <span class="read-label">Read Issue →</span>
+        <small>WITH LOVE, FMB</small>
+        <h3>Clarity Notes</h3>
+        <span class="read-label">Read Free</span>
       </article>
       <article class="mag" onclick="openIssue(4)">
-        <small>SENZ INSIGHTS</small>
+        <small>WITH LOVE, FMB</small>
         <h3>Behind The Image</h3>
-        <span class="read-label">Read Issue →</span>
+        <span class="read-label">Read Free</span>
       </article>
       <article class="mag" onclick="openIssue(5)">
-        <small>SENZ INSIGHTS</small>
+        <small>WITH LOVE, FMB</small>
         <h3>From Unknown to Unavoidable</h3>
-        <span class="read-label">Read Issue →</span>
+        <span class="read-label">Read Free</span>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section digital-products" id="shop">
+  <div class="digital-layout">
+    <div class="reveal">
+      <div class="section-label">Digital Products</div>
+      <h2 class="section-title">Systems you can purchase and use.</h2>
+      <p class="section-copy">
+        After the free library, explore SENZ digital products built for campaigns, events, visibility, and modern brand operations.
+      </p>
+      <br>
+      <a class="btn primary" href="get-started.html?product=digital">Ask for Access</a>
+    </div>
+    <div class="digital-strip reveal">
+      <article class="digital-card">
+        <h3>Voting &amp; Tabulation</h3>
+        <p>Event-ready voting, tabulation, ticketing, and audience flow systems.</p>
+        <a href="get-started.html?product=voting">Purchase</a>
+      </article>
+      <article class="digital-card">
+        <h3>Clone Studio</h3>
+        <p>One visual session prepared for future campaign, shoot, and content needs.</p>
+        <a href="get-started.html?product=clone">Purchase</a>
+      </article>
+      <article class="digital-card">
+        <h3>Music Products</h3>
+        <p>Audio identity, music concepts, and digital releases for brand storytelling.</p>
+        <a href="get-started.html?product=music">Purchase</a>
+      </article>
+      <article class="digital-card">
+        <h3>Digital Representative</h3>
+        <p>A guided digital front desk experience that routes people to the right next step.</p>
+        <a href="get-started.html?product=representative">Purchase</a>
       </article>
     </div>
   </div>
@@ -1171,45 +1359,31 @@ textarea {
 <section class="section dark" id="community">
   <div class="reveal">
     <div class="section-label">Community Works</div>
-    <h2 class="section-title">Impact beyond our clients.</h2>
+    <h2 class="section-title">Masinloc and HER.</h2>
     <p class="section-copy">
-      Because communication is stronger when it uplifts.
+      Our community service is Masinloc and HER, a woman-led initiative supported by women, helping close gaps in the community and reminding women to support women.
     </p>
   </div>
-  <div class="community-grid">
-    <article class="community-card reveal">
-      <h3>Youth Communication Workshops</h3>
-      <p>Helping young voices express ideas with clarity and confidence.</p>
-    </article>
-    <article class="community-card reveal">
-      <h3>Community Storytelling Project</h3>
-      <p>Documenting local stories and turning them into meaningful visibility.</p>
-    </article>
-    <article class="community-card reveal">
-      <h3>Digital Literacy Initiative</h3>
-      <p>Helping communities understand online presence, safety, and opportunity.</p>
-    </article>
-    <article class="community-card reveal">
-      <h3>Environmental Awareness Campaign</h3>
-      <p>Turning public concerns into stronger messages and public participation.</p>
-    </article>
+  <div class="community-feature reveal">
+    <div class="community-logo-panel" aria-label="Masinloc and HER logo"></div>
+    <div class="community-photo-grid">
+      <div class="community-photo"></div>
+      <div class="community-photo"></div>
+    </div>
   </div>
 </section>
-<section class="section light" id="shop">
+<section class="section light" id="faq">
   <div class="bottom-grid">
     <div class="reveal">
-      <div class="section-label">Shop</div>
-      <h2 class="section-title">Tools, templates, and resources.</h2>
+      <div class="section-label">Need Help?</div>
+      <h2 class="section-title">Start with the path that feels right.</h2>
       <p class="section-copy">
-        Equip your brand with SENZ-curated resources.
+        Read a free ebook, explore digital products, or send a quick inquiry. SENZ will guide you from there.
       </p>
-      <div class="shop-items">
-        <div class="product"></div>
-        <div class="product"></div>
-        <div class="product"></div>
-      </div>
+      <br>
+      <a class="btn primary" href="get-started.html">Talk to Reception</a>
     </div>
-    <div class="reveal" id="faq">
+    <div class="reveal">
       <div class="section-label">FAQ</div>
       <h2 class="section-title">Questions? We've got answers.</h2>
       <details class="faq-item">
@@ -1244,12 +1418,28 @@ textarea {
     </div>
   </div>
 </section>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>SENZ Strategic Communications</strong>
+      <span>Strategic Communications and Digital Solutions</span>
+      <span>Park Triangle Corporate Plaza, North Tower, 32nd Street Corner 11th Ave., Bonifacio Global City, Taguig</span>
+      <span>All rights reserved.</span>
+    </div>
+    <div class="footer-links" aria-label="SENZ links">
+      <a href="mailto:info.senz.pr@gmail.com">Email</a>
+      <a href="https://www.instagram.com/senz.pr?igsh=MWxxamFrZmJqc28wcw%3D%3D&utm_source=qr">Instagram</a>
+      <a href="https://www.facebook.com/share/1BM7Etwi9R/?mibextid=wwXIfr">Facebook</a>
+      <a href="https://www.tiktok.com/@senz.pr?_r=1&_t=ZS-97bs7BHj1Ov">TikTok</a>
+    </div>
+  </div>
+</footer>
 <div class="issue-modal" id="issueModal">
   <div class="issue-reader">
     <button class="close-reader" onclick="closeIssue()">×</button>
     <div class="reader-top">
-      <small id="issueLabel">SENZ INSIGHTS</small>
-      <h2 id="issueTitle">Visibility Issue</h2>
+      <small id="issueLabel">WITH LOVE, FMB</small>
+      <h2 id="issueTitle">Story, Strategy, Impact</h2>
     </div>
     <div class="reader-page" id="readerPage">
       <h3 id="pageTitle">Page Title</h3>
@@ -1273,7 +1463,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.14 });
 revealItems.forEach(item => observer.observe(item));
 
-document.querySelectorAll(".mag-track, .room-track, .gallery-track").forEach(track => {
+document.querySelectorAll(".mag-track, .digital-strip, .room-track, .gallery-track").forEach(track => {
   let isDown = false;
   let startX;
   let scrollLeft;
@@ -1302,15 +1492,15 @@ document.querySelectorAll(".mag-track, .room-track, .gallery-track").forEach(tra
 
 const issueData = [
   {
-    title: "Visibility Issue",
+    title: "Story, Strategy, Impact",
     pages: [
       {
-        title: "Visibility Is Not Noise",
-        text: "Visibility is not about being everywhere. It is about being remembered in the right place, by the right people, for the right reason."
+        title: "Begin With Clarity",
+        text: "A message becomes powerful when it is clear enough to be remembered, repeated, and trusted."
       },
       {
-        title: "Be Seen With Direction",
-        text: "A brand becomes visible when its message, visuals, offers, and behavior point to one clear meaning. Without direction, attention becomes clutter."
+        title: "Presence Has A Purpose",
+        text: "Do not show up only to be seen. Show up so people understand what you stand for and why it matters."
       },
       {
         title: "Recognition Over Reach",
@@ -1321,7 +1511,7 @@ const issueData = [
         text: "A strong visibility system includes positioning, visual identity, message repetition, content rhythm, audience understanding, and proof of credibility."
       },
       {
-        title: "SENZ Note",
+        title: "With Love, FMB",
         text: "Do not chase visibility before clarity. If people see you before they understand you, they may remember the wrong thing."
       }
     ]
@@ -1346,7 +1536,7 @@ const issueData = [
         text: "The reset begins when the brand stops reacting to every opinion and starts controlling the message, timing, and tone."
       },
       {
-        title: "SENZ Note",
+        title: "With Love, FMB",
         text: "A reset is not pretending the past did not happen. It is designing the next version with more discipline."
       }
     ]
@@ -1371,13 +1561,13 @@ const issueData = [
         text: "Every brand needs an anchor: one idea people can return to again and again. Without an anchor, the brand becomes visually busy but mentally forgettable."
       },
       {
-        title: "SENZ Note",
+        title: "With Love, FMB",
         text: "If your brand looks beautiful but people cannot explain what you do, the branding is not finished."
       }
     ]
   },
   {
-    title: "Case Files",
+    title: "Clarity Notes",
     pages: [
       {
         title: "The Work Behind The Work",
@@ -1396,7 +1586,7 @@ const issueData = [
         text: "The work does not end when people notice you. The next job is to convert attention into trust, action, and memory."
       },
       {
-        title: "SENZ Note",
+        title: "With Love, FMB",
         text: "Case files matter because they show that good branding is not magic. It is organized decision-making."
       }
     ]
@@ -1421,7 +1611,7 @@ const issueData = [
         text: "People trust what feels consistent. If your image changes too often without reason, your audience has to restart their understanding of you."
       },
       {
-        title: "SENZ Note",
+        title: "With Love, FMB",
         text: "The image should not only look good. It should explain your value before you speak."
       }
     ]
@@ -1446,7 +1636,7 @@ const issueData = [
         text: "Attention becomes stronger when supported by proof: work, testimonials, results, process, presence, and consistency."
       },
       {
-        title: "SENZ Note",
+        title: "With Love, FMB",
         text: "The goal is not to be loud. The goal is to become the name people think of when the need appears."
       }
     ]
