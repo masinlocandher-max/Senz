@@ -984,6 +984,57 @@ textarea {
   transform: translateY(0);
   filter: blur(0);
 }
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 90;
+  background: rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+
+.scroll-progress__bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, #2f6bff, #9ebcff);
+  box-shadow: 0 0 18px rgba(47,107,255,0.55);
+}
+
+.section,
+.hero {
+  transform: translate3d(0, var(--scene-y, 0px), 0);
+  opacity: var(--scene-opacity, 1);
+  transition: opacity 220ms ease;
+  will-change: transform, opacity;
+}
+
+.motion-item {
+  transform: translate3d(var(--motion-x, 0px), var(--motion-y, 0px), 0);
+  opacity: var(--item-opacity, 1);
+  transition: box-shadow 260ms ease, border-color 260ms ease;
+  will-change: transform, opacity;
+}
+
+.motion-item.is-motion-active {
+  box-shadow: 0 24px 70px rgba(47,107,255,0.18);
+}
+
+.motion-media {
+  transform: translate3d(0, var(--media-y, 0px), 0) scale(var(--media-scale, 1));
+  transition: transform 220ms linear;
+  will-change: transform;
+}
+
+.nav.is-solid {
+  background: rgba(7,10,16,0.88);
+  box-shadow: 0 18px 46px rgba(0,0,0,0.22);
+}
 /* RESPONSIVE */
 @media (max-width: 1050px) {
   .nav {
@@ -1087,6 +1138,13 @@ textarea {
     transform: none;
     filter: none;
   }
+  .section,
+  .hero,
+  .motion-item,
+  .motion-media {
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 </style>
 </head>
@@ -1101,7 +1159,7 @@ textarea {
   </div>
   <div class="nav-links">
     <a href="#top">Home</a>
-    <a href="fmb.html">About Us</a>
+    <a href="about.html">About Us</a>
     <a href="#services">Services</a>
     <a href="#gallery">Gallery</a>
     <a href="#community">Community Works</a>
@@ -1134,7 +1192,7 @@ textarea {
         SENZ is a strategic communications and digital solutions firm helping brands build clarity, credibility, and influence. We combine strategy, creativity, and data to shape narratives that connect and convert.
       </p>
       <br>
-      <a class="btn secondary" href="fmb.html" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Learn More About FMB</a>
+      <a class="btn secondary" href="about.html" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Learn More About FMB</a>
     </div>
     <div class="about-gallery reveal">
       <div class="image-box"><span>Strategy Room</span></div>
@@ -1478,6 +1536,72 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.14 });
 revealItems.forEach(item => observer.observe(item));
+
+const progress = document.createElement("div");
+progress.className = "scroll-progress";
+progress.innerHTML = '<span class="scroll-progress__bar"></span>';
+document.body.appendChild(progress);
+
+const progressBar = progress.querySelector(".scroll-progress__bar");
+const navBar = document.querySelector(".nav");
+const motionScenes = Array.from(document.querySelectorAll(".hero, body > section"));
+const motionItems = Array.from(document.querySelectorAll(".service-card, .mag, .digital-card, .room-card, .gallery-card, .community-feature, .faq-item"));
+const motionMedia = Array.from(document.querySelectorAll(".image-box, .community-logo-panel, .community-photo, .gallery-card, .mag"));
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+motionItems.forEach((item, index) => {
+  item.classList.add("motion-item");
+  item.style.setProperty("--motion-index", index);
+});
+motionMedia.forEach((item) => item.classList.add("motion-media"));
+
+const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+let ticking = false;
+
+function syncScrollExperience() {
+  ticking = false;
+  const scrollMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const ratio = clamp(window.scrollY / scrollMax);
+  progressBar.style.transform = `scaleX(${ratio})`;
+  navBar?.classList.toggle("is-solid", window.scrollY > 24);
+
+  if (reduceMotion) return;
+
+  const vh = window.innerHeight || 1;
+  motionScenes.forEach((scene) => {
+    const rect = scene.getBoundingClientRect();
+    const progressInView = clamp((vh - rect.top) / (vh + rect.height));
+    scene.style.setProperty("--scene-y", `${Math.round((1 - progressInView) * 16)}px`);
+    scene.style.setProperty("--scene-opacity", (0.86 + progressInView * 0.14).toFixed(3));
+  });
+
+  motionItems.forEach((item, index) => {
+    const rect = item.getBoundingClientRect();
+    const rowProgress = clamp((vh - rect.top) / (vh * 0.78));
+    const direction = index % 2 === 0 ? -1 : 1;
+    item.style.setProperty("--item-opacity", (0.5 + rowProgress * 0.5).toFixed(3));
+    item.style.setProperty("--motion-x", `${Math.round((1 - rowProgress) * 14 * direction)}px`);
+    item.style.setProperty("--motion-y", `${Math.round((1 - rowProgress) * 14)}px`);
+    item.classList.toggle("is-motion-active", rect.top < vh * 0.65 && rect.bottom > vh * 0.25);
+  });
+
+  motionMedia.forEach((item) => {
+    const rect = item.getBoundingClientRect();
+    const mediaProgress = clamp((vh - rect.top) / (vh + rect.height));
+    item.style.setProperty("--media-y", `${Math.round((0.5 - mediaProgress) * 18)}px`);
+    item.style.setProperty("--media-scale", (1.01 + mediaProgress * 0.025).toFixed(3));
+  });
+}
+
+function requestScrollExperience() {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(syncScrollExperience);
+}
+
+window.addEventListener("scroll", requestScrollExperience, { passive: true });
+window.addEventListener("resize", requestScrollExperience);
+syncScrollExperience();
 
 document.querySelectorAll(".mag-track, .digital-strip, .room-track, .gallery-track").forEach(track => {
   let isDown = false;

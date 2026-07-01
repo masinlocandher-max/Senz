@@ -2400,9 +2400,95 @@
       box-shadow: 0 14px 34px rgba(31, 48, 82, 0.1);
     }
 
+    .founder-story {
+      position: relative;
+      padding: clamp(84px, 10vw, 132px) 0;
+      background: linear-gradient(180deg, rgba(248, 251, 255, 0.96), rgba(235, 241, 251, 0.92)) !important;
+      color: #071225;
+      overflow: hidden;
+    }
+
+    .founder-story::before {
+      content: "";
+      position: absolute;
+      inset: 12% auto 10% -18%;
+      width: 520px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(21, 92, 255, 0.14), transparent 68%);
+      filter: blur(18px);
+      pointer-events: none;
+    }
+
+    .founder-story-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 0.74fr) minmax(320px, 0.42fr);
+      gap: clamp(28px, 5vw, 70px);
+      align-items: start;
+    }
+
+    .founder-story-panel {
+      padding: clamp(30px, 5vw, 54px);
+      border: 1px solid rgba(170, 184, 214, 0.48);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow: 0 26px 70px rgba(31, 48, 82, 0.1);
+      backdrop-filter: blur(20px);
+    }
+
+    .founder-story h2 {
+      max-width: 760px;
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 6vw, 74px);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .founder-story p {
+      margin-top: 22px;
+      color: rgba(7, 18, 37, 0.72);
+      font-size: 17px;
+      line-height: 1.88;
+    }
+
+    .founder-lesson-card {
+      position: sticky;
+      top: 110px;
+      padding: 28px;
+      border-radius: 26px;
+      background: #071225;
+      color: #fff;
+      box-shadow: 0 26px 70px rgba(7, 18, 37, 0.24);
+    }
+
+    .founder-lesson-card span {
+      color: #79a2ff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    .founder-lesson-card p {
+      color: rgba(255, 255, 255, 0.76);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1.45;
+    }
+
     @media (max-width: 760px) {
       .nav {
         min-height: 74px;
+      }
+
+      .founder-story-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .founder-lesson-card {
+        position: relative;
+        top: auto;
       }
     }
   </style>
@@ -2420,7 +2506,7 @@
       </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html#top">Home</a>
-        <a class="is-active" href="index.html#about">About Us</a>
+        <a class="is-active" href="about.html">About Us</a>
         <a href="index.html#services">Services</a>
         <a href="index.html#gallery">Gallery</a>
         <a href="index.html#community">Community Works</a>
@@ -2510,6 +2596,23 @@
             <span>Creative Direction</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="founder-story" id="founder-story">
+      <div class="shell founder-story-grid">
+        <article class="founder-story-panel">
+          <p class="eyebrow">Founder Story</p>
+          <h2>Presence is not decoration. It is how people learn to trust you.</h2>
+          <p>Francine Marie Bautista built her public life with the discipline of someone who understands that the world often makes a decision before it asks a question. As a transwoman in the Philippines, she learned that visibility can be both a privilege and a pressure: people may notice the image first, but the work is to help them understand the person, the message, and the purpose behind it.</p>
+          <p>That lesson shaped the way SENZ Strategic Communications thinks about brands. A photograph, a caption, a website, a speech, a logo, a room, and a first reply all teach people what to believe. None of them should feel accidental. The goal is not to look important for the sake of appearance. The goal is to make truth easier to recognize.</p>
+          <p>Pageantry taught Francine composure. Training taught her how to guide people with patience. Writing taught her that the right sentence can protect a story from being misunderstood. Strategy taught her that every public detail should carry direction. Together, those lessons became the SENZ approach: calm, polished, human, and intentional.</p>
+          <p>For Francine, a name should carry care when people hear it. It should remind them of the standard, the promise, and the experience connected to the person or company behind it. That is why SENZ helps clients build not only visibility, but a presence that feels clear, credible, and ready to be remembered.</p>
+        </article>
+        <aside class="founder-lesson-card">
+          <span>Life Lesson</span>
+          <p>Do not wait until the room understands you perfectly. Build a presence so clear that the right people know how to meet you there.</p>
+        </aside>
       </div>
     </section>
 
@@ -2686,7 +2789,7 @@
         });
       });
 
-      document.querySelectorAll('section, .info-card, .journal-card, .about-service-strip span, .light-metrics span').forEach((el) => {
+      document.querySelectorAll('section, .info-card, .journal-card, .about-service-strip span, .light-metrics span, .founder-story-panel, .founder-lesson-card').forEach((el) => {
         el.classList.add('reveal');
       });
 
@@ -2756,11 +2859,12 @@
       const progressBar = progress.querySelector('.scroll-progress__bar');
 
       const scenes = Array.from(document.querySelectorAll('main > section'));
-      const motionItems = Array.from(document.querySelectorAll('.info-card, .journal-card, .about-service-strip span, .light-metrics span'));
+      const motionItems = Array.from(document.querySelectorAll('.info-card, .journal-card, .about-service-strip span, .light-metrics span, .founder-story-panel, .founder-lesson-card'));
       const mediaItems = Array.from(document.querySelectorAll('.portrait-card img, .article-art, .light-visual img'));
       const railSections = [
         { id: 'about-top', label: 'Founder', target: document.querySelector('.about-hero') },
         { id: 'about-light', label: 'Mission', target: document.querySelector('.light-about') },
+        { id: 'founder-story', label: 'Story', target: document.querySelector('.founder-story') },
         { id: 'about-catalog', label: 'Catalog', target: document.querySelector('.split-card-section') },
         { id: 'journal', label: 'Journal', target: document.querySelector('#journal') }
       ].filter((item) => item.target);
