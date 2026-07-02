@@ -126,6 +126,7 @@
 
     toggle.addEventListener('click', () => setOpen(!root.classList.contains('is-open')));
     close.addEventListener('click', () => setOpen(false));
+    document.addEventListener('senz:open-chat', () => setOpen(true));
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
