@@ -262,6 +262,78 @@
       padding: 18px 0 42px;
     }
 
+    .reception-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .contact-card {
+      min-height: 186px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      border: 1px solid rgba(149,166,202,0.34);
+      border-radius: 24px;
+      color: var(--ink);
+      background: rgba(255,255,255,0.76);
+      box-shadow: 0 20px 54px rgba(31,48,82,0.1);
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(21,92,255,0.4);
+      box-shadow: 0 28px 70px rgba(21,92,255,0.14);
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      color: #fff;
+      background: linear-gradient(135deg, #155cff, #003fca);
+      box-shadow: 0 16px 36px rgba(21,92,255,0.24);
+    }
+
+    .contact-icon svg {
+      width: 25px;
+      height: 25px;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-card h2 {
+      margin-top: 18px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-card p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .contact-card small {
+      display: inline-flex;
+      margin-top: 18px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
     .process-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -593,7 +665,8 @@
     @media (max-width: 980px) {
       .hero-grid,
       .intake-panel,
-      .process-grid {
+      .process-grid,
+      .reception-options {
         grid-template-columns: 1fr;
       }
 
@@ -646,13 +719,13 @@
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html#top">Reception</a>
         <a href="index.html#help">Help Desk</a>
-        <a href="index.html#services">Departments</a>
-        <a href="index.html#shop">Digital Kits</a>
+        <a class="nav-feature" href="index.html#services">Services</a>
+        <a class="nav-feature" href="index.html#shop">Digital Products</a>
         <a href="index.html#gallery">Work Gallery</a>
         <a href="index.html#community">Community Works</a>
         <a href="about.html">Founder&apos;s Office</a>
         <a href="index.html#faq">FAQ</a>
-        <a href="get-started.html" class="nav-cta">Book a Consultation</a>
+        <a href="get-started.html" class="nav-cta">Talk to Receptionist</a>
       </nav>
       <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
     </div>
@@ -662,12 +735,34 @@
     <section class="intake-hero">
       <div class="shell hero-grid">
         <div class="reveal">
-          <p class="eyebrow">Talk to Reception</p>
-          <h1>Tell us what you need. <span>We will guide the next step.</span></h1>
-          <p class="hero-lead">Choose one or more services, leave your best contact detail, and write a short note. No pressure, no complicated booking screen, no automatic next page.</p>
-          <div class="hero-actions">
-            <a class="button" href="#inquiry">Start Inquiry</a>
-            <a class="button secondary" href="mailto:info.senz.pr@gmail.com">Email SENZ</a>
+          <p class="eyebrow">Talk to Receptionist</p>
+          <h1>How would you like to reach <span>SENZ?</span></h1>
+          <p class="hero-lead">Choose chat, call, or email. This page is intentionally simple: tell us your concern, your contact details, and the best time to call back.</p>
+          <div class="reception-options" aria-label="Reception contact options">
+            <button class="contact-card" type="button" data-open-chat>
+              <span>
+                <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4h-3l-4 3v-3H9a4 4 0 0 1-4-4V8Z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg></span>
+                <h2>Chat</h2>
+                <p>Ask general questions and get guided to the right SENZ path.</p>
+              </span>
+              <small>Open Chat</small>
+            </button>
+            <button class="contact-card" type="button" data-route="Callback Request">
+              <span>
+                <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 3.8 9.4 4.4l1.3 4.2-2 1.4a13.4 13.4 0 0 0 5.3 5.3l1.4-2 4.2 1.3.6 2.8c.2 1-.5 1.9-1.5 2.1-8.1.9-15-6-14.1-14.1.2-1 1.1-1.7 2-1.6Z"/></svg></span>
+                <h2>Call</h2>
+                <p>Calls are not available yet. Leave your phone number and best time, and we will coordinate by email.</p>
+              </span>
+              <small>Request Callback</small>
+            </button>
+            <button class="contact-card" type="button" data-route="Email Inquiry">
+              <span>
+                <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span>
+                <h2>Email</h2>
+                <p>Send your concern directly with the details we need to reply properly.</p>
+              </span>
+              <small>Send Details</small>
+            </button>
           </div>
         </div>
         <div class="concierge-card reveal" role="img" aria-label="Premium SENZ reception area"></div>
@@ -678,18 +773,18 @@
       <div class="shell process-grid">
         <article class="process-card reveal">
           <span>01</span>
-          <strong>Choose what you need</strong>
-          <p>Select as many services as you want. Nothing moves until you send.</p>
+          <strong>Choose your route</strong>
+          <p>Chat for general questions, email for details, or request a callback.</p>
         </article>
         <article class="process-card reveal">
           <span>02</span>
-          <strong>Share your contact</strong>
-          <p>Email or phone is enough. SENZ will reach you through your preferred route.</p>
+          <strong>Share your details</strong>
+          <p>Name, email, phone, concern, and best callback time are enough.</p>
         </article>
         <article class="process-card reveal">
           <span>03</span>
           <strong>Receive guidance</strong>
-          <p>We review your note and reply with the clearest next step.</p>
+          <p>We review your concern and reply with the clearest next step.</p>
         </article>
       </div>
     </section>
@@ -698,82 +793,43 @@
       <div class="shell intake-panel">
         <aside class="panel-intro reveal">
           <p class="eyebrow">Reception Desk</p>
-          <h2>Create your own SENZ package.</h2>
-          <p>This page is made to feel light. You do not need to know the exact package yet. Tell us where you are, what you are building, and what kind of help feels urgent.</p>
-          <div class="help-note">Not sure what to select? Choose "Not Sure Yet" and describe your goal. We will recommend the best path.</div>
+          <h2>Leave a clear message.</h2>
+          <p>Use this form for email inquiries and callback requests. If you want quick general guidance, use Chat instead.</p>
+          <div class="help-note">Call is not yet available. For now, leave your phone number and best time to call back, then SENZ will coordinate through email.</div>
         </aside>
 
         <form class="intake-form" id="bookingForm" novalidate>
-          <section class="form-block reveal" aria-labelledby="servicesTitle">
-            <h3 id="servicesTitle">What do you need help with?</h3>
-            <p>Select one or more. This creates your starting package.</p>
-            <div class="service-grid" role="group" aria-label="Services">
-              <label class="service-option">
-                <input type="checkbox" name="services" value="PR and Public Image" />
-                <span class="service-face"><strong>PR and Reputation</strong><span>Public image, credibility, message discipline, and visibility.</span></span>
-              </label>
-              <label class="service-option">
-                <input type="checkbox" name="services" value="Marketing and Social Media" />
-                <span class="service-face"><strong>Marketing and Social Media</strong><span>Campaign direction, content rhythm, and audience growth.</span></span>
-              </label>
-              <label class="service-option">
-                <input type="checkbox" name="services" value="Call Center Solutions" />
-                <span class="service-face"><strong>Call Center Solutions</strong><span>Inquiry flow, customer support scripts, and lead handling.</span></span>
-              </label>
-              <label class="service-option">
-                <input type="checkbox" name="services" value="Websites and Digital Presence" />
-                <span class="service-face"><strong>Websites and Digital</strong><span>Premium websites, digital trust, and conversion-ready pages.</span></span>
-              </label>
-              <label class="service-option">
-                <input type="checkbox" name="services" value="Digital Products" />
-                <span class="service-face"><strong>Digital Products</strong><span>Music, Clone Studio, voting, tabulation, ticketing, and Digital Representatives.</span></span>
-              </label>
-              <label class="service-option">
-                <input type="checkbox" name="services" value="Creative Production" />
-                <span class="service-face"><strong>Creative Production</strong><span>Visual direction, campaign assets, and launch-ready materials.</span></span>
-              </label>
-              <label class="service-option">
-                <input type="checkbox" name="services" value="Full Brand System" />
-                <span class="service-face"><strong>Full Brand System</strong><span>Strategy, visuals, digital systems, and launch support together.</span></span>
-              </label>
-              <label class="service-option">
-                <input type="checkbox" name="services" value="Not Sure Yet" />
-                <span class="service-face"><strong>Not Sure Yet</strong><span>Tell us your goal and we will recommend the right path.</span></span>
-              </label>
-            </div>
-          </section>
-
           <section class="form-block reveal" aria-labelledby="detailsTitle">
-            <h3 id="detailsTitle">Your details</h3>
-            <p>Leave either phone or email. Both are welcome, but only one is required.</p>
+            <h3 id="detailsTitle">Reception message</h3>
+            <p>Simple is better. Leave the details below and we will respond properly.</p>
+            <input id="gsRoute" name="route" type="hidden" value="Email Inquiry" />
             <div class="field-grid">
               <div class="field">
                 <label for="gsName">Full Name</label>
                 <input id="gsName" name="name" type="text" autocomplete="name" placeholder="Your name" required />
               </div>
               <div class="field">
-                <label for="gsTiming">Preferred Timing</label>
-                <div class="timing-note" id="gsTiming">We will coordinate the schedule after your inquiry.</div>
-                <input id="gsDate" name="date" type="hidden" />
-              </div>
-              <div class="field">
-                <label for="gsPhone">Phone</label>
-                <input id="gsPhone" name="phone" type="tel" autocomplete="tel" placeholder="+63 or international" />
-              </div>
-              <div class="field">
                 <label for="gsEmail">Email</label>
-                <input id="gsEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" />
+                <input id="gsEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              </div>
+              <div class="field">
+                <label for="gsPhone">Phone Number</label>
+                <input id="gsPhone" name="phone" type="tel" autocomplete="tel" placeholder="+63 or international" required />
+              </div>
+              <div class="field">
+                <label for="gsDate">Best Time To Call Back</label>
+                <input id="gsDate" name="date" type="text" autocomplete="off" placeholder="Example: Weekdays after 3 PM" />
               </div>
               <div class="field is-full">
-                <label for="gsMessage">Short Note</label>
-                <textarea id="gsMessage" name="message" placeholder="Tell us your goal, campaign, event, brand problem, or idea. A short note is enough." required></textarea>
+                <label for="gsMessage">Concern</label>
+                <textarea id="gsMessage" name="message" placeholder="Tell us what you need help with. A short concern is enough." required></textarea>
               </div>
             </div>
           </section>
 
           <section class="form-block reveal" aria-label="Send inquiry">
             <div class="form-actions">
-              <button class="button" type="submit">Send Inquiry</button>
+              <button class="button" type="submit">Send to Reception</button>
               <a class="button secondary" href="mailto:info.senz.pr@gmail.com">Email Instead</a>
             </div>
             <p class="form-note">Your inquiry goes directly to SENZ Strategic Communications. If the server is unavailable, your email client will open with the same brief ready to send.</p>
@@ -833,7 +889,7 @@
       revealItems.forEach((item) => observer.observe(item));
 
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const motionItems = Array.from(document.querySelectorAll('.process-card, .service-option, .field, .form-block'));
+      const motionItems = Array.from(document.querySelectorAll('.contact-card, .process-card, .field, .form-block'));
       motionItems.forEach((item, index) => {
         item.classList.add('motion-item');
         item.style.setProperty('--motion-index', index);
@@ -861,8 +917,30 @@
 
       const form = document.getElementById('bookingForm');
       const statusEl = document.getElementById('bookingStatus');
+      const routeField = document.getElementById('gsRoute');
+      const messageField = document.getElementById('gsMessage');
       const apiBase = String(window.SENZ_API_BASE_URL || '').replace(/\/$/, '');
       const apiUrl = (path) => `${apiBase}${path}`;
+
+      document.querySelectorAll('[data-open-chat]').forEach((button) => {
+        button.addEventListener('click', () => {
+          document.dispatchEvent(new CustomEvent('senz:open-chat'));
+        });
+      });
+
+      document.querySelectorAll('[data-route]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const route = button.dataset.route || 'Email Inquiry';
+          if (routeField) routeField.value = route;
+          if (messageField && route === 'Callback Request') {
+            messageField.placeholder = 'Please tell us your concern and the best context for the callback.';
+          }
+          document.getElementById('inquiry')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          statusEl.textContent = route === 'Callback Request'
+            ? 'Call is not yet available. Please leave your details and SENZ will coordinate through email.'
+            : 'Please leave your details and concern below.';
+        });
+      });
 
       form?.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -872,11 +950,12 @@
         const email = form.elements['email']?.value?.trim() || '';
         const message = form.elements['message']?.value?.trim() || '';
         const date = form.elements['date']?.value || '';
-        const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map((cb) => cb.value);
+        const route = form.elements['route']?.value || 'Email Inquiry';
 
         if (!name) { statusEl.textContent = 'Please add your name.'; form.elements['name'].focus(); return; }
-        if (!phone && !email) { statusEl.textContent = 'Please provide a phone number or email.'; form.elements['phone'].focus(); return; }
-        if (!message) { statusEl.textContent = 'Please add a short note about what you need.'; form.elements['message'].focus(); return; }
+        if (!email) { statusEl.textContent = 'Please add your email address.'; form.elements['email'].focus(); return; }
+        if (!phone) { statusEl.textContent = 'Please add your phone number for callback coordination.'; form.elements['phone'].focus(); return; }
+        if (!message) { statusEl.textContent = 'Please add your concern.'; form.elements['message'].focus(); return; }
 
         const payload = {
           name,
@@ -884,23 +963,23 @@
           email,
           date,
           message,
-          projectType: services.join(', ') || 'Not specified'
+          projectType: route
         };
 
         const lines = [
-          'SENZ Strategic Communications Inquiry',
+          'SENZ Strategic Communications Reception Message',
           '',
+          `Route: ${route}`,
           `Name: ${name}`,
           `Phone: ${phone}`,
           `Email: ${email}`,
-          `Preferred Timing: ${date || 'Coordinate after inquiry'}`,
-          `Services: ${payload.projectType}`,
+          `Best Time To Call Back: ${date || 'Not specified'}`,
           '',
-          'Message:',
+          'Concern:',
           message
         ];
 
-        const subject = `SENZ Inquiry - ${payload.projectType || 'General'}`;
+        const subject = `SENZ Reception - ${route}`;
         const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
         const submitBtn = form.querySelector('button[type="submit"]');
 
@@ -915,9 +994,9 @@
           });
           const result = await response.json();
           if (!response.ok || !result.ok) throw new Error((result.errors || ['Unable to submit.']).join(' '));
-          statusEl.textContent = `Inquiry received. Reference: ${result.id}. SENZ will be in touch within 24 hours.`;
+          statusEl.textContent = `Reception message received. Reference: ${result.id}. SENZ will be in touch within 24 hours.`;
           form.reset();
-          document.querySelectorAll('input[name="services"]').forEach((cb) => { cb.checked = false; });
+          if (routeField) routeField.value = 'Email Inquiry';
         } catch {
           statusEl.textContent = 'Server unavailable - opening your email client with the brief ready.';
           window.location.href = mailto;
