@@ -58,12 +58,12 @@
 }
 
 .nav-links a.nav-feature {
-  padding: 10px 14px;
-  border: 1px solid rgba(21,92,255,0.22);
+  padding: 9px 13px;
+  border: 1px solid rgba(21,92,255,0.2);
   border-radius: 999px;
   color: #155cff !important;
-  background: rgba(21,92,255,0.08);
-  box-shadow: 0 10px 26px rgba(21,92,255,0.08);
+  background: rgba(21,92,255,0.06);
+  box-shadow: none;
 }
 
 .nav-links a.nav-feature:hover {
