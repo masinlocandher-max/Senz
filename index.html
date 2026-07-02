@@ -840,6 +840,91 @@ footer {
 }
 .community-photo:nth-child(1) { --community-photo: url("assets/masinloc-her-gallery-01.jpg"); }
 .community-photo:nth-child(2) { --community-photo: url("assets/masinloc-her-gallery-02.jpg"); }
+/* CAREERS */
+.careers-section {
+  background:
+    radial-gradient(circle at 82% 10%, rgba(47,107,255,0.12), transparent 34%),
+    linear-gradient(180deg, #ffffff, #eef3fb);
+  color: var(--ink);
+}
+.careers-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 56px);
+  align-items: start;
+}
+.career-roles {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+.career-role {
+  padding: 18px;
+  border: 1px solid rgba(8,16,29,0.08);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.74);
+  box-shadow: 0 18px 48px rgba(31,48,82,0.08);
+}
+.career-role strong {
+  display: block;
+  font-size: 16px;
+}
+.career-role span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(8,16,29,0.62);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.career-form {
+  display: grid;
+  gap: 16px;
+  padding: clamp(22px, 4vw, 34px);
+  border: 1px solid rgba(149,166,202,0.3);
+  border-radius: 30px;
+  background: rgba(255,255,255,0.82);
+  box-shadow: 0 28px 80px rgba(31,48,82,0.12);
+  backdrop-filter: blur(18px);
+}
+.career-form h3 {
+  font-size: 26px;
+  letter-spacing: -0.03em;
+}
+.career-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.career-field {
+  display: grid;
+  gap: 8px;
+}
+.career-field.is-full {
+  grid-column: 1 / -1;
+}
+.career-field label {
+  color: rgba(8,16,29,0.72);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.career-field select {
+  width: 100%;
+  min-height: 47px;
+  border: 1px solid rgba(8,16,29,0.13);
+  background: rgba(255,255,255,0.86);
+  border-radius: 12px;
+  padding: 0 14px;
+  outline: none;
+}
+.career-status {
+  min-height: 22px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.6;
+}
 .site-footer {
   color: #07101d;
   background:
@@ -1114,6 +1199,7 @@ textarea {
   .digital-layout,
   .rooms-layout,
   .gallery-layout,
+  .careers-layout,
   .community-feature,
   .bottom-grid {
     grid-template-columns: 1fr;
@@ -1148,6 +1234,7 @@ textarea {
   }
   .service-grid,
   .help-grid,
+  .career-fields,
   .community-grid {
     grid-template-columns: 1fr;
   }
@@ -1221,6 +1308,7 @@ textarea {
     <a href="about.html">About</a>
     <a class="nav-feature" href="#services">Services</a>
     <a class="nav-feature" href="#shop">Digital Products</a>
+    <a href="#careers">Careers</a>
     <a href="#contact">Contact</a>
     <a href="get-started.html" class="nav-cta">Talk to Receptionist</a>
   </div>
@@ -1550,6 +1638,91 @@ textarea {
     </div>
   </div>
 </section>
+<section class="section careers-section" id="careers">
+  <div class="careers-layout">
+    <div class="reveal">
+      <div class="section-label">Careers</div>
+      <h2 class="section-title">Grow with SENZ.</h2>
+      <p class="section-copy">
+        We are building a reliable creative and client service pool for projects, campaigns, events, and digital work.
+      </p>
+      <div class="career-roles" aria-label="Open career roles">
+        <div class="career-role">
+          <strong>Videographer</strong>
+          <span>For events, campaign shoots, brand videos, reels, and production coverage.</span>
+        </div>
+        <div class="career-role">
+          <strong>Photographer</strong>
+          <span>For portraits, events, products, office shoots, gallery coverage, and visual storytelling.</span>
+        </div>
+        <div class="career-role">
+          <strong>Social Media Manager</strong>
+          <span>For content calendars, posting systems, captions, community management, and reporting.</span>
+        </div>
+        <div class="career-role">
+          <strong>Account Manager</strong>
+          <span>For client coordination, project follow-ups, status updates, and organized communication.</span>
+        </div>
+      </div>
+    </div>
+    <form class="career-form reveal" id="careerForm" novalidate>
+      <div>
+        <h3>Apply to the SENZ creative pool.</h3>
+        <p class="section-copy">Share your details, portfolio, and rates. A short practical answer is enough.</p>
+      </div>
+      <div class="career-fields">
+        <div class="career-field">
+          <label for="careerRole">Role</label>
+          <select id="careerRole" name="role" required>
+            <option value="">Choose role</option>
+            <option value="Videographer">Videographer</option>
+            <option value="Photographer">Photographer</option>
+            <option value="Social Media Manager">Social Media Manager</option>
+            <option value="Account Manager">Account Manager</option>
+          </select>
+        </div>
+        <div class="career-field">
+          <label for="careerName">Full Name</label>
+          <input id="careerName" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+        </div>
+        <div class="career-field">
+          <label for="careerEmail">Email</label>
+          <input id="careerEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+        </div>
+        <div class="career-field">
+          <label for="careerPhone">Contact Number</label>
+          <input id="careerPhone" name="phone" type="tel" autocomplete="tel" placeholder="+63 or international" required />
+        </div>
+        <div class="career-field">
+          <label for="careerLocation">Location</label>
+          <input id="careerLocation" name="location" type="text" placeholder="City / area" />
+        </div>
+        <div class="career-field">
+          <label for="careerAvailability">Availability</label>
+          <input id="careerAvailability" name="availability" type="text" placeholder="Weekdays, weekends, project-based" />
+        </div>
+        <div class="career-field">
+          <label for="careerRates">Rates</label>
+          <input id="careerRates" name="rates" type="text" placeholder="Hourly, daily, per project, package" required />
+        </div>
+        <div class="career-field">
+          <label for="careerPortfolio">Portfolio Link</label>
+          <input id="careerPortfolio" name="portfolio" type="url" placeholder="Website, Drive, Instagram, Behance, etc." required />
+        </div>
+        <div class="career-field is-full">
+          <label for="careerExperience">Relevant Experience</label>
+          <textarea id="careerExperience" name="experience" placeholder="Tell us briefly about your past work, clients, events, tools, or industries." required></textarea>
+        </div>
+        <div class="career-field is-full">
+          <label for="careerQuestion">Basic Questionnaire</label>
+          <textarea id="careerQuestion" name="questionnaire" placeholder="What kind of projects do you do best? What equipment, software, or workflow do you use? What makes you reliable to work with?" required></textarea>
+        </div>
+      </div>
+      <button class="btn primary" type="submit">Submit Career Application</button>
+      <span class="career-status" id="careerStatus" role="status" aria-live="polite"></span>
+    </form>
+  </div>
+</section>
 <section class="section light" id="faq">
   <div class="bottom-grid">
     <div class="reveal">
@@ -1630,6 +1803,7 @@ textarea {
     </div>
   </div>
 </div>
+<script src="components/site-config.js"></script>
 <script>
 document.body.classList.add("is-ready");
 document.querySelectorAll('a[href]').forEach((link) => {
@@ -1660,7 +1834,7 @@ document.body.appendChild(progress);
 const progressBar = progress.querySelector(".scroll-progress__bar");
 const navBar = document.querySelector(".nav");
 const motionScenes = Array.from(document.querySelectorAll(".hero, body > section"));
-const motionItems = Array.from(document.querySelectorAll(".help-card, .service-card, .mag, .digital-card, .room-card, .gallery-card, .community-feature, .faq-item"));
+const motionItems = Array.from(document.querySelectorAll(".help-card, .service-card, .mag, .digital-card, .room-card, .gallery-card, .community-feature, .career-role, .career-form, .faq-item"));
 const motionMedia = Array.from(document.querySelectorAll(".image-box, .community-logo-panel, .community-photo, .gallery-card, .mag"));
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -1743,6 +1917,82 @@ document.querySelectorAll(".mag-track, .digital-strip, .room-track, .gallery-tra
     const walk = (x - startX) * 1.2;
     track.scrollLeft = scrollLeft - walk;
   });
+});
+
+const careerForm = document.getElementById("careerForm");
+const careerStatus = document.getElementById("careerStatus");
+const apiBase = String(window.SENZ_API_BASE_URL || "").replace(/\/$/, "");
+const apiUrl = (path) => `${apiBase}${path}`;
+
+careerForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const data = new FormData(form);
+  const role = String(data.get("role") || "").trim();
+  const name = String(data.get("name") || "").trim();
+  const email = String(data.get("email") || "").trim();
+  const phone = String(data.get("phone") || "").trim();
+  const location = String(data.get("location") || "").trim();
+  const availability = String(data.get("availability") || "").trim();
+  const rates = String(data.get("rates") || "").trim();
+  const portfolio = String(data.get("portfolio") || "").trim();
+  const experience = String(data.get("experience") || "").trim();
+  const questionnaire = String(data.get("questionnaire") || "").trim();
+
+  if (!role || !name || !email || !phone || !rates || !portfolio || !experience || !questionnaire) {
+    careerStatus.textContent = "Please complete the required career application details.";
+    return;
+  }
+
+  const messageLines = [
+    "SENZ Career Application",
+    "",
+    `Role: ${role}`,
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Contact Number: ${phone}`,
+    `Location: ${location || "Not specified"}`,
+    `Availability: ${availability || "Not specified"}`,
+    `Rates: ${rates}`,
+    `Portfolio: ${portfolio}`,
+    "",
+    "Relevant Experience:",
+    experience,
+    "",
+    "Basic Questionnaire:",
+    questionnaire
+  ];
+
+  const payload = {
+    name,
+    email,
+    phone,
+    date: availability,
+    message: messageLines.join("\n"),
+    projectType: `Career Application - ${role}`
+  };
+  const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`SENZ Career Application - ${role}`)}&body=${encodeURIComponent(messageLines.join("\n"))}`;
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  careerStatus.textContent = "Sending application...";
+  if (submitButton) submitButton.disabled = true;
+
+  try {
+    const response = await fetch(apiUrl("/api/inquiries"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error("Unable to submit career application.");
+    careerStatus.textContent = `Application received. Reference: ${result.id}. Thank you for applying to SENZ.`;
+    form.reset();
+  } catch {
+    careerStatus.textContent = "Server unavailable - opening your email client with the application ready.";
+    window.location.href = mailto;
+  } finally {
+    if (submitButton) submitButton.disabled = false;
+  }
 });
 
 const issueData = [
