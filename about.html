@@ -2477,6 +2477,224 @@
       line-height: 1.45;
     }
 
+    .founder-hero-quote {
+      margin-top: 22px;
+      max-width: 620px;
+      padding: 18px 20px;
+      border-left: 3px solid var(--blue);
+      border-radius: 0 18px 18px 0;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(244, 248, 255, 0.88);
+    }
+
+    .founder-hero-quote span {
+      display: block;
+      margin-bottom: 8px;
+      color: rgba(143, 177, 255, 0.92);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .founder-hero-quote p {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(20px, 2.4vw, 30px);
+      line-height: 1.22;
+    }
+
+    .appointment-section {
+      padding: clamp(70px, 9vw, 118px) 0;
+      color: #071225;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(21, 92, 255, 0.12), transparent 30rem),
+        linear-gradient(180deg, #ffffff 0%, #eef3fb 100%);
+    }
+
+    .appointment-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+      gap: clamp(24px, 4vw, 54px);
+      align-items: start;
+    }
+
+    .appointment-copy {
+      position: sticky;
+      top: 112px;
+    }
+
+    .appointment-copy h2 {
+      margin: 14px 0 16px;
+      color: #071225;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .appointment-copy p {
+      max-width: 560px;
+      color: rgba(7, 18, 37, 0.66);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .appointment-assurance {
+      margin-top: 22px;
+      padding: 18px;
+      border: 1px solid rgba(21, 92, 255, 0.14);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 16px 44px rgba(31, 48, 82, 0.08);
+      color: rgba(7, 18, 37, 0.7);
+      line-height: 1.65;
+    }
+
+    .appointment-form {
+      display: grid;
+      gap: 18px;
+      padding: clamp(22px, 4vw, 34px);
+      border: 1px solid rgba(149, 166, 202, 0.28);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 28px 80px rgba(31, 48, 82, 0.12);
+      backdrop-filter: blur(18px);
+    }
+
+    .appointment-fields {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .appointment-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .appointment-field.is-full {
+      grid-column: 1 / -1;
+    }
+
+    .appointment-field label,
+    .appointment-choice legend {
+      color: rgba(7, 18, 37, 0.72);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .appointment-field input,
+    .appointment-field textarea,
+    .appointment-field select {
+      width: 100%;
+      min-height: 54px;
+      padding: 0 15px;
+      border: 1px solid rgba(149, 166, 202, 0.42);
+      border-radius: 16px;
+      color: #071225;
+      background: #fff;
+      outline: none;
+      font: inherit;
+    }
+
+    .appointment-field textarea {
+      min-height: 128px;
+      padding: 15px;
+      resize: vertical;
+      line-height: 1.65;
+    }
+
+    .appointment-field input:focus,
+    .appointment-field textarea:focus,
+    .appointment-field select:focus {
+      border-color: rgba(21, 92, 255, 0.68);
+      box-shadow: 0 0 0 4px rgba(21, 92, 255, 0.1);
+    }
+
+    .form-status {
+      min-height: 22px;
+      display: block;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .appointment-choice {
+      border: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    .choice-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .choice-row label {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 14px;
+      border: 1px solid rgba(149, 166, 202, 0.42);
+      border-radius: 16px;
+      background: #fff;
+      color: rgba(7, 18, 37, 0.7);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .choice-row input {
+      accent-color: var(--blue);
+    }
+
+    .success-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: none;
+      place-items: center;
+      padding: 22px;
+      background: rgba(2, 7, 19, 0.66);
+      backdrop-filter: blur(18px);
+    }
+
+    .success-modal.is-open {
+      display: grid;
+    }
+
+    .success-card {
+      width: min(520px, 100%);
+      padding: clamp(26px, 5vw, 42px);
+      border: 1px solid rgba(210, 222, 255, 0.34);
+      border-radius: 28px;
+      color: #071225;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 34px 90px rgba(0, 0, 0, 0.28);
+      text-align: center;
+    }
+
+    .success-card h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+    }
+
+    .success-card p {
+      color: rgba(7, 18, 37, 0.66);
+      line-height: 1.7;
+      margin: 14px 0 24px;
+    }
+
     @media (max-width: 760px) {
       .nav {
         min-height: 74px;
@@ -2487,6 +2705,17 @@
       }
 
       .founder-lesson-card {
+        position: relative;
+        top: auto;
+      }
+
+      .appointment-grid,
+      .appointment-fields,
+      .choice-row {
+        grid-template-columns: 1fr;
+      }
+
+      .appointment-copy {
         position: relative;
         top: auto;
       }
@@ -2530,9 +2759,14 @@
             The founder behind SENZ Strategic Communications.
           </p>
           <p class="about-message">Francine Marie Bautista is a creative director, strategist, storyteller, PR practitioner, branding consultant, entrepreneur, photographer, and cultural advocate whose work is rooted in clarity, visibility, culture, and service.</p>
+          <p class="about-message">As Founder and CEO, Francine leads the SENZ standard: make the message clear, make the image dignified, and make the work useful to real people.</p>
           <div class="founder-intro" aria-label="SENZ Strategic Communications founder and CEO">
             <strong>Francine Marie Bautista</strong>
             <span>Founder &amp; CEO | SENZ Strategic Communications</span>
+          </div>
+          <div class="founder-hero-quote">
+            <span>Founder Note</span>
+            <p>A name becomes stronger when the work behind it is clear, useful, and remembered with respect.</p>
           </div>
           <div class="goal-strip">
             <span>Company Goal</span>
@@ -2565,7 +2799,7 @@
             </span>
           </div>
           <div class="hero-actions">
-            <a class="button secondary" href="get-started.html">Visit Inquiry Desk <span aria-hidden="true">-></span></a>
+            <a class="button secondary" href="#book-fmb">Book an Appointment with FMB <span aria-hidden="true">-></span></a>
           </div>
         </div>
         <div class="portrait-card">
@@ -2574,28 +2808,6 @@
             <h2>Francine Marie Bautista</h2>
             <p class="founder-title">Founder &amp; CEO</p>
             <p class="founder-quote">"Stay disciplined in private so your work can stand with confidence in public."</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="light-about">
-      <div class="shell">
-        <div class="light-copy">
-          <p class="eyebrow">The SENZ Strategic Communications Standard</p>
-          <h2>Modern presence, <span>clear direction.</span></h2>
-          <p>A lighter look inside the brand: calm, precise, and built for clients who want communications to feel credible before a word is spoken.</p>
-          <div class="light-metrics" aria-label="SENZ Strategic Communications standards">
-            <span><strong>01</strong>Clarity</span>
-            <span><strong>02</strong>Presence</span>
-            <span><strong>03</strong>Proof</span>
-          </div>
-        </div>
-        <div class="light-visual">
-          <img src="assets/senz-premium-hero-facility.png" alt="Modern corporate facility exterior with no visible faces" />
-          <div class="light-visual-caption">
-            <span>Strategy</span>
-            <span>Creative Direction</span>
           </div>
         </div>
       </div>
@@ -2687,43 +2899,62 @@
       </div>
     </section>
 
-    <section id="journal" class="journal">
-      <div class="shell">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Insights</p>
-            <h2>Creative Intelligence for Public-Facing Brands</h2>
+    <section class="appointment-section" id="book-fmb">
+      <div class="shell appointment-grid">
+        <div class="appointment-copy reveal">
+          <p class="eyebrow">Appointment with FMB</p>
+          <h2>Book a conversation with Francine.</h2>
+          <p>For founder-led strategy, public image, brand direction, creative work, or community-centered projects, send a preferred appointment schedule. Keep it simple and friendly. Francine will receive the request through SENZ.</p>
+          <div class="appointment-assurance">
+            Your appointment request will be sent to SENZ Strategic Communications and prepared for FMB. You will receive a reply to confirm availability, meeting type, and next steps.
           </div>
         </div>
-        <div class="journal-grid">
-          <article class="journal-card" data-modal-title="PR That Builds Trust" data-modal-body="Trust is not earned overnight. Strategic PR builds credibility by making the brand's message consistent, visible, and aligned with what the audience needs to believe.">
-            <div class="article-art pr" aria-hidden="true"></div>
-            <div class="journal-body">
-              <p class="eyebrow">Public Relations</p>
-              <h3>PR That Builds Trust</h3>
-              <p>Trust is not earned overnight. Discover how strategic PR creates credibility that lasts.</p>
-              <span class="card-arrow">-></span>
+        <form class="appointment-form reveal" id="fmbAppointmentForm" novalidate>
+          <div class="appointment-fields">
+            <div class="appointment-field">
+              <label for="fmbName">Full Name</label>
+              <input id="fmbName" name="name" type="text" autocomplete="name" placeholder="Your name" required />
             </div>
-          </article>
-          <article class="journal-card" data-modal-title="How Clear Messaging Shapes Reputation" data-modal-body="Clear messaging does more than inform. It simplifies the brand, builds perception, drives action, and makes reputation easier to protect over time.">
-            <div class="article-art message" aria-hidden="true"></div>
-            <div class="journal-body">
-              <p class="eyebrow">Messaging</p>
-              <h3>How Clear Messaging Shapes Reputation</h3>
-              <p>Clear messaging does more than inform. It builds perception, drives action, and strengthens your brand.</p>
-              <span class="card-arrow">-></span>
+            <div class="appointment-field">
+              <label for="fmbEmail">Email Address</label>
+              <input id="fmbEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
             </div>
-          </article>
-          <article class="journal-card" data-modal-title="Why Digital Presence Matters" data-modal-body="A strong digital presence expands reach, builds authority, and keeps the brand top of mind across the platforms where people first judge credibility.">
-            <div class="article-art digital" aria-hidden="true"></div>
-            <div class="journal-body">
-              <p class="eyebrow">Digital Strategy</p>
-              <h3>Why Digital Presence Matters</h3>
-              <p>A strong digital presence expands your reach, builds authority, and keeps you top of mind.</p>
-              <span class="card-arrow">-></span>
+            <div class="appointment-field">
+              <label for="fmbPhone">Contact Number</label>
+              <input id="fmbPhone" name="phone" type="tel" autocomplete="tel" placeholder="+63 or international" required />
             </div>
-          </article>
-        </div>
+            <div class="appointment-field">
+              <label for="fmbDate">Date of Appointment</label>
+              <input id="fmbDate" name="date" type="date" required />
+            </div>
+            <fieldset class="appointment-choice appointment-field is-full">
+              <legend>Meeting Type</legend>
+              <div class="choice-row">
+                <label><input type="radio" name="meetingType" value="In person" required /> In person</label>
+                <label><input type="radio" name="meetingType" value="Virtual" /> Virtual</label>
+              </div>
+            </fieldset>
+            <div class="appointment-field is-full">
+              <label for="fmbLocation">Location</label>
+              <select id="fmbLocation" name="location" required>
+                <option value="">Choose location</option>
+                <option value="BGC Office">BGC Office</option>
+                <option value="Client preferred location">Client preferred location</option>
+                <option value="Virtual meeting link">Virtual meeting link</option>
+              </select>
+            </div>
+            <div class="appointment-field is-full">
+              <label for="fmbLocationNote">Location note</label>
+              <input id="fmbLocationNote" name="locationNote" type="text" placeholder="If outside BGC Office or virtual, write the preferred location or note." />
+            </div>
+            <div class="appointment-field is-full">
+              <label for="fmbConcern">What would you like to discuss?</label>
+              <textarea id="fmbConcern" name="message" placeholder="Briefly share your concern, brand, project, or appointment purpose." required></textarea>
+            </div>
+          </div>
+          <button class="button" type="submit">Book an Appointment with FMB</button>
+          <span class="form-status" id="fmbAppointmentStatus" role="status" aria-live="polite"></span>
+        </form>
       </div>
     </section>
   </main>
@@ -2760,23 +2991,36 @@
       </div>
       <p class="modal-body" id="modalBody"></p>
       <div class="modal-actions">
-        <a class="button" href="get-started.html">Work With Us</a>
+        <a class="button" href="#book-fmb">Book FMB</a>
         <button class="button secondary modal-close" type="button">Close</button>
       </div>
     </div>
   </div>
 
+  <div class="success-modal" id="appointmentSuccess" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="success-card" role="document">
+      <h3>Appointment request sent.</h3>
+      <p>Thank you. Your appointment request will reach Francine Marie Bautista through SENZ Strategic Communications. We will reply to confirm availability, meeting type, and the next step.</p>
+      <button class="button" type="button" id="appointmentSuccessClose">Close</button>
+    </div>
+  </div>
+
+  <script src="components/site-config.js"></script>
   <script>
     (() => {
       const body = document.body;
       const modal = document.querySelector('#infoModal');
       const modalTitle = document.querySelector('#modalTitle');
       const modalBody = document.querySelector('#modalBody');
+      const successModal = document.querySelector('#appointmentSuccess');
+      const successClose = document.querySelector('#appointmentSuccessClose');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const apiBase = String(window.SENZ_API_BASE_URL || '').replace(/\/$/, '');
+      const apiUrl = (path) => `${apiBase}${path}`;
 
       requestAnimationFrame(() => body.classList.add('is-ready'));
 
-      document.querySelectorAll('section, .info-card, .journal-card, .about-service-strip span, .light-metrics span, .founder-story-panel, .founder-lesson-card').forEach((el) => {
+      document.querySelectorAll('section, .info-card, .about-service-strip span, .founder-story-panel, .founder-lesson-card, .appointment-form').forEach((el) => {
         el.classList.add('reveal');
       });
 
@@ -2800,6 +3044,16 @@
       function closeModal() {
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
+      }
+
+      function openSuccessModal() {
+        successModal?.classList.add('is-open');
+        successModal?.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeSuccessModal() {
+        successModal?.classList.remove('is-open');
+        successModal?.setAttribute('aria-hidden', 'true');
       }
 
       document.querySelectorAll('[data-modal-title]').forEach((card) => {
@@ -2826,8 +3080,90 @@
         if (event.target === modal || event.target.classList.contains('modal-close')) closeModal();
       });
 
+      successModal?.addEventListener('click', (event) => {
+        if (event.target === successModal) closeSuccessModal();
+      });
+
+      successClose?.addEventListener('click', closeSuccessModal);
+
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeModal();
+        if (event.key === 'Escape') closeSuccessModal();
+      });
+
+      const appointmentForm = document.querySelector('#fmbAppointmentForm');
+      const appointmentStatus = document.querySelector('#fmbAppointmentStatus');
+
+      appointmentForm?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        const name = String(formData.get('name') || '').trim();
+        const email = String(formData.get('email') || '').trim();
+        const phone = String(formData.get('phone') || '').trim();
+        const date = String(formData.get('date') || '').trim();
+        const meetingType = String(formData.get('meetingType') || '').trim();
+        const location = String(formData.get('location') || '').trim();
+        const locationNote = String(formData.get('locationNote') || '').trim();
+        const message = String(formData.get('message') || '').trim();
+
+        if (!name || !email || !phone || !date || !meetingType || !location || !message) {
+          appointmentStatus.textContent = 'Please complete the appointment details.';
+          return;
+        }
+
+        const payload = {
+          name,
+          email,
+          phone,
+          date,
+          message: [
+            'Appointment with FMB',
+            `Meeting type: ${meetingType}`,
+            `Location: ${location}`,
+            `Location note: ${locationNote || 'None'}`,
+            '',
+            message
+          ].join('\n'),
+          projectType: 'Appointment with FMB'
+        };
+        const lines = [
+          'Appointment with FMB',
+          '',
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Contact Number: ${phone}`,
+          `Date of Appointment: ${date}`,
+          `Meeting Type: ${meetingType}`,
+          `Location: ${location}`,
+          `Location Note: ${locationNote || 'None'}`,
+          '',
+          'Concern:',
+          message
+        ];
+        const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent('Appointment with FMB')}&body=${encodeURIComponent(lines.join('\n'))}`;
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        appointmentStatus.textContent = 'Sending appointment request...';
+        if (submitButton) submitButton.disabled = true;
+
+        try {
+          const response = await fetch(apiUrl('/api/inquiries'), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json();
+          if (!response.ok || !result.ok) throw new Error('Unable to submit appointment.');
+          appointmentStatus.textContent = `Received. Reference: ${result.id}.`;
+          form.reset();
+          openSuccessModal();
+        } catch {
+          appointmentStatus.textContent = 'Server unavailable - opening your email client with the appointment request ready.';
+          window.location.href = mailto;
+        } finally {
+          if (submitButton) submitButton.disabled = false;
+        }
       });
 
       document.querySelectorAll('a[href$=".html"], a[href*=".html#"]').forEach((link) => {
@@ -2846,14 +3182,13 @@
       const progressBar = progress.querySelector('.scroll-progress__bar');
 
       const scenes = Array.from(document.querySelectorAll('main > section'));
-      const motionItems = Array.from(document.querySelectorAll('.info-card, .journal-card, .about-service-strip span, .light-metrics span, .founder-story-panel, .founder-lesson-card'));
-      const mediaItems = Array.from(document.querySelectorAll('.portrait-card img, .article-art, .light-visual img'));
+      const motionItems = Array.from(document.querySelectorAll('.info-card, .about-service-strip span, .founder-story-panel, .founder-lesson-card, .appointment-field, .appointment-form'));
+      const mediaItems = Array.from(document.querySelectorAll('.portrait-card img'));
       const railSections = [
         { id: 'about-top', label: 'Founder', target: document.querySelector('.about-hero') },
-        { id: 'about-light', label: 'Mission', target: document.querySelector('.light-about') },
         { id: 'founder-story', label: 'Story', target: document.querySelector('.founder-story') },
         { id: 'about-catalog', label: 'Catalog', target: document.querySelector('.split-card-section') },
-        { id: 'journal', label: 'Journal', target: document.querySelector('#journal') }
+        { id: 'book-fmb', label: 'Appointment', target: document.querySelector('#book-fmb') }
       ].filter((item) => item.target);
       railSections.forEach((item) => {
         if (!item.target.id) item.target.id = item.id;
