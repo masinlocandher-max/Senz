@@ -32,7 +32,6 @@ jobs:
           cp CNAME _site/CNAME
           cp -R assets _site/assets
           cp -R components _site/components
-          cp -R vendor _site/vendor
           touch _site/.nojekyll
 
       - name: Configure Pages
