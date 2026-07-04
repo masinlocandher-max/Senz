@@ -153,18 +153,28 @@ async function readJsonBody(req) {
 }
 
 function buildInquiry(input, req) {
+  const contact = clean(input.contact || input.phone || input.contactNumber, 180);
+  const timeline = clean(input.timeline || input.date || input.availability, 120);
+  const messageParts = [
+    cleanLong(input.message, 3000),
+    input.date ? `Preferred date or callback time: ${clean(input.date, 120)}` : "",
+    input.meetingType ? `Meeting type: ${clean(input.meetingType, 120)}` : "",
+    input.location ? `Location: ${clean(input.location, 160)}` : "",
+    input.locationNote ? `Location note: ${clean(input.locationNote, 240)}` : ""
+  ].filter(Boolean);
+
   const inquiry = {
     id: crypto.randomUUID(),
     createdAt: new Date().toISOString(),
     name: clean(input.name, 120),
     brand: clean(input.brand, 160),
     email: clean(input.email, 180).toLowerCase(),
-    contact: clean(input.contact, 180),
+    contact,
     preferredContact: clean(input.preferredContact, 80),
     projectType: clean(input.projectType, 160),
-    timeline: clean(input.timeline, 120),
+    timeline,
     budget: clean(input.budget, 120),
-    message: cleanLong(input.message, 3000),
+    message: messageParts.join("\n\n").slice(0, 3000),
     source: "website-intake",
     userAgent: clean(req.headers["user-agent"], 300),
     ip: clientIp(req)
