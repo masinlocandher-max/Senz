@@ -995,9 +995,9 @@ footer {
 }
 .footer-inner {
   display: grid;
-  grid-template-columns: minmax(0,1fr) auto;
-  gap: 28px;
-  align-items: center;
+  grid-template-columns: minmax(260px,1fr) minmax(180px, auto) minmax(260px, auto);
+  gap: clamp(24px, 4vw, 58px);
+  align-items: start;
 }
 .footer-brand strong {
   display: block;
@@ -1012,13 +1012,27 @@ footer {
   font-size: 13px;
   line-height: 1.7;
 }
-.footer-links {
+.footer-brand p {
+  max-width: 520px;
+  margin: 10px 0 0;
+  color: rgba(8,16,29,0.62);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.footer-nav,
+.footer-contact {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
   gap: 10px;
 }
-.footer-links a {
+.footer-nav {
+  max-width: 230px;
+}
+.footer-nav a,
+.footer-contact a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
   padding: 11px 14px;
   border-radius: 999px;
   background: rgba(255,255,255,0.72);
@@ -1026,6 +1040,17 @@ footer {
   color: rgba(8,16,29,0.72);
   font-size: 12px;
   font-weight: 800;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(8,16,29,0.08);
+  color: rgba(8,16,29,0.62);
+  font-size: 12px;
+  flex-wrap: wrap;
 }
 .faq-item {
   border-bottom: 1px solid rgba(8,16,29,0.12);
@@ -1274,8 +1299,8 @@ textarea {
   .footer-inner {
     grid-template-columns: 1fr;
   }
-  .footer-links {
-    justify-content: flex-start;
+  .footer-nav {
+    max-width: none;
   }
 }
 @media (max-width: 640px) {
@@ -1644,16 +1669,27 @@ textarea {
   <div class="footer-inner">
     <div class="footer-brand">
       <strong>SENZ Strategic Communications</strong>
-      <span>Strategic Communications</span>
-      <span>Park Triangle Corporate Plaza, North Tower, 32nd Street Corner 11th Ave., Bonifacio Global City, Taguig</span>
-      <span>All rights reserved.</span>
+      <span>Strategic communications for clarity, credibility, and public presence.</span>
+      <p>Park Triangle Corporate Plaza, North Tower, 32nd Street Corner 11th Ave., Bonifacio Global City, Taguig</p>
     </div>
-    <div class="footer-links" aria-label="SENZ links">
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+    <div class="footer-contact" aria-label="SENZ Strategic Communications contact links">
       <a href="mailto:info.senz.pr@gmail.com">Email</a>
       <a href="https://www.instagram.com/senz.pr?igsh=MWxxamFrZmJqc28wcw%3D%3D&utm_source=qr">Instagram</a>
       <a href="https://www.facebook.com/share/1BM7Etwi9R/?mibextid=wwXIfr">Facebook</a>
       <a href="https://www.tiktok.com/@senz.pr?_r=1&_t=ZS-97bs7BHj1Ov">TikTok</a>
     </div>
+  </div>
+  <div class="footer-bottom">
+    <span>@senz.pr</span>
+    <span>All rights reserved.</span>
   </div>
 </footer>
 <div class="consult-modal" id="consultModal" aria-hidden="true">
