@@ -4,76 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us | SENZ Strategic Communications</title>
-  <link rel="icon" href="assets/senz-original-mark.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/senz-original-mark.png" />
   <link rel="stylesheet" href="components/approved-pages.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="shell nav">
-      <a class="brand" href="index.html" aria-label="SENZ Strategic Communications home"><img src="assets/senz-original-mark.png" alt="" aria-hidden="true" /><span><strong>SENZ</strong><span>Strategic Communications</span></span></a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="careers.html">Careers</a><a class="is-active" href="contact.html">Contact Us</a><a href="faq.html">FAQ</a>
-      </nav>
-    </div>
-  </header>
+  <header class="site-header"><div class="shell nav"><a class="brand" href="index.html" aria-label="SENZ Strategic Communications home"><img src="assets/senz-original-mark.png" alt="" aria-hidden="true" /><span><strong>SENZ</strong><span>PR | Marketing | Digital Solutions</span></span></a><nav class="nav-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="careers.html">Careers</a><a class="is-active" href="contact.html">Contact Us</a><a href="faq.html">FAQ</a></nav></div></header>
   <main>
     <section class="hero">
-      <div class="shell hero-grid">
-        <div><p class="eyebrow">Contact Us</p><h1>Send a general inquiry.</h1><p class="lead">Use this page for general questions, partnership messages, office inquiries, and non-booking concerns.</p></div>
-        <div class="image-placeholder">Contact image placeholder</div>
+      <div class="shell contact-layout">
+        <div class="hero-text"><span class="kicker">Contact SENZ</span><h1>Let’s build clarity and create impact together.</h1><p class="lead">Have a project in mind or want to learn more about how we can help? We would love to hear from you.</p><div class="trust-row"><div class="trust-item"><div class="icon"><svg viewBox="0 0 64 64"><path d="M14 18h36v26H26L14 54z"/></svg></div><h3>Response Within</h3><p>24-48 hours</p></div><div class="trust-item"><div class="icon"><svg viewBox="0 0 64 64"><path d="M32 8 52 16v14c0 13-8 22-20 26-12-4-20-13-20-26V16z"/><path d="m22 32 7 7 14-15"/></svg></div><h3>Your Information</h3><p>Is safe with us</p></div><div class="trust-item"><div class="icon"><svg viewBox="0 0 64 64"><circle cx="20" cy="28" r="8"/><circle cx="44" cy="28" r="8"/><path d="M8 52c2-10 22-10 24 0M32 52c2-10 22-10 24 0"/></svg></div><h3>Let’s Create</h3><p>Something meaningful</p></div></div></div>
+        <div class="form-panel"><h2>Send Us A Message</h2><form class="form-grid" data-senz-form data-form-kind="general"><label class="full">Full Name *<input type="text" name="name" autocomplete="name" required /></label><label class="full">Email Address *<input type="email" name="email" autocomplete="email" required /></label><label>Company / Organization<input type="text" name="organization" /></label><label>Position / Role<input type="text" name="position" /></label><label>Phone Number<input type="tel" name="phone" autocomplete="tel" /></label><label>What can we help you with?<select name="inquiryType" required><option value="">Select an option</option><option>General Inquiry</option><option>Partnership</option><option>Media</option><option>Office Visit</option><option>Other</option></select></label><label class="full">Tell us about your project or inquiry *<textarea name="message" rows="6" required></textarea></label><button class="button primary" type="submit">Send Message</button><span class="required-note">* Required fields</span><span class="form-status full" role="status" aria-live="polite"></span></form></div>
       </div>
     </section>
-    <section class="section">
-      <div class="shell grid two">
-        <form class="form-grid" data-prototype-form data-form-kind="general">
-          <label>Full Name<input type="text" name="name" autocomplete="name" required></label>
-          <label>Email<input type="email" name="email" autocomplete="email" required></label>
-          <label>Phone Number<input type="tel" name="phone" autocomplete="tel"></label>
-          <label>Company or Organization<input type="text" name="organization"></label>
-          <label>Position or Role<input type="text" name="position"></label>
-          <label>Inquiry Type<select name="inquiryType" required><option value="">Choose type</option><option>General Inquiry</option><option>Partnership</option><option>Media</option><option>Office Visit</option><option>Other</option></select></label>
-          <label class="full">Message<textarea name="message" rows="6" required></textarea></label>
-          <p class="prototype-note">TODO: add CONTACT_FORM_ENDPOINT in site config before production. Prototype mode does not send email.</p>
-          <button class="button primary" type="submit">Send Message</button><span class="status" role="status" aria-live="polite"></span>
-        </form>
-        <div>
-          <article class="card contact-detail"><h3>Contact Details</h3><p>Email: info.senz.pr@gmail.com</p><p>Social: @senz.pr</p><p>Park Triangle Corporate Plaza, North Tower, 32nd Street Corner 11th Ave., Bonifacio Global City, Taguig</p></article>
-          <br>
-          <div class="map-placeholder">Map placeholder: BGC office location</div>
-        </div>
+    <section class="page-section">
+      <div class="shell two-column">
+        <div><span class="kicker">Get In Touch</span><p class="body-copy">We are here to answer your questions, discuss your goals, and explore how we can work together.</p><div class="contact-details"><div class="contact-line"><div class="icon"><svg viewBox="0 0 64 64"><path d="M10 18h44v30H10zM10 20l22 16 22-16"/></svg></div><div><h3>Email</h3><p>info.senz.pr@gmail.com</p></div></div><div class="contact-line"><div class="icon"><svg viewBox="0 0 64 64"><path d="M22 12 12 22c3 16 14 27 30 30l10-10-10-8-6 6c-6-3-9-6-12-12l6-6z"/></svg></div><div><h3>Phone</h3><p>+63 917 123 4567</p></div></div><div class="contact-line"><div class="icon"><svg viewBox="0 0 64 64"><path d="M32 56S14 38 14 24a18 18 0 1 1 36 0c0 14-18 32-18 32z"/><circle cx="32" cy="24" r="6"/></svg></div><div><h3>Office</h3><p>BGC, Taguig City, Philippines</p></div></div><div class="contact-line"><div class="icon"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M32 18v16l10 6"/></svg></div><div><h3>Business Hours</h3><p>Mon - Fri | 9:00 AM - 6:00 PM</p></div></div></div></div>
+        <div class="map-box" aria-hidden="true"></div>
       </div>
     </section>
   </main>
-  <footer class="site-footer">
-    <div class="shell footer-inner">
-      <div class="footer-brand">
-        <strong>SENZ Strategic Communications</strong>
-        <span>Strategic communications for clarity, credibility, and public presence.</span>
-        <p>Park Triangle Corporate Plaza, North Tower, 32nd Street Corner 11th Ave., Bonifacio Global City, Taguig</p>
-      </div>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="careers.html">Careers</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="faq.html">FAQ</a>
-      </nav>
-      <div class="footer-contact" aria-label="SENZ Strategic Communications contact links">
-        <a href="mailto:info.senz.pr@gmail.com">Email</a>
-        <a href="https://www.instagram.com/senz.pr?igsh=MWxxamFrZmJqc28wcw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://www.facebook.com/share/1BM7Etwi9R/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="https://www.tiktok.com/@senz.pr?_r=1&_t=ZS-97bs7BHj1Ov" target="_blank" rel="noopener noreferrer">TikTok</a>
-      </div>
-    </div>
-    <div class="shell footer-bottom">
-      <span>@senz.pr</span>
-      <span>All rights reserved.</span>
-    </div>
-  </footer>
-  <script src="components/site-config.js"></script>
-  <script src="components/form-router.js"></script>
-  <script src="components/approved-pages.js"></script>
+  <footer class="site-footer"><div class="shell footer-main"><div class="footer-column"><div class="footer-logo"><img src="assets/senz-original-mark.png" alt="" aria-hidden="true" /><span><strong>SENZ</strong><span>PR | Marketing | Digital Solutions</span></span></div><p class="footer-tagline">We make you clearer, sharper, and harder to ignore.</p><div class="social-row"><a href="https://www.instagram.com/senz.pr?igsh=MWxxamFrZmJqc28wcw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a><a href="https://www.facebook.com/share/1BM7Etwi9R/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.4-1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a><a href="https://www.tiktok.com/@senz.pr?_r=1&_t=ZS-97bs7BHj1Ov" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 4v10a5 5 0 1 1-5-5M14 4c1 3 3 5 6 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a><a href="mailto:info.senz.pr@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a></div></div><div class="footer-column"><h3>Quick Links</h3><div class="footer-list"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="careers.html">Careers</a><a href="contact.html">Contact Us</a><a href="faq.html">FAQ</a></div></div><div class="footer-column"><h3>Services</h3><div class="footer-list"><span>Strategy &amp; Brand Consulting</span><span>Content &amp; Social Strategy</span><span>Messaging &amp; Copywriting</span><span>Website &amp; Digital Solutions</span><span>Digital Marketing</span><span>PR &amp; Media Relations</span><span>Perception &amp; Narrative</span><span>Analytics &amp; Intelligence</span></div></div><div class="footer-column"><h3>Contact</h3><div class="contact-footer-item"><span>Email</span><span>info.senz.pr@gmail.com</span></div><div class="contact-footer-item"><span>Phone</span><span>+63 917 123 4567</span></div><div class="contact-footer-item"><span>Office</span><span>BGC, Taguig City, Philippines</span></div></div></div><div class="shell footer-bottom"><span>© 2026 SENZ Strategic Communications. All rights reserved.</span><div class="legal-row"><span>Privacy Policy</span><span>Terms of Service</span></div></div></footer>
+  <script src="components/site-config.js"></script><script src="components/form-router.js"></script><script src="components/approved-pages.js"></script>
 </body>
 </html>

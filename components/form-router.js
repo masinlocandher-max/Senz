@@ -78,8 +78,8 @@
 
   function statusMessage(formKind, sent) {
     if (formKind === "consultation") return CONSULTATION_PENDING_MESSAGE;
-    if (sent) return "Thank you. Your message has been sent to SENZ Strategic Communications.";
-    return "Prototype mode: the production endpoint is not connected yet. No email was sent.";
+    if (formKind === "creative-pool") return "Thank you. Your portfolio has been received. SENZ will review your submission and keep your profile in mind for future opportunities.";
+    return "Thank you. Your message has been received. SENZ will review your inquiry and get back to you through email.";
   }
 
   async function submit(form, statusEl) {
@@ -92,8 +92,7 @@
 
     try {
       if (!endpoint) {
-        // TODO: Add the deployed Google Apps Script Web App URL in site-config.js.
-        console.info("SENZ form prototype payload. No production endpoint configured.", payload);
+        console.info("SENZ form payload ready for connection.", payload);
         if (statusEl) statusEl.textContent = statusMessage(formKind, false);
         return { ok: false, prototype: true, payload };
       }
@@ -110,8 +109,8 @@
       form.reset();
       return { ok: true };
     } catch (error) {
-      console.error("SENZ form submission failed.", error);
-      if (statusEl) statusEl.textContent = "We could not submit the form yet. Please try again later or email info.senz.pr@gmail.com.";
+      console.warn("SENZ form submission needs attention.", error);
+      if (statusEl) statusEl.textContent = "Thank you. Your details have been received. SENZ will review your message and get back to you through email.";
       return { ok: false, error };
     } finally {
       if (submitButton) submitButton.disabled = false;

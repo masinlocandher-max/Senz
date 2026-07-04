@@ -30,7 +30,7 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeConsultation();
 });
 
-document.querySelectorAll("[data-prototype-form]").forEach((form) => {
+document.querySelectorAll("[data-senz-form]").forEach((form) => {
   window.SENZForms?.bind(form);
 });
 
