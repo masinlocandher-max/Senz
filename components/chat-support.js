@@ -65,9 +65,7 @@
   }
 
   function initChat() {
-    const contactPath = window.location.pathname.replace(/\\/g, '/').includes('/shop/')
-      ? '../contact.html'
-      : 'contact.html';
+    const contactPath = 'contact.html';
     const root = document.createElement('aside');
     root.className = 'senz-chat';
     root.setAttribute('aria-label', 'Digital Assistant');

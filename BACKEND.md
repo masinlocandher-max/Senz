@@ -20,7 +20,7 @@ http://127.0.0.1:4177
 - `GET /api/health` checks the backend status.
 - `GET /api/agents` lists the SENZ Strategic Communications routing agents.
 - `POST /api/agents/recommend` recommends an agent for a draft inquiry.
-- `POST /api/inquiries` receives reception, appointment, career, and Get Started inquiry forms.
+- `POST /api/inquiries` receives inquiry records when a production form endpoint is connected.
 - `GET /api/inquiries` lists saved inquiries only when `ADMIN_TOKEN` is set and sent as `Authorization: Bearer <token>`.
 
 ## Agents
