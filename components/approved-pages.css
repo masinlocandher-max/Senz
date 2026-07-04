@@ -7,6 +7,10 @@
   --line-soft: #e6e6e6;
   --panel: #f8f8f8;
   --blue: #155cff;
+  --deep-navy: #0a1730;
+  --navy: #13326b;
+  --senz-blue: #2451d9;
+  --bright-blue: #307bff;
   --max: 1220px;
 }
 
@@ -21,7 +25,9 @@ html {
 body {
   margin: 0;
   overflow-x: hidden;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 14% 8%, rgba(143, 211, 255, 0.10), transparent 24rem),
+    linear-gradient(180deg, #ffffff, #ffffff);
   color: var(--ink);
   font-family: Montserrat, Inter, Arial, sans-serif;
   font-size: 15px;
@@ -120,17 +126,28 @@ textarea {
 
 .nav-links a:hover::after,
 .nav-links a.is-active::after {
-  background: var(--ink);
+  background: var(--senz-blue);
 }
 
 .page-section {
+  position: relative;
   padding: clamp(70px, 9vw, 118px) 0;
   border-top: 1px solid var(--line-soft);
+  background:
+    radial-gradient(circle at 92% 18%, rgba(36, 81, 217, 0.035), transparent 22rem),
+    linear-gradient(90deg, rgba(10, 23, 48, 0.018) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(10, 23, 48, 0.018) 1px, transparent 1px);
+  background-size: auto, 42px 42px, 42px 42px;
 }
 
 .hero {
+  position: relative;
   padding: clamp(58px, 7vw, 86px) 0 clamp(70px, 9vw, 116px);
   border-top: 0;
+  background:
+    radial-gradient(circle at 86% 16%, rgba(48, 123, 255, 0.055), transparent 20rem),
+    linear-gradient(135deg, transparent 0 48%, rgba(10, 23, 48, 0.025) 48% 48.15%, transparent 48.15% 100%),
+    linear-gradient(180deg, #ffffff, #ffffff);
 }
 
 .hero-grid,
@@ -211,11 +228,11 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--ink);
-  border-radius: 0;
+  border: 1px solid var(--deep-navy);
+  border-radius: 4px;
   padding: 16px 24px;
   background: #ffffff;
-  color: var(--ink);
+  color: var(--deep-navy);
   cursor: pointer;
   font-size: 13px;
   font-weight: 850;
@@ -224,7 +241,8 @@ h3 {
 }
 
 .button.primary {
-  background: var(--ink);
+  background: linear-gradient(135deg, var(--deep-navy), var(--navy));
+  border-color: var(--deep-navy);
   color: #ffffff;
 }
 
@@ -238,11 +256,62 @@ h3 {
 .mini-image {
   position: relative;
   min-height: 470px;
-  border: 1px solid #bfbfbf;
+  overflow: hidden;
+  border: 1px solid rgba(10, 23, 48, 0.14);
   background:
-    linear-gradient(to top right, transparent calc(50% - 0.5px), #cfcfcf calc(50% - 0.5px), #cfcfcf calc(50% + 0.5px), transparent calc(50% + 0.5px)),
-    linear-gradient(to bottom right, transparent calc(50% - 0.5px), #cfcfcf calc(50% - 0.5px), #cfcfcf calc(50% + 0.5px), transparent calc(50% + 0.5px)),
-    #ffffff;
+    linear-gradient(135deg, rgba(10, 23, 48, 0.04), rgba(36, 81, 217, 0.04)),
+    #f7f9fc;
+  box-shadow: 0 28px 70px rgba(10, 23, 48, 0.10);
+}
+
+.visual-box::before,
+.mini-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--image) center / cover no-repeat;
+  filter: saturate(0.86) contrast(1.04);
+  transform: scale(1.01);
+}
+
+.visual-box::after,
+.mini-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.10), transparent 42%),
+    radial-gradient(circle at 16% 18%, rgba(48, 123, 255, 0.16), transparent 16rem),
+    linear-gradient(180deg, rgba(10, 23, 48, 0.02), rgba(10, 23, 48, 0.18));
+  pointer-events: none;
+}
+
+.image-home {
+  --image: url("../assets/senz-premium-workspace-hero.png");
+}
+
+.image-about {
+  --image: url("../assets/senz-tour-strategy-wall.png");
+}
+
+.image-founder {
+  --image: url("../assets/fmb-founder-office-full.jpg");
+}
+
+.image-founder::before {
+  background-position: center 18%;
+}
+
+.image-services {
+  --image: url("../assets/senz-service-strategic-communications.png");
+}
+
+.image-careers {
+  --image: url("../assets/senz-tour-production-studio.png");
+}
+
+.image-faq {
+  --image: url("../assets/senz-tour-reception-hero.png");
 }
 
 .map-box {
@@ -281,6 +350,8 @@ h3 {
 
 .mini-image {
   min-height: 74px;
+  box-shadow: none;
+  --image: url("../assets/senz-premium-workspace-hero.png");
 }
 
 .center-head {
@@ -618,8 +689,11 @@ h3 {
 }
 
 .site-footer {
-  border-top: 1px solid var(--line);
-  background: #ffffff;
+  border-top: 1px solid rgba(143, 211, 255, 0.18);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(48, 123, 255, 0.16), transparent 22rem),
+    linear-gradient(135deg, var(--deep-navy), #071124 72%);
+  color: rgba(255, 255, 255, 0.84);
 }
 
 .footer-main {
@@ -631,7 +705,7 @@ h3 {
 
 .footer-column {
   padding-left: 42px;
-  border-left: 1px solid var(--line);
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .footer-column:first-child {
@@ -654,6 +728,7 @@ h3 {
 
 .footer-logo strong {
   display: block;
+  color: #ffffff;
   font-size: 26px;
   letter-spacing: 0.42em;
 }
@@ -665,11 +740,12 @@ h3 {
   font-weight: 800;
   letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.74);
 }
 
 .footer-tagline {
   max-width: 260px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.8;
 }
 
@@ -684,10 +760,11 @@ h3 {
   height: 28px;
   display: inline-grid;
   place-items: center;
-  color: var(--ink);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .footer-column h3 {
+  color: #ffffff;
   margin-bottom: 22px;
   font-size: 14px;
   text-transform: uppercase;
@@ -696,17 +773,22 @@ h3 {
 .footer-list {
   display: grid;
   gap: 14px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.70);
   line-height: 1.45;
 }
 
 .contact-footer-item {
-  display: grid;
-  grid-template-columns: 30px minmax(0, 1fr);
-  gap: 14px;
-  align-items: start;
+  display: block;
   margin-bottom: 24px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.72);
+  overflow-wrap: anywhere;
+}
+
+.contact-footer-item span:first-child {
+  display: block;
+  margin-bottom: 7px;
+  color: rgba(255, 255, 255, 0.94);
+  font-weight: 850;
 }
 
 .footer-bottom {
@@ -714,8 +796,8 @@ h3 {
   justify-content: space-between;
   gap: 24px;
   padding: 20px 0 28px;
-  border-top: 1px solid var(--line-soft);
-  color: var(--muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.62);
   font-size: 12px;
 }
 
