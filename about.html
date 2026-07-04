@@ -3175,8 +3175,8 @@
 
   <div class="success-modal" id="appointmentSuccess" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="success-card" role="document">
-      <h3>Appointment request sent.</h3>
-      <p>Thank you. Your appointment request will reach Francine Marie Bautista through SENZ Strategic Communications. We will reply to confirm availability, meeting type, and the next step.</p>
+      <h3>Appointment request received.</h3>
+      <p>Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm your appointment through email before it is added to the calendar.</p>
       <button class="button" type="button" id="appointmentSuccessClose">Close</button>
     </div>
   </div>
@@ -3190,7 +3190,7 @@
         </div>
         <button class="consult-close" type="button" data-consult-close aria-label="Close consultation form">&times;</button>
       </div>
-      <form class="consult-form" data-prototype-form>
+      <form class="consult-form" data-prototype-form data-form-kind="consultation">
         <label>Preferred Date
           <input type="date" name="date" required>
         </label>
@@ -3223,7 +3223,7 @@
         <label class="full">Project Notes
           <textarea name="notes" rows="5" placeholder="Tell us what you want to clarify, improve, or launch."></textarea>
         </label>
-        <p class="consult-note">Prototype form: submission is not connected to a live booking calendar yet.</p>
+        <p class="consult-note">TODO: connect this static request to a pending appointment workflow before launch. This does not create a confirmed calendar booking.</p>
         <button class="consult-submit" type="submit">Submit Consultation Request</button>
         <span class="consult-status" role="status" aria-live="polite"></span>
       </form>
@@ -3276,7 +3276,31 @@
         form.addEventListener('submit', (event) => {
           event.preventDefault();
           const status = form.querySelector('.consult-status');
-          if (status) status.textContent = 'Prototype form noted. Connect this form to the booking backend before launch.';
+          const values = Object.fromEntries(new FormData(form).entries());
+          const submittedAt = new Date().toLocaleString();
+          const fullName = values.name || 'Website Visitor';
+          const lines = [
+            'New SENZ Consultation Request',
+            '',
+            `Preferred date: ${values.date || ''}`,
+            `Preferred time: ${values.time || ''}`,
+            `Full name: ${fullName}`,
+            `Email: ${values.email || ''}`,
+            `Phone number: ${values.phone || ''}`,
+            `Business or organization: ${values.organization || ''}`,
+            `Service needed: ${values.service || ''}`,
+            '',
+            'Project notes:',
+            values.notes || '',
+            '',
+            `Submission date and time: ${submittedAt}`,
+            '',
+            'Calendar note: this is a pending request. Do not add to the calendar until SENZ approves the schedule.'
+          ];
+          // TODO: Replace this mailto preparation with Formspree, EmailJS, Google Forms,
+          // Airtable, Zapier, or a custom backend email endpoint when production email is ready.
+          window.location.href = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`New SENZ Consultation Request - ${fullName}`)}&body=${encodeURIComponent(lines.join('\n'))}`;
+          if (status) status.textContent = 'Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm your appointment through email before it is added to the calendar.';
         });
       });
 
@@ -3372,58 +3396,41 @@
           return;
         }
 
-        const payload = {
-          name,
-          email,
-          phone,
-          date,
-          message: [
-            'Appointment with FMB',
-            `Meeting type: ${meetingType}`,
-            `Location: ${location}`,
-            `Location note: ${locationNote || 'None'}`,
-            '',
-            message
-          ].join('\n'),
-          projectType: 'Appointment with FMB'
-        };
+        const submittedAt = new Date().toLocaleString();
         const lines = [
-          'Appointment with FMB',
+          'New SENZ Consultation Request',
           '',
-          `Name: ${name}`,
+          `Preferred date: ${date}`,
+          `Preferred time: Requested through FMB appointment form`,
+          `Full name: ${name}`,
           `Email: ${email}`,
-          `Contact Number: ${phone}`,
-          `Date of Appointment: ${date}`,
+          `Phone number: ${phone}`,
+          `Business or organization: FMB appointment request`,
+          `Service needed: Founder / strategy appointment`,
           `Meeting Type: ${meetingType}`,
           `Location: ${location}`,
           `Location Note: ${locationNote || 'None'}`,
           '',
-          'Concern:',
-          message
+          'Project notes:',
+          message,
+          '',
+          `Submission date and time: ${submittedAt}`,
+          '',
+          'Calendar note: this is a pending request. Do not add to the calendar until SENZ approves the schedule.'
         ];
-        const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent('Appointment with FMB')}&body=${encodeURIComponent(lines.join('\n'))}`;
+        const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`New SENZ Consultation Request - ${name}`)}&body=${encodeURIComponent(lines.join('\n'))}`;
         const submitButton = form.querySelector('button[type="submit"]');
 
-        appointmentStatus.textContent = 'Sending appointment request...';
+        appointmentStatus.textContent = 'Preparing appointment request email...';
         if (submitButton) submitButton.disabled = true;
 
-        try {
-          const response = await fetch(apiUrl('/api/inquiries'), {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          const result = await response.json();
-          if (!response.ok || !result.ok) throw new Error('Unable to submit appointment.');
-          appointmentStatus.textContent = `Received. Reference: ${result.id}.`;
-          form.reset();
-          openSuccessModal();
-        } catch {
-          appointmentStatus.textContent = 'Server unavailable - opening your email client with the appointment request ready.';
-          window.location.href = mailto;
-        } finally {
-          if (submitButton) submitButton.disabled = false;
-        }
+        // TODO: Replace this mailto preparation with a pending appointment workflow
+        // when Formspree, EmailJS, Google Forms, Airtable, Zapier, or a custom backend is ready.
+        window.location.href = mailto;
+        appointmentStatus.textContent = 'Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm your appointment through email before it is added to the calendar.';
+        form.reset();
+        openSuccessModal();
+        if (submitButton) submitButton.disabled = false;
       });
 
       document.querySelectorAll('a[href$=".html"], a[href*=".html#"]').forEach((link) => {

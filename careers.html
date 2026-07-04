@@ -36,17 +36,16 @@
     <section class="section soft">
       <div class="shell">
         <div class="section-head"><div><p class="eyebrow">Current Openings</p><h2>Open application.</h2></div><p>We are currently accepting profiles for Videographer, Photographer, Social Media Manager, and Account Manager roles.</p></div>
-        <form class="form-grid" data-prototype-form>
-          <label>Role<select required><option value="">Choose role</option><option>Videographer</option><option>Photographer</option><option>Social Media Manager</option><option>Account Manager</option><option>Open Application</option></select></label>
-          <label>Full Name<input type="text" required></label>
-          <label>Email<input type="email" required></label>
-          <label>Phone Number<input type="tel" required></label>
-          <label>Location<input type="text"></label>
-          <label>Rates<input type="text" placeholder="Project, daily, hourly, or monthly"></label>
-          <label class="full">Portfolio Link<input type="url" placeholder="Website, Drive, Instagram, Behance, etc." required></label>
-          <label class="full">Relevant Experience<textarea rows="4" required></textarea></label>
-          <label class="full">Short Questionnaire<textarea rows="4" placeholder="What kind of projects do you do best? What tools do you use? What is your usual availability?" required></textarea></label>
-          <p class="prototype-note">Prototype form: connect to a backend or email workflow before launch.</p>
+        <form class="form-grid" data-prototype-form data-form-kind="creative-pool">
+          <label>Creative Role<select name="role" required><option value="">Choose role</option><option>Videographer</option><option>Photographer</option><option>Social Media Manager</option><option>Account Manager</option><option>Open Application</option></select></label>
+          <label>Full Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Email<input type="email" name="email" autocomplete="email" required></label>
+          <label>Phone Number<input type="tel" name="phone" autocomplete="tel" required></label>
+          <label>Location<input type="text" name="location"></label>
+          <label>Rates<input type="text" name="rates" placeholder="Project, daily, hourly, or monthly"></label>
+          <label class="full">Portfolio Link<input type="url" name="portfolio" placeholder="Website, Drive, Instagram, Behance, etc." required></label>
+          <label class="full">Short Introduction<textarea name="introduction" rows="4" placeholder="Introduce your work, strongest skills, tools, availability, and the kind of SENZ projects you can support." required></textarea></label>
+          <p class="prototype-note">TODO: connect this static form to Formspree, EmailJS, Google Forms, Airtable, Zapier, or a custom backend. For now, it prepares an email to info.senz.pr@gmail.com.</p>
           <button class="button primary" type="submit">Submit Portfolio</button><span class="status" role="status" aria-live="polite"></span>
         </form>
       </div>

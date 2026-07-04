@@ -25,13 +25,15 @@
     </section>
     <section class="section">
       <div class="shell grid two">
-        <form class="form-grid" data-prototype-form>
-          <label>Full Name<input type="text" required></label>
-          <label>Email<input type="email" required></label>
-          <label>Phone Number<input type="tel"></label>
-          <label>Inquiry Type<select required><option value="">Choose type</option><option>General Inquiry</option><option>Partnership</option><option>Media</option><option>Office Visit</option><option>Other</option></select></label>
-          <label class="full">Message<textarea rows="6" required></textarea></label>
-          <p class="prototype-note">Prototype form: connect to email or backend before launch.</p>
+        <form class="form-grid" data-prototype-form data-form-kind="general">
+          <label>Full Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Email<input type="email" name="email" autocomplete="email" required></label>
+          <label>Phone Number<input type="tel" name="phone" autocomplete="tel"></label>
+          <label>Company or Organization<input type="text" name="organization"></label>
+          <label>Position or Role<input type="text" name="position"></label>
+          <label>Inquiry Type<select name="inquiryType" required><option value="">Choose type</option><option>General Inquiry</option><option>Partnership</option><option>Media</option><option>Office Visit</option><option>Other</option></select></label>
+          <label class="full">Message<textarea name="message" rows="6" required></textarea></label>
+          <p class="prototype-note">TODO: connect this static form to Formspree, EmailJS, Google Forms, Airtable, Zapier, or a custom backend. For now, it prepares an email to info.senz.pr@gmail.com.</p>
           <button class="button primary" type="submit">Send Message</button><span class="status" role="status" aria-live="polite"></span>
         </form>
         <div>

@@ -90,7 +90,7 @@
         <div><h2 id="consultTitle">Book a Consultation</h2><p>Prototype form for consultation requests.</p></div>
         <button class="consult-close" type="button" data-consult-close aria-label="Close consultation form">&times;</button>
       </div>
-      <form class="consult-form form-grid" data-prototype-form>
+      <form class="consult-form form-grid" data-prototype-form data-form-kind="consultation">
         <label>Preferred Date<input type="date" name="date" required></label>
         <label>Preferred Time<input type="time" name="time" required></label>
         <label>Full Name<input type="text" name="name" required></label>
@@ -99,7 +99,7 @@
         <label>Business or Organization<input type="text" name="organization"></label>
         <label class="full">Service Needed<select name="service" required><option value="">Select a service</option><option>Brand Strategy</option><option>Public Relations</option><option>Website and Digital Presence</option><option>Content Direction</option><option>Creative Production</option></select></label>
         <label class="full">Project Notes<textarea name="notes" rows="5"></textarea></label>
-        <p class="prototype-note">Prototype form: connect to a booking backend before launch.</p>
+        <p class="prototype-note">TODO: connect this static request to a pending appointment workflow before launch. This does not create a confirmed calendar booking.</p>
         <button class="button primary" type="submit">Submit</button>
         <span class="status" role="status" aria-live="polite"></span>
       </form>

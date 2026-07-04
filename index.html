@@ -1930,7 +1930,7 @@ textarea {
       </div>
       <button class="consult-close" type="button" data-consult-close aria-label="Close consultation form">&times;</button>
     </div>
-    <form class="consult-form" data-prototype-form>
+    <form class="consult-form" data-prototype-form data-form-kind="consultation">
       <label>Preferred Date
         <input type="date" name="date" required>
       </label>
@@ -1963,7 +1963,7 @@ textarea {
       <label class="full">Project Notes
         <textarea name="notes" rows="5" placeholder="Tell us what you want to clarify, improve, or launch."></textarea>
       </label>
-      <p class="consult-note">Prototype form: submission is not connected to a live booking calendar yet.</p>
+      <p class="consult-note">TODO: connect this static request to a pending appointment workflow before launch. This does not create a confirmed calendar booking.</p>
       <button class="consult-submit" type="submit">Submit Consultation Request</button>
       <span class="consult-status" role="status" aria-live="polite"></span>
     </form>
@@ -2001,7 +2001,31 @@ document.querySelectorAll("[data-prototype-form]").forEach((form) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const status = form.querySelector(".consult-status");
-    if (status) status.textContent = "Prototype form noted. Connect this form to the booking backend before launch.";
+    const values = Object.fromEntries(new FormData(form).entries());
+    const submittedAt = new Date().toLocaleString();
+    const fullName = values.name || "Website Visitor";
+    const lines = [
+      "New SENZ Consultation Request",
+      "",
+      `Preferred date: ${values.date || ""}`,
+      `Preferred time: ${values.time || ""}`,
+      `Full name: ${fullName}`,
+      `Email: ${values.email || ""}`,
+      `Phone number: ${values.phone || ""}`,
+      `Business or organization: ${values.organization || ""}`,
+      `Service needed: ${values.service || ""}`,
+      "",
+      "Project notes:",
+      values.notes || "",
+      "",
+      `Submission date and time: ${submittedAt}`,
+      "",
+      "Calendar note: this is a pending request. Do not add to the calendar until SENZ approves the schedule."
+    ];
+    // TODO: Replace this mailto preparation with Formspree, EmailJS, Google Forms,
+    // Airtable, Zapier, or a custom backend email endpoint when production email is ready.
+    window.location.href = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`New SENZ Consultation Request - ${fullName}`)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    if (status) status.textContent = "Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm your appointment through email before it is added to the calendar.";
   });
 });
 document.querySelectorAll('a[href]').forEach((link) => {
@@ -2169,54 +2193,40 @@ careerForm?.addEventListener("submit", async (event) => {
   }
 
   const messageLines = [
-    "SENZ Strategic Communications Career Application",
+    "New SENZ Creative Pool Submission",
     "",
-    `Role: ${role}`,
-    `Name: ${name}`,
+    `Full name: ${name}`,
     `Email: ${email}`,
+    `Creative role: ${role}`,
+    `Portfolio link: ${portfolio}`,
+    "",
+    "Short introduction:",
+    experience,
+    "",
+    `Date and time of submission: ${new Date().toLocaleString()}`,
+    "",
+    "Additional details:",
     `Contact Number: ${phone}`,
     `Location: ${location || "Not specified"}`,
     `Availability: ${availability || "Not specified"}`,
     `Rates: ${rates}`,
-    `Portfolio: ${portfolio}`,
-    "",
-    "Relevant Experience:",
-    experience,
     "",
     "Basic Questionnaire:",
     questionnaire
   ];
 
-  const payload = {
-    name,
-    email,
-    phone,
-    date: availability,
-    message: messageLines.join("\n"),
-    projectType: `Career Application - ${role}`
-  };
-  const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`SENZ Strategic Communications Career Application - ${role}`)}&body=${encodeURIComponent(messageLines.join("\n"))}`;
+  const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`New SENZ Creative Pool Submission - ${name}`)}&body=${encodeURIComponent(messageLines.join("\n"))}`;
   const submitButton = form.querySelector('button[type="submit"]');
 
-  careerStatus.textContent = "Sending application...";
+  careerStatus.textContent = "Preparing creative pool submission email...";
   if (submitButton) submitButton.disabled = true;
 
-  try {
-    const response = await fetch(apiUrl("/api/inquiries"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    const result = await response.json();
-    if (!response.ok || !result.ok) throw new Error("Unable to submit career application.");
-    careerStatus.textContent = `Application received. Reference: ${result.id}. Thank you for applying to SENZ Strategic Communications.`;
-    form.reset();
-  } catch {
-    careerStatus.textContent = "Server unavailable - opening your email client with the application ready.";
-    window.location.href = mailto;
-  } finally {
-    if (submitButton) submitButton.disabled = false;
-  }
+  // TODO: Replace this mailto preparation with Formspree, EmailJS, Google Forms,
+  // Airtable, Zapier, or a custom backend email endpoint when production email is ready.
+  window.location.href = mailto;
+  careerStatus.textContent = "Thank you. Your creative pool submission has been prepared for SENZ Strategic Communications at info.senz.pr@gmail.com.";
+  form.reset();
+  if (submitButton) submitButton.disabled = false;
 });
 
 </script>
