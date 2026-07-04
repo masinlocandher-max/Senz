@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | SENZ Strategic Communications</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="components/approved-pages.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="index.html" aria-label="SENZ Strategic Communications home">
+        <img src="assets/senz-original-mark.png" alt="" aria-hidden="true" />
+        <span><strong>SENZ</strong><span>Strategic Communications</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="is-active" href="services.html">Services</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Services</p>
+          <h1>Clear strategy. Stronger public presence.</h1>
+          <p class="lead">SENZ Strategic Communications helps clients organize how they are seen, understood, remembered, and trusted.</p>
+          <div class="actions">
+            <button class="button primary" type="button" data-consult-open>Book a Consultation</button>
+            <a class="button" href="contact.html">General Inquiry</a>
+          </div>
+        </div>
+        <div class="image-placeholder">Simple service image placeholder</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Core Services</p>
+            <h2>Built around clarity before visibility.</h2>
+          </div>
+          <p>Each service is designed to make your message sharper, your image more credible, and your public-facing system easier to navigate.</p>
+        </div>
+        <div class="grid">
+          <article class="card"><small>01</small><h3>Brand Strategy</h3><p>Positioning, messaging, offer clarity, audience direction, and brand structure.</p></article>
+          <article class="card"><small>02</small><h3>Public Relations</h3><p>Public messaging, media angles, reputation guidance, statement writing, and visibility planning.</p></article>
+          <article class="card"><small>03</small><h3>Website and Digital Presence</h3><p>Website planning, landing pages, service pages, copy structure, and credibility flow.</p></article>
+          <article class="card"><small>04</small><h3>Content Direction</h3><p>Content pillars, captions, campaign calendars, visual planning, and posting direction.</p></article>
+          <article class="card"><small>05</small><h3>Creative Production</h3><p>Photoshoot direction, video concepts, scripts, launch visuals, and production supervision.</p></article>
+          <article class="card"><small>06</small><h3>Analytics and Review</h3><p>Digital audits, performance review, audience insight, and recommendation reports.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="shell grid two">
+        <div>
+          <p class="eyebrow">How We Work</p>
+          <h2>Practical, guided, and organized.</h2>
+        </div>
+        <div class="grid">
+          <article class="card"><h3>Clarify</h3><p>We understand the brand, issue, audience, and desired outcome.</p></article>
+          <article class="card"><h3>Structure</h3><p>We organize the message, assets, priorities, and public-facing path.</p></article>
+          <article class="card"><h3>Execute</h3><p>We guide the content, communication, and rollout with a clear standard.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <strong>SENZ Strategic Communications</strong>
+      <span>Park Triangle Corporate Plaza, Bonifacio Global City, Taguig</span>
+      <span>All rights reserved.</span>
+    </div>
+  </footer>
+
+  <div class="consult-modal" id="consultModal" aria-hidden="true">
+    <div class="consult-card" role="dialog" aria-modal="true" aria-labelledby="consultTitle">
+      <div class="consult-head">
+        <div><h2 id="consultTitle">Book a Consultation</h2><p>Prototype form for consultation requests.</p></div>
+        <button class="consult-close" type="button" data-consult-close aria-label="Close consultation form">&times;</button>
+      </div>
+      <form class="consult-form form-grid" data-prototype-form>
+        <label>Preferred Date<input type="date" name="date" required></label>
+        <label>Preferred Time<input type="time" name="time" required></label>
+        <label>Full Name<input type="text" name="name" required></label>
+        <label>Email<input type="email" name="email" required></label>
+        <label>Phone Number<input type="tel" name="phone" required></label>
+        <label>Business or Organization<input type="text" name="organization"></label>
+        <label class="full">Service Needed<select name="service" required><option value="">Select a service</option><option>Brand Strategy</option><option>Public Relations</option><option>Website and Digital Presence</option><option>Content Direction</option><option>Creative Production</option></select></label>
+        <label class="full">Project Notes<textarea name="notes" rows="5"></textarea></label>
+        <p class="prototype-note">Prototype form: connect to a booking backend before launch.</p>
+        <button class="button primary" type="submit">Submit</button>
+        <span class="status" role="status" aria-live="polite"></span>
+      </form>
+    </div>
+  </div>
+  <script src="components/approved-pages.js"></script>
+</body>
+</html>

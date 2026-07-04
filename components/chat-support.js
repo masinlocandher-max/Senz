@@ -9,7 +9,7 @@
     },
     {
       match: ['price', 'pricing', 'cost', 'rate', 'budget'],
-      reply: 'Pricing depends on the service path, scope, timeline, and level of production. The best next step is to choose a service on the Get Started page so SENZ can recommend the right route.'
+      reply: 'Pricing depends on the service path, scope, timeline, and level of production. For general inquiries, use Contact Us. For a focused project discussion, use the Book a Consultation button in the Home, About, or Services hero.'
     },
     {
       match: ['website', 'digital presence', 'web'],
@@ -29,7 +29,7 @@
     },
     {
       match: ['ebook', 'reader', 'book'],
-      reply: 'The SENZ shop will be connected through Shopify. For now, please use Get Started if you want updates about books, digital products, or upcoming releases.'
+      reply: 'Books and resources are still being prepared. For now, please use Contact Us if you want to be notified about future SENZ Strategic Communications releases.'
     },
     {
       match: ['clone', 'assistant', 'representative', 'music', 'voting', 'tabulation', 'ticket'],
@@ -37,7 +37,7 @@
     },
     {
       match: ['contact', 'email', 'message', 'book', 'consultation'],
-      reply: 'You can reach SENZ through the Get Started page. Choose the service first, then leave your preferred contact method so the team can respond properly.'
+      reply: 'For general questions, use the Contact Us page. For consultation requests, use the Book a Consultation button in the Home, About, or Services hero so SENZ Strategic Communications receives the right details.'
     }
   ];
 
@@ -53,7 +53,7 @@
     const normalized = text.toLowerCase();
     const found = answers.find((item) => item.match.some((word) => normalized.includes(word)));
     if (found) return found.reply;
-    return 'I can answer general questions about SENZ services, digital products, and how to start. For project-specific advice, please go to Get Started so SENZ can review your details properly.';
+    return 'I can answer general questions about SENZ Strategic Communications services and how to start. For project-specific advice, use Book a Consultation or send a general inquiry through Contact Us.';
   }
 
   function appendMessage(log, message, type) {
@@ -65,9 +65,9 @@
   }
 
   function initChat() {
-    const getStartedPath = window.location.pathname.replace(/\\/g, '/').includes('/shop/')
-      ? '../get-started.html'
-      : 'get-started.html';
+    const contactPath = window.location.pathname.replace(/\\/g, '/').includes('/shop/')
+      ? '../contact.html'
+      : 'contact.html';
     const root = document.createElement('aside');
     root.className = 'senz-chat';
     root.setAttribute('aria-label', 'Digital Assistant');
@@ -82,8 +82,8 @@
         </div>
         <div class="senz-chat-log" aria-live="polite"></div>
         <div class="senz-chat-prompts" aria-label="Suggested questions"></div>
-        <p class="senz-chat-note">The Digital Assistant answers general questions. For pricing, scope, and booking, continue to Get Started.</p>
-        <a class="senz-chat-cta" href="${getStartedPath}">Go to Get Started</a>
+        <p class="senz-chat-note">The Digital Assistant answers general questions. For project-specific details, continue to Contact Us or book through the hero consultation form.</p>
+        <a class="senz-chat-cta" href="${contactPath}">Go to Contact Us</a>
         <form class="senz-chat-form">
           <input class="senz-chat-input" type="text" autocomplete="off" placeholder="Ask a general question..." aria-label="Ask a general question" />
           <button class="senz-chat-send" type="submit">Send</button>

@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About SENZ Strategic Communications and Digital Solutions</title>
+  <title>About SENZ Strategic Communications</title>
   <meta
     name="description"
-    content="About SENZ Strategic Communications and Digital Solutions: built for clarity, designed for influence, and focused on PR, marketing, and digital solutions."
+    content="About SENZ Strategic Communications: built for clarity, designed for influence, and focused on PR, marketing, and digital solutions."
   />
   <style>
     :root {
@@ -1985,7 +1985,7 @@
     }
 
     .founder-panel .founder-title::after {
-      content: " | SENZ Strategic Communications and Digital Solutions";
+      content: " | SENZ Strategic Communications";
       color: rgba(238, 244, 255, 0.72);
       font-style: normal;
     }
@@ -2791,6 +2791,114 @@
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
       }
     }
+    .consult-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(3, 7, 14, 0.72);
+      backdrop-filter: blur(14px);
+    }
+    .consult-modal.is-open {
+      display: flex;
+    }
+    .consult-card {
+      width: min(780px, 100%);
+      max-height: min(86vh, 820px);
+      overflow: auto;
+      background: #fff;
+      color: #07101d;
+      border: 1px solid rgba(8, 16, 29, 0.12);
+      border-radius: 22px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+    }
+    .consult-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 26px 28px 18px;
+      border-bottom: 1px solid rgba(8, 16, 29, 0.1);
+    }
+    .consult-head h2 {
+      margin: 0;
+      color: #07101d;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 4vw, 46px);
+    }
+    .consult-head p {
+      margin: 8px 0 0;
+      color: #5d6675;
+      line-height: 1.55;
+    }
+    .consult-close {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(8, 16, 29, 0.16);
+      border-radius: 999px;
+      background: #fff;
+      color: #07101d;
+      cursor: pointer;
+    }
+    .consult-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      padding: 24px 28px 28px;
+    }
+    .consult-form label {
+      display: grid;
+      gap: 8px;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .consult-form input,
+    .consult-form select,
+    .consult-form textarea {
+      width: 100%;
+      border: 1px solid rgba(8, 16, 29, 0.14);
+      border-radius: 12px;
+      padding: 13px 14px;
+      color: #07101d;
+      background: #f8fafc;
+      font-size: 14px;
+    }
+    .consult-form textarea,
+    .consult-form .full,
+    .consult-note,
+    .consult-submit,
+    .consult-status {
+      grid-column: 1 / -1;
+    }
+    .consult-note {
+      color: #667085;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .consult-submit {
+      justify-self: start;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 22px;
+      background: #155cff;
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .consult-status {
+      color: #155cff;
+      font-weight: 700;
+    }
+    @media (max-width: 700px) {
+      .consult-form {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
   <link rel="stylesheet" href="components/site-menu.css" />
   <link rel="stylesheet" href="components/chat-support.css" />
@@ -2798,23 +2906,20 @@
 <body>
   <header class="site-header">
     <div class="shell nav">
-      <a class="brand" href="index.html" aria-label="SENZ Strategic Communications and Digital Solutions home">
+      <a class="brand" href="index.html" aria-label="SENZ Strategic Communications home">
         <img class="brand-mark" src="assets/senz-original-mark.png" alt="" aria-hidden="true" />
         <span>
           <span class="brand-word" aria-hidden="true"><span>S</span><span class="brand-e"><i></i><i></i><i></i></span><span>N</span><span>Z</span></span>
-          <span class="brand-subtitle">Strategic Communications and Digital Solutions</span>
+          <span class="brand-subtitle">Strategic Communications</span>
         </span>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html#top">Home</a>
-        <a class="is-active" href="about.html">About Us</a>
-        <a class="nav-feature" href="index.html#services">Services</a>
-        <a class="nav-feature" href="index.html#shop">Digital Products</a>
-        <a href="index.html#community">Community Works</a>
-        <a href="shop/">Shop</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="index.html#careers">Careers</a>
-        <a href="get-started.html">Talk to Receptionist</a>
+        <a class="is-active" href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="faq.html">FAQ</a>
       </nav>
       <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
     </div>
@@ -2827,13 +2932,13 @@
           <p class="eyebrow">Founder&apos;s Office</p>
           <h1>Meet <span>Francine</span></h1>
           <p class="lead">
-            The founder behind SENZ Strategic Communications and Digital Solutions.
+            The founder behind SENZ Strategic Communications.
           </p>
           <p class="about-message">Francine Marie Bautista is a creative director, strategist, storyteller, PR practitioner, branding consultant, entrepreneur, photographer, and cultural advocate whose work is rooted in clarity, visibility, culture, and service.</p>
-          <p class="about-message">As Founder and CEO, Francine leads the SENZ Strategic Communications and Digital Solutions standard: make the message clear, make the image dignified, and make the work useful to real people.</p>
-          <div class="founder-intro" aria-label="SENZ Strategic Communications and Digital Solutions founder and CEO">
+          <p class="about-message">As Founder and CEO, Francine leads the SENZ Strategic Communications standard: make the message clear, make the image dignified, and make the work useful to real people.</p>
+          <div class="founder-intro" aria-label="SENZ Strategic Communications founder and CEO">
             <strong>Francine Marie Bautista</strong>
-            <span>Founder &amp; CEO | SENZ Strategic Communications and Digital Solutions</span>
+            <span>Founder &amp; CEO | SENZ Strategic Communications</span>
           </div>
           <div class="founder-hero-quote">
             <span>Founder Note</span>
@@ -2843,7 +2948,7 @@
             <span>Company Goal</span>
             <strong>Modernize how brands are seen, heard, and experienced.</strong>
           </div>
-          <div class="about-service-strip" aria-label="SENZ Strategic Communications and Digital Solutions capabilities">
+          <div class="about-service-strip" aria-label="SENZ Strategic Communications capabilities">
             <span>
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" aria-hidden="true"><path d="M5 7h14v9H8l-3 3V7Z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
               Strategic Communications
@@ -2870,11 +2975,11 @@
             </span>
           </div>
           <div class="hero-actions">
-            <a class="button secondary" href="#book-fmb">Book an Appointment with FMB <span aria-hidden="true">-></span></a>
+            <button class="button secondary" type="button" data-consult-open>Book a Consultation <span aria-hidden="true">-></span></button>
           </div>
         </div>
         <div class="portrait-card">
-          <img src="assets/fmb-founder-office-full.jpg" alt="Francine Marie Bautista, Founder and CEO of SENZ Strategic Communications and Digital Solutions, in a modern corporate office" />
+          <img src="assets/fmb-founder-office-full.jpg" alt="Francine Marie Bautista, Founder and CEO of SENZ Strategic Communications, in a modern corporate office" />
           <div class="founder-panel">
             <h2>Francine Marie Bautista</h2>
             <p class="founder-title">Founder &amp; CEO</p>
@@ -2889,11 +2994,11 @@
         <article class="founder-story-panel">
           <p class="eyebrow">Founder Story</p>
           <h2>Communication can be a form of service.</h2>
-          <p>Francine Marie Bautista built SENZ Strategic Communications and Digital Solutions for people, brands, organizations, and communities that need more than visibility. They need direction, structure, story, and public understanding.</p>
+          <p>Francine Marie Bautista built SENZ Strategic Communications for people, brands, organizations, and communities that need more than visibility. They need direction, structure, story, and public understanding.</p>
           <p>Her work sits at the intersection of branding, public relations, storytelling, culture, identity, visibility, public perception, creative direction, and digital strategy. But beyond titles, her work is grounded in service.</p>
           <p>She believes a clear message can help a small business become trusted, a strong story can help a community feel seen, and a thoughtful identity can help a cultural project survive beyond the moment.</p>
           <p>As a transwoman in the Philippines, Francine understands that image can be judged before identity is understood. That lived lesson shaped her belief that presence should carry dignity, discipline, and purpose. A public image should not only look polished; it should help people recognize the truth, care, and standard behind the name.</p>
-          <p>Through SENZ Strategic Communications and Digital Solutions, she brings together strategy, creativity, public relations, digital systems, photography, education, cultural storytelling, and community-centered work to help people and ideas become clearer, sharper, and harder to ignore.</p>
+          <p>Through SENZ Strategic Communications, she brings together strategy, creativity, public relations, digital systems, photography, education, cultural storytelling, and community-centered work to help people and ideas become clearer, sharper, and harder to ignore.</p>
         </article>
         <aside class="founder-lesson-card">
           <span>Life Lesson</span>
@@ -2975,9 +3080,9 @@
         <div class="appointment-copy reveal">
           <p class="eyebrow">Appointment with FMB</p>
           <h2>Book a conversation with Francine.</h2>
-          <p>For founder-led strategy, public image, brand direction, creative work, or community-centered projects, send a preferred appointment schedule. Keep it simple and friendly. Francine will receive the request through SENZ Strategic Communications and Digital Solutions.</p>
+          <p>For founder-led strategy, public image, brand direction, creative work, or community-centered projects, send a preferred appointment schedule. Keep it simple and friendly. Francine will receive the request through SENZ Strategic Communications.</p>
           <div class="appointment-assurance">
-            Your appointment request will be sent to SENZ Strategic Communications and Digital Solutions and prepared for FMB. You will receive a reply to confirm availability, meeting type, and next steps.
+            Your appointment request will be sent to SENZ Strategic Communications and prepared for FMB. You will receive a reply to confirm availability, meeting type, and next steps.
           </div>
         </div>
         <form class="appointment-form reveal" id="fmbAppointmentForm" novalidate>
@@ -3033,21 +3138,21 @@
   <footer>
     <div class="shell footer-inner">
       <div class="footer-brandline">
-        <strong>SENZ Strategic Communications and Digital Solutions</strong>
+        <strong>SENZ Strategic Communications</strong>
         <span>Park Triangle Corporate Plaza, North Tower, 32nd Street Corner 11th Ave., Bonifacio Global City, Taguig</span>
         <span>All rights reserved.</span>
       </div>
-      <div class="footer-socials" aria-label="SENZ Strategic Communications and Digital Solutions contact links">
-        <a href="mailto:info.senz.pr@gmail.com" aria-label="Email SENZ Strategic Communications and Digital Solutions">
+      <div class="footer-socials" aria-label="SENZ Strategic Communications contact links">
+        <a href="mailto:info.senz.pr@gmail.com" aria-label="Email SENZ Strategic Communications">
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span><span class="social-text">Email</span>
         </a>
-        <a href="https://www.tiktok.com/@senz.pr?_r=1&_t=ZS-97bs7BHj1Ov" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications and Digital Solutions TikTok">
+        <a href="https://www.tiktok.com/@senz.pr?_r=1&_t=ZS-97bs7BHj1Ov" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications TikTok">
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4v10.1a4.9 4.9 0 1 1-4.9-4.9"/><path d="M14 4c1.1 3.2 3.2 5 6 5.2"/></svg></span><span class="social-text">TikTok @senz.pr</span>
         </a>
-        <a href="https://www.instagram.com/senz.pr?igsh=MWxxamFrZmJqc28wcw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications and Digital Solutions Instagram">
+        <a href="https://www.instagram.com/senz.pr?igsh=MWxxamFrZmJqc28wcw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Instagram">
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3.2"/><circle cx="16.4" cy="7.7" r=".8"/></svg></span><span class="social-text">IG @senz.pr</span>
         </a>
-        <a href="https://www.facebook.com/share/1BM7Etwi9R/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications and Digital Solutions Facebook">
+        <a href="https://www.facebook.com/share/1BM7Etwi9R/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="SENZ Strategic Communications Facebook">
           <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3.2C10.7 4 9 5.8 9 8.7V11H6v4h3v5h4v-5h3.1l.6-4H13V9.1c0-.7.4-1.1 1-1.1Z"/></svg></span><span class="social-text">FB @senz.pr</span>
         </a>
       </div>
@@ -3057,7 +3162,7 @@
   <div class="modal" id="infoModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-card" role="document">
       <div class="modal-top">
-        <h3 class="modal-title" id="modalTitle">SENZ Strategic Communications and Digital Solutions</h3>
+        <h3 class="modal-title" id="modalTitle">SENZ Strategic Communications</h3>
         <button class="modal-close" type="button" aria-label="Close modal">&times;</button>
       </div>
       <p class="modal-body" id="modalBody"></p>
@@ -3071,8 +3176,57 @@
   <div class="success-modal" id="appointmentSuccess" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="success-card" role="document">
       <h3>Appointment request sent.</h3>
-      <p>Thank you. Your appointment request will reach Francine Marie Bautista through SENZ Strategic Communications and Digital Solutions. We will reply to confirm availability, meeting type, and the next step.</p>
+      <p>Thank you. Your appointment request will reach Francine Marie Bautista through SENZ Strategic Communications. We will reply to confirm availability, meeting type, and the next step.</p>
       <button class="button" type="button" id="appointmentSuccessClose">Close</button>
+    </div>
+  </div>
+
+  <div class="consult-modal" id="consultModal" aria-hidden="true">
+    <div class="consult-card" role="dialog" aria-modal="true" aria-labelledby="consultTitle">
+      <div class="consult-head">
+        <div>
+          <h2 id="consultTitle">Book a Consultation</h2>
+          <p>This prototype form collects the details SENZ Strategic Communications needs to prepare a focused first conversation.</p>
+        </div>
+        <button class="consult-close" type="button" data-consult-close aria-label="Close consultation form">&times;</button>
+      </div>
+      <form class="consult-form" data-prototype-form>
+        <label>Preferred Date
+          <input type="date" name="date" required>
+        </label>
+        <label>Preferred Time
+          <input type="time" name="time" required>
+        </label>
+        <label>Full Name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>Phone Number
+          <input type="tel" name="phone" autocomplete="tel" required>
+        </label>
+        <label>Business or Organization
+          <input type="text" name="organization">
+        </label>
+        <label class="full">Service Needed
+          <select name="service" required>
+            <option value="">Select a service</option>
+            <option>Brand Strategy</option>
+            <option>Public Relations</option>
+            <option>Website and Digital Presence</option>
+            <option>Content and Creative Direction</option>
+            <option>Creative Production</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label class="full">Project Notes
+          <textarea name="notes" rows="5" placeholder="Tell us what you want to clarify, improve, or launch."></textarea>
+        </label>
+        <p class="consult-note">Prototype form: submission is not connected to a live booking calendar yet.</p>
+        <button class="consult-submit" type="submit">Submit Consultation Request</button>
+        <span class="consult-status" role="status" aria-live="polite"></span>
+      </form>
     </div>
   </div>
 
@@ -3085,11 +3239,46 @@
       const modalBody = document.querySelector('#modalBody');
       const successModal = document.querySelector('#appointmentSuccess');
       const successClose = document.querySelector('#appointmentSuccessClose');
+      const consultModal = document.querySelector('#consultModal');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const apiBase = String(window.SENZ_API_BASE_URL || '').replace(/\/$/, '');
       const apiUrl = (path) => `${apiBase}${path}`;
 
       requestAnimationFrame(() => body.classList.add('is-ready'));
+
+      const openConsultation = () => {
+        if (!consultModal) return;
+        consultModal.classList.add('is-open');
+        consultModal.setAttribute('aria-hidden', 'false');
+        body.style.overflow = 'hidden';
+      };
+
+      const closeConsultation = () => {
+        if (!consultModal) return;
+        consultModal.classList.remove('is-open');
+        consultModal.setAttribute('aria-hidden', 'true');
+        body.style.overflow = '';
+      };
+
+      document.querySelectorAll('[data-consult-open]').forEach((button) => {
+        button.addEventListener('click', openConsultation);
+      });
+
+      document.querySelectorAll('[data-consult-close]').forEach((button) => {
+        button.addEventListener('click', closeConsultation);
+      });
+
+      consultModal?.addEventListener('click', (event) => {
+        if (event.target === consultModal) closeConsultation();
+      });
+
+      document.querySelectorAll('[data-prototype-form]').forEach((form) => {
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const status = form.querySelector('.consult-status');
+          if (status) status.textContent = 'Prototype form noted. Connect this form to the booking backend before launch.';
+        });
+      });
 
       document.querySelectorAll('section, .info-card, .about-service-strip span, .founder-story-panel, .founder-lesson-card, .appointment-form').forEach((el) => {
         el.classList.add('reveal');

@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="deploy-version" content="senz-2026-07-04-launch-repair" />
-<title>SENZ Strategic Communications and Digital Solutions</title>
+<title>SENZ Strategic Communications</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -1350,6 +1350,121 @@ textarea {
     opacity: 1 !important;
   }
 }
+#shop,
+#rooms,
+#gallery,
+#community,
+#careers,
+#faq {
+  display: none !important;
+}
+.consult-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(3, 7, 14, 0.72);
+  backdrop-filter: blur(14px);
+}
+.consult-modal.is-open {
+  display: flex;
+}
+.consult-card {
+  width: min(780px, 100%);
+  max-height: min(86vh, 820px);
+  overflow: auto;
+  background: #fff;
+  color: #07101d;
+  border: 1px solid rgba(8, 16, 29, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+}
+.consult-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 26px 28px 18px;
+  border-bottom: 1px solid rgba(8, 16, 29, 0.1);
+}
+.consult-head h2 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(30px, 4vw, 46px);
+}
+.consult-head p {
+  margin: 8px 0 0;
+  color: #5d6675;
+  line-height: 1.55;
+}
+.consult-close {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(8, 16, 29, 0.16);
+  border-radius: 999px;
+  background: #fff;
+  color: #07101d;
+  cursor: pointer;
+}
+.consult-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 24px 28px 28px;
+}
+.consult-form label {
+  display: grid;
+  gap: 8px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.consult-form input,
+.consult-form select,
+.consult-form textarea {
+  width: 100%;
+  border: 1px solid rgba(8, 16, 29, 0.14);
+  border-radius: 12px;
+  padding: 13px 14px;
+  color: #07101d;
+  background: #f8fafc;
+  font-size: 14px;
+}
+.consult-form textarea,
+.consult-form .full {
+  grid-column: 1 / -1;
+}
+.consult-note {
+  grid-column: 1 / -1;
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.consult-submit {
+  grid-column: 1 / -1;
+  justify-self: start;
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 22px;
+  background: #155cff;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+.consult-status {
+  grid-column: 1 / -1;
+  color: #155cff;
+  font-weight: 700;
+}
+@media (max-width: 700px) {
+  .consult-form {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 <link rel="stylesheet" href="components/site-menu.css" />
 </head>
@@ -1359,33 +1474,30 @@ textarea {
     <div class="logo-mark" aria-hidden="true"></div>
     <div class="logo-text">
       <strong class="brand-word" aria-label="SENZ"><span>S</span><span class="brand-e"><i></i><i></i><i></i></span><span>N</span><span>Z</span></strong>
-      <span>STRATEGIC COMMUNICATIONS AND DIGITAL SOLUTIONS</span>
+      <span>STRATEGIC COMMUNICATIONS</span>
     </div>
   </div>
   <div class="nav-links">
     <a href="#top">Home</a>
-    <a href="about.html">About Us</a>
-    <a class="nav-feature" href="#services">Services</a>
-    <a class="nav-feature" href="#shop">Digital Products</a>
-    <a href="#community">Community Works</a>
-    <a href="shop/">Shop</a>
-    <a href="#faq">FAQ</a>
-    <a href="#careers">Careers</a>
-    <a href="get-started.html" class="nav-cta">Talk to Receptionist</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="careers.html">Careers</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="faq.html">FAQ</a>
   </div>
   <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
 </nav>
 <header class="hero" id="top">
   <div class="glow"></div>
   <div class="text reveal">
-    <div class="eyebrow">Welcome to SENZ Strategic Communications and Digital Solutions</div>
+    <div class="eyebrow">Welcome to SENZ Strategic Communications</div>
     <h1>Influence Through Clarity.</h1>
     <p>
-      You are now at the reception. Tell us what you need help with, and we will guide you to the right department, service, or digital solution.
+      Strategic communication, brand clarity, public visibility, and practical creative direction for people and organizations that want to be understood with confidence.
     </p>
     <div class="actions">
-      <a class="btn primary" href="#help">I Need Help</a>
-      <a class="btn secondary" href="#services">View Departments</a>
+      <a class="btn primary" href="services.html">Learn More</a>
+      <button class="btn secondary" type="button" data-consult-open>Book a Consultation</button>
     </div>
     <div class="audio-control" aria-label="Reception music controls">
       <button type="button" id="musicToggle">Play Reception Music</button>
@@ -1398,7 +1510,7 @@ textarea {
 <section class="section help-menu" id="help">
   <div class="help-intro reveal">
     <div class="section-label">Help Desk</div>
-    <h2 class="section-title">How can SENZ Strategic Communications and Digital Solutions help you today?</h2>
+    <h2 class="section-title">How can SENZ Strategic Communications help you today?</h2>
     <p class="section-copy">Choose what feels closest to what you need. We will guide you from there.</p>
   </div>
   <div class="help-grid">
@@ -1408,7 +1520,7 @@ textarea {
         <h3>I am starting a brand or business.</h3>
         <p>We help clarify your identity, message, offers, and online presence before the public meets you.</p>
       </div>
-      <a href="get-started.html?path=brand">Start at Brand Strategy</a>
+      <a href="services.html">View Services</a>
     </article>
     <article class="help-card reveal">
       <div>
@@ -1416,7 +1528,7 @@ textarea {
         <h3>I need a website.</h3>
         <p>We help plan, write, design, and launch a website that makes your work easier to understand.</p>
       </div>
-      <a href="get-started.html?path=website">Go to Website Desk</a>
+      <a href="services.html">View Website Services</a>
     </article>
     <article class="help-card reveal">
       <div>
@@ -1424,7 +1536,7 @@ textarea {
         <h3>I need PR or public image support.</h3>
         <p>We sharpen your message, reputation, visibility, and public perception with care.</p>
       </div>
-      <a href="get-started.html?path=pr">Go to PR Desk</a>
+      <a href="services.html">View PR Services</a>
     </article>
     <article class="help-card reveal">
       <div>
@@ -1432,15 +1544,15 @@ textarea {
         <h3>I need better social media.</h3>
         <p>We build content direction, captions, campaigns, and posting systems with purpose.</p>
       </div>
-      <a href="get-started.html?path=content">Go to Content Desk</a>
+      <a href="services.html">View Content Services</a>
     </article>
     <article class="help-card reveal">
       <div>
         <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
-        <h3>I need templates or digital kits.</h3>
-        <p>Browse tools for students, teachers, professionals, creators, and business owners.</p>
+        <h3>I need structured communication support.</h3>
+        <p>Review the service page and choose the direction that fits your current need.</p>
       </div>
-      <a href="shop/">Visit Shop</a>
+      <a href="services.html">View Services</a>
     </article>
     <article class="help-card reveal">
       <div>
@@ -1448,20 +1560,20 @@ textarea {
         <h3>I am not sure yet.</h3>
         <p>Answer a few simple questions and we will suggest the best first step.</p>
       </div>
-      <a href="get-started.html?path=help">Ask the Help Desk</a>
+      <a href="contact.html">Contact Us</a>
     </article>
   </div>
 </section>
 <section class="section light" id="about">
   <div class="about-grid">
     <div class="reveal">
-      <div class="section-label">About SENZ Strategic Communications and Digital Solutions</div>
+      <div class="section-label">About SENZ Strategic Communications</div>
       <h2 class="section-title">Built for clarity, culture, and visibility.</h2>
       <p class="section-copy">
-        SENZ Strategic Communications and Digital Solutions helps people, brands, businesses, and organizations communicate with more intention across branding, PR, websites, content, digital products, and perception strategy.
+        SENZ Strategic Communications helps people, brands, businesses, and organizations communicate with more intention across branding, PR, websites, content, digital products, and perception strategy.
       </p>
       <br>
-      <a class="btn secondary" href="about.html" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Visit Founder&apos;s Office</a>
+      <a class="btn secondary" href="about.html" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Learn More</a>
     </div>
     <div class="about-gallery reveal">
       <div class="image-box"><span>Strategy Room</span></div>
@@ -1476,7 +1588,7 @@ textarea {
   <div class="service-layout">
     <div class="reveal">
       <div class="section-label">Departments</div>
-      <h2 class="section-title">SENZ Strategic Communications and Digital Solutions Departments</h2>
+      <h2 class="section-title">SENZ Strategic Communications Departments</h2>
       <p class="section-copy">
         Each department is designed to help you become clearer, sharper, and harder to ignore.
       </p>
@@ -1533,7 +1645,7 @@ textarea {
       <div class="section-label">Digital Products</div>
       <h2 class="section-title">Systems you can purchase and use.</h2>
       <p class="section-copy">
-        Explore SENZ Strategic Communications and Digital Solutions products built for campaigns, events, visibility, and modern brand operations.
+        Explore SENZ Strategic Communications products built for campaigns, events, visibility, and modern brand operations.
       </p>
       <br>
       <a class="btn primary" href="shop/">Visit Shop</a>
@@ -1542,22 +1654,22 @@ textarea {
       <article class="digital-card">
         <h3>Voting &amp; Tabulation</h3>
         <p>Event-ready voting, tabulation, ticketing, and audience flow systems.</p>
-        <a href="get-started.html?product=voting">Purchase</a>
+        <a href="contact.html">Contact Us</a>
       </article>
       <article class="digital-card">
         <h3>Clone Studio</h3>
         <p>One visual session prepared for future campaign, shoot, and content needs.</p>
-        <a href="get-started.html?product=clone">Purchase</a>
+        <a href="contact.html">Contact Us</a>
       </article>
       <article class="digital-card">
         <h3>Music Products</h3>
         <p>Audio identity, music concepts, and digital releases for brand storytelling.</p>
-        <a href="get-started.html?product=music">Purchase</a>
+        <a href="contact.html">Contact Us</a>
       </article>
       <article class="digital-card">
         <h3>Digital Representative</h3>
         <p>A guided digital front desk experience that routes people to the right next step.</p>
-        <a href="get-started.html?product=representative">Purchase</a>
+        <a href="contact.html">Contact Us</a>
       </article>
     </div>
   </div>
@@ -1566,7 +1678,7 @@ textarea {
   <div class="rooms-layout">
     <div class="reveal">
       <div class="section-label">Office Tour Preview</div>
-      <h2 class="section-title">Take a quick tour of SENZ Strategic Communications and Digital Solutions.</h2>
+      <h2 class="section-title">Take a quick tour of SENZ Strategic Communications.</h2>
       <p class="section-copy">
         Every room was designed to help you find the right kind of support.
       </p>
@@ -1592,7 +1704,7 @@ textarea {
         <div>
           <div class="room-no">03</div>
           <h3>Departments</h3>
-          <p>Explore SENZ Strategic Communications and Digital Solutions services by need, expertise, and stage.</p>
+          <p>Explore SENZ Strategic Communications services by need, expertise, and stage.</p>
         </div>
         <div class="enter">Enter Room</div>
       </article>
@@ -1616,7 +1728,7 @@ textarea {
         <div>
           <div class="room-no">06</div>
           <h3>Founder&apos;s Office</h3>
-          <p>Learn about the mind and method behind SENZ Strategic Communications and Digital Solutions.</p>
+          <p>Learn about the mind and method behind SENZ Strategic Communications.</p>
         </div>
         <div class="enter">Enter Room</div>
       </article>
@@ -1666,7 +1778,7 @@ textarea {
   <div class="careers-layout">
     <div class="reveal">
       <div class="section-label">Careers</div>
-      <h2 class="section-title">Grow with SENZ Strategic Communications and Digital Solutions.</h2>
+      <h2 class="section-title">Grow with SENZ Strategic Communications.</h2>
       <p class="section-copy">
         We are building a reliable creative and client service pool for projects, campaigns, events, and digital work.
       </p>
@@ -1691,7 +1803,7 @@ textarea {
     </div>
     <form class="career-form reveal" id="careerForm" novalidate>
       <div>
-        <h3>Apply to the SENZ Strategic Communications and Digital Solutions creative pool.</h3>
+        <h3>Apply to the SENZ Strategic Communications creative pool.</h3>
         <p class="section-copy">Share your details, portfolio, and rates. A short practical answer is enough.</p>
       </div>
       <div class="career-fields">
@@ -1753,7 +1865,7 @@ textarea {
       <div class="section-label">Need Help?</div>
       <h2 class="section-title">Let&apos;s make your brand easier to understand.</h2>
       <p class="section-copy">
-        Tell us what you need help with. The SENZ Strategic Communications and Digital Solutions team will guide you to the right next step.
+        Tell us what you need help with. The SENZ Strategic Communications team will guide you to the right next step.
       </p>
       <br>
       <a class="btn primary" href="get-started.html">Visit Inquiry Desk</a>
@@ -1762,8 +1874,8 @@ textarea {
       <div class="section-label">FAQ</div>
       <h2 class="section-title">Questions? We've got answers.</h2>
       <details class="faq-item">
-        <summary>What does SENZ Strategic Communications and Digital Solutions do?</summary>
-        <p>SENZ Strategic Communications and Digital Solutions helps brands with strategy, communications, digital presence, creative direction, and public visibility.</p>
+        <summary>What does SENZ Strategic Communications do?</summary>
+        <p>SENZ Strategic Communications helps brands with strategy, communications, digital presence, creative direction, and public visibility.</p>
       </details>
       <details class="faq-item">
         <summary>How does the process work?</summary>
@@ -1796,8 +1908,8 @@ textarea {
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <strong>SENZ Strategic Communications and Digital Solutions</strong>
-      <span>Strategic Communications and Digital Solutions</span>
+      <strong>SENZ Strategic Communications</strong>
+      <span>Strategic Communications</span>
       <span>Park Triangle Corporate Plaza, North Tower, 32nd Street Corner 11th Ave., Bonifacio Global City, Taguig</span>
       <span>All rights reserved.</span>
     </div>
@@ -1809,9 +1921,89 @@ textarea {
     </div>
   </div>
 </footer>
+<div class="consult-modal" id="consultModal" aria-hidden="true">
+  <div class="consult-card" role="dialog" aria-modal="true" aria-labelledby="consultTitle">
+    <div class="consult-head">
+      <div>
+        <h2 id="consultTitle">Book a Consultation</h2>
+        <p>This prototype form collects the details SENZ Strategic Communications needs to prepare a focused first conversation.</p>
+      </div>
+      <button class="consult-close" type="button" data-consult-close aria-label="Close consultation form">&times;</button>
+    </div>
+    <form class="consult-form" data-prototype-form>
+      <label>Preferred Date
+        <input type="date" name="date" required>
+      </label>
+      <label>Preferred Time
+        <input type="time" name="time" required>
+      </label>
+      <label>Full Name
+        <input type="text" name="name" autocomplete="name" required>
+      </label>
+      <label>Email
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+      <label>Phone Number
+        <input type="tel" name="phone" autocomplete="tel" required>
+      </label>
+      <label>Business or Organization
+        <input type="text" name="organization">
+      </label>
+      <label class="full">Service Needed
+        <select name="service" required>
+          <option value="">Select a service</option>
+          <option>Brand Strategy</option>
+          <option>Public Relations</option>
+          <option>Website and Digital Presence</option>
+          <option>Content and Creative Direction</option>
+          <option>Creative Production</option>
+          <option>Not sure yet</option>
+        </select>
+      </label>
+      <label class="full">Project Notes
+        <textarea name="notes" rows="5" placeholder="Tell us what you want to clarify, improve, or launch."></textarea>
+      </label>
+      <p class="consult-note">Prototype form: submission is not connected to a live booking calendar yet.</p>
+      <button class="consult-submit" type="submit">Submit Consultation Request</button>
+      <span class="consult-status" role="status" aria-live="polite"></span>
+    </form>
+  </div>
+</div>
 <script src="components/site-config.js"></script>
 <script>
 document.body.classList.add("is-ready");
+const consultModal = document.getElementById("consultModal");
+const openConsultation = () => {
+  if (!consultModal) return;
+  consultModal.classList.add("is-open");
+  consultModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+};
+const closeConsultation = () => {
+  if (!consultModal) return;
+  consultModal.classList.remove("is-open");
+  consultModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+};
+document.querySelectorAll("[data-consult-open]").forEach((button) => {
+  button.addEventListener("click", openConsultation);
+});
+document.querySelectorAll("[data-consult-close]").forEach((button) => {
+  button.addEventListener("click", closeConsultation);
+});
+consultModal?.addEventListener("click", (event) => {
+  if (event.target === consultModal) closeConsultation();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeConsultation();
+});
+document.querySelectorAll("[data-prototype-form]").forEach((form) => {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const status = form.querySelector(".consult-status");
+    if (status) status.textContent = "Prototype form noted. Connect this form to the booking backend before launch.";
+  });
+});
 document.querySelectorAll('a[href]').forEach((link) => {
   const href = link.getAttribute('href');
   if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('http')) return;
@@ -1977,7 +2169,7 @@ careerForm?.addEventListener("submit", async (event) => {
   }
 
   const messageLines = [
-    "SENZ Strategic Communications and Digital Solutions Career Application",
+    "SENZ Strategic Communications Career Application",
     "",
     `Role: ${role}`,
     `Name: ${name}`,
@@ -2003,7 +2195,7 @@ careerForm?.addEventListener("submit", async (event) => {
     message: messageLines.join("\n"),
     projectType: `Career Application - ${role}`
   };
-  const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`SENZ Strategic Communications and Digital Solutions Career Application - ${role}`)}&body=${encodeURIComponent(messageLines.join("\n"))}`;
+  const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`SENZ Strategic Communications Career Application - ${role}`)}&body=${encodeURIComponent(messageLines.join("\n"))}`;
   const submitButton = form.querySelector('button[type="submit"]');
 
   careerStatus.textContent = "Sending application...";
@@ -2017,7 +2209,7 @@ careerForm?.addEventListener("submit", async (event) => {
     });
     const result = await response.json();
     if (!response.ok || !result.ok) throw new Error("Unable to submit career application.");
-    careerStatus.textContent = `Application received. Reference: ${result.id}. Thank you for applying to SENZ Strategic Communications and Digital Solutions.`;
+    careerStatus.textContent = `Application received. Reference: ${result.id}. Thank you for applying to SENZ Strategic Communications.`;
     form.reset();
   } catch {
     careerStatus.textContent = "Server unavailable - opening your email client with the application ready.";
