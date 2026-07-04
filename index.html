@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="deploy-version" content="senz-2026-07-04-launch-repair" />
-<title>SENZ Strategic Communications</title>
+<title>SENZ Strategic Communications and Digital Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -711,10 +711,10 @@ footer {
   overflow: hidden;
 }
 .gallery-card:nth-child(1) { --gallery-image: url("assets/senz-tour-brand-kit-room.png"); }
-.gallery-card:nth-child(2) { --gallery-image: url("assets/senz-catalog-events-01.png"); }
-.gallery-card:nth-child(3) { --gallery-image: url("assets/senz-service-web-digital.png"); }
+.gallery-card:nth-child(2) { --gallery-image: url("assets/senz-tour-production-studio.png"); }
+.gallery-card:nth-child(3) { --gallery-image: url("assets/senz-premium-hero-facility.png"); }
 .gallery-card:nth-child(4) { --gallery-image: url("assets/senz-service-creative-production.png"); }
-.gallery-card:nth-child(5) { --gallery-image: url("assets/senz-tour-gallery-community.png"); }
+.gallery-card:nth-child(5) { --gallery-image: url("assets/senz-tour-gallery-hallway.png"); }
 .gallery-card::after {
   content: "";
   position: absolute;
@@ -864,23 +864,41 @@ footer {
   box-shadow: 0 30px 80px rgba(0,0,0,0.24);
 }
 .community-logo-panel {
+  min-height: clamp(220px, 34vw, 430px);
+  aspect-ratio: 16 / 10;
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.78)),
-    url("assets/masinloc-and-her-logo.png") center / contain no-repeat;
+    url("assets/masinloc-and-her-logo.png") center / min(82%, 760px) auto no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,241,255,0.98));
   background-color: #fff;
+  border-color: rgba(121, 68, 160, 0.14);
+  box-shadow: 0 26px 70px rgba(54, 31, 86, 0.12);
+}
+#community {
+  color: #f7f9ff;
+}
+#community .section-title,
+#community .section-copy {
+  color: #f7f9ff;
+}
+#community .section-copy {
+  max-width: 720px;
+  opacity: 0.82;
+}
+.community-photo {
+  min-height: clamp(210px, 24vw, 360px);
+  background-size: cover;
+  background-position: center;
 }
 .community-photo-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
-.community-photo:nth-child(1) { --community-photo: url("assets/masinloc-her-gallery-01.jpg"); }
-.community-photo:nth-child(2) { --community-photo: url("assets/masinloc-her-gallery-02.jpg"); }
-.community-photo:nth-child(3) { --community-photo: url("assets/masinloc-her-gallery-03.jpg"); }
-.community-photo:nth-child(4) { --community-photo: url("assets/masinloc-her-gallery-04.jpg"); }
-.community-photo:nth-child(5) { --community-photo: url("assets/masinloc-her-gallery-05.jpg"); }
-.community-photo:nth-child(6) { --community-photo: url("assets/masinloc-her-gallery-06.jpg"); }
-.community-photo:nth-child(7) { --community-photo: url("assets/masinloc-her-gallery-07.jpg"); }
+.community-photo:nth-child(1) { --community-photo: url("assets/masinloc-her-gallery-03.jpg"); }
+.community-photo:nth-child(2) { --community-photo: url("assets/masinloc-her-gallery-04.jpg"); }
+.community-photo:nth-child(3) { --community-photo: url("assets/masinloc-her-gallery-05.jpg"); }
+.community-photo:nth-child(4) { --community-photo: url("assets/masinloc-her-gallery-06.jpg"); }
+.community-photo:nth-child(5) { --community-photo: url("assets/masinloc-her-gallery-07.jpg"); }
 /* CAREERS */
 .careers-section {
   background:
@@ -1360,7 +1378,7 @@ textarea {
 <header class="hero" id="top">
   <div class="glow"></div>
   <div class="text reveal">
-    <div class="eyebrow">Welcome to SENZ Strategic Communications</div>
+    <div class="eyebrow">Welcome to SENZ Strategic Communications and Digital Solutions</div>
     <h1>Influence Through Clarity.</h1>
     <p>
       You are now at the reception. Tell us what you need help with, and we will guide you to the right department, service, or digital solution.
@@ -1380,7 +1398,7 @@ textarea {
 <section class="section help-menu" id="help">
   <div class="help-intro reveal">
     <div class="section-label">Help Desk</div>
-    <h2 class="section-title">How can SENZ help you today?</h2>
+    <h2 class="section-title">How can SENZ Strategic Communications and Digital Solutions help you today?</h2>
     <p class="section-copy">Choose what feels closest to what you need. We will guide you from there.</p>
   </div>
   <div class="help-grid">
@@ -1437,10 +1455,10 @@ textarea {
 <section class="section light" id="about">
   <div class="about-grid">
     <div class="reveal">
-      <div class="section-label">About SENZ</div>
+      <div class="section-label">About SENZ Strategic Communications and Digital Solutions</div>
       <h2 class="section-title">Built for clarity, culture, and visibility.</h2>
       <p class="section-copy">
-        SENZ Strategic Communications helps people, brands, businesses, and organizations communicate with more intention across branding, PR, websites, content, digital products, and perception strategy.
+        SENZ Strategic Communications and Digital Solutions helps people, brands, businesses, and organizations communicate with more intention across branding, PR, websites, content, digital products, and perception strategy.
       </p>
       <br>
       <a class="btn secondary" href="about.html" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Visit Founder&apos;s Office</a>
@@ -1458,7 +1476,7 @@ textarea {
   <div class="service-layout">
     <div class="reveal">
       <div class="section-label">Departments</div>
-      <h2 class="section-title">SENZ Departments</h2>
+      <h2 class="section-title">SENZ Strategic Communications and Digital Solutions Departments</h2>
       <p class="section-copy">
         Each department is designed to help you become clearer, sharper, and harder to ignore.
       </p>
@@ -1509,58 +1527,13 @@ textarea {
     </div>
   </div>
 </section>
-<section class="section light" id="waiting">
-  <div class="waiting-layout">
-    <div class="reveal">
-      <div class="section-label">With Love, FMB</div>
-      <h2 class="section-title">Free ebooks by FMB herself.</h2>
-      <p class="section-copy">
-        A small reader library for women, founders, creatives, and public-facing dreamers who want clarity, presence, and confidence.
-      </p>
-      <br>
-      <button class="secondary" style="color:#08101d;border-color:rgba(8,16,29,0.18)">Browse Free Ebooks</button>
-    </div>
-    <div class="mag-track reveal">
-      <article class="mag" onclick="openIssue(0)">
-        <small>WITH LOVE, FMB</small>
-        <h3>Story, Strategy, Impact</h3>
-        <span class="read-label">Read Free</span>
-      </article>
-      <article class="mag" onclick="openIssue(1)">
-        <small>WITH LOVE, FMB</small>
-        <h3>Reputation Reset</h3>
-        <span class="read-label">Read Free</span>
-      </article>
-      <article class="mag" onclick="openIssue(2)">
-        <small>WITH LOVE, FMB</small>
-        <h3>Quiet Power of Branding</h3>
-        <span class="read-label">Read Free</span>
-      </article>
-      <article class="mag" onclick="openIssue(3)">
-        <small>WITH LOVE, FMB</small>
-        <h3>Clarity Notes</h3>
-        <span class="read-label">Read Free</span>
-      </article>
-      <article class="mag" onclick="openIssue(4)">
-        <small>WITH LOVE, FMB</small>
-        <h3>Behind The Image</h3>
-        <span class="read-label">Read Free</span>
-      </article>
-      <article class="mag" onclick="openIssue(5)">
-        <small>WITH LOVE, FMB</small>
-        <h3>From Unknown to Unavoidable</h3>
-        <span class="read-label">Read Free</span>
-      </article>
-    </div>
-  </div>
-</section>
 <section class="section digital-products" id="shop">
   <div class="digital-layout">
     <div class="reveal">
       <div class="section-label">Digital Products</div>
       <h2 class="section-title">Systems you can purchase and use.</h2>
       <p class="section-copy">
-        After the free library, explore SENZ digital products built for campaigns, events, visibility, and modern brand operations.
+        Explore SENZ Strategic Communications and Digital Solutions products built for campaigns, events, visibility, and modern brand operations.
       </p>
       <br>
       <a class="btn primary" href="shop/">Visit Shop</a>
@@ -1593,7 +1566,7 @@ textarea {
   <div class="rooms-layout">
     <div class="reveal">
       <div class="section-label">Office Tour Preview</div>
-      <h2 class="section-title">Take a quick tour of the SENZ office.</h2>
+      <h2 class="section-title">Take a quick tour of SENZ Strategic Communications and Digital Solutions.</h2>
       <p class="section-copy">
         Every room was designed to help you find the right kind of support.
       </p>
@@ -1619,7 +1592,7 @@ textarea {
         <div>
           <div class="room-no">03</div>
           <h3>Departments</h3>
-          <p>Explore SENZ services by need, expertise, and stage.</p>
+          <p>Explore SENZ Strategic Communications and Digital Solutions services by need, expertise, and stage.</p>
         </div>
         <div class="enter">Enter Room</div>
       </article>
@@ -1643,7 +1616,7 @@ textarea {
         <div>
           <div class="room-no">06</div>
           <h3>Founder&apos;s Office</h3>
-          <p>Learn about the mind and method behind SENZ Strategic Communications.</p>
+          <p>Learn about the mind and method behind SENZ Strategic Communications and Digital Solutions.</p>
         </div>
         <div class="enter">Enter Room</div>
       </article>
@@ -1686,8 +1659,6 @@ textarea {
       <div class="community-photo"></div>
       <div class="community-photo"></div>
       <div class="community-photo"></div>
-      <div class="community-photo"></div>
-      <div class="community-photo"></div>
     </div>
   </div>
 </section>
@@ -1695,7 +1666,7 @@ textarea {
   <div class="careers-layout">
     <div class="reveal">
       <div class="section-label">Careers</div>
-      <h2 class="section-title">Grow with SENZ.</h2>
+      <h2 class="section-title">Grow with SENZ Strategic Communications and Digital Solutions.</h2>
       <p class="section-copy">
         We are building a reliable creative and client service pool for projects, campaigns, events, and digital work.
       </p>
@@ -1720,7 +1691,7 @@ textarea {
     </div>
     <form class="career-form reveal" id="careerForm" novalidate>
       <div>
-        <h3>Apply to the SENZ creative pool.</h3>
+        <h3>Apply to the SENZ Strategic Communications and Digital Solutions creative pool.</h3>
         <p class="section-copy">Share your details, portfolio, and rates. A short practical answer is enough.</p>
       </div>
       <div class="career-fields">
@@ -1782,7 +1753,7 @@ textarea {
       <div class="section-label">Need Help?</div>
       <h2 class="section-title">Let&apos;s make your brand easier to understand.</h2>
       <p class="section-copy">
-        Tell us what you need help with. The SENZ team will guide you to the right next step.
+        Tell us what you need help with. The SENZ Strategic Communications and Digital Solutions team will guide you to the right next step.
       </p>
       <br>
       <a class="btn primary" href="get-started.html">Visit Inquiry Desk</a>
@@ -1791,8 +1762,8 @@ textarea {
       <div class="section-label">FAQ</div>
       <h2 class="section-title">Questions? We've got answers.</h2>
       <details class="faq-item">
-        <summary>What does SENZ do?</summary>
-        <p>SENZ helps brands with strategy, communications, digital presence, creative direction, and public visibility.</p>
+        <summary>What does SENZ Strategic Communications and Digital Solutions do?</summary>
+        <p>SENZ Strategic Communications and Digital Solutions helps brands with strategy, communications, digital presence, creative direction, and public visibility.</p>
       </details>
       <details class="faq-item">
         <summary>How does the process work?</summary>
@@ -1825,7 +1796,7 @@ textarea {
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <strong>SENZ Strategic Communications</strong>
+      <strong>SENZ Strategic Communications and Digital Solutions</strong>
       <span>Strategic Communications and Digital Solutions</span>
       <span>Park Triangle Corporate Plaza, North Tower, 32nd Street Corner 11th Ave., Bonifacio Global City, Taguig</span>
       <span>All rights reserved.</span>
@@ -1838,24 +1809,6 @@ textarea {
     </div>
   </div>
 </footer>
-<div class="issue-modal" id="issueModal">
-  <div class="issue-reader">
-    <button class="close-reader" onclick="closeIssue()" aria-label="Close reader">×</button>
-    <div class="reader-top">
-      <small id="issueLabel">WITH LOVE, FMB</small>
-      <h2 id="issueTitle">Story, Strategy, Impact</h2>
-    </div>
-    <div class="reader-page" id="readerPage">
-      <h3 id="pageTitle">Page Title</h3>
-      <p id="pageText">Page content goes here.</p>
-    </div>
-    <div class="reader-controls">
-      <button onclick="prevIssuePage()">Previous</button>
-      <span id="pageCount">1 / 5</span>
-      <button onclick="nextIssuePage()">Next</button>
-    </div>
-  </div>
-</div>
 <script src="components/site-config.js"></script>
 <script>
 document.body.classList.add("is-ready");
@@ -1887,8 +1840,8 @@ document.body.appendChild(progress);
 const progressBar = progress.querySelector(".scroll-progress__bar");
 const navBar = document.querySelector(".nav");
 const motionScenes = Array.from(document.querySelectorAll(".hero, body > section"));
-const motionItems = Array.from(document.querySelectorAll(".help-card, .service-card, .mag, .digital-card, .room-card, .gallery-card, .community-feature, .career-role, .career-form, .faq-item"));
-const motionMedia = Array.from(document.querySelectorAll(".image-box, .community-logo-panel, .community-photo, .gallery-card, .mag"));
+const motionItems = Array.from(document.querySelectorAll(".help-card, .service-card, .digital-card, .room-card, .gallery-card, .community-feature, .career-role, .career-form, .faq-item"));
+const motionMedia = Array.from(document.querySelectorAll(".image-box, .community-logo-panel, .community-photo, .gallery-card"));
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const receptionAudio = new Audio("assets/senz-reception-music.mp3");
 receptionAudio.loop = true;
@@ -1971,7 +1924,7 @@ window.addEventListener("scroll", requestScrollExperience, { passive: true });
 window.addEventListener("resize", requestScrollExperience);
 syncScrollExperience();
 
-document.querySelectorAll(".mag-track, .digital-strip, .room-track, .gallery-track").forEach(track => {
+document.querySelectorAll(".digital-strip, .room-track, .gallery-track").forEach(track => {
   let isDown = false;
   let startX;
   let scrollLeft;
@@ -2024,7 +1977,7 @@ careerForm?.addEventListener("submit", async (event) => {
   }
 
   const messageLines = [
-    "SENZ Career Application",
+    "SENZ Strategic Communications and Digital Solutions Career Application",
     "",
     `Role: ${role}`,
     `Name: ${name}`,
@@ -2050,7 +2003,7 @@ careerForm?.addEventListener("submit", async (event) => {
     message: messageLines.join("\n"),
     projectType: `Career Application - ${role}`
   };
-  const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`SENZ Career Application - ${role}`)}&body=${encodeURIComponent(messageLines.join("\n"))}`;
+  const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`SENZ Strategic Communications and Digital Solutions Career Application - ${role}`)}&body=${encodeURIComponent(messageLines.join("\n"))}`;
   const submitButton = form.querySelector('button[type="submit"]');
 
   careerStatus.textContent = "Sending application...";
@@ -2064,7 +2017,7 @@ careerForm?.addEventListener("submit", async (event) => {
     });
     const result = await response.json();
     if (!response.ok || !result.ok) throw new Error("Unable to submit career application.");
-    careerStatus.textContent = `Application received. Reference: ${result.id}. Thank you for applying to SENZ.`;
+    careerStatus.textContent = `Application received. Reference: ${result.id}. Thank you for applying to SENZ Strategic Communications and Digital Solutions.`;
     form.reset();
   } catch {
     careerStatus.textContent = "Server unavailable - opening your email client with the application ready.";
@@ -2074,209 +2027,6 @@ careerForm?.addEventListener("submit", async (event) => {
   }
 });
 
-const issueData = [
-  {
-    title: "Story, Strategy, Impact",
-    pages: [
-      {
-        title: "Begin With Clarity",
-        text: "A message becomes powerful when it is clear enough to be remembered, repeated, and trusted."
-      },
-      {
-        title: "Presence Has A Purpose",
-        text: "Do not show up only to be seen. Show up so people understand what you stand for and why it matters."
-      },
-      {
-        title: "Recognition Over Reach",
-        text: "Reach can give you numbers. Recognition gives you value. The goal is not only for people to see you. The goal is for people to know what to do with you."
-      },
-      {
-        title: "The Visibility System",
-        text: "A strong visibility system includes positioning, visual identity, message repetition, content rhythm, audience understanding, and proof of credibility."
-      },
-      {
-        title: "With Love, FMB",
-        text: "Do not chase visibility before clarity. If people see you before they understand you, they may remember the wrong thing."
-      }
-    ]
-  },
-  {
-    title: "Reputation Reset",
-    pages: [
-      {
-        title: "Reputation Is Memory",
-        text: "Reputation is the memory people keep about you when you are no longer explaining yourself."
-      },
-      {
-        title: "Repair Needs Rhythm",
-        text: "Reputation repair is not one big statement. It is a disciplined rhythm of clearer choices, better signals, and consistent behavior."
-      },
-      {
-        title: "Do Not Over-Explain",
-        text: "When a brand is misunderstood, the instinct is to explain everything. But too much explanation can make the problem louder."
-      },
-      {
-        title: "Control The Signal",
-        text: "The reset begins when the brand stops reacting to every opinion and starts controlling the message, timing, and tone."
-      },
-      {
-        title: "With Love, FMB",
-        text: "A reset is not pretending the past did not happen. It is designing the next version with more discipline."
-      }
-    ]
-  },
-  {
-    title: "Quiet Power of Branding",
-    pages: [
-      {
-        title: "Strong Brands Do Not Shout",
-        text: "The strongest brands do not need to explain themselves loudly. They create a feeling of certainty through consistency."
-      },
-      {
-        title: "Design Is Memory",
-        text: "Design is not decoration. It is a system that helps people remember what the brand stands for."
-      },
-      {
-        title: "Less Noise, More Meaning",
-        text: "A premium brand does not fill every space. It knows when to speak, when to pause, and when to let silence create value."
-      },
-      {
-        title: "The Brand Anchor",
-        text: "Every brand needs an anchor: one idea people can return to again and again. Without an anchor, the brand becomes visually busy but mentally forgettable."
-      },
-      {
-        title: "With Love, FMB",
-        text: "If your brand looks beautiful but people cannot explain what you do, the branding is not finished."
-      }
-    ]
-  },
-  {
-    title: "Clarity Notes",
-    pages: [
-      {
-        title: "The Work Behind The Work",
-        text: "A campaign is not only what people see. It is the thinking, pressure, decisions, and timing behind the public result."
-      },
-      {
-        title: "Before The Launch",
-        text: "Before a brand becomes visible, the message must be organized. The audience must know why it should care."
-      },
-      {
-        title: "During Execution",
-        text: "Execution is where strategy gets tested. A strong idea still needs rhythm, visual discipline, and timing."
-      },
-      {
-        title: "After Visibility",
-        text: "The work does not end when people notice you. The next job is to convert attention into trust, action, and memory."
-      },
-      {
-        title: "With Love, FMB",
-        text: "Case files matter because they show that good branding is not magic. It is organized decision-making."
-      }
-    ]
-  },
-  {
-    title: "Behind The Image",
-    pages: [
-      {
-        title: "Image Is A Strategy",
-        text: "A public image is not just a photo, outfit, logo, or caption. It is the total meaning people receive from your presence."
-      },
-      {
-        title: "Every Detail Teaches",
-        text: "Color, type, posture, tone, background, pacing, and repetition all teach the audience how to understand you."
-      },
-      {
-        title: "Do Not Copy Aesthetic",
-        text: "An aesthetic can be copied. A point of view cannot. The best image systems are built from identity, not trend."
-      },
-      {
-        title: "Visual Trust",
-        text: "People trust what feels consistent. If your image changes too often without reason, your audience has to restart their understanding of you."
-      },
-      {
-        title: "With Love, FMB",
-        text: "The image should not only look good. It should explain your value before you speak."
-      }
-    ]
-  },
-  {
-    title: "From Unknown to Unavoidable",
-    pages: [
-      {
-        title: "Unknown Is Not The Problem",
-        text: "Every strong brand starts unknown. The problem is not being unknown. The problem is staying unclear."
-      },
-      {
-        title: "Create A Reason To Remember",
-        text: "People do not remember brands because they posted once. They remember brands that repeat a clear meaning in different forms."
-      },
-      {
-        title: "Build Demand Slowly",
-        text: "Being unavoidable does not mean forcing attention. It means becoming relevant enough that people keep encountering your value."
-      },
-      {
-        title: "Visibility With Proof",
-        text: "Attention becomes stronger when supported by proof: work, testimonials, results, process, presence, and consistency."
-      },
-      {
-        title: "With Love, FMB",
-        text: "The goal is not to be loud. The goal is to become the name people think of when the need appears."
-      }
-    ]
-  }
-];
-
-let activeIssue = 0;
-let activePage = 0;
-
-function openIssue(index) {
-  activeIssue = index;
-  activePage = 0;
-  document.getElementById("issueModal").classList.add("active");
-  document.body.style.overflow = "hidden";
-  renderIssuePage();
-}
-
-function closeIssue() {
-  document.getElementById("issueModal").classList.remove("active");
-  document.body.style.overflow = "auto";
-}
-
-function renderIssuePage() {
-  const issue = issueData[activeIssue];
-  const page = issue.pages[activePage];
-  const readerPage = document.getElementById("readerPage");
-  readerPage.classList.add("turning");
-  setTimeout(() => {
-    document.getElementById("issueTitle").textContent = issue.title;
-    document.getElementById("pageTitle").textContent = page.title;
-    document.getElementById("pageText").textContent = page.text;
-    document.getElementById("pageCount").textContent = `${activePage + 1} / ${issue.pages.length}`;
-    readerPage.classList.remove("turning");
-  }, 220);
-}
-
-function nextIssuePage() {
-  const issue = issueData[activeIssue];
-  if (activePage < issue.pages.length - 1) {
-    activePage++;
-    renderIssuePage();
-  }
-}
-
-function prevIssuePage() {
-  if (activePage > 0) {
-    activePage--;
-    renderIssuePage();
-  }
-}
-
-document.getElementById("issueModal").addEventListener("click", function(e) {
-  if (e.target === this) {
-    closeIssue();
-  }
-});
 </script>
 <script src="components/site-menu.js" defer></script>
 <script src="components/chat-support.js" defer></script>
