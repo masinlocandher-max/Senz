@@ -99,12 +99,14 @@
         <label>Business or Organization<input type="text" name="organization"></label>
         <label class="full">Service Needed<select name="service" required><option value="">Select a service</option><option>Brand Strategy</option><option>Public Relations</option><option>Website and Digital Presence</option><option>Content Direction</option><option>Creative Production</option></select></label>
         <label class="full">Project Notes<textarea name="notes" rows="5"></textarea></label>
-        <p class="prototype-note">TODO: connect this static request to a pending appointment workflow before launch. This does not create a confirmed calendar booking.</p>
+        <p class="prototype-note">TODO: add CONSULTATION_FORM_ENDPOINT in site config before production. This does not create a confirmed calendar booking.</p>
         <button class="button primary" type="submit">Submit</button>
         <span class="status" role="status" aria-live="polite"></span>
       </form>
     </div>
   </div>
+  <script src="components/site-config.js"></script>
+  <script src="components/form-router.js"></script>
   <script src="components/approved-pages.js"></script>
 </body>
 </html>

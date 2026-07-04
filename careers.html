@@ -45,7 +45,7 @@
           <label>Rates<input type="text" name="rates" placeholder="Project, daily, hourly, or monthly"></label>
           <label class="full">Portfolio Link<input type="url" name="portfolio" placeholder="Website, Drive, Instagram, Behance, etc." required></label>
           <label class="full">Short Introduction<textarea name="introduction" rows="4" placeholder="Introduce your work, strongest skills, tools, availability, and the kind of SENZ projects you can support." required></textarea></label>
-          <p class="prototype-note">TODO: connect this static form to Formspree, EmailJS, Google Forms, Airtable, Zapier, or a custom backend. For now, it prepares an email to info.senz.pr@gmail.com.</p>
+          <p class="prototype-note">TODO: add CAREERS_FORM_ENDPOINT in site config before production. Prototype mode does not send email.</p>
           <button class="button primary" type="submit">Submit Portfolio</button><span class="status" role="status" aria-live="polite"></span>
         </form>
       </div>
@@ -59,6 +59,8 @@
     </section>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><strong>SENZ Strategic Communications</strong><span>Park Triangle Corporate Plaza, Bonifacio Global City, Taguig</span><span>All rights reserved.</span></div></footer>
+  <script src="components/site-config.js"></script>
+  <script src="components/form-router.js"></script>
   <script src="components/approved-pages.js"></script>
 </body>
 </html>

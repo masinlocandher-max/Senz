@@ -33,7 +33,7 @@
           <label>Position or Role<input type="text" name="position"></label>
           <label>Inquiry Type<select name="inquiryType" required><option value="">Choose type</option><option>General Inquiry</option><option>Partnership</option><option>Media</option><option>Office Visit</option><option>Other</option></select></label>
           <label class="full">Message<textarea name="message" rows="6" required></textarea></label>
-          <p class="prototype-note">TODO: connect this static form to Formspree, EmailJS, Google Forms, Airtable, Zapier, or a custom backend. For now, it prepares an email to info.senz.pr@gmail.com.</p>
+          <p class="prototype-note">TODO: add CONTACT_FORM_ENDPOINT in site config before production. Prototype mode does not send email.</p>
           <button class="button primary" type="submit">Send Message</button><span class="status" role="status" aria-live="polite"></span>
         </form>
         <div>
@@ -45,6 +45,8 @@
     </section>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><strong>SENZ Strategic Communications</strong><span>Park Triangle Corporate Plaza, Bonifacio Global City, Taguig</span><span>All rights reserved.</span></div></footer>
+  <script src="components/site-config.js"></script>
+  <script src="components/form-router.js"></script>
   <script src="components/approved-pages.js"></script>
 </body>
 </html>

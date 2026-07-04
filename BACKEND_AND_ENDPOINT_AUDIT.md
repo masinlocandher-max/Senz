@@ -2,14 +2,14 @@
 
 PAGE: Contact Us
 ISSUE: Send Us A Message form has no production email endpoint.
-CURRENT STATUS: The form prepares a `mailto:` message to `info.senz.pr@gmail.com` with the required inquiry fields and includes a TODO for Formspree, EmailJS, Google Forms, Airtable, Zapier, or a custom backend. It does not silently fake a successful email send.
-NEEDED FIX: Connect the form to an approved email/form backend that sends `New SENZ Website Inquiry - [Full Name]` to `info.senz.pr@gmail.com`.
+CURRENT STATUS: `CONTACT_FORM_ENDPOINT` exists in `components/site-config.js` but is blank. The form stays in prototype mode and does not fake email sending.
+NEEDED FIX: Add the deployed Google Apps Script Web App URL that sends `New SENZ Website Inquiry - [Full Name]` to `info.senz.pr@gmail.com`.
 PRIORITY: High
 
 PAGE: Home, About, Services
 ISSUE: Book a Consultation modal has no production appointment request endpoint.
-CURRENT STATUS: The modal prepares a pending consultation email to `info.senz.pr@gmail.com` and shows the required pending-review message. It does not route to Contact Us and does not confirm a calendar booking.
-NEEDED FIX: Connect the modal to an approved backend that sends `New SENZ Consultation Request - [Full Name]` to `info.senz.pr@gmail.com`.
+CURRENT STATUS: `CONSULTATION_FORM_ENDPOINT` exists in `components/site-config.js` but is blank. The modal stays in prototype mode, shows the pending-review message, and does not fake email sending.
+NEEDED FIX: Add the deployed Google Apps Script Web App URL that sends `New SENZ Consultation Request - [Full Name]` to `info.senz.pr@gmail.com`.
 PRIORITY: High
 
 PAGE: Home, About, Services
@@ -20,20 +20,20 @@ PRIORITY: High
 
 PAGE: Careers
 ISSUE: Creative Pool / Submit Portfolio form has no production email endpoint.
-CURRENT STATUS: The form prepares a `mailto:` message to `info.senz.pr@gmail.com` using the required subject format and includes a TODO for later backend connection.
-NEEDED FIX: Connect the form to an approved email/form backend that sends `New SENZ Creative Pool Submission - [Full Name]` to `info.senz.pr@gmail.com`.
+CURRENT STATUS: `CAREERS_FORM_ENDPOINT` exists in `components/site-config.js` but is blank. The form stays in prototype mode and does not fake email sending.
+NEEDED FIX: Add the deployed Google Apps Script Web App URL that sends `New SENZ Creative Pool Submission - [Full Name]` to `info.senz.pr@gmail.com`.
 PRIORITY: High
 
 PAGE: All Approved Pages
-ISSUE: Static `mailto:` fallback depends on the visitor having an email client configured.
-CURRENT STATUS: This is deployment-friendly and honest, but it is not a reliable production submission system.
-NEEDED FIX: Choose and connect a production form service or custom backend before launch.
+ISSUE: Endpoint placeholders are not filled.
+CURRENT STATUS: `CONTACT_FORM_ENDPOINT`, `CONSULTATION_FORM_ENDPOINT`, and `CAREERS_FORM_ENDPOINT` are intentionally blank until real Google Apps Script URLs are provided.
+NEEDED FIX: Paste the deployed endpoint URLs into `components/site-config.js` after the Google Apps Script backend is created.
 PRIORITY: High
 
 PAGE: All Approved Pages
 ISSUE: Existing `/api/inquiries` backend is present but not wired to send email.
-CURRENT STATUS: `server.js` exposes `/api/inquiries` for saving inquiry records, but approved forms currently use static `mailto:` preparation and TODO comments because no email service credentials are connected.
-NEEDED FIX: Decide whether to use the existing Node endpoint with an email provider, or replace with Formspree, EmailJS, Google Forms, Airtable, or Zapier.
+CURRENT STATUS: `server.js` exposes `/api/inquiries` for saving inquiry records, but approved forms are prepared for Google Apps Script endpoint placeholders instead. No email service credentials are connected.
+NEEDED FIX: Prefer Google Apps Script as documented in `BACKEND_SETUP_INSTRUCTIONS.md`, or intentionally wire the existing Node endpoint to an email provider later.
 PRIORITY: Medium
 
 PAGE: FAQ

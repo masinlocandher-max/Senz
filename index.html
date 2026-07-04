@@ -1697,13 +1697,14 @@ textarea {
       <label class="full">Project Notes
         <textarea name="notes" rows="5" placeholder="Tell us what you want to clarify, improve, or launch."></textarea>
       </label>
-      <p class="consult-note">TODO: connect this static request to a pending appointment workflow before launch. This does not create a confirmed calendar booking.</p>
+      <p class="consult-note">TODO: add CONSULTATION_FORM_ENDPOINT in site config before production. This does not create a confirmed calendar booking.</p>
       <button class="consult-submit" type="submit">Submit Consultation Request</button>
       <span class="consult-status" role="status" aria-live="polite"></span>
     </form>
   </div>
 </div>
 <script src="components/site-config.js"></script>
+<script src="components/form-router.js"></script>
 <script>
 document.body.classList.add("is-ready");
 const consultModal = document.getElementById("consultModal");
@@ -1732,35 +1733,7 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeConsultation();
 });
 document.querySelectorAll("[data-prototype-form]").forEach((form) => {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const status = form.querySelector(".consult-status");
-    const values = Object.fromEntries(new FormData(form).entries());
-    const submittedAt = new Date().toLocaleString();
-    const fullName = values.name || "Website Visitor";
-    const lines = [
-      "New SENZ Consultation Request",
-      "",
-      `Preferred date: ${values.date || ""}`,
-      `Preferred time: ${values.time || ""}`,
-      `Full name: ${fullName}`,
-      `Email: ${values.email || ""}`,
-      `Phone number: ${values.phone || ""}`,
-      `Business or organization: ${values.organization || ""}`,
-      `Service needed: ${values.service || ""}`,
-      "",
-      "Project notes:",
-      values.notes || "",
-      "",
-      `Submission date and time: ${submittedAt}`,
-      "",
-      "Calendar note: this is a pending request. Do not add to the calendar until SENZ approves the schedule."
-    ];
-    // TODO: Replace this mailto preparation with Formspree, EmailJS, Google Forms,
-    // Airtable, Zapier, or a custom backend email endpoint when production email is ready.
-    window.location.href = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent(`New SENZ Consultation Request - ${fullName}`)}&body=${encodeURIComponent(lines.join("\n"))}`;
-    if (status) status.textContent = "Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm your appointment through email before it is added to the calendar.";
-  });
+  window.SENZForms?.bind(form);
 });
 document.querySelectorAll('a[href]').forEach((link) => {
   const href = link.getAttribute('href');
