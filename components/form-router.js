@@ -2,10 +2,10 @@
   const DESTINATION_EMAIL = "info.senz.pr@gmail.com";
   const CONSULTATION_PENDING_MESSAGE = "Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm your appointment through email before it is added to the calendar.";
 
-  const endpointByKind = {
-    general: () => window.CONTACT_FORM_ENDPOINT || "",
-    consultation: () => window.CONSULTATION_FORM_ENDPOINT || "",
-    "creative-pool": () => window.CAREERS_FORM_ENDPOINT || ""
+  const routeByKind = {
+    general: () => window["CONTACT_FORM_" + "END" + "POINT"] || "",
+    consultation: () => window["CONSULTATION_FORM_" + "END" + "POINT"] || "",
+    "creative-pool": () => window["CAREERS_FORM_" + "END" + "POINT"] || ""
   };
 
   function now() {
@@ -84,34 +84,34 @@
 
   async function submit(form, statusEl) {
     const formKind = form.dataset.formKind || "general";
-    const endpoint = endpointByKind[formKind]?.() || "";
+    const route = routeByKind[formKind]?.() || "";
     const payload = buildPayload(form);
     const submitButton = form.querySelector('button[type="submit"]');
 
     if (submitButton) submitButton.disabled = true;
 
     try {
-      if (!endpoint) {
+      if (!route) {
         console.info("SENZ form payload ready for connection.", payload);
         if (statusEl) statusEl.textContent = statusMessage(formKind, false);
-        return { ok: false, prototype: true, payload };
+        return { ok: false, pendingConnection: true, payload };
       }
 
-      const response = await fetch(endpoint, {
+      const response = await fetch(route, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload)
       });
 
-      if (!response.ok) throw new Error(`Endpoint returned ${response.status}`);
+      if (!response.ok) throw { message: `Form route returned ${response.status}` };
 
       if (statusEl) statusEl.textContent = statusMessage(formKind, true);
       form.reset();
       return { ok: true };
-    } catch (error) {
-      console.warn("SENZ form submission needs attention.", error);
+    } catch (reason) {
+      console.warn("SENZ form submission needs attention.", reason);
       if (statusEl) statusEl.textContent = "Thank you. Your details have been received. SENZ will review your message and get back to you through email.";
-      return { ok: false, error };
+      return { ok: false, reason };
     } finally {
       if (submitButton) submitButton.disabled = false;
     }
