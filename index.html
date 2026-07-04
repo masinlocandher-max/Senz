@@ -257,6 +257,42 @@ button:hover {
   text-transform: uppercase;
   z-index: 2;
 }
+.audio-control {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(5,8,14,0.42);
+  color: rgba(255,255,255,0.9);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+}
+.audio-control button {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.audio-control input {
+  width: 92px;
+  accent-color: var(--blue);
+}
+.audio-control span {
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  opacity: 0.76;
+}
 /* GENERAL SECTIONS */
 .section {
   padding: 96px 72px;
@@ -835,11 +871,16 @@ footer {
 }
 .community-photo-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 .community-photo:nth-child(1) { --community-photo: url("assets/masinloc-her-gallery-01.jpg"); }
 .community-photo:nth-child(2) { --community-photo: url("assets/masinloc-her-gallery-02.jpg"); }
+.community-photo:nth-child(3) { --community-photo: url("assets/masinloc-her-gallery-03.jpg"); }
+.community-photo:nth-child(4) { --community-photo: url("assets/masinloc-her-gallery-04.jpg"); }
+.community-photo:nth-child(5) { --community-photo: url("assets/masinloc-her-gallery-05.jpg"); }
+.community-photo:nth-child(6) { --community-photo: url("assets/masinloc-her-gallery-06.jpg"); }
+.community-photo:nth-child(7) { --community-photo: url("assets/masinloc-her-gallery-07.jpg"); }
 /* CAREERS */
 .careers-section {
   background:
@@ -1305,11 +1346,13 @@ textarea {
   </div>
   <div class="nav-links">
     <a href="#top">Home</a>
-    <a href="about.html">About</a>
+    <a href="about.html">About Us</a>
     <a class="nav-feature" href="#services">Services</a>
     <a class="nav-feature" href="#shop">Digital Products</a>
+    <a href="#community">Community Works</a>
+    <a href="shop/">Shop</a>
+    <a href="#faq">FAQ</a>
     <a href="#careers">Careers</a>
-    <a href="#contact">Contact</a>
     <a href="get-started.html" class="nav-cta">Talk to Receptionist</a>
   </div>
   <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
@@ -1325,6 +1368,11 @@ textarea {
     <div class="actions">
       <a class="btn primary" href="#help">I Need Help</a>
       <a class="btn secondary" href="#services">View Departments</a>
+    </div>
+    <div class="audio-control" aria-label="Reception music controls">
+      <button type="button" id="musicToggle">Play Reception Music</button>
+      <span id="musicState">Paused</span>
+      <input id="musicVolume" type="range" min="0" max="1" step="0.05" value="0.35" aria-label="Reception music volume">
     </div>
   </div>
   <div class="tag">Influence Through Clarity</div>
@@ -1374,7 +1422,7 @@ textarea {
         <h3>I need templates or digital kits.</h3>
         <p>Browse tools for students, teachers, professionals, creators, and business owners.</p>
       </div>
-      <a href="#shop">Visit Resource Room</a>
+      <a href="shop/">Visit Shop</a>
     </article>
     <article class="help-card reveal">
       <div>
@@ -1515,7 +1563,7 @@ textarea {
         After the free library, explore SENZ digital products built for campaigns, events, visibility, and modern brand operations.
       </p>
       <br>
-      <a class="btn primary" href="get-started.html?product=digital">Ask for Access</a>
+      <a class="btn primary" href="shop/">Visit Shop</a>
     </div>
     <div class="digital-strip reveal">
       <article class="digital-card">
@@ -1633,6 +1681,11 @@ textarea {
   <div class="community-feature reveal">
     <div class="community-logo-panel" aria-label="Masinloc and HER logo"></div>
     <div class="community-photo-grid">
+      <div class="community-photo"></div>
+      <div class="community-photo"></div>
+      <div class="community-photo"></div>
+      <div class="community-photo"></div>
+      <div class="community-photo"></div>
       <div class="community-photo"></div>
       <div class="community-photo"></div>
     </div>
@@ -1837,6 +1890,32 @@ const motionScenes = Array.from(document.querySelectorAll(".hero, body > section
 const motionItems = Array.from(document.querySelectorAll(".help-card, .service-card, .mag, .digital-card, .room-card, .gallery-card, .community-feature, .career-role, .career-form, .faq-item"));
 const motionMedia = Array.from(document.querySelectorAll(".image-box, .community-logo-panel, .community-photo, .gallery-card, .mag"));
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const receptionAudio = new Audio("assets/senz-reception-music.mp3");
+receptionAudio.loop = true;
+receptionAudio.volume = 0.35;
+const musicToggle = document.getElementById("musicToggle");
+const musicState = document.getElementById("musicState");
+const musicVolume = document.getElementById("musicVolume");
+
+musicToggle?.addEventListener("click", async () => {
+  if (receptionAudio.paused) {
+    try {
+      await receptionAudio.play();
+      musicToggle.textContent = "Pause Music";
+      if (musicState) musicState.textContent = "Playing";
+    } catch {
+      if (musicState) musicState.textContent = "Tap again";
+    }
+  } else {
+    receptionAudio.pause();
+    musicToggle.textContent = "Play Reception Music";
+    if (musicState) musicState.textContent = "Paused";
+  }
+});
+
+musicVolume?.addEventListener("input", () => {
+  receptionAudio.volume = Number(musicVolume.value || 0.35);
+});
 
 motionItems.forEach((item, index) => {
   item.classList.add("motion-item");

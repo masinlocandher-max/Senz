@@ -65,6 +65,9 @@
   }
 
   function initChat() {
+    const getStartedPath = window.location.pathname.replace(/\\/g, '/').includes('/shop/')
+      ? '../get-started.html'
+      : 'get-started.html';
     const root = document.createElement('aside');
     root.className = 'senz-chat';
     root.setAttribute('aria-label', 'Digital Assistant');
@@ -80,7 +83,7 @@
         <div class="senz-chat-log" aria-live="polite"></div>
         <div class="senz-chat-prompts" aria-label="Suggested questions"></div>
         <p class="senz-chat-note">The Digital Assistant answers general questions. For pricing, scope, and booking, continue to Get Started.</p>
-        <a class="senz-chat-cta" href="get-started.html">Go to Get Started</a>
+        <a class="senz-chat-cta" href="${getStartedPath}">Go to Get Started</a>
         <form class="senz-chat-form">
           <input class="senz-chat-input" type="text" autocomplete="off" placeholder="Ask a general question..." aria-label="Ask a general question" />
           <button class="senz-chat-send" type="submit">Send</button>

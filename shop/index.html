@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SENZ Shop | Physical Book</title>
+  <meta name="description" content="Reserve the upcoming physical book from SENZ Strategic Communications." />
+  <style>
+    :root {
+      --ink: #07101d;
+      --muted: #5e6a7b;
+      --line: rgba(7,16,29,0.12);
+      --blue: #125cff;
+      --soft: #f5f7fb;
+      --card: rgba(255,255,255,0.76);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(18,92,255,0.12), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #f5f7fb 54%, #eaf0f8 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.78);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+    }
+    .brand img { width: 34px; height: 34px; object-fit: contain; }
+    .brand small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: #253147;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 0 16px 40px rgba(7,16,29,0.16);
+    }
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      align-items: center;
+      padding: 80px 0;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.94fr) minmax(320px, 0.72fr);
+      gap: clamp(32px, 6vw, 78px);
+      align-items: center;
+    }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+    }
+    .lead {
+      max-width: 620px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.75;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 14px 20px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue), #4b7dff);
+      color: #fff;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+    .button.secondary {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .book-card {
+      position: relative;
+      min-height: 560px;
+      border-radius: 34px;
+      padding: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, rgba(7,16,29,0.12), rgba(7,16,29,0.0)),
+        url("../assets/senz-tour-waiting-lounge.png") center / cover no-repeat;
+      box-shadow: 0 34px 90px rgba(7,16,29,0.18);
+    }
+    .book-cover {
+      position: absolute;
+      right: 28px;
+      bottom: 28px;
+      width: min(320px, 72%);
+      aspect-ratio: 0.68;
+      border-radius: 22px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      background:
+        linear-gradient(160deg, rgba(4,9,18,0.96), rgba(9,32,88,0.88)),
+        radial-gradient(circle at 20% 8%, rgba(18,92,255,0.5), transparent 34%);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.32);
+    }
+    .book-cover img { width: 64px; height: 64px; object-fit: contain; }
+    .book-cover h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      line-height: 0.96;
+    }
+    .book-cover p { margin: 10px 0 0; color: rgba(255,255,255,0.72); line-height: 1.6; }
+    .details {
+      padding: 90px 0;
+    }
+    .details-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.75fr) minmax(320px, 1fr);
+      gap: 34px;
+      align-items: start;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--card);
+      padding: clamp(24px, 4vw, 42px);
+      box-shadow: 0 24px 70px rgba(7,16,29,0.08);
+      backdrop-filter: blur(18px);
+    }
+    .panel h2 {
+      margin: 0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.02;
+    }
+    .panel p { color: var(--muted); line-height: 1.75; }
+    .list {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .list span {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      font-weight: 800;
+    }
+    form {
+      display: grid;
+      gap: 14px;
+    }
+    label {
+      display: grid;
+      gap: 7px;
+      color: #2f3b50;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 15px;
+      color: var(--ink);
+      background: rgba(255,255,255,0.88);
+      font: inherit;
+      outline: none;
+    }
+    textarea { min-height: 112px; resize: vertical; }
+    .status { color: var(--blue); font-weight: 800; min-height: 22px; }
+    footer {
+      padding: 44px 0;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-inner strong { display: block; color: var(--ink); margin-bottom: 8px; }
+    .footer-links { display: flex; gap: 14px; flex-wrap: wrap; }
+    @media (max-width: 880px) {
+      .nav { align-items: flex-start; flex-direction: column; padding: 16px 0; }
+      .nav-links { width: 100%; overflow-x: auto; padding-bottom: 8px; }
+      .hero-grid,
+      .details-grid { grid-template-columns: 1fr; }
+      .book-card { min-height: 460px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="../index.html#top" aria-label="SENZ Strategic Communications home">
+        <img src="../assets/senz-original-mark.png" alt="" aria-hidden="true" />
+        <span>SENZ<small>Strategic Communications and Digital Solutions</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="../index.html#top">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../index.html#services">Services</a>
+        <a href="../index.html#shop">Digital Products</a>
+        <a href="../index.html#community">Community Works</a>
+        <a href="./">Shop</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a class="nav-cta" href="../get-started.html">Talk to Receptionist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow">SENZ Shop</div>
+          <h1>Physical book coming from SENZ.</h1>
+          <p class="lead">A printed guide for clarity, public image, brand presence, and the discipline of being remembered with respect. The book is being prepared for release.</p>
+          <div class="actions">
+            <a class="button" href="#reserve">Join the Book List</a>
+            <a class="button secondary" href="../index.html#shop">View Digital Products</a>
+          </div>
+        </div>
+        <div class="book-card" aria-label="SENZ physical book preview">
+          <div class="book-cover">
+            <img src="../assets/senz-original-mark.png" alt="" aria-hidden="true" />
+            <div>
+              <h2>Influence Through Clarity</h2>
+              <p>A SENZ Strategic Communications physical book by FMB.</p>
+            </div>
+            <p>Printed edition in preparation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="details" id="reserve">
+      <div class="shell details-grid">
+        <div class="panel">
+          <div class="eyebrow">What to expect</div>
+          <h2>A friendly book for people building their name.</h2>
+          <p>The first physical book will focus on image, clarity, story, visibility, and practical public presence. It is made for founders, creatives, professionals, students, public-facing women, and people who want to communicate with more confidence.</p>
+          <div class="list" aria-label="Book topics">
+            <span>Brand clarity and public image</span>
+            <span>How people remember your name</span>
+            <span>Presence, discipline, and visibility</span>
+            <span>Practical notes from FMB</span>
+          </div>
+        </div>
+        <form class="panel" id="bookForm">
+          <div>
+            <div class="eyebrow">Book List</div>
+            <h2>Get first access.</h2>
+            <p>Leave your details and SENZ will notify you when ordering becomes available.</p>
+          </div>
+          <label>
+            Full Name
+            <input name="name" type="text" autocomplete="name" placeholder="Your name" required />
+          </label>
+          <label>
+            Email Address
+            <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            Phone Number
+            <input name="phone" type="tel" autocomplete="tel" placeholder="+63 or international" />
+          </label>
+          <label>
+            Message
+            <textarea name="message" placeholder="Optional: tell us if this is for you, a gift, school, business, or organization."></textarea>
+          </label>
+          <button class="button" type="submit">Join Book List</button>
+          <span class="status" id="bookStatus" role="status" aria-live="polite"></span>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div>
+        <strong>SENZ Strategic Communications</strong>
+        <span>Park Triangle Corporate Plaza, North Tower, 32nd Street Corner 11th Ave., Bonifacio Global City, Taguig</span>
+        <br />
+        <span>All rights reserved.</span>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:info.senz.pr@gmail.com">Email</a>
+        <a href="https://www.instagram.com/senz.pr?igsh=MWxxamFrZmJqc28wcw%3D%3D&utm_source=qr">Instagram</a>
+        <a href="https://www.facebook.com/share/1BM7Etwi9R/?mibextid=wwXIfr">Facebook</a>
+        <a href="https://www.tiktok.com/@senz.pr?_r=1&_t=ZS-97bs7BHj1Ov">TikTok</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../components/site-config.js"></script>
+  <script>
+    const apiBase = String(window.SENZ_API_BASE_URL || "").replace(/\/$/, "");
+    const apiUrl = (path) => `${apiBase}${path}`;
+    const form = document.getElementById("bookForm");
+    const status = document.getElementById("bookStatus");
+
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get("name") || "").trim();
+      const email = String(data.get("email") || "").trim();
+      const phone = String(data.get("phone") || "").trim();
+      const note = String(data.get("message") || "").trim();
+
+      if (!name || !email) {
+        status.textContent = "Please add your name and email.";
+        return;
+      }
+
+      const message = [
+        "SENZ Physical Book List",
+        "",
+        note || "Please notify me when the physical book is available."
+      ].join("\n");
+
+      status.textContent = "Sending...";
+      try {
+        const response = await fetch(apiUrl("/api/inquiries"), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            projectType: "SENZ Physical Book List",
+            message
+          })
+        });
+        const result = await response.json();
+        if (!response.ok || !result.ok) throw new Error("Unable to submit.");
+        status.textContent = `You are on the book list. Reference: ${result.id}.`;
+        form.reset();
+      } catch {
+        const mailto = `mailto:info.senz.pr@gmail.com?subject=${encodeURIComponent("SENZ Physical Book List")}&body=${encodeURIComponent(message)}`;
+        status.textContent = "Server unavailable - opening your email client.";
+        window.location.href = mailto;
+      }
+    });
+  </script>
+  <script src="../components/chat-support.js" defer></script>
+</body>
+</html>
