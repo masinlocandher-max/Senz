@@ -163,6 +163,7 @@ textarea {
 
 .hero-text {
   max-width: 520px;
+  min-width: 0;
 }
 
 .kicker {
@@ -182,6 +183,7 @@ h2,
 h3,
 p {
   margin-top: 0;
+  max-width: 100%;
 }
 
 h1 {
@@ -190,6 +192,7 @@ h1 {
   font-weight: 500;
   line-height: 1.12;
   letter-spacing: -0.05em;
+  overflow-wrap: break-word;
 }
 
 h2 {
@@ -198,18 +201,21 @@ h2 {
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.04em;
+  overflow-wrap: break-word;
 }
 
 h3 {
   margin-bottom: 12px;
   font-size: 16px;
   font-weight: 850;
+  overflow-wrap: break-word;
 }
 
 .lead,
 .body-copy {
   color: var(--muted);
   line-height: 1.9;
+  overflow-wrap: break-word;
 }
 
 .lead {
@@ -426,6 +432,7 @@ h3 {
 .reason-card p {
   color: var(--muted);
   line-height: 1.75;
+  overflow-wrap: anywhere;
 }
 
 .service-grid,
@@ -953,7 +960,8 @@ h3 {
 
 @media (max-width: 620px) {
   .shell {
-    width: min(100% - 32px, var(--max));
+    width: calc(100% - 36px);
+    max-width: var(--max);
   }
 
   .brand img {
@@ -971,7 +979,74 @@ h3 {
   }
 
   h1 {
-    font-size: clamp(38px, 12vw, 54px);
+    font-size: clamp(28px, 7.8vw, 31px);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: clamp(29px, 8vw, 36px);
+    line-height: 1.16;
+  }
+
+  .lead {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .hero-text,
+  .hero-grid,
+  .two-column,
+  .founder-grid,
+  .careers-layout,
+  .contact-layout,
+  .faq-layout,
+  .icon-card,
+  .service-card,
+  .reason-card,
+  .opening-card,
+  .process-card,
+  .form-panel,
+  .side-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .hero-text {
+    max-width: 330px;
+  }
+
+  .hero-text .button-row,
+  .hero-text .button {
+    max-width: 100%;
+  }
+
+  .icon-card p,
+  .service-card p,
+  .reason-card p,
+  .process-card p {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .shell.hero-grid,
+  .shell.two-column,
+  .shell.founder-grid,
+  .shell.careers-layout,
+  .shell.contact-layout,
+  .shell.faq-layout,
+  .shell.opening-board {
+    width: calc(100% - 36px);
+    max-width: var(--max);
+  }
+
+  p,
+  .lead,
+  .body-copy {
+    font-size: 13px;
+    overflow-wrap: anywhere;
   }
 
   .button-row,
@@ -982,6 +1057,7 @@ h3 {
   }
 
   .button {
+    min-width: 0;
     width: 100%;
   }
 
