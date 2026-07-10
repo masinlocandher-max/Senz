@@ -4,6 +4,11 @@
   polishStylesheet.href = "components/launch-polish.css?v=20260710-launch";
   document.head.appendChild(polishStylesheet);
 
+  const glassNavigationStylesheet = document.createElement("link");
+  glassNavigationStylesheet.rel = "stylesheet";
+  glassNavigationStylesheet.href = "components/glass-nav.css?v=20260711-glass";
+  document.head.appendChild(glassNavigationStylesheet);
+
   const main = document.querySelector("main");
   if (main && !main.id) main.id = "main-content";
 
