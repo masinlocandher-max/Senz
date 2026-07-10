@@ -15,6 +15,13 @@ const siteOrigins = String(process.env.SITE_ORIGIN || "")
   .map((origin) => origin.trim())
   .filter(Boolean);
 const adminToken = process.env.ADMIN_TOKEN || "";
+const canonicalHost = process.env.CANONICAL_HOST || "www.senzpr.com";
+const redirectHosts = new Set(
+  String(process.env.REDIRECT_HOSTS || "senzpr.com")
+    .split(",")
+    .map((host) => host.trim().toLowerCase())
+    .filter(Boolean)
+);
 const supabaseUrl = String(process.env.SUPABASE_URL || "").replace(/\/$/, "");
 const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
 
@@ -288,6 +295,17 @@ function safeStaticPath(urlPath) {
   return filePath;
 }
 
+function redirectToCanonicalHost(req, res, url) {
+  const host = String(req.headers.host || "").split(":")[0].toLowerCase();
+  if (!canonicalHost || !redirectHosts.has(host)) return false;
+
+  const proto = req.headers["x-forwarded-proto"] || "https";
+  const location = `${proto}://${canonicalHost}${url.pathname}${url.search}`;
+  res.writeHead(308, { Location: location, "Cache-Control": "public, max-age=3600" });
+  res.end();
+  return true;
+}
+
 async function serveStatic(req, res, pathname) {
   let filePath = safeStaticPath(pathname);
   if (!filePath) {
@@ -313,6 +331,10 @@ async function serveStatic(req, res, pathname) {
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
+
+  if (redirectToCanonicalHost(req, res, url)) {
+    return;
+  }
 
   if (req.method === "OPTIONS") {
     res.writeHead(204, corsHeaders());
