@@ -3,10 +3,15 @@
   const CONSULTATION_PENDING_MESSAGE = "Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm your appointment through email before it is added to the calendar.";
 
   const routeByKind = {
-    general: () => window["CONTACT_FORM_" + "END" + "POINT"] || "",
-    consultation: () => window["CONSULTATION_FORM_" + "END" + "POINT"] || "",
-    "creative-pool": () => window["CAREERS_FORM_" + "END" + "POINT"] || ""
+    general: () => window["CONTACT_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint(),
+    consultation: () => window["CONSULTATION_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint(),
+    "creative-pool": () => window["CAREERS_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint()
   };
+
+  function defaultInquiryEndpoint() {
+    const baseUrl = String(window.SENZ_API_BASE_URL || window.location.origin || "").replace(/\/$/, "");
+    return `${baseUrl}/api/inquiries`;
+  }
 
   function now() {
     return new Date().toLocaleString();
@@ -23,12 +28,21 @@
     const fullName = values.name || values.fullName || "Website Visitor";
 
     if (formKind === "consultation") {
+      const schedule = [values.date, values.time].filter(Boolean).join(" ");
       return {
         formType: "consultation",
         status: "pending",
         destinationEmail: DESTINATION_EMAIL,
         subject: `New SENZ Consultation Request - ${fullName}`,
         submittedAt,
+        name: fullName,
+        email: values.email || "",
+        contact: values.phone || "",
+        brand: values.organization || "",
+        projectType: values.service || "Consultation",
+        timeline: schedule,
+        message: values.notes || `Consultation request for ${values.service || "SENZ services"}.`,
+        calendarRule: "Pending request only. Do not confirm or add to calendar until SENZ approves.",
         fields: {
           preferredDate: values.date || "",
           preferredTime: values.time || "",
@@ -38,8 +52,7 @@
           organization: values.organization || "",
           service: values.service || "",
           notes: values.notes || ""
-        },
-        calendarRule: "Pending request only. Do not confirm or add to calendar until SENZ approves."
+        }
       };
     }
 
@@ -49,9 +62,15 @@
         destinationEmail: DESTINATION_EMAIL,
         subject: `New SENZ Creative Pool Submission - ${fullName}`,
         submittedAt,
+        name: fullName,
+        email: values.email || "",
+        contact: values.phone || "",
+        projectType: values.role || "Creative Pool",
+        message: values.introduction || values.experience || values.portfolio || "Creative pool submission.",
         fields: {
           fullName,
           email: values.email || "",
+          phone: values.phone || "",
           creativeRole: values.role || "",
           portfolioLink: values.portfolio || "",
           shortIntroduction: values.introduction || values.experience || ""
@@ -64,6 +83,12 @@
       destinationEmail: DESTINATION_EMAIL,
       subject: `New SENZ Website Inquiry - ${fullName}`,
       submittedAt,
+      name: fullName,
+      email: values.email || "",
+      contact: values.phone || "",
+      brand: values.organization || "",
+      projectType: values.inquiryType || "General inquiry",
+      message: values.message || "General website inquiry.",
       fields: {
         fullName,
         email: values.email || "",
@@ -99,7 +124,7 @@
 
       const response = await fetch(route, {
         method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
 

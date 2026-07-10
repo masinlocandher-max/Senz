@@ -2,14 +2,14 @@
 
 PAGE: Contact Us
 ISSUE: Send Us A Message form has no production email endpoint.
-CURRENT STATUS: `CONTACT_FORM_ENDPOINT` exists in `components/site-config.js` but is blank. The form stays in prototype mode and does not fake email sending.
-NEEDED FIX: Add the deployed Google Apps Script Web App URL that sends `New SENZ Website Inquiry - [Full Name]` to `info.senz.pr@gmail.com`.
+CURRENT STATUS: `CONTACT_FORM_ENDPOINT` exists in `components/site-config.js` and may remain blank because the form now falls back to `SENZ_API_BASE_URL + /api/inquiries`. The Google Apps Script endpoint is optional only when routing outside the SENZ API.
+NEEDED FIX: Keep the deployed SENZ API healthy, or add a deployed Google Apps Script Web App URL if email-only routing is preferred.
 PRIORITY: High
 
 PAGE: Home, About, Services
 ISSUE: Book a Consultation modal has no production appointment request endpoint.
-CURRENT STATUS: `CONSULTATION_FORM_ENDPOINT` exists in `components/site-config.js` but is blank. The modal stays in prototype mode, shows the pending-review message, and does not fake email sending.
-NEEDED FIX: Add the deployed Google Apps Script Web App URL that sends `New SENZ Consultation Request - [Full Name]` to `info.senz.pr@gmail.com`.
+CURRENT STATUS: `CONSULTATION_FORM_ENDPOINT` exists in `components/site-config.js` and may remain blank because the modal now falls back to `SENZ_API_BASE_URL + /api/inquiries`. The Google Apps Script endpoint is optional only when routing outside the SENZ API.
+NEEDED FIX: Keep the deployed SENZ API healthy, or add a deployed Google Apps Script Web App URL if email-only routing is preferred.
 PRIORITY: High
 
 PAGE: Home, About, Services
@@ -20,20 +20,20 @@ PRIORITY: High
 
 PAGE: Careers
 ISSUE: Creative Pool / Submit Portfolio form has no production email endpoint.
-CURRENT STATUS: `CAREERS_FORM_ENDPOINT` exists in `components/site-config.js` but is blank. The form stays in prototype mode and does not fake email sending.
-NEEDED FIX: Add the deployed Google Apps Script Web App URL that sends `New SENZ Creative Pool Submission - [Full Name]` to `info.senz.pr@gmail.com`.
+CURRENT STATUS: `CAREERS_FORM_ENDPOINT` exists in `components/site-config.js` and may remain blank because the form now falls back to `SENZ_API_BASE_URL + /api/inquiries`. The Google Apps Script endpoint is optional only when routing outside the SENZ API.
+NEEDED FIX: Keep the deployed SENZ API healthy, or add a deployed Google Apps Script Web App URL if email-only routing is preferred.
 PRIORITY: High
 
 PAGE: All Approved Pages
 ISSUE: Endpoint placeholders are not filled.
-CURRENT STATUS: `CONTACT_FORM_ENDPOINT`, `CONSULTATION_FORM_ENDPOINT`, and `CAREERS_FORM_ENDPOINT` are intentionally blank until real Google Apps Script URLs are provided.
-NEEDED FIX: Paste the deployed endpoint URLs into `components/site-config.js` after the Google Apps Script backend is created.
+CURRENT STATUS: `CONTACT_FORM_ENDPOINT`, `CONSULTATION_FORM_ENDPOINT`, and `CAREERS_FORM_ENDPOINT` are intentionally optional. Blank values route to the deployed SENZ API configured by `SENZ_API_BASE_URL`.
+NEEDED FIX: Only paste deployed endpoint URLs into `components/site-config.js` if a form should bypass the SENZ API.
 PRIORITY: High
 
 PAGE: All Approved Pages
 ISSUE: Existing `/api/inquiries` backend is present but not wired to send email.
-CURRENT STATUS: `server.js` exposes `/api/inquiries` for saving inquiry records, but approved forms are prepared for Google Apps Script endpoint placeholders instead. No email service credentials are connected.
-NEEDED FIX: Prefer Google Apps Script as documented in `BACKEND_SETUP_INSTRUCTIONS.md`, or intentionally wire the existing Node endpoint to an email provider later.
+CURRENT STATUS: `server.js` exposes `/api/inquiries` for saving inquiry records, and approved forms now submit there by default when custom form endpoints are blank. No email service credentials are connected.
+NEEDED FIX: Keep `/api/inquiries` deployed for record capture, and intentionally wire email notifications later if required.
 PRIORITY: Medium
 
 PAGE: FAQ
