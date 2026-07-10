@@ -1,6 +1,8 @@
 (() => {
   const DESTINATION_EMAIL = "info.senz.pr@gmail.com";
-  const CONSULTATION_PENDING_MESSAGE = "Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm your appointment through email before it is added to the calendar.";
+  const REQUEST_TIMEOUT_MS = 20000;
+  const CONSULTATION_PENDING_MESSAGE = "Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm by email before anything is added to a calendar.";
+  const ERROR_MESSAGE = `We could not submit your request. Please try again or email ${DESTINATION_EMAIL}.`;
 
   const routeByKind = {
     general: () => window["CONTACT_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint(),
@@ -10,11 +12,11 @@
 
   function defaultInquiryEndpoint() {
     const baseUrl = String(window.SENZ_API_BASE_URL || window.location.origin || "").replace(/\/$/, "");
-    return `${baseUrl}/api/inquiries`;
+    return baseUrl ? `${baseUrl}/api/inquiries` : "";
   }
 
   function now() {
-    return new Date().toLocaleString();
+    return new Date().toISOString();
   }
 
   function valuesFrom(form) {
@@ -60,13 +62,13 @@
       return {
         formType: "creative-pool",
         destinationEmail: DESTINATION_EMAIL,
-        subject: `New SENZ Creative Pool Submission - ${fullName}`,
+        subject: `New SENZ Creative Network Submission - ${fullName}`,
         submittedAt,
         name: fullName,
         email: values.email || "",
         contact: values.phone || "",
-        projectType: values.role || "Creative Pool",
-        message: values.introduction || values.experience || values.portfolio || "Creative pool submission.",
+        projectType: values.role || "Creative Network",
+        message: values.introduction || values.experience || values.portfolio || "Creative network submission.",
         fields: {
           fullName,
           email: values.email || "",
@@ -101,10 +103,16 @@
     };
   }
 
-  function statusMessage(formKind, sent) {
+  function successMessage(formKind) {
     if (formKind === "consultation") return CONSULTATION_PENDING_MESSAGE;
-    if (formKind === "creative-pool") return "Thank you. Your portfolio has been received. SENZ will review your submission and keep your profile in mind for future opportunities.";
-    return "Thank you. Your message has been received. SENZ will review your inquiry and get back to you through email.";
+    if (formKind === "creative-pool") return "Thank you. Your profile has been received. SENZ will review it for relevant project-based opportunities.";
+    return "Thank you. Your message has been received. SENZ will review your inquiry and respond by email.";
+  }
+
+  function setStatus(statusEl, state, message) {
+    if (!statusEl) return;
+    statusEl.dataset.state = state;
+    statusEl.textContent = message;
   }
 
   async function submit(form, statusEl) {
@@ -112,32 +120,45 @@
     const route = routeByKind[formKind]?.() || "";
     const payload = buildPayload(form);
     const submitButton = form.querySelector('button[type="submit"]');
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+    if (!route) {
+      setStatus(statusEl, "error", ERROR_MESSAGE);
+      return { ok: false, reason: "Missing form endpoint." };
+    }
 
     if (submitButton) submitButton.disabled = true;
+    form.setAttribute("aria-busy", "true");
+    setStatus(statusEl, "sending", "Submitting your request securely…");
 
     try {
-      if (!route) {
-        console.info("SENZ form payload ready for connection.", payload);
-        if (statusEl) statusEl.textContent = statusMessage(formKind, false);
-        return { ok: false, pendingConnection: true, payload };
-      }
-
       const response = await fetch(route, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: controller.signal
       });
 
-      if (!response.ok) throw { message: `Form route returned ${response.status}` };
+      const responseBody = await response.json().catch(() => ({}));
+      if (!response.ok || responseBody.ok === false) {
+        const serverMessage = Array.isArray(responseBody.errors) ? responseBody.errors.join(" ") : "";
+        throw new Error(serverMessage || `Form route returned ${response.status}.`);
+      }
 
-      if (statusEl) statusEl.textContent = statusMessage(formKind, true);
+      setStatus(statusEl, "success", successMessage(formKind));
       form.reset();
-      return { ok: true };
+      return { ok: true, response: responseBody };
     } catch (reason) {
-      console.warn("SENZ form submission needs attention.", reason);
-      if (statusEl) statusEl.textContent = "Thank you. Your details have been received. SENZ will review your message and get back to you through email.";
+      console.warn("SENZ form submission failed.", reason);
+      const message = reason?.name === "AbortError"
+        ? `The request timed out. Please try again or email ${DESTINATION_EMAIL}.`
+        : ERROR_MESSAGE;
+      setStatus(statusEl, "error", message);
       return { ok: false, reason };
     } finally {
+      window.clearTimeout(timeout);
+      form.removeAttribute("aria-busy");
       if (submitButton) submitButton.disabled = false;
     }
   }
