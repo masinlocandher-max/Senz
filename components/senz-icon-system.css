@@ -24,10 +24,10 @@
 .icon-card .icon::before {
   content: "";
   position: absolute;
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(48, 123, 255, 0.15), rgba(48, 123, 255, 0));
+  background: radial-gradient(circle, rgba(48, 123, 255, 0.18), rgba(48, 123, 255, 0));
   filter: blur(2px);
   z-index: -1;
 }
@@ -46,21 +46,39 @@
   height: 52px;
   overflow: visible;
   fill: none;
-  stroke: url(#senz-icon-gradient);
-  stroke-width: 1.8;
+  color: #2451d9;
+  stroke: currentColor;
+  stroke-width: 1.85;
   stroke-linecap: round;
   stroke-linejoin: round;
   filter: drop-shadow(0 5px 10px rgba(36, 81, 217, 0.15));
 }
 
+.icon-card .icon svg .icon-secondary {
+  color: #6d9cff;
+  opacity: 0.76;
+}
+
 .icon-card .icon svg .icon-accent {
-  fill: rgba(48, 123, 255, 0.14);
+  fill: rgba(48, 123, 255, 0.15);
   stroke: #307bff;
 }
 
 .icon-card .icon svg .icon-dot {
   fill: #2451d9;
   stroke: none;
+}
+
+.icon-card .icon[data-senz-icon="messaging"] svg {
+  color: #1d60e7;
+}
+
+.icon-card .icon[data-senz-icon="presence"] svg {
+  color: #3158ca;
+}
+
+.icon-card .icon[data-senz-icon="influence"] svg {
+  color: #153eaa;
 }
 
 .icon-card:hover .icon {
