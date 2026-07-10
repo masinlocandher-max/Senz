@@ -3,7 +3,7 @@
 This repository is configured for the canonical host:
 
 ```text
-www.senzpr.com
+senzpr.com
 ```
 
 ## Required DNS records
@@ -12,11 +12,13 @@ Create or verify these records at the DNS provider for `senzpr.com`:
 
 | Host | Type | Value | Purpose |
 | --- | --- | --- | --- |
-| `www` | `CNAME` | the active hosting target for this site | Serves `https://www.senzpr.com` |
-| `@` | `A`, `ALIAS`, or `ANAME` | the active hosting target for this site | Keeps `https://senzpr.com` reachable and redirectable |
+| `@` | `A`, `ALIAS`, or `ANAME` | the active hosting target for this site | Serves `https://senzpr.com` as the primary website |
+| `www` | `CNAME` | the active hosting target or `masinlocandher-max.github.io` when using GitHub Pages | Allows `https://www.senzpr.com` to redirect to the primary domain |
 
-If the site is published with GitHub Pages, use GitHub Pages' documented apex `A` records for `@` and a `CNAME` from `www` to the GitHub Pages host. If the site is published with Render, add both `senzpr.com` and `www.senzpr.com` as custom domains in Render and copy Render's DNS targets into these records.
+For GitHub Pages, keep the repository `CNAME` set to `senzpr.com`, use GitHub Pages' documented apex `A` records for `@`, and point `www` to `masinlocandher-max.github.io` with a CNAME record.
+
+For Render, add both `senzpr.com` and `www.senzpr.com` as custom domains and copy Render's exact DNS targets into the DNS provider.
 
 ## Canonical URL behavior
 
-The checked-in `CNAME` file uses `www.senzpr.com`, and the Node server redirects `senzpr.com` requests to `www.senzpr.com` so both versions resolve to the same public website.
+The primary public address is `https://senzpr.com`. The `www` version should redirect to the apex domain after its DNS record is correctly connected.
