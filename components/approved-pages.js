@@ -19,6 +19,11 @@
   mobileAppStylesheet.href = "components/mobile-app-shell.css?v=20260712-iphone";
   document.head.appendChild(mobileAppStylesheet);
 
+  const mobileServicesStylesheet = document.createElement("link");
+  mobileServicesStylesheet.rel = "stylesheet";
+  mobileServicesStylesheet.href = "components/mobile-services-shell.css?v=20260712-iphone";
+  document.head.appendChild(mobileServicesStylesheet);
+
   const viewport = document.querySelector('meta[name="viewport"]');
   if (viewport && !viewport.content.includes("viewport-fit=cover")) {
     viewport.content = `${viewport.content}, viewport-fit=cover`;
@@ -238,8 +243,11 @@
 
       if (item.action === "menu") {
         element.addEventListener("click", () => {
+          const isOpening = !navShell?.classList.contains("nav-open");
           navToggle?.click();
-          window.setTimeout(() => navLinks?.querySelector("a")?.focus(), 0);
+          if (isOpening) {
+            window.setTimeout(() => navLinks?.querySelector("a")?.focus(), 0);
+          }
         });
       }
 
