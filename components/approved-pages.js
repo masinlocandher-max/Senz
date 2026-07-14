@@ -14,6 +14,42 @@
   iconSystemStylesheet.href = "components/senz-icon-system.css?v=20260711-concepts";
   document.head.appendChild(iconSystemStylesheet);
 
+  const mobileAppStylesheet = document.createElement("link");
+  mobileAppStylesheet.rel = "stylesheet";
+  mobileAppStylesheet.href = "components/mobile-app-shell.css?v=20260712-iphone";
+  document.head.appendChild(mobileAppStylesheet);
+
+  const mobileServicesStylesheet = document.createElement("link");
+  mobileServicesStylesheet.rel = "stylesheet";
+  mobileServicesStylesheet.href = "components/mobile-services-shell.css?v=20260712-iphone";
+  document.head.appendChild(mobileServicesStylesheet);
+
+  const viewport = document.querySelector('meta[name="viewport"]');
+  if (viewport && !viewport.content.includes("viewport-fit=cover")) {
+    viewport.content = `${viewport.content}, viewport-fit=cover`;
+  }
+
+  const mobileMeta = [
+    ["apple-mobile-web-app-capable", "yes"],
+    ["apple-mobile-web-app-status-bar-style", "default"],
+    ["apple-mobile-web-app-title", "SENZ"]
+  ];
+
+  mobileMeta.forEach(([name, content]) => {
+    if (document.querySelector(`meta[name="${name}"]`)) return;
+    const meta = document.createElement("meta");
+    meta.name = name;
+    meta.content = content;
+    document.head.appendChild(meta);
+  });
+
+  if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+    const appleTouchIcon = document.createElement("link");
+    appleTouchIcon.rel = "apple-touch-icon";
+    appleTouchIcon.href = "assets/senz-original-mark.png";
+    document.head.appendChild(appleTouchIcon);
+  }
+
   const conceptIcons = {
     positioning: `
       <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -68,10 +104,12 @@
 
   const navShell = document.querySelector(".site-header .nav");
   const navLinks = navShell?.querySelector(".nav-links");
+  let navToggle = null;
+  let closeNavigation = () => {};
 
   if (navShell && navLinks && !navShell.querySelector(".nav-toggle")) {
     navLinks.id = navLinks.id || "primary-navigation";
-    const navToggle = document.createElement("button");
+    navToggle = document.createElement("button");
     navToggle.type = "button";
     navToggle.className = "nav-toggle";
     navToggle.setAttribute("aria-label", "Open navigation");
@@ -80,7 +118,7 @@
     navToggle.innerHTML = "<span></span>";
     navShell.insertBefore(navToggle, navLinks);
 
-    const closeNavigation = () => {
+    closeNavigation = () => {
       navShell.classList.remove("nav-open");
       navToggle.setAttribute("aria-expanded", "false");
       navToggle.setAttribute("aria-label", "Open navigation");
@@ -99,6 +137,8 @@
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeNavigation();
     });
+  } else {
+    navToggle = navShell?.querySelector(".nav-toggle") || null;
   }
 
   const modal = document.querySelector("#consultModal");
@@ -106,9 +146,11 @@
 
   function openConsultation() {
     if (!modal) return;
+    closeNavigation();
     lastFocusedElement = document.activeElement;
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("consultation-open");
     document.body.style.overflow = "hidden";
     window.setTimeout(() => modal.querySelector("input, select, textarea, button")?.focus(), 0);
   }
@@ -117,6 +159,7 @@
     if (!modal) return;
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("consultation-open");
     document.body.style.overflow = "";
     lastFocusedElement?.focus?.();
   }
@@ -136,6 +179,83 @@
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && modal?.classList.contains("is-open")) closeConsultation();
   });
+
+  const currentPage = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+
+  if (!document.querySelector(".mobile-app-dock")) {
+    const mobileDock = document.createElement("nav");
+    mobileDock.className = "mobile-app-dock";
+    mobileDock.setAttribute("aria-label", "Mobile navigation");
+
+    const dockItems = [
+      {
+        label: "Home",
+        href: "index.html",
+        pages: ["", "index.html"],
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 10 8-6 8 6v9H4Z"/><path d="M9 19v-6h6v6"/></svg>'
+      },
+      {
+        label: "Services",
+        href: "services.html",
+        pages: ["services.html"],
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="2"/><rect x="14" y="4" width="6" height="6" rx="2"/><rect x="4" y="14" width="6" height="6" rx="2"/><rect x="14" y="14" width="6" height="6" rx="2"/></svg>'
+      },
+      {
+        label: "Start",
+        action: "consult",
+        primary: true,
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>'
+      },
+      {
+        label: "About",
+        href: "about.html",
+        pages: ["about.html"],
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5.5 20c.8-4 3-6 6.5-6s5.7 2 6.5 6"/></svg>'
+      },
+      {
+        label: "More",
+        action: "menu",
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>'
+      }
+    ];
+
+    dockItems.forEach((item) => {
+      const element = item.href ? document.createElement("a") : document.createElement("button");
+      element.className = "mobile-app-dock__item";
+      if (item.primary) element.classList.add("mobile-app-dock__item--primary");
+
+      if (item.href) {
+        element.href = item.href;
+        if (item.pages.includes(currentPage)) {
+          element.classList.add("is-active");
+          element.setAttribute("aria-current", "page");
+        }
+      } else {
+        element.type = "button";
+      }
+
+      element.setAttribute("aria-label", item.label);
+      element.innerHTML = `${item.icon}<span>${item.label}</span>`;
+
+      if (item.action === "consult") {
+        element.addEventListener("click", openConsultation);
+      }
+
+      if (item.action === "menu") {
+        element.addEventListener("click", () => {
+          const isOpening = !navShell?.classList.contains("nav-open");
+          navToggle?.click();
+          if (isOpening) {
+            window.setTimeout(() => navLinks?.querySelector("a")?.focus(), 0);
+          }
+        });
+      }
+
+      mobileDock.appendChild(element);
+    });
+
+    document.body.appendChild(mobileDock);
+  }
 
   const today = new Date();
   const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split("T")[0];
