@@ -46,12 +46,17 @@ drop policy if exists "service role manages inquiries" on public.inquiries;
 create policy "service role manages inquiries"
   on public.inquiries
   for all
-  using (auth.role() = 'service_role')
-  with check (auth.role() = 'service_role');
+  to service_role
+  using (true)
+  with check (true);
 
 drop policy if exists "service role manages ebook orders" on public.ebook_orders;
 create policy "service role manages ebook orders"
   on public.ebook_orders
   for all
-  using (auth.role() = 'service_role')
-  with check (auth.role() = 'service_role');
+  to service_role
+  using (true)
+  with check (true);
+
+revoke all on public.inquiries, public.ebook_orders from anon, authenticated;
+grant all on public.inquiries, public.ebook_orders to service_role;
