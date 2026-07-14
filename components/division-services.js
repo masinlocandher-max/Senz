@@ -180,6 +180,7 @@
     fillList(bestFor, division.bestFor);
     fillList(services, division.services);
     fillList(outputs, division.outputs);
+    modal.removeAttribute("inert");
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -189,6 +190,7 @@
   const closeModal = () => {
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute("inert", "");
     document.body.style.overflow = "";
     lastFocusedElement?.focus?.();
   };

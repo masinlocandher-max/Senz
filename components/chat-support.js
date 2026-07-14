@@ -9,7 +9,7 @@
     },
     {
       match: ['price', 'pricing', 'cost', 'rate', 'budget'],
-      reply: 'Pricing depends on the service path, scope, timeline, and level of production. For general inquiries, use Contact Us. For a focused project discussion, use the Book a Consultation button in the Home, About, or Services hero.'
+      reply: 'Pricing depends on the service path, scope, timeline, and level of production. For general inquiries, use Contact Us or email info.senz.pr@gmail.com. For a focused project discussion, use the consultation button in the Home, About, or Services hero.'
     },
     {
       match: ['website', 'digital presence', 'web'],
@@ -33,7 +33,7 @@
     },
     {
       match: ['clone', 'assistant', 'representative', 'music', 'voting', 'tabulation', 'ticket'],
-      reply: 'Digital products include music assets, consent-based Clone Studio, voting/tabulation and ticketing platforms, and Digital Assistants or Digital Representatives. SENZ can recommend the best product path after a quick inquiry.'
+      reply: 'Digital products include SENZ FotoLab, Digital Assistants, client portals, event systems, consent-based Digital Representatives, and the SENZ Music platform. Current availability depends on the product stage and project scope. Inquiries go to info.senz.pr@gmail.com.'
     },
     {
       match: ['contact', 'email', 'message', 'book', 'consultation'],

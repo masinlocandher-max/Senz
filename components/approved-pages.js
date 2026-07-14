@@ -1,7 +1,7 @@
 (() => {
   const polishStylesheet = document.createElement("link");
   polishStylesheet.rel = "stylesheet";
-  polishStylesheet.href = "components/launch-polish.css?v=20260710-launch";
+  polishStylesheet.href = "components/launch-polish.css?v=20260714-progress";
   document.head.appendChild(polishStylesheet);
 
   const glassNavigationStylesheet = document.createElement("link");
@@ -94,6 +94,28 @@
   const main = document.querySelector("main");
   if (main && !main.id) main.id = "main-content";
 
+  if (!document.querySelector(".site-progress-banner")) {
+    const progressBanner = document.createElement("aside");
+    progressBanner.className = "site-progress-banner";
+    progressBanner.setAttribute("aria-label", "SENZ website update notice");
+
+    const bannerMessage = `
+      <span class="site-progress-banner__status">Live site refinement in progress</span>
+      <span>Services and inquiry channels remain available</span>
+      <span>Explore SENZ Strategic Communications, six specialist divisions, and digital products</span>
+      <a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a>
+    `;
+
+    progressBanner.innerHTML = `
+      <div class="site-progress-banner__track">
+        <div class="site-progress-banner__group">${bannerMessage}</div>
+        <div class="site-progress-banner__group" aria-hidden="true">${bannerMessage}</div>
+      </div>
+    `;
+
+    document.body.prepend(progressBanner);
+  }
+
   if (main && !document.querySelector(".skip-link")) {
     const skipLink = document.createElement("a");
     skipLink.className = "skip-link";
@@ -148,6 +170,7 @@
     if (!modal) return;
     closeNavigation();
     lastFocusedElement = document.activeElement;
+    modal.removeAttribute("inert");
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("consultation-open");
@@ -159,6 +182,7 @@
     if (!modal) return;
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute("inert", "");
     document.body.classList.remove("consultation-open");
     document.body.style.overflow = "";
     lastFocusedElement?.focus?.();
@@ -181,6 +205,13 @@
   });
 
   const currentPage = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+
+  const interest = new URLSearchParams(window.location.search).get("interest");
+  const inquiryType = document.querySelector('select[name="inquiryType"]');
+  if (interest && inquiryType) {
+    const matchingOption = Array.from(inquiryType.options).find((option) => option.value === interest);
+    if (matchingOption) inquiryType.value = matchingOption.value;
+  }
 
   if (!document.querySelector(".mobile-app-dock")) {
     const mobileDock = document.createElement("nav");
