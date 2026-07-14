@@ -5,6 +5,73 @@
   outline-offset: 4px;
 }
 
+.site-progress-banner {
+  position: relative;
+  z-index: 80;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(143, 211, 255, 0.25);
+  background: var(--deep-navy);
+  color: #fff;
+}
+
+.site-progress-banner__track {
+  display: flex;
+  width: max-content;
+  animation: senz-progress-scroll 30s linear infinite;
+}
+
+.site-progress-banner__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 34px;
+  min-height: 42px;
+  padding: 8px 17px;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-progress-banner__group > *::before {
+  content: "•";
+  margin-right: 34px;
+  color: #8fd3ff;
+}
+
+.site-progress-banner__status {
+  color: #8fd3ff;
+  font-weight: 900;
+}
+
+.site-progress-banner a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@keyframes senz-progress-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-progress-banner__track {
+    width: 100%;
+    animation: none;
+  }
+
+  .site-progress-banner__group {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .site-progress-banner__group[aria-hidden="true"] {
+    display: none;
+  }
+}
+
 .skip-link {
   position: fixed;
   left: 18px;

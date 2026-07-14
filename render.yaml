@@ -12,9 +12,9 @@ services:
       - key: SITE_ORIGIN
         value: https://senzpr.com,https://www.senzpr.com
       - key: CANONICAL_HOST
-        value: senzpr.com
-      - key: REDIRECT_HOSTS
         value: www.senzpr.com
+      - key: REDIRECT_HOSTS
+        value: senzpr.com
       - key: ADMIN_TOKEN
         generateValue: true
       - key: SUPABASE_URL
