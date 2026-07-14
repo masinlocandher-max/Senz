@@ -305,11 +305,12 @@ h3 {
 }
 
 .image-founder {
-  --image: url("../assets/fmb-founder-office-full.jpg");
+  --image: url("../assets/francine-marie-bautista-senz-founder.jpg");
+  aspect-ratio: 4 / 5;
 }
 
 .image-founder::before {
-  background-position: center 18%;
+  background-position: center;
 }
 
 .image-services {
