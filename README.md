@@ -2,7 +2,7 @@
 
 > **Repository status: Legacy mirror**
 >
-> The active SENZ source is now maintained in `masinlocandher-max/Withlovefmb` under `apps/senz`.
+> The active SENZ source is now maintained in `masinlocandher-max/FMB-Ecosystem` under `apps/senz`.
 >
 > Do not make new production changes in this standalone repository. Keep it as a temporary historical backup until the monorepo deployment and file-parity checks are complete. Never commit environment files, API secrets, database credentials, or private client data here.
 
@@ -94,7 +94,7 @@ Creative Director | Strategist | Storyteller
 This legacy repository preserves an earlier standalone SENZ codebase and project history. The governed source of truth is now:
 
 ```text
-masinlocandher-max/Withlovefmb
+masinlocandher-max/FMB-Ecosystem
 └── apps/senz
 ```
 
