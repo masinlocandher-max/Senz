@@ -96,6 +96,8 @@
       contact: values.phone || "",
       brand: values.organization || "",
       projectType: values.inquiryType || "General inquiry",
+      timeline: values.timeline || "",
+      budget: values.budget || "",
       message: values.message || "General website inquiry.",
       ...antiSpam,
       fields: {
@@ -105,6 +107,8 @@
         organization: values.organization || "",
         position: values.position || "",
         inquiryType: values.inquiryType || "",
+        timeline: values.timeline || "",
+        investmentRange: values.budget || "",
         message: values.message || ""
       }
     };
@@ -113,7 +117,7 @@
   function successMessage(formKind) {
     if (formKind === "consultation") return CONSULTATION_PENDING_MESSAGE;
     if (formKind === "creative-pool") return "Thank you. Your profile has been received. SENZ will review it for relevant project-based opportunities.";
-    return "Thank you. Your message has been received. SENZ will review your inquiry and respond by email.";
+    return "Thank you. Your request has been received. SENZ will review the commercial fit and respond by email with the strongest next step.";
   }
 
   function setStatus(statusEl, state, message) {
