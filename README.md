@@ -1,4 +1,4 @@
-# SENZ Strategic Communications
+# SENZ Strategic Communications and Digital Solutions
 
 > **Repository status: Canonical source**
 >
@@ -32,31 +32,15 @@ Our approach combines:
 
 ---
 
-## Divisions
+## Brand architecture
 
-### SENZ Music
+- **FMB&CO:** parent brand.
+- **SENZ:** strategic communications and digital solutions for direct clients.
+- **SENZ Partner Program:** independent-business enablement and distribution through eligible products, resources and agreed support. Its application remains in `masinlocandher-max/Fmbamdcopartnership`.
 
-Music production, songwriting, audio branding, and emotional storytelling.
+The direct-client website must not sell partner membership as a discounted client project. Partner pricing and products are separate. Paid registration is not open in the reviewed partner source; use `about.html#partner-program` for public information until the partner domain and launch are verified.
 
-### SENZ Digital
-
-Web development, digital platforms, online experiences, and technology solutions.
-
-### SENZ Marketing
-
-Campaign strategy, content systems, audience growth, and brand promotion.
-
-### SENZ Imaging
-
-Photography, visual storytelling, creative production, and media creation.
-
-### SENZ Kits
-
-Creative resources, templates, communication tools, and brand assets.
-
-### SENZ Strategic PR
-
-Public relations, reputation management, messaging, media strategy, and narrative development.
+Communications, PR, digital, marketing, imaging, music and kits are capabilities within SENZ, not separate businesses the visitor must navigate. See [BRAND_GUIDE.md](BRAND_GUIDE.md).
 
 ---
 
