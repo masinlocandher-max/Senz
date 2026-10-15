@@ -1,10 +1,10 @@
 # SENZ Strategic Communications
 
-> **Repository status: Legacy mirror**
+> **Repository status: Canonical source**
 >
-> The active SENZ source is now maintained in `masinlocandher-max/FMB-Ecosystem` under `apps/senz`.
+> `masinlocandher-max/Senz`, branch `main`, repository root, is the source of truth for `www.senzpr.com` and `senzpr.com`.
 >
-> Do not make new production changes in this standalone repository. Keep it as a temporary historical backup until the monorepo deployment and file-parity checks are complete. Never commit environment files, API secrets, database credentials, or private client data here.
+> Make SENZ website and application changes here. The copy at `FMB-Ecosystem/apps/senz` is not the production source and must not supersede this repository. Never commit environment files, API secrets, database credentials, or private client data here.
 
 **Influence Through Clarity.**
 
@@ -91,12 +91,19 @@ Creative Director | Strategist | Storyteller
 
 ## Repository purpose
 
-This legacy repository preserves an earlier standalone SENZ codebase and project history. The governed source of truth is now:
+This is the independent, canonical SENZ codebase. Its source contract is recorded in `source-of-truth.json`; contributor instructions are in `AGENTS.md` and publishing evidence is in `DEPLOYMENT.md`.
 
 ```text
-masinlocandher-max/FMB-Ecosystem
-└── apps/senz
+masinlocandher-max/Senz
+branch: main
+source root: .
+canonical domain: www.senzpr.com
+additional domain: senzpr.com
 ```
+
+Run `npm run check` and `npm test` before merging. Source validation checks repository metadata and the committed domain configuration; it does not change DNS, prove live routing, or replace GitHub Pages deployment checks.
+
+The existing GitHub Pages publication from this repository is preserved. No website redesign or hosting migration is part of this source correction.
 
 ---
 

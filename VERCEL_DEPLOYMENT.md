@@ -1,48 +1,15 @@
-# SENZ Vercel Deployment
+# SENZ: optional future Vercel deployment
 
-The repository uses a custom Node.js HTTP server (`server.js`) and static HTML, CSS, JavaScript, and image assets. Vercel should import it using the **Other** framework preset. The included `vercel.json` already sets this preset.
+**The verified publisher is GitHub Pages from `masinlocandher-max/Senz`, branch `main`, repository root. See `DEPLOYMENT.md`. No Vercel migration is required to make this repository canonical.**
 
-## Import settings
+This file is not evidence that Vercel currently serves either SENZ domain. Do not create a second production project, move domains, or reconfigure an unrelated FMB project solely because this repository contains `vercel.json`.
 
-- Repository: `masinlocandher-max/Senz`
-- Production branch: `main`
-- Root directory: repository root
-- Framework preset: Other
-- Install command: `npm install`
-- Build command: leave empty
-- Output directory: leave empty
-- Node.js: use a currently supported Node.js version compatible with `>=18`
+## Requirements for a separately approved migration
 
-## Required environment variables
+Use `masinlocandher-max/Senz` as the Git source, never `FMB-Ecosystem/apps/senz`. Inspect the current project's Git connection, domain assignments, build settings, and rollback target before any change.
 
-Configure these in Vercel Project Settings before testing the inquiry form:
+Preserve all existing public pages, assets, URLs, form behavior, and the canonical host `www.senzpr.com`. Test a preview before moving traffic. The current standalone Node server must be deliberately adapted and tested for any serverless runtime; an empty build command or the Other framework preset does not by itself make that server operational.
 
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
-- `ADMIN_TOKEN`
-- `SITE_ORIGIN`
-- `CANONICAL_HOST`
-- `REDIRECT_HOSTS`
+The current inquiry implementation is email-only. Do not provision a database or add Supabase service-role credentials merely to follow old deployment notes. Any required server-side configuration belongs in the destination provider's settings, not in Git, static output, or chat.
 
-Recommended production values:
-
-```text
-SITE_ORIGIN=https://www.senzpr.com
-CANONICAL_HOST=www.senzpr.com
-REDIRECT_HOSTS=senzpr.com
-```
-
-Never commit the Supabase service-role key or admin token to GitHub. Store them only as encrypted Vercel environment variables.
-
-## Important storage note
-
-The server currently falls back to `data/inquiries.jsonl` when Supabase is not configured. Vercel Functions do not provide persistent project-file storage, so production inquiry submissions must use Supabase. A successful page deployment does not by itself verify that inquiry storage is working.
-
-## Verification after deployment
-
-1. Open the Vercel preview on an iPhone-sized viewport.
-2. Check Home, About, Services, Creative Network, Contact, and FAQ.
-3. Open and close the mobile navigation and the consultation bottom sheet.
-4. Submit a test inquiry and confirm the new record appears in Supabase.
-5. Open `/api/health` and confirm it returns an `ok` response.
-6. Connect `senzpr.com` and `www.senzpr.com` only after the preview passes the checks above.
+Before a production cutover, verify the exact Senz commit, static routes, API routes where applicable, inquiry delivery, allowed origins, HTTPS, redirects, and rollback. Keep the GitHub Pages publisher unchanged until the replacement is proven and the migration is authorized.
