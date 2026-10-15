@@ -1,36 +1,15 @@
-# SENZ Services
+# SENZ Solutions
 
-## Strategic Communications
-- Brand positioning
-- Messaging strategy
-- Communication planning
-- Reputation management
+Direct-client solutions, as presented on `solutions.html`:
 
-## Creative Direction
-- Brand identity systems
-- Campaign concepts
-- Visual direction
-- Story development
+1. Strategic communications and positioning
+2. PR and reputation
+3. Websites and digital presence
+4. Applications and business systems
+5. Content videos and marketing kits
+6. Scoped business automation
+7. Ongoing support (SENZ Care, SENZ Growth, SENZ Authority Management)
 
-## Digital
-- Website development
-- Digital platforms
-- Online experiences
-- Content systems
+Partner categories (SENZ Partners): applications, websites, content videos, marketing kits, business automation.
 
-## Media Production
-- Photography
-- Video production
-- Music production
-- Visual storytelling
-
-## Public Relations
-- PR strategy
-- Media relations
-- Narrative building
-- Public perception management
-
-## Marketing
-- Campaign development
-- Social media strategy
-- Audience growth systems
+See `PRICING.md` for published starting benchmarks and `ECOSYSTEM.md` for how the two channels fit together.

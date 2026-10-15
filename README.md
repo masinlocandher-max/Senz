@@ -5,6 +5,8 @@
 > The active SENZ source is now maintained in `masinlocandher-max/FMB-Ecosystem` under `apps/senz`.
 >
 > Do not make new production changes in this standalone repository. Keep it as a temporary historical backup until the monorepo deployment and file-parity checks are complete. Never commit environment files, API secrets, database credentials, or private client data here.
+>
+> **Note (15 October 2026):** the unified SENZ ecosystem work is on branch `claude/senz-unified-ecosystem` in this repository, because the GitHub Pages `CNAME` deploys `www.senzpr.com` from here and the monorepo was not accessible. Read [ECOSYSTEM.md](ECOSYSTEM.md) before merging; the owner must decide which repository is the deploy source.
 
 **Influence Through Clarity.**
 

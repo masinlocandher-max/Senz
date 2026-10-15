@@ -1,0 +1,45 @@
+/* SENZ shared header and footer. Every selector is prefixed `sz-` so this file can load
+   alongside the older approved-pages.css on content pages without conflicts.
+   Brand tokens: Navy #0A1730, Blue #2451D9, Cyan #8FD3FF. */
+.sz-header,.sz-footer{--sz-navy:#0A1730;--sz-blue:#2451D9;--sz-blue-dark:#1A3DA8;--sz-cyan:#8FD3FF;--sz-line:#DDE3EC;font-family:Montserrat,'Segoe UI',Arial,sans-serif;line-height:1.5}
+.sz-header *,.sz-footer *{box-sizing:border-box}
+.sz-skip{position:absolute;left:-999px;top:8px;z-index:200;background:#0A1730;color:#fff;padding:10px 14px;border-radius:6px;font-family:Montserrat,Arial,sans-serif}
+.sz-skip:focus{left:8px}
+.sz-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--sz-line);color:var(--sz-navy)}
+.sz-header-row{width:min(1180px,100% - 32px);margin:0 auto;display:flex;align-items:center;gap:20px;min-height:72px}
+.sz-brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--sz-navy);flex:none}
+.sz-brand img{width:26px;height:auto;display:block}
+.sz-brand-name{display:flex;flex-direction:column;line-height:1.05;font-weight:700;font-size:1.15rem;letter-spacing:.08em}
+.sz-brand-name small{font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sz-blue);margin-top:3px}
+.sz-nav{margin-left:auto;display:flex;align-items:center;gap:22px}
+.sz-nav-links{display:flex;align-items:center;gap:22px;list-style:none;margin:0;padding:0}
+.sz-nav-links a{color:var(--sz-navy);text-decoration:none;font-size:.92rem;font-weight:500;padding:6px 0;border-bottom:2px solid transparent}
+.sz-nav-links a:hover,.sz-nav-links a[aria-current=page]{border-bottom-color:var(--sz-blue)}
+.sz-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border-radius:8px;background:var(--sz-blue);color:#fff!important;font-weight:600;font-size:.9rem;text-decoration:none;white-space:nowrap}
+.sz-cta:hover{background:var(--sz-blue-dark)}
+.sz-menu-button{display:none;margin-left:auto;min-height:44px;padding:8px 14px;border:1px solid var(--sz-line);border-radius:8px;background:#fff;color:var(--sz-navy);font:600 .9rem Montserrat,Arial,sans-serif;cursor:pointer}
+.sz-header a:focus-visible,.sz-header button:focus-visible,.sz-footer a:focus-visible{outline:3px solid var(--sz-blue);outline-offset:3px}
+@media (max-width:1000px){
+ .js .sz-menu-button{display:inline-flex;align-items:center;gap:8px}
+ .sz-header-row{flex-wrap:wrap;min-height:64px;padding:8px 0}
+ .sz-brand{flex:1 1 0;min-width:0}
+ .sz-brand-name small{font-size:.56rem;letter-spacing:.08em;line-height:1.35}
+ .sz-nav{width:100%;flex-direction:column;align-items:stretch;gap:12px;padding:8px 0 16px}
+ .js .sz-nav{display:none}
+ .js .sz-header.is-open .sz-nav{display:flex}
+ .sz-nav-links{flex-direction:column;align-items:stretch;gap:0}
+ .sz-nav-links a{display:block;padding:12px 4px;border-bottom:1px solid var(--sz-line)}
+ .sz-nav-links a[aria-current=page]{color:var(--sz-blue);border-bottom-color:var(--sz-line);font-weight:700}
+}
+.sz-footer{background:var(--sz-navy);color:#fff;padding:56px 0 32px;margin-top:0}
+.sz-footer-grid{width:min(1180px,100% - 32px);margin:0 auto;display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px}
+.sz-footer .sz-brand{color:#fff}
+.sz-footer .sz-brand-name small{color:var(--sz-cyan)}
+.sz-footer p{color:#C8D4E6;font-size:.9rem;margin:14px 0 0}
+.sz-footer h2{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sz-cyan);margin:0 0 12px;font-weight:700}
+.sz-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.sz-footer a{color:#E3EAF5;font-size:.9rem;text-decoration:none}
+.sz-footer a:hover{text-decoration:underline}
+.sz-footer-base{width:min(1180px,100% - 32px);margin:40px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.8rem;color:#AFC0D8}
+@media (max-width:820px){.sz-footer-grid{grid-template-columns:1fr 1fr}.sz-footer-grid>div:first-child{grid-column:1/-1}}
+@media (max-width:420px){.sz-footer-grid{grid-template-columns:1fr}}
