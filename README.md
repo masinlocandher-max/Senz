@@ -38,7 +38,7 @@ Our approach combines:
 - **SENZ:** strategic communications and digital solutions for direct clients.
 - **SENZ Partner Program:** independent-business enablement and distribution through eligible products, resources and agreed support. Its application remains in `masinlocandher-max/Fmbamdcopartnership`.
 
-The direct-client website must not sell partner membership as a discounted client project. Partner pricing and products are separate. Paid registration is not open in the reviewed partner source; use `about.html#partner-program` for public information until the partner domain and launch are verified.
+The direct-client website must not sell partner membership as a discounted client project. Partner pricing and products are separate. Position the Partner Program as an ongoing initiative, with current actions and product-specific availability. Online paid checkout remains unavailable in the reviewed source. Use `about.html#partner-program` for public information until the partner domain is verified.
 
 Communications, PR, digital, marketing, imaging, music and kits are capabilities within SENZ, not separate businesses the visitor must navigate. See [BRAND_GUIDE.md](BRAND_GUIDE.md).
 
