@@ -297,11 +297,11 @@ h3 {
 }
 
 .image-home {
-  --image: url("../assets/senz-premium-workspace-hero.png");
+  --image: url("../assets/senz-strategy-v2.webp");
 }
 
 .image-about {
-  --image: url("../assets/senz-tour-strategy-wall.png");
+  --image: url("../assets/senz-strategy-v2.webp");
 }
 
 .image-founder {
@@ -362,7 +362,7 @@ h3 {
 .mini-image {
   min-height: 74px;
   box-shadow: none;
-  --image: url("../assets/senz-premium-workspace-hero.png");
+  --image: url("../assets/senz-strategy-v2.webp");
 }
 
 .center-head {
