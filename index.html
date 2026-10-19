@@ -23,18 +23,66 @@
   <link rel="stylesheet" href="components/approved-pages.css?v=20260822-revenue-funnel" />
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "SENZ Strategic Communications",
-    "alternateName": "SENZ",
-    "parentOrganization": { "@type": "Organization", "name": "FMB&CO" },
-    "url": "https://www.senzpr.com/",
-    "logo": "https://www.senzpr.com/assets/senz-original-mark.png",
-    "description": "A strategic communications and digital solutions firm in the Philippines helping organizations strengthen positioning, visibility, reputation, websites, conversion paths, and digital systems.",
-    "email": "info.senz.pr@gmail.com",
-    "founder": { "@type": "Person", "name": "Francine Marie Bautista" },
-    "areaServed": { "@type": "Country", "name": "Philippines" }
-  }
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "SENZ Strategic Communications",
+      "alternateName": "SENZ",
+      "parentOrganization": {
+        "@id": "https://francinemariebautista.com/#fmbco"
+      },
+      "url": "https://www.senzpr.com/",
+      "logo": "https://www.senzpr.com/assets/senz-original-mark.png",
+      "description": "A strategic communications and digital solutions firm in the Philippines helping organizations strengthen positioning, visibility, reputation, websites, conversion paths, and digital systems.",
+      "email": "info.senz.pr@gmail.com",
+      "founder": {
+        "@id": "https://francinemariebautista.com/#person"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Philippines"
+      },
+      "@id": "https://www.senzpr.com/#organization"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://francinemariebautista.com/#person",
+      "name": "Francine Marie Bautista",
+      "alternateName": [
+        "FMB",
+        "Francine Bautista"
+      ],
+      "url": "https://francinemariebautista.com/",
+      "jobTitle": "Strategic Communications Consultant | Founder, SENZ Strategic Communications & FMB&CO",
+      "homeLocation": {
+        "@type": "Place",
+        "name": "Masinloc, Zambales, Philippines"
+      },
+      "worksFor": [
+        {
+          "@id": "https://www.senzpr.com/#organization"
+        },
+        {
+          "@id": "https://francinemariebautista.com/#fmbco"
+        }
+      ],
+      "sameAs": [
+        "https://francinemariebautista.com/profile/",
+        "https://www.linkedin.com/in/francine-marie-bautista-23437a3b5",
+        "https://www.facebook.com/Binibiningfmb"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://francinemariebautista.com/#fmbco",
+      "name": "FMB&CO",
+      "founder": {
+        "@id": "https://francinemariebautista.com/#person"
+      }
+    }
+  ]
+}
   </script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap"/>
 <link rel="stylesheet" href="components/senz-system.css?v=20261016"/>
