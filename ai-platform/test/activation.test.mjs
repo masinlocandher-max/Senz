@@ -51,6 +51,7 @@ test('mocked checkout-to-entitlement flow denies unpaid access, verifies webhook
       if(method==='GET')return json(rowsFor(table,url));
       if(method==='POST'){
         const entry={id:crypto.randomUUID(),created_at:new Date().toISOString(),...payload};
+        if(table==='senz_orders'){entry.status='pending';}
         if(table==='senz_organizations'){entry.brand_color='#2451D9';entry.widget_origins=[];entry.widget_greeting='Hello.';}
         if(table==='senz_entries'){entry.status=payload.status||'draft';entry.body=payload.body||'';}
         database[table].push(entry);
