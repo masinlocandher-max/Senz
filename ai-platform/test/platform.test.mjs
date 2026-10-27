@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import { test } from 'node:test';
+import { readFileSync } from 'node:fs';
 import {
   PRODUCTS, PLANS, parsePrices, catalog, verifyPaymongoSignature,
   paidCheckoutFromEvent, knowledgeSources, instructionsFor, requiredText, InputError
@@ -66,4 +67,32 @@ test('Node service exposes health/catalog but does not grant access without veri
   assert.match(await html.text(),/SENZ AI/);
   const denied=await fetch(host+'/api/webhooks/paymongo',{method:'POST',body:JSON.stringify({data:{}})});
   assert.notEqual(denied.status,200);
+});
+
+test('SQL migration includes valid paired dollar-quoted procedures and grants only service_role', () => {
+  const sql = readFileSync(new URL('../schema.sql', import.meta.url), 'utf8');
+  const quotes = sql.match(/\$\$/g) || [];
+  assert.equal(quotes.length, 6, 'one DO block and two functions must use paired $$ quotes');
+  assert.match(sql, /create or replace function public\.senz_redeem_invite[\s\S]*?as \$\$\s*declare inv/);
+  assert.match(sql, /end \$\$;\s*revoke all on function public\.senz_redeem_invite/);
+  assert.match(sql, /grant execute on function public\.senz_redeem_invite\(text,uuid,text\) to service_role/);
+  assert.match(sql, /grant execute on function public\.senz_fulfill_paid_order\(uuid,text,text,text,boolean\) to service_role/);
+  for (const name of ['senz_organizations', 'senz_memberships', 'senz_entitlements', 'senz_orders', 'senz_entries', 'senz_invites', 'senz_ai_usage']) {
+    assert.ok(sql.includes("'"+name+"'"), 'RLS table list must include '+name);
+  }
+});
+
+test('PayMongo current send.webhook format is compatible with verified paid checkout handling', () => {
+  const event = { event_type:'send.webhook', data: {
+    id:'evt_new', type:'checkout_session.payment.paid', livemode:false,
+    data:{id:'cs_new',type:'checkout_session', attributes:{
+      reference_number:'d3912208-e5b3-4ab9-8e1a-66e0f9ff0741',
+      payments:[{id:'pay_new',attributes:{status:'paid',currency:'PHP',amount:79900}}]
+    }}
+  }};
+  const paid = paidCheckoutFromEvent(event, 'test');
+  assert.equal(paid.paymentId,'pay_new');
+  assert.equal(paid.amountCentavos,79900);
+  assert.equal(paid.orderId,'d3912208-e5b3-4ab9-8e1a-66e0f9ff0741');
+  assert.equal(paid.eventId,'evt_new');
 });
