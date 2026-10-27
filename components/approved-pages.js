@@ -94,29 +94,14 @@
   const main = document.querySelector("main");
   if (main && !main.id) main.id = "main-content";
 
-  if (!document.querySelector(".site-progress-banner")) {
-    const progressBanner = document.createElement("aside");
-    progressBanner.className = "site-progress-banner";
-    progressBanner.setAttribute("aria-label", "SENZ website update notice");
+  // Card rails must remain keyboard-scrollable on small screens.
+  document.querySelectorAll('.icon-grid, .reason-grid').forEach((grid) => {
+    grid.tabIndex = 0;
+    grid.setAttribute('role', 'region');
+    grid.setAttribute('aria-label', grid.closest('section')?.querySelector('h2')?.textContent || 'SENZ capabilities');
+  });
 
-    const bannerMessage = `
-      <span class="site-progress-banner__status">Live site refinement in progress</span>
-      <span>Services and inquiry channels remain available</span>
-      <span>Explore SENZ Strategic Communications, six specialist divisions, and digital products</span>
-      <a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a>
-    `;
-
-    progressBanner.innerHTML = `
-      <div class="site-progress-banner__track">
-        <div class="site-progress-banner__group">${bannerMessage}</div>
-        <div class="site-progress-banner__group" aria-hidden="true">${bannerMessage}</div>
-      </div>
-    `;
-
-    document.body.prepend(progressBanner);
-  }
-
-  if (main && !document.querySelector(".skip-link")) {
+  if (main && !document.querySelector(".skip-link, .senz-skip")) {
     const skipLink = document.createElement("a");
     skipLink.className = "skip-link";
     skipLink.href = "#main-content";

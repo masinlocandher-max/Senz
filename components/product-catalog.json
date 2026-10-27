@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "masinlocandher-max/Senzapp",
+  "releaseState": "not_released",
+  "checkoutEnabled": false,
+  "products": [
+    {
+      "id": "ai-workspace",
+      "name": "SENZ AI Workspace",
+      "summary": "Draft, summarize, rewrite, and structure real work with saved, versioned outputs.",
+      "usesAi": true,
+      "mode": "subscription",
+      "publicStatus": "in_development",
+      "nextAction": "Request a Demonstration"
+    },
+    {
+      "id": "communications-intelligence",
+      "name": "SENZ Communications Intelligence",
+      "summary": "Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval.",
+      "usesAi": true,
+      "mode": "subscription",
+      "publicStatus": "in_development",
+      "nextAction": "Request a Demonstration"
+    },
+    {
+      "id": "digital-assistant",
+      "name": "SENZ Digital Assistant",
+      "summary": "An assistant that answers only from your approved knowledge and hands off to a person.",
+      "usesAi": true,
+      "mode": "subscription",
+      "publicStatus": "in_development",
+      "nextAction": "Request a Demonstration"
+    },
+    {
+      "id": "fotolab",
+      "name": "SENZ FotoLab",
+      "summary": "Private photo projects with real non-destructive adjustments, versions, and export.",
+      "usesAi": false,
+      "mode": "subscription",
+      "publicStatus": "in_development",
+      "nextAction": "Request a Demonstration"
+    },
+    {
+      "id": "client-portal",
+      "name": "SENZ Client Portal",
+      "summary": "Contracted project workspace for milestones, deliverables, revisions, and approvals.",
+      "usesAi": false,
+      "mode": "contract",
+      "publicStatus": "custom_implementation",
+      "nextAction": "Request a Quote"
+    },
+    {
+      "id": "event-systems",
+      "name": "SENZ Event Systems",
+      "summary": "Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export.",
+      "usesAi": false,
+      "mode": "contract",
+      "publicStatus": "custom_implementation",
+      "nextAction": "Request a Quote"
+    },
+    {
+      "id": "digital-representative",
+      "name": "SENZ Digital Representative",
+      "summary": "Consent-based, disclosed text representative for a brand or person, with human approval.",
+      "usesAi": true,
+      "mode": "contract",
+      "publicStatus": "custom_implementation",
+      "nextAction": "Request a Quote"
+    },
+    {
+      "id": "music-platform",
+      "name": "SENZ Music Platform",
+      "summary": "Protected audio previews, timestamped feedback, rights confirmation, and delivery.",
+      "usesAi": false,
+      "mode": "contract",
+      "publicStatus": "custom_implementation",
+      "nextAction": "Request a Quote"
+    }
+  ]
+}
