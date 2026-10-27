@@ -228,6 +228,7 @@ function settings() {
   const org = selectedOrg();
   if (!accessible(org)) return purchaseScreen();
   const isManager = roleIsManager();
+  const hasWidget = org.products.includes('frontdesk');
   const branding = org.white_label ? '<section class="panel"><div class="panel-head"><div><h2>Your white-label identity</h2><p>Visible identity inside your licensed workspace. Custom domains require separate verification.</p></div></div>' +
       '<form id="brand-form"><div class="field"><label for="org-name">Organization name</label><input id="org-name" maxlength="100" required value="' + esc(org.name) + '"/></div>' +
       '<div class="field"><label for="white-label-name">Your product brand name</label><input id="white-label-name" maxlength="100" required value="' + esc(org.white_label_name||org.name) + '"/></div>' +
@@ -235,6 +236,13 @@ function settings() {
       '<div class="field"><label for="brand-logo-url">Brand logo HTTPS URL (optional)</label><input id="brand-logo-url" type="url" maxlength="500" placeholder="https://example.com/logo.svg" value="' + esc(org.brand_logo_url||'') + '"/></div>' +
       '<button class="btn primary" type="submit" ' + (!isManager?'disabled':'') + '>Save brand identity</button></form></section>' :
       '<section class="panel"><h2>Organization settings</h2><p class="muted">White-label names and colors are available with a separately paid white-label product license.</p></section>';
+  const widget = hasWidget ? '<section class="panel"><h2>Front Desk website assistant</h2><p class="muted">Install on explicitly approved websites. It answers only approved FAQs and captures inquiries with visitor consent.</p>' +
+    '<form id="widget-form"><div class="field"><label for="widget-origins">Approved HTTPS website origins (one per line, maximum 5)</label><textarea id="widget-origins" placeholder="https://www.example.com" ' + (!isManager?'disabled':'') + '>' + esc((org.widget_origins||[]).join('\n')) + '</textarea></div>' +
+    '<div class="field"><label for="widget-greeting">Customer greeting</label><input id="widget-greeting" maxlength="220" value="' + esc(org.widget_greeting||'Hello. How can we help you?') + '"/></div>' +
+    '<button class="btn primary" type="submit" ' + (!isManager?'disabled':'') + '>Save widget settings</button></form>' +
+    '<p class="inline-note">Install this script before the closing body tag on an approved website:</p><div class="invite-link">' +
+    esc('<script src="'+state.config.app_origin+'/widget.js" data-senz-org="'+org.id+'" defer></script>') +
+    '</div><div class="form-actions"><button type="button" class="btn" data-action="copy-widget">Copy installation code</button></div></section>' : '';
   return headerMarkup('License and organization', 'Manage paid access, brand identity and verified member invitations.', 'ACCOUNT MANAGEMENT') +
     '<div class="grid three stats-row"><div class="stat-card"><span class="stat-label">License status</span><div class="stat-value" style="font-size:20px">Active</div><div class="stat-note">Verified by server-side entitlement</div></div><div class="stat-card"><span class="stat-label">Seats included</span><div class="stat-value">' + org.seats + '</div><div class="stat-note">Memberships cannot exceed this license</div></div><div class="stat-card"><span class="stat-label">Valid through</span><div class="stat-value" style="font-size:20px">' + esc(formatDate(org.active_until)) + '</div><div class="stat-note">Prepaid period</div></div></div>' +
     '<div class="grid two">' +
@@ -246,7 +254,7 @@ function settings() {
     '<section class="panel"><h2>Plan and AI usage</h2><div class="settings-kv"><div><small>Licensed products</small><strong>' + org.products.length + '</strong></div><div><small>Monthly AI uses</small><strong>' + (state.usage ? state.usage.count+' / '+state.usage.limit : 'Loading…') + '</strong></div>' +
     '<div><small>Your role</small><strong>' + esc(org.role) + '</strong></div><div><small>White-label right</small><strong>' + (org.white_label ? 'Included' : 'Not included') + '</strong></div></div>' +
     '<hr/><p class="muted tiny">Usage is tracked per assigned member. No unlimited AI usage is promised. Your current product access is verified on every server-side operation.</p>' +
-    '<button type="button" class="btn" data-screen="billing">Review plans and renewal</button></section>' + branding + '</div>';
+    '<button type="button" class="btn" data-screen="billing">Review plans and renewal</button></section>' + branding + widget + '</div>';
 }
 function nav() {
   const org = selectedOrg();
@@ -358,6 +366,10 @@ async function onMainClick(e) {
   }
   const action=b.dataset.action;
   if(action==='export-csv') return csvExport();
+  if(action==='copy-widget') {
+    const org=selectedOrg(), code='<script src="'+state.config.app_origin+'/widget.js" data-senz-org="'+org.id+'" defer></script>';
+    return navigator.clipboard.writeText(code).then(()=>toast('Widget code copied.')).catch(()=>toast('Copy unavailable.'));
+  }
   if(action==='copy-ai' && state.generated) return navigator.clipboard.writeText(state.generated).then(()=>toast('AI draft copied.')).catch(()=>toast('Copy is unavailable on this device.'));
   if(action==='copy-invite' && state.inviteUrl) return navigator.clipboard.writeText(state.inviteUrl).then(()=>toast('Invitation copied.')).catch(()=>toast('Copy is unavailable on this device.'));
   if(action==='save-ai' && state.generated) {
@@ -376,6 +388,15 @@ async function onMainSubmit(e) {
     try {
       const r=await api('/api/invites',{method:'POST',body:JSON.stringify({org_id:state.orgId,email:el('invite-email').value})});
       state.inviteUrl=r.invite_url;render();toast('Private invitation link created.');
+    }catch(err){toast(err.message)}
+    finally{setBusy(false)}
+  }
+  if(id==='widget-form') {
+    e.preventDefault();setBusy(true);
+    try{
+      const origins=el('widget-origins').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+      await api('/api/organizations/'+encodeURIComponent(state.orgId),{method:'PATCH',body:JSON.stringify({widget_origins:origins,widget_greeting:el('widget-greeting').value})});
+      await loadMe();toast('Website assistant settings saved.');
     }catch(err){toast(err.message)}
     finally{setBusy(false)}
   }

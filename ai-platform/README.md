@@ -37,3 +37,6 @@ GET /api/config, /api/catalog; GET /api/me, /api/entries, /api/usage; POST /api/
 All protected requests use \`Authorization: Bearer <Supabase access token>\`, never a service role key in the browser.
 
 A 200 from /api/health proves only the Node process is alive, not successful payment or downstream integrations.
+
+## Front Desk website integration
+A paying Front Desk organization can allow five HTTPS origins and copy the widget script from License & Settings. The widget uses only approved FAQ records, collects opted-in inquiries, and limits AI replies per day. This does not include Facebook Messenger, WhatsApp, SMS, voice or autonomous follow-up. Configure CSP to permit the app host. Verify checkout and origin restrictions before enabling live traffic.

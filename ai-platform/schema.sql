@@ -8,6 +8,8 @@ create table if not exists public.senz_organizations (
   brand_color text not null default '#2451D9',
   white_label_name text,
   brand_logo_url text,
+  widget_origins text[] not null default '{}',
+  widget_greeting text not null default 'Hello. How can we help you today?',
   created_at timestamptz not null default now()
 );
 create table if not exists public.senz_memberships (
@@ -71,6 +73,13 @@ create table if not exists public.senz_invites (
   used_by uuid
 );
 create index if not exists senz_invites_org_idx on public.senz_invites(org_id,created_at desc);
+create table if not exists public.senz_widget_usage (
+  id uuid primary key default gen_random_uuid(),
+  org_id uuid not null references public.senz_organizations(id) on delete cascade,
+  kind text not null check(kind in ('ai','lead')),
+  created_at timestamptz not null default now()
+);
+create index if not exists senz_widget_usage_idx on public.senz_widget_usage(org_id,kind,created_at desc);
 create table if not exists public.senz_ai_usage (
   id uuid primary key default gen_random_uuid(),
   org_id uuid not null references public.senz_organizations(id) on delete cascade,
@@ -85,7 +94,7 @@ create index if not exists senz_usage_period_idx on public.senz_ai_usage(org_id,
 do $$
 declare t text;
 begin
-  foreach t in array array['senz_organizations','senz_memberships','senz_entitlements','senz_orders','senz_entries','senz_invites','senz_ai_usage']
+  foreach t in array array['senz_organizations','senz_memberships','senz_entitlements','senz_orders','senz_entries','senz_invites','senz_ai_usage','senz_widget_usage']
   loop
     execute format('alter table public.%I enable row level security', t);
     execute format('revoke all on public.%I from anon, authenticated', t);

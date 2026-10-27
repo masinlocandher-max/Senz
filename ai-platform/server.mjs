@@ -117,6 +117,8 @@ async function membershipView(user) {
       id: org.id, name: org.name, brand_color: org.brand_color,
       white_label_name: entitlement?.white_label ? org.white_label_name : null,
       brand_logo_url: entitlement?.white_label ? org.brand_logo_url : null,
+      widget_origins: active(entitlement) && entitlement.products.includes('frontdesk') ? org.widget_origins : [],
+      widget_greeting: active(entitlement) && entitlement.products.includes('frontdesk') ? org.widget_greeting : null,
       role: m.role, licensed: active(entitlement), active_until: entitlement?.active_until || null,
       products: active(entitlement) ? entitlement.products : [],
       seats: entitlement?.seats || 0, white_label: Boolean(active(entitlement) && entitlement.white_label)
@@ -286,10 +288,69 @@ async function handleAi(user, req, res) {
   });
   respond(res, 200, { text, sources: citations, used_ai: true });
 }
+
+async function publicWidget(req, res, u) {
+  const orgId = assertUuid(u.searchParams.get('org_id'));
+  const source = String(req.headers.origin || '');
+  if (!source) failure(403, 'Website origin required');
+  const org = await one('senz_organizations', {id:'eq.'+orgId});
+  const ent = await one('senz_entitlements', {org_id:'eq.'+orgId});
+  if (!org || !active(ent) || !ent.products.includes('frontdesk')) failure(402, 'Front Desk license inactive');
+  if (!Array.isArray(org.widget_origins) || !org.widget_origins.includes(source)) failure(403, 'Website origin not authorized');
+  const headers={'Access-Control-Allow-Origin':source,'Vary':'Origin'};
+  if (req.method==='OPTIONS') {
+    res.writeHead(204,{...headers,'Access-Control-Allow-Headers':'Content-Type','Access-Control-Allow-Methods':'GET,POST,OPTIONS','Access-Control-Max-Age':'600'});
+    return res.end();
+  }
+  if (req.method==='GET' && u.pathname==='/api/widget/config') return respond(res,200,{
+    name:ent.white_label && org.white_label_name ? org.white_label_name : org.name,
+    greeting:org.widget_greeting, color:ent.white_label ? org.brand_color : '#2451D9'
+  },headers);
+  if (req.method!=='POST' || !['/api/widget/ask','/api/widget/lead'].includes(u.pathname)) failure(404,'Unknown widget route');
+  const input=(await jsonBody(req,5000)).value, kind=u.pathname.endsWith('ask')?'ai':'lead';
+  const today=new Date();today.setUTCHours(0,0,0,0);
+  const cap=kind==='ai'?Math.max(1,Math.min(250,Number(env.SENZ_WIDGET_DAILY_AI_LIMIT||40))):50;
+  const count=await rows('senz_widget_usage',{org_id:'eq.'+orgId,kind:'eq.'+kind,created_at:'gte.'+today.toISOString(),select:'id',limit:String(cap+1)});
+  if(count.length>=cap)failure(429,'Website assistant has reached the daily limit');
+  if(kind==='lead'){
+    if(input.consent!==true)failure(422,'Contact consent is required');
+    const name=requiredText(input.name,100), email=requiredText(input.email,254), message=requiredText(input.message,1500);
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))failure(422,'Invalid email');
+    await backend('senz_entries',{},'POST',{
+      org_id:orgId,product:'frontdesk',title:'Website inquiry · '+name,body:message,
+      status:'new',meta:{email,website:source,consent:true},created_by:org.owner_id
+    });
+    await backend('senz_widget_usage',{},'POST',{org_id:orgId,kind});
+    return respond(res,201,{submitted:true},headers);
+  }
+  if(!configured.ai)failure(503,'Assistant not configured');
+  const question=requiredText(input.question,700);
+  const faq=await rows('senz_entries',{org_id:'eq.'+orgId,product:'eq.frontdesk',status:'eq.approved',limit:'100'});
+  const sources=knowledgeSources(faq,question,4);
+  if(!sources.length)return respond(res,200,{answer:'I do not have an approved answer yet. Please leave an inquiry for the team.',human_handoff:true},headers);
+  const ctrl=new AbortController(), timeout=setTimeout(()=>ctrl.abort(),18000);
+  let response;
+  try{
+    response=await fetch('https://api.openai.com/v1/responses',{method:'POST',
+      headers:{Authorization:'Bearer '+env.OPENAI_API_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify({model:env.OPENAI_MODEL,instructions:instructionsFor('frontdesk')+' Use ONLY approved FAQ excerpts; escalate when insufficient.',
+        input:'Approved FAQs:\n'+sources.map(s=>s.title+': '+s.excerpt).join('\n')+'\nQuestion:\n'+question,max_output_tokens:300,store:false}),
+      signal:ctrl.signal});
+  }catch{failure(503,'Assistant temporarily unavailable');}
+  finally{clearTimeout(timeout);}
+  if(!response.ok)failure(503,'Assistant temporarily unavailable');
+  const out=await response.json();
+  const answer=out.output_text||(out.output||[]).flatMap(i=>(i.content||[]).filter(c=>c.type==='output_text').map(c=>c.text)).join('\n');
+  if(!answer)failure(503,'Assistant did not return an answer');
+  await backend('senz_widget_usage',{},'POST',{org_id:orgId,kind});
+  return respond(res,200,{answer,human_handoff:false},headers);
+}
+
 async function api(req, res, u) {
   if (req.method === 'GET' && u.pathname === '/api/health') return respond(res, 200, { service: 'senz-ai-platform', status: 'running', configured });
   if (req.method === 'GET' && u.pathname === '/api/catalog') return respond(res, 200, { products: PRODUCTS, plans: catalog(prices) });
   if (req.method === 'GET' && u.pathname === '/api/config') return respond(res, 200, {
+    app_origin: origin,
     supabase_url: configured.auth ? supabaseUrl : null,
     publishable_key: configured.auth ? publishableKey : null,
     auth_ready: configured.auth, checkout_ready: configured.checkout,
@@ -348,6 +409,20 @@ async function api(req, res, u) {
     const p = (await jsonBody(req)).value;
     const updates = {};
     if (p.name !== undefined) updates.name = requiredText(p.name, 100);
+    if (p.widget_greeting !== undefined || p.widget_origins !== undefined) {
+      if (!a.ent.products.includes('frontdesk')) failure(402, 'Front Desk license required');
+      if (p.widget_greeting !== undefined) updates.widget_greeting = requiredText(p.widget_greeting, 220);
+      if (p.widget_origins !== undefined) {
+        if (!Array.isArray(p.widget_origins) || p.widget_origins.length > 5) failure(422, 'Up to five website origins are allowed');
+        const allowed = [];
+        for (const v of p.widget_origins) {
+          let addr; try { addr = new URL(requiredText(v, 180)); } catch { failure(422, 'Enter full HTTPS website origins'); }
+          if ((addr.protocol !== 'https:' && !(addr.protocol === 'http:' && ['localhost','127.0.0.1'].includes(addr.hostname))) || addr.username || addr.password || addr.pathname !== '/' || addr.search || addr.hash) failure(422, 'Only secure website origins without paths are allowed');
+          allowed.push(addr.origin);
+        }
+        updates.widget_origins = [...new Set(allowed)];
+      }
+    }
     if (p.white_label_name !== undefined || p.brand_color !== undefined || p.brand_logo_url !== undefined) {
       if (!a.ent.white_label) failure(402, 'A paid white-label license is required');
       if (p.white_label_name !== undefined) updates.white_label_name = requiredText(p.white_label_name, 100);
@@ -418,7 +493,8 @@ const staticFiles = new Map([
   ['/', ['index.html', 'text/html; charset=utf-8']],
   ['/app.js', ['app.js', 'text/javascript; charset=utf-8']],
   ['/styles.css', ['styles.css', 'text/css; charset=utf-8']],
-  ['/favicon.svg', ['favicon.svg', 'image/svg+xml']]
+  ['/favicon.svg', ['favicon.svg', 'image/svg+xml']],
+  ['/widget.js', ['widget.js', 'text/javascript; charset=utf-8']]
 ]);
 async function serveStatic(res, pathname) {
   const item = staticFiles.get(pathname);
@@ -443,6 +519,7 @@ export const server = http.createServer(async (req, res) => {
   try {
     const u = new URL(req.url || '/', origin);
     if (u.pathname.startsWith('/api/')) {
+      if (u.pathname.startsWith('/api/widget/')) return await publicWidget(req, res, u);
       // Bearer-token APIs do not allow cross-origin browser requests.
       if (req.headers.origin && req.headers.origin !== new URL(origin).origin && u.pathname !== '/api/webhooks/paymongo') {
         return respond(res, 403, { error: 'Cross-origin requests are blocked' });
