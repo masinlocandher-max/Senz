@@ -1,0 +1,28 @@
+name: SENZ AI Platform Checks
+on:
+  push:
+    branches: [feature/senz-ai-product-suite-2026-10-27]
+    paths:
+      - 'ai-platform/**'
+      - '.github/workflows/senz-ai-platform.yml'
+  pull_request:
+    paths:
+      - 'ai-platform/**'
+      - '.github/workflows/senz-ai-platform.yml'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: ai-platform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Syntax validation
+        run: npm run check
+      - name: Unit and API smoke tests
+        run: npm test

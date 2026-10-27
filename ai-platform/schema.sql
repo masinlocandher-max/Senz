@@ -123,4 +123,37 @@ begin
 end $$;
 revoke all on function public.senz_fulfill_paid_order(uuid,text,text,text,boolean) from public, anon, authenticated;
 grant execute on function public.senz_fulfill_paid_order(uuid,text,text,text,boolean) to service_role;
+-- Lock the entitlement for serial seat assignment across concurrent invitations.
+create or replace function public.senz_redeem_invite(
+  p_token_hash text, p_user_id uuid, p_email text
+) returns uuid
+language plpgsql security definer set search_path = public, pg_temp
+as $
+declare inv public.senz_invites%rowtype;
+declare ent public.senz_entitlements%rowtype;
+declare used_seats integer;
+begin
+  select * into inv from public.senz_invites where token_hash=p_token_hash for update;
+  if not found or inv.used_by is not null or inv.expires_at <= now() then
+    raise exception 'Invitation invalid or expired';
+  end if;
+  if lower(trim(inv.email)) <> lower(trim(p_email)) then
+    raise exception 'Invitation email does not match signed-in account';
+  end if;
+  select * into ent from public.senz_entitlements where org_id=inv.org_id for update;
+  if not found or ent.status <> 'active' or ent.active_until <= now() then
+    raise exception 'Organization license inactive';
+  end if;
+  if exists(select 1 from public.senz_memberships where org_id=inv.org_id and user_id=p_user_id) then
+    raise exception 'User already belongs to this organization';
+  end if;
+  select count(*) into used_seats from public.senz_memberships where org_id=inv.org_id;
+  if used_seats >= ent.seats then raise exception 'No licensed seats available'; end if;
+  insert into public.senz_memberships(org_id,user_id,role) values(inv.org_id,p_user_id,inv.role);
+  update public.senz_invites set used_by=p_user_id where id=inv.id;
+  return inv.org_id;
+end $;
+revoke all on function public.senz_redeem_invite(text,uuid,text) from public, anon, authenticated;
+grant execute on function public.senz_redeem_invite(text,uuid,text) to service_role;
+
 commit;

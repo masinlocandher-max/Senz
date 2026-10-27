@@ -160,8 +160,10 @@ async function handleCheckout(user, req, res) {
   if (!plan || !prices[p.plan]) failure(422, 'This plan is not yet available for checkout');
   let orgId = p.org_id;
   if (orgId) {
-    const a = await access(user, orgId);
-    owner(a.membership.role);
+    assertUuid(orgId);
+    const membership = await one('senz_memberships', { org_id: 'eq.' + orgId, user_id: 'eq.' + user.id });
+    if (!membership) failure(403, 'You do not own this organization');
+    owner(membership.role);
   } else {
     const name = requiredText(p.org_name || 'My organization', 100);
     const result = await backend('senz_organizations', {}, 'POST', { owner_id: user.id, name });
@@ -319,6 +321,9 @@ async function api(req, res, u) {
     const entry = await one('senz_entries', { id: 'eq.' + id });
     if (!entry) failure(404, 'Record not found');
     const a = await access(user, entry.org_id, entry.product);
+    if (entry.status === 'approved' && !['owner','admin'].includes(a.membership.role)) {
+      failure(403, 'Only administrators may revise approved content');
+    }
     const p = (await jsonBody(req)).value;
     const values = normalizeEntry(p, entry.product, a.membership.role, true);
     if (!Object.keys(values).length) failure(422, 'No fields to update');
@@ -353,6 +358,13 @@ async function api(req, res, u) {
     if (!Object.keys(updates).length) failure(422, 'No organization settings to update');
     await backend('senz_organizations', { id: 'eq.' + orgId }, 'PATCH', updates);
     return respond(res, 200, { saved: true });
+  }
+  if (req.method === 'GET' && u.pathname === '/api/members') {
+    const orgId = assertUuid(u.searchParams.get('org_id'));
+    const a = await access(user, orgId);
+    manager(a.membership.role);
+    const members = await rows('senz_memberships', { org_id: 'eq.' + orgId, order: 'created_at.asc', limit: '10000' });
+    return respond(res, 200, { members: members.map(m => ({ user_id: m.user_id, role: m.role, created_at: m.created_at })) });
   }
   if (req.method === 'POST' && u.pathname === '/api/invites') {
     const p = (await jsonBody(req)).value;
