@@ -1,79 +1,190 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "sourceRepository": "masinlocandher-max/Senzapp",
   "releaseState": "not_released",
   "checkoutEnabled": false,
+  "platform": {
+    "name": "SENZ App",
+    "principle": "SENZ combines human strategic judgment with useful technology.",
+    "purpose": "The SENZ App is where licensed customers use SENZ software. The website explains the products and takes inquiries; the app opens a product only after SENZ verifies payment or a signed agreement."
+  },
+  "statuses": {
+    "available": {
+      "label": "Available",
+      "meaning": "Released and supported for licensed customers."
+    },
+    "beta": {
+      "label": "Beta",
+      "meaning": "Working for licensed pilot customers, with its limitations disclosed. Feedback shapes the release."
+    },
+    "custom": {
+      "label": "Custom implementation",
+      "meaning": "Set up for each client under a signed agreement and quotation."
+    },
+    "in_development": {
+      "label": "In development",
+      "meaning": "Built and tested by SENZ but not yet offered to customers. Ask for a demonstration."
+    },
+    "retired": {
+      "label": "Retired",
+      "meaning": "No longer offered to new customers; existing licenses keep working until they end."
+    }
+  },
+  "categories": {
+    "ai": "Uses AI",
+    "workflow": "Digital workflow (no AI)"
+  },
   "products": [
     {
       "id": "ai-workspace",
       "name": "SENZ AI Workspace",
+      "category": "ai",
+      "purpose": "Turn your own notes, goals, and source text into usable first drafts, and keep every version.",
+      "audience": "Professionals, small businesses, and teams who write every day.",
+      "includes": [
+        "Seven drafting tools: email, summary, rewrite, action items, FAQ, plan, and comparison",
+        "Refine with AI, edit by hand, and restore any earlier version",
+        "Search your documents and export them as Markdown or plain text"
+      ],
+      "limits": "Uses only what you provide. It does not browse the web, send, or publish anything, and every draft needs human review.",
       "summary": "Draft, summarize, rewrite, and structure real work with saved, versioned outputs.",
       "usesAi": true,
       "mode": "subscription",
       "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
       "nextAction": "Request a Demonstration"
     },
     {
       "id": "communications-intelligence",
       "name": "SENZ Communications Intelligence",
+      "category": "ai",
+      "purpose": "Prepare important messages properly: plan them, check them, and approve them before they go out.",
+      "audience": "Communications officers, schools, local governments, agencies, and organizations.",
+      "includes": [
+        "Six structured tools: message brief, stakeholder plan, clarity and tone review, campaign narrative, issue and crisis preparation, and communications diagnostic",
+        "Human approval required before export; every new version needs approval again",
+        "Optional SENZ strategic review of a version you choose to share"
+      ],
+      "limits": "It does not publish or send messages, and it does not replace legal advice or a crisis team.",
       "summary": "Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval.",
       "usesAi": true,
       "mode": "subscription",
       "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
       "nextAction": "Request a Demonstration"
     },
     {
       "id": "digital-assistant",
       "name": "SENZ Digital Assistant",
+      "category": "ai",
+      "purpose": "Answer the questions people keep asking on your website, using only answers you approve, and pass anything else to a person.",
+      "audience": "Businesses, schools, clinics, venues, and organizations with repeat questions.",
+      "includes": [
+        "An approved-knowledge library that you control",
+        "Answers that cite their sources; unanswerable questions become handoff requests to your team",
+        "An embed code that works only on the websites you allow, with pause and unpublish at any time"
+      ],
+      "limits": "It never answers outside your approved knowledge, and it does not take payments or make bookings.",
       "summary": "An assistant that answers only from your approved knowledge and hands off to a person.",
       "usesAi": true,
       "mode": "subscription",
       "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
       "nextAction": "Request a Demonstration"
     },
     {
       "id": "fotolab",
       "name": "SENZ FotoLab",
+      "category": "workflow",
+      "purpose": "Keep your photos in private projects and make careful edits without ever losing the original.",
+      "audience": "Individuals and small teams who prepare their own images.",
+      "includes": [
+        "Private photo projects with a rights acknowledgement for every upload",
+        "Exposure, brightness, contrast, saturation, crop, resize, rotate, and flip, each saved as a new version",
+        "Originals kept untouched; download any version"
+      ],
+      "limits": "A self-service editor, not a retouching service by SENZ staff. It does not generate or alter images with AI.",
       "summary": "Private photo projects with real non-destructive adjustments, versions, and export.",
       "usesAi": false,
       "mode": "subscription",
       "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
       "nextAction": "Request a Demonstration"
     },
     {
       "id": "client-portal",
       "name": "SENZ Client Portal",
+      "category": "workflow",
+      "purpose": "One private place for a contracted project between SENZ and a client: what is due, what was delivered, and what was approved.",
+      "audience": "SENZ clients working under a signed project agreement.",
+      "includes": [
+        "Milestones and deliverables with version history",
+        "Comments, revision requests, approvals, and client uploads",
+        "Final delivery with a record of who approved what and when"
+      ],
+      "limits": "Set up by SENZ for each contract. It is not a general CRM, form builder, or public file-sharing service.",
       "summary": "Contracted project workspace for milestones, deliverables, revisions, and approvals.",
       "usesAi": false,
       "mode": "contract",
-      "publicStatus": "custom_implementation",
+      "publicStatus": "custom",
+      "publicStatusLabel": "Custom implementation",
       "nextAction": "Request a Quote"
     },
     {
       "id": "event-systems",
       "name": "SENZ Event Systems",
+      "category": "workflow",
+      "purpose": "Run event registration from announcement to the door: take sign-ups within capacity, manage a waitlist, and check people in.",
+      "audience": "Schools, organizations, and event organizers.",
+      "includes": [
+        "A public registration page with capacity limits and an automatic waitlist",
+        "Single-use check-in codes that block duplicate entry",
+        "Attendee export and deletion of attendee data after the event"
+      ],
+      "limits": "It does not sell tickets or run voting or tabulation.",
       "summary": "Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export.",
       "usesAi": false,
       "mode": "contract",
-      "publicStatus": "custom_implementation",
+      "publicStatus": "custom",
+      "publicStatusLabel": "Custom implementation",
       "nextAction": "Request a Quote"
     },
     {
       "id": "digital-representative",
       "name": "SENZ Digital Representative",
+      "category": "ai",
+      "purpose": "Let a brand or person be represented by a clearly disclosed text assistant that speaks only from approved information, and only while consent is in place.",
+      "audience": "Public figures, brands, and organizations under a signed agreement.",
+      "includes": [
+        "Recorded, revocable consent with an evidence reference",
+        "Answers only from approved knowledge, always disclosed as automated",
+        "Publication stops immediately when consent is revoked"
+      ],
+      "limits": "Text only. It has no voice or video likeness and is never presented as the real person.",
       "summary": "Consent-based, disclosed text representative for a brand or person, with human approval.",
       "usesAi": true,
       "mode": "contract",
-      "publicStatus": "custom_implementation",
+      "publicStatus": "custom",
+      "publicStatusLabel": "Custom implementation",
       "nextAction": "Request a Quote"
     },
     {
       "id": "music-platform",
       "name": "SENZ Music Platform",
+      "category": "workflow",
+      "purpose": "Review and deliver music projects privately: listen to protected previews, give timestamped feedback, confirm rights, then release the files.",
+      "audience": "Artists, producers, and clients working with SENZ under a music project agreement.",
+      "includes": [
+        "Protected audio previews with version history",
+        "Timestamped feedback and approvals",
+        "Downloads unlocked only after rights are confirmed and the project is delivered"
+      ],
+      "limits": "It does not stream music to the public, publish charts, or generate music.",
       "summary": "Protected audio previews, timestamped feedback, rights confirmation, and delivery.",
       "usesAi": false,
       "mode": "contract",
-      "publicStatus": "custom_implementation",
+      "publicStatus": "custom",
+      "publicStatusLabel": "Custom implementation",
       "nextAction": "Request a Quote"
     }
   ]

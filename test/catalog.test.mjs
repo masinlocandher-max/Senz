@@ -1,0 +1,68 @@
+// The website's product catalog comes from the SENZ App (components/product-catalog.json, exported
+// from the app's src/catalog.js). These tests keep every page that describes products in line with it.
+
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync, readdirSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { renderFile, loadCatalog, RENDERED_FILES } from '../scripts/render-catalog.mjs';
+
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+const read = (file) => readFileSync(path.join(ROOT, file), 'utf8');
+const catalog = loadCatalog();
+
+test('the catalog is the app export: eight products, each with a stated purpose, none on sale', () => {
+  assert.equal(catalog.schemaVersion, 2);
+  assert.equal(catalog.sourceRepository, 'masinlocandher-max/Senzapp');
+  assert.equal(catalog.checkoutEnabled, false);
+  assert.equal(catalog.releaseState, 'not_released');
+  assert.ok(catalog.platform.purpose && catalog.platform.principle);
+  assert.deepEqual(catalog.products.map((p) => p.id), ['ai-workspace', 'communications-intelligence', 'digital-assistant', 'fotolab', 'client-portal', 'event-systems', 'digital-representative', 'music-platform']);
+  for (const p of catalog.products) {
+    assert.ok(p.purpose.length >= 40, `${p.id} purpose`);
+    assert.ok(p.audience && p.limits && p.includes.length >= 2, `${p.id} audience, includes, limits`);
+    assert.ok(['in_development', 'custom'].includes(p.publicStatus), `${p.id} is not shown as released`);
+    assert.equal(p.publicStatusLabel, catalog.statuses[p.publicStatus].label);
+  }
+});
+
+test('pages that show the catalog match it exactly', () => {
+  for (const file of RENDERED_FILES) {
+    assert.equal(read(file), renderFile(file, read(file), catalog), `${file} is out of date: run node scripts/render-catalog.mjs`);
+  }
+  const page = read('ai-systems.html');
+  for (const p of catalog.products) assert.ok(page.includes(p.purpose), `ai-systems.html states the purpose of ${p.name}`);
+});
+
+test('the discovery journey only recommends catalog products', () => {
+  const source = read('components/discovery-engine.js');
+  const ids = [...source.matchAll(/product:'([a-z-]+)'/g)].map((m) => m[1]);
+  assert.ok(ids.length >= 8);
+  const known = new Set(catalog.products.map((p) => p.id));
+  for (const id of ids) assert.ok(known.has(id), `discovery recommends unknown product ${id}`);
+});
+
+test('no page repeats product claims that contradict the app', () => {
+  const stale = [
+    /Event Systems for voting/i,
+    /Ticketing and audience management/i,
+    /clone studio/i,
+    /Client Portals/,
+    /portrait enhancement/i,
+    /curated countdowns/i,
+    /tracking coverage and sentiment/i,
+    /data governance alignment/i,
+    /previews, prototypes, or custom builds/i,
+    /\b(Front|Sales|Knowledge|Workflow) Desk\b/,
+    /Content Studio/
+  ];
+  const files = readdirSync(ROOT).filter((f) => /\.(html|txt)$/.test(f))
+    .concat(readdirSync(path.join(ROOT, 'components')).filter((f) => /\.(js|json)$/.test(f)).map((f) => `components/${f}`), ['agents.js']);
+  const hits = [];
+  for (const file of files) {
+    const text = read(file);
+    for (const re of stale) if (re.test(text)) hits.push(`${file}: ${re}`);
+  }
+  assert.deepEqual(hits, []);
+});

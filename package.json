@@ -13,8 +13,9 @@
     "start": "node server.js",
     "dev": "node server.js",
     "check:source": "node scripts/check-source.mjs",
-    "check": "npm run check:source && node --check server.js && node --check components/form-router.js && node --check components/discovery-engine.js && node --check components/discovery.js",
-    "test": "node --test test/*.test.js test/*.test.mjs"
+    "check": "npm run check:source && node --check server.js && node --check components/form-router.js && node --check components/discovery-engine.js && node --check components/discovery.js && node --check scripts/render-catalog.mjs",
+    "test": "node --test test/*.test.js test/*.test.mjs",
+    "render:catalog": "node scripts/render-catalog.mjs"
   },
   "engines": {
     "node": ">=18"

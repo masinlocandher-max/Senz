@@ -13,6 +13,18 @@ Start with the client's problem. Not every customer needs all three capabilities
 ## Product readiness
 Eight products are implemented in the private SENZ App source: AI Workspace, Communications Intelligence, Digital Assistant, FotoLab, Client Portal, Event Systems, Digital Representative, and Music Platform. Local source testing is not proof of live readiness. No self-service purchase is currently announced. Four products use AI; FotoLab, Client Portal, Event Systems, and Music Platform are digital workflows, not generative AI products.
 
+## Products and their purpose
+<!-- catalog:llms:start -->
+- SENZ AI Workspace (In development; Uses AI): Turn your own notes, goals, and source text into usable first drafts, and keep every version. For: Professionals, small businesses, and teams who write every day. Limits: Uses only what you provide. It does not browse the web, send, or publish anything, and every draft needs human review.
+- SENZ Communications Intelligence (In development; Uses AI): Prepare important messages properly: plan them, check them, and approve them before they go out. For: Communications officers, schools, local governments, agencies, and organizations. Limits: It does not publish or send messages, and it does not replace legal advice or a crisis team.
+- SENZ Digital Assistant (In development; Uses AI): Answer the questions people keep asking on your website, using only answers you approve, and pass anything else to a person. For: Businesses, schools, clinics, venues, and organizations with repeat questions. Limits: It never answers outside your approved knowledge, and it does not take payments or make bookings.
+- SENZ FotoLab (In development; Digital workflow (no AI)): Keep your photos in private projects and make careful edits without ever losing the original. For: Individuals and small teams who prepare their own images. Limits: A self-service editor, not a retouching service by SENZ staff. It does not generate or alter images with AI.
+- SENZ Client Portal (Custom implementation; Digital workflow (no AI)): One private place for a contracted project between SENZ and a client: what is due, what was delivered, and what was approved. For: SENZ clients working under a signed project agreement. Limits: Set up by SENZ for each contract. It is not a general CRM, form builder, or public file-sharing service.
+- SENZ Event Systems (Custom implementation; Digital workflow (no AI)): Run event registration from announcement to the door: take sign-ups within capacity, manage a waitlist, and check people in. For: Schools, organizations, and event organizers. Limits: It does not sell tickets or run voting or tabulation.
+- SENZ Digital Representative (Custom implementation; Uses AI): Let a brand or person be represented by a clearly disclosed text assistant that speaks only from approved information, and only while consent is in place. For: Public figures, brands, and organizations under a signed agreement. Limits: Text only. It has no voice or video likeness and is never presented as the real person.
+- SENZ Music Platform (Custom implementation; Digital workflow (no AI)): Review and deliver music projects privately: listen to protected previews, give timestamped feedback, confirm rights, then release the files. For: Artists, producers, and clients working with SENZ under a music project agreement. Limits: It does not stream music to the public, publish charts, or generate music.
+<!-- catalog:llms:end -->
+
 Pricing is based on requirements and approved quotations. Do not infer a price, guaranteed result, procurement eligibility, or production availability from this document.
 
 ## Public routes

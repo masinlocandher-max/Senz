@@ -1,4 +1,4 @@
-# SENZ website ↔ app integration contract (v1)
+# SENZ website ↔ app integration contract (v2)
 
 ## Source ownership and deployment boundary
 
@@ -10,11 +10,17 @@
 
 ## Descriptive product catalog
 
-The eight product IDs and descriptions originate in private app `src/catalog.js`. Run `node scripts/export-public-catalog.js` in the app and transfer only that JSON output to website `components/product-catalog.json`. Never transfer the private implementation. Review both repository changes together. The export includes no credentials, customer records, billing information, or entitlement logic.
+The eight products, and what each one is for, are defined once in the private app's `src/catalog.js`: purpose, audience, what it includes, what it does not do, how it is sold, and its status. The app shows that text to customers, and its `docs/PRODUCTS.md` is generated from it. The website gets the same text through a public export:
 
-Schema version 1: `sourceRepository`, `releaseState`, `checkoutEnabled`, `products[]` with `id`, `name`, `summary`, `usesAi`, `mode`, `publicStatus`, `nextAction`. This checked-in export intentionally remains `not_released` with checkout disabled. A local beta status in the app is not permission to mark the public product available. Release approval must reference verified hosting, live integrations, customer journeys, approved pricing and terms.
+1. In the app: `node scripts/export-public-catalog.js`. Copy only that JSON output to `components/product-catalog.json` here. Never transfer the private implementation. The export includes no credentials, customer records, prices, billing information, or entitlement logic.
+2. Here: `node scripts/render-catalog.mjs` (or `npm run render:catalog`) rewrites the marked catalog blocks in `ai-systems.html`, `llms.txt`, and `llms-full.txt`.
+3. `test/catalog.test.mjs` fails if those files differ from the JSON, if the discovery journey recommends a product that is not in the catalog, or if a page repeats a claim the app contradicts (for example ticketing, voting, or tabulation in Event Systems).
 
-Products: ai-workspace, communications-intelligence, digital-assistant, fotolab, client-portal, event-systems, digital-representative, music-platform. FotoLab, Client Portal, Event Systems and Music Platform are digital workflows, not AI generation products.
+To change how a product is described, change it in the app first, then repeat steps 1 and 2, and review both repository changes together.
+
+Schema version 2: `sourceRepository`, `releaseState`, `checkoutEnabled`, `platform` (`name`, `principle`, `purpose`), `statuses` (label and meaning for each status, the same labels the app shows), `categories`, and `products[]` with `id`, `name`, `category`, `purpose`, `audience`, `includes[]`, `limits`, `summary`, `usesAi`, `mode`, `publicStatus` (`in_development` or `custom`), `publicStatusLabel`, `nextAction`. This checked-in export intentionally remains `not_released` with checkout disabled. A local beta status in the app is not permission to mark the public product available. Release approval must reference verified hosting, live integrations, customer journeys, approved pricing and terms.
+
+Products: ai-workspace, communications-intelligence, digital-assistant, fotolab, client-portal, event-systems, digital-representative, music-platform. FotoLab, Client Portal, Event Systems and Music Platform are digital workflows, not AI products. SENZ services (strategy, PR, websites, scoped custom builds) are delivered by the SENZ team and are not app products.
 
 ## Discovery → inquiry
 

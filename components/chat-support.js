@@ -33,7 +33,7 @@
     },
     {
       match: ['clone', 'assistant', 'representative', 'music', 'voting', 'tabulation', 'ticket'],
-      reply: 'Digital products include SENZ FotoLab, Digital Assistants, client portals, event systems, consent-based Digital Representatives, and the SENZ Music platform. Current availability depends on the product stage and project scope. Inquiries go to info.senz.pr@gmail.com.'
+      reply: 'The SENZ App has eight products: AI Workspace, Communications Intelligence, Digital Assistant, FotoLab, Client Portal, Event Systems, Digital Representative, and Music Platform. The AI Systems page explains what each one is for and what it does not do. None is released for self-service purchase yet. Event Systems covers registration, waitlists, and check-in, not voting, tabulation, or ticketing; the Digital Representative is a disclosed, consent-based text assistant, not a clone. Inquiries go to info.senz.pr@gmail.com.'
     },
     {
       match: ['contact', 'email', 'message', 'book', 'consultation'],
