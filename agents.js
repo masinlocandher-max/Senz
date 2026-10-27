@@ -68,7 +68,7 @@ function recommendAgent(inquiry) {
 
   const ranked = agents
     .map((agent) => ({ ...agent, score: scoreAgent(agent, text) }))
-    .sort((a, b) => b.score - a.score || b.priority - a.priority);
+    .sort((a, b) => b.score - a.score || a.priority - b.priority);
 
   return ranked[0].score > 0 ? ranked[0] : agents[0];
 }
