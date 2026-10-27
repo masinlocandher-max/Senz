@@ -1,5 +1,7 @@
 # SENZ website release review
 
+The active review and superseded draft disposition are recorded in [CONSOLIDATION.md](CONSOLIDATION.md).
+
 This review branch builds on the existing commercial website branch, preserving its ancestry, agent routing fix, and institutional pathway. It does not merge the earlier six-product application draft.
 
 ## Implemented
