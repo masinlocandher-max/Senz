@@ -29,7 +29,15 @@ const agents = [
     label: "Digital Products Agent",
     focus: "Music, clone studio, voting, tabulation, ticketing, and AI assistant platforms.",
     priority: 40,
-    keywords: ["digital", "platform", "app", "ai", "assistant", "clone", "music"]
+    keywords: ["digital", "platform", "app", "ai", "assistant", "clone", "music", "workspace", "subscription", "individual", "personal plan", "ai tools", "ai systems", "communications intelligence", "fotolab"]
+  },
+  {
+    id: "institutional-sales",
+    name: "Institutional Sales Lead",
+    label: "Institutional Licensing Agent",
+    focus: "Institutional licensing, organizational deployment, government procurement, seat management, and bulk access agreements.",
+    priority: 45,
+    keywords: ["institutional", "institution", "license", "licensing", "school", "university", "lgu", "government", "agency", "bac", "procurement", "philgeps", "enterprise", "organization", "bulk", "deployment", "seats", "seat", "corporate", "ched", "deped"]
   },
   {
     id: "events-systems",
