@@ -4,7 +4,7 @@
 >
 > `masinlocandher-max/Senz`, branch `main`, repository root, is the source of truth for `www.senzpr.com` and `senzpr.com`.
 >
-> Make SENZ website and application changes here. The copy at `FMB-Ecosystem/apps/senz` is not the production source and must not supersede this repository. Never commit environment files, API secrets, database credentials, or private client data here.
+> Make public website changes here. The protected eight-product application lives only in the private `masinlocandher-max/Senzapp` repository. The copy at `FMB-Ecosystem/apps/senz` is not the production source and must not supersede this repository. Never commit environment files, API secrets, database credentials, or private client data here.
 
 **Influence Through Clarity.**
 
@@ -101,3 +101,7 @@ Influence Through Clarity.
 ---
 
 © 2026 SENZ Strategic Communications
+
+## Discovery and repository boundary
+
+`get-started.html` runs the shared deterministic discovery rules in `components/discovery-engine.js`. The website inquiry backend recomputes the recommendation before delivery. It grants no app access. `components/product-catalog.json` is a descriptive export from Senzapp, not backend code or a source of commercial entitlement. See `docs/PLATFORM_CONTRACT.md`.

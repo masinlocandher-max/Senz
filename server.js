@@ -5,6 +5,7 @@ const http = require("node:http");
 const path = require("node:path");
 const { URL } = require("node:url");
 const { agents, recommendAgent } = require("./agents");
+const discovery = require("./components/discovery-engine");
 
 const rootDir = __dirname;
 const port = Number(process.env.PORT || 4177);
@@ -147,6 +148,31 @@ function buildInquiry(input) {
     source: "website-intake",
     details: cleanFields(input.fields)
   };
+  const discoveryErrors = [];
+  if (formType === 'discovery') {
+    const result = discovery.recommend(input.discovery);
+    if (input.consent !== true) discoveryErrors.push('Consent is required for a discovery inquiry.');
+    if (input.discoveryVersion !== discovery.VERSION) discoveryErrors.push('The questionnaire has changed. Reload and review your answers.');
+    if (!result.valid) discoveryErrors.push('Complete the discovery questions before submitting.');
+    if (result.valid) {
+      // Do not trust client-supplied recommendations, pricing, tier or entitlement fields.
+      inquiry.projectType = result.name;
+      inquiry.timeline = result.answers.timeline;
+      inquiry.message = result.challenge + '\nDesired outcome: ' + result.outcome;
+      inquiry.details = {
+        'Rules version': discovery.VERSION,
+        'Discovery answers': JSON.stringify(result.answers),
+        'Recommended capability': result.capability,
+        'Proposed scope': result.scope.join('; '),
+        'Suggested tier': result.suggestedTier,
+        'Recommendation reasons': result.why.join('; '),
+        'Information to confirm': result.informationGaps.join('; '),
+        'Human review': result.humanReviewRequired ? 'Required' : 'Scope confirmation required',
+        'Consent': 'Inquiry response only; discovery-2026-10-27',
+        'Quote status': 'New inquiry; no price or entitlement granted'
+      };
+    }
+  }
   const assignedAgent = recommendAgent(inquiry);
   inquiry.assignedAgent = {
     id: assignedAgent.id,
@@ -155,7 +181,7 @@ function buildInquiry(input) {
     focus: assignedAgent.focus
   };
 
-  const errors = [];
+  const errors = [...discoveryErrors];
   if (!inquiry.name) errors.push("Name is required.");
   if (inquiry.email && !isEmail(inquiry.email)) errors.push("Email must be valid when provided.");
   if (!inquiry.email && !inquiry.contact) errors.push("Email or phone/Messenger contact is required.");
@@ -223,7 +249,7 @@ async function deliverInquiry(inquiry) {
     });
 
     const result = await response.json().catch(() => ({}));
-    if (!response.ok || result.success === false || result.success === "false") {
+    if (!response.ok || ![true, "true"].includes(result.success)) {
       const error = new Error("The inquiry email provider did not accept the submission.");
       error.statusCode = 502;
       throw error;
@@ -314,11 +340,16 @@ async function handleAgentRecommendation(req, res) {
 }
 
 function safeStaticPath(urlPath) {
-  const decoded = decodeURIComponent(urlPath);
-  const normalized = path.normalize(decoded).replace(/^(\.\.[/\\])+/, "");
-  const filePath = path.join(rootDir, normalized === "/" ? "index.html" : normalized);
-  if (!filePath.startsWith(rootDir)) return null;
-  return filePath;
+  let decoded;
+  try { decoded = decodeURIComponent(urlPath); } catch { return null; }
+  if (decoded.includes('\\') || decoded.includes('\0') || decoded.split('/').some(part => part.startsWith('.'))) return null;
+  const relative = decoded === '/' ? 'index.html' : decoded.replace(/^\//, '');
+  // Only public website assets. Never serve Git history, environment, backend, tests or docs.
+  const rootPublic = /^[a-z0-9-]+\.html$/.test(relative) || ['robots.txt','sitemap.xml','llms.txt','llms-full.txt'].includes(relative);
+  const asset = /^(assets|components)\/[a-zA-Z0-9_./-]+\.(css|js|json|png|jpe?g|webp|svg|ico|mp3|mp4|woff2?)$/.test(relative);
+  if (!rootPublic && !asset) return null;
+  const full = path.resolve(rootDir, relative);
+  return full.startsWith(rootDir + path.sep) ? full : null;
 }
 
 function redirectToCanonicalHost(req, res, url) {
@@ -343,12 +374,15 @@ async function serveStatic(req, res, pathname) {
   try {
     const stat = await fsp.stat(filePath);
     if (stat.isDirectory()) filePath = path.join(filePath, "index.html");
+    const actualPath = await fsp.realpath(filePath);
+    if (!actualPath.startsWith(rootDir + path.sep)) { res.writeHead(403); res.end('Forbidden'); return; }
     const ext = path.extname(filePath).toLowerCase();
     res.writeHead(200, {
       "Content-Type": mimeTypes[ext] || "application/octet-stream",
-      "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=31536000, immutable"
+      "Cache-Control": "no-cache"
     });
-    fs.createReadStream(filePath).pipe(res);
+    if (req.method === 'HEAD') { res.end(); return; }
+    fs.createReadStream(filePath).on('error', () => res.destroy()).pipe(res);
   } catch {
     res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
     res.end(await fsp.readFile(path.join(rootDir, "index.html"), "utf8"));
@@ -419,5 +453,6 @@ module.exports = {
   deliverInquiry,
   inquirySubject,
   server,
-  wasSubmittedTooQuickly
+  wasSubmittedTooQuickly,
+  safeStaticPath
 };

@@ -19,3 +19,7 @@ Read `DEPLOYMENT.md` before touching deployment settings. Confirm the exact repo
 ## Security and scope
 
 Keep secrets in their hosting provider, never in Git, generated public files, logs, or chat. Do not print environment variable values. Keep SENZ data and credentials separate from Cognita, FMB News, Jewel, and other applications. Preserve existing approval and access boundaries.
+
+## Platform separation
+
+The protected eight-product application belongs only in private `masinlocandher-max/Senzapp`. The earlier six-product `ai-platform` draft is not the application source for this directive. Do not merge its backend into this public website. See `docs/PLATFORM_CONTRACT.md`.
