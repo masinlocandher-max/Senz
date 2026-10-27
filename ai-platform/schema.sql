@@ -129,7 +129,7 @@ create or replace function public.senz_redeem_invite(
   p_token_hash text, p_user_id uuid, p_email text
 ) returns uuid
 language plpgsql security definer set search_path = public, pg_temp
-as $
+as $$
 declare inv public.senz_invites%rowtype;
 declare ent public.senz_entitlements%rowtype;
 declare used_seats integer;
@@ -153,7 +153,7 @@ begin
   insert into public.senz_memberships(org_id,user_id,role) values(inv.org_id,p_user_id,inv.role);
   update public.senz_invites set used_by=p_user_id where id=inv.id;
   return inv.org_id;
-end $;
+end $$;
 revoke all on function public.senz_redeem_invite(text,uuid,text) from public, anon, authenticated;
 grant execute on function public.senz_redeem_invite(text,uuid,text) to service_role;
 
