@@ -6,7 +6,7 @@ const state = {
   config: null, catalog: null, token: sessionStorage.getItem('senz_access_token') || '',
   refresh: sessionStorage.getItem('senz_refresh_token') || '',
   user: null, orgId: null, screen: 'overview', entries: [], usage: null,
-  generated: '', sources: [], isRegister: false, busy: false, inviteUrl: ''
+  generated: '', sources: [], isRegister: false, busy: false, inviteUrl: '', partnerReport: null, partnerBrand: null
 };
 const SYMBOLS = { frontdesk: 'FD', sales: 'SD', knowledge: 'KD', workspace: 'AI', content: 'CS', workflow: 'WD', overview: 'OS' };
 const DESCRIPTIONS = {
@@ -46,6 +46,18 @@ function formatDate(s) {
 function price(amount) { return amount == null ? 'By quotation' : new Intl.NumberFormat('en-PH',{style:'currency',currency:'PHP',maximumFractionDigits:0}).format(amount/100); }
 function productTitle(key) { return state.catalog?.products?.[key]?.title || key; }
 function selectedOrg() { return (state.user?.organizations || []).find(x => x.id === state.orgId) || null; }
+const referralId = new URLSearchParams(location.search).get('partner') || '';
+const validOrgId = value => /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(value||'');
+async function loadPartnerBrand() {
+  if (!validOrgId(referralId)) return;
+  try {
+    const result = await httpJson('/api/partner/brand?org_id='+encodeURIComponent(referralId));
+    state.partnerBrand=result;
+    el('login-brand-name').textContent=result.partner_brand_name;
+    el('login-brand-caption').textContent='Your licensed AI business tools';
+    if (result.partner_brand_logo) el('login-brand-logo').src=result.partner_brand_logo;
+  }catch { state.partnerBrand=null; }
+}
 function accessible(org, key) { return Boolean(org?.licensed && (!key || org.products.includes(key))); }
 function roleIsManager() { return ['owner', 'admin'].includes(selectedOrg()?.role); }
 function showMessage(message, ok = false) { const target = el('auth-message'); target.textContent = message; target.classList.toggle('ok',ok); }
@@ -229,6 +241,7 @@ function settings() {
   if (!accessible(org)) return purchaseScreen();
   const isManager = roleIsManager();
   const hasWidget = org.products.includes('frontdesk');
+  const isPartner = Boolean(org.white_label);
   const branding = org.white_label ? '<section class="panel"><div class="panel-head"><div><h2>Your white-label identity</h2><p>Visible identity inside your licensed workspace. Custom domains require separate verification.</p></div></div>' +
       '<form id="brand-form"><div class="field"><label for="org-name">Organization name</label><input id="org-name" maxlength="100" required value="' + esc(org.name) + '"/></div>' +
       '<div class="field"><label for="white-label-name">Your product brand name</label><input id="white-label-name" maxlength="100" required value="' + esc(org.white_label_name||org.name) + '"/></div>' +
@@ -243,6 +256,12 @@ function settings() {
     '<p class="inline-note">Install this script before the closing body tag on an approved website:</p><div class="invite-link">' +
     esc('<script src="'+state.config.app_origin+'/widget.js" data-senz-org="'+org.id+'" defer></script>') +
     '</div><div class="form-actions"><button type="button" class="btn" data-action="copy-widget">Copy installation code</button></div></section>' : '';
+  const partner = isPartner ? '<section class="panel"><h2>White-label partner sales</h2><p class="muted">Share your referral link so customers create a separate account and purchase their own license. Customer data remains isolated from your business workspace.</p>' +
+    '<div class="field"><label>Partner-branded invitation link</label><div class="invite-link">' + esc(state.config.app_origin+'/?partner='+org.id) + '</div></div>' +
+    '<div class="form-actions"><button type="button" class="btn primary" data-action="copy-partner">Copy partner sales link</button></div>' +
+    '<hr/><div class="settings-kv"><div><small>Verified paid orders referred</small><strong>' + (state.partnerReport ? state.partnerReport.paid_orders : 'Loading…') + '</strong></div>' +
+    '<div><small>Gross referred sales</small><strong>' + (state.partnerReport ? esc(price(state.partnerReport.gross_centavos)) : 'Loading…') + '</strong></div></div>' +
+    '<p class="inline-note">These are gross sales, not commissions or payouts. Rates, invoicing and commissions require a separate written commercial agreement. The platform does not pay partners automatically.</p></section>' : '';
   return headerMarkup('License and organization', 'Manage paid access, brand identity and verified member invitations.', 'ACCOUNT MANAGEMENT') +
     '<div class="grid three stats-row"><div class="stat-card"><span class="stat-label">License status</span><div class="stat-value" style="font-size:20px">Active</div><div class="stat-note">Verified by server-side entitlement</div></div><div class="stat-card"><span class="stat-label">Seats included</span><div class="stat-value">' + org.seats + '</div><div class="stat-note">Memberships cannot exceed this license</div></div><div class="stat-card"><span class="stat-label">Valid through</span><div class="stat-value" style="font-size:20px">' + esc(formatDate(org.active_until)) + '</div><div class="stat-note">Prepaid period</div></div></div>' +
     '<div class="grid two">' +
@@ -254,17 +273,18 @@ function settings() {
     '<section class="panel"><h2>Plan and AI usage</h2><div class="settings-kv"><div><small>Licensed products</small><strong>' + org.products.length + '</strong></div><div><small>Monthly AI uses</small><strong>' + (state.usage ? state.usage.count+' / '+state.usage.limit : 'Loading…') + '</strong></div>' +
     '<div><small>Your role</small><strong>' + esc(org.role) + '</strong></div><div><small>White-label right</small><strong>' + (org.white_label ? 'Included' : 'Not included') + '</strong></div></div>' +
     '<hr/><p class="muted tiny">Usage is tracked per assigned member. No unlimited AI usage is promised. Your current product access is verified on every server-side operation.</p>' +
-    '<button type="button" class="btn" data-screen="billing">Review plans and renewal</button></section>' + branding + widget + '</div>';
+    '<button type="button" class="btn" data-screen="billing">Review plans and renewal</button></section>' + branding + widget + partner + '</div>';
 }
 function nav() {
   const org = selectedOrg();
-  const branded = Boolean(org?.white_label);
-  const brandName = branded ? (org.white_label_name || org.name) : 'SENZ AI';
+  const branded = Boolean(org?.white_label || org?.partner_brand_name);
+  const brandName = org?.white_label ? (org.white_label_name || org.name) : (org?.partner_brand_name || 'SENZ AI');
   el('sidebar-brand-name').textContent = brandName;
   el('sidebar-brand-caption').textContent = branded ? 'Your licensed AI platform' : 'Business operating suite';
   el('top-brand').textContent = brandName;
-  el('sidebar-brand-logo').src = branded && org.brand_logo_url ? org.brand_logo_url : 'https://www.senzpr.com/assets/senz-original-mark.png';
-  document.documentElement.style.setProperty('--royal',branded && /^#[0-9a-fA-F]{6}$/.test(org.brand_color||'') ? org.brand_color : '#2451D9');
+  el('sidebar-brand-logo').src = branded && (org.brand_logo_url || org.partner_brand_logo) ? (org.brand_logo_url || org.partner_brand_logo) : 'https://www.senzpr.com/assets/senz-original-mark.png';
+  const color = org?.white_label ? org.brand_color : org?.partner_brand_color;
+  document.documentElement.style.setProperty('--royal',branded && /^#[0-9a-fA-F]{6}$/.test(color||'') ? color : '#2451D9');
   const opts = '<option value="">Choose organization</option>' + (state.user?.organizations||[]).map(o=>'<option value="' + esc(o.id) + '"'+ (o.id===state.orgId?' selected':'') +'>' + esc(o.white_label_name||o.name) + (o.licensed?'':' · inactive') + '</option>').join('');
   el('organization-select').innerHTML = opts;
   el('account-email').textContent = state.user.email;
@@ -294,15 +314,19 @@ async function chooseScreen(screen) {
   const org = selectedOrg();
   if (!['overview','billing','settings'].includes(screen) && !accessible(org,screen)) return toast('A paid license for this product is required.');
   state.screen = screen; state.generated = ''; state.sources = []; state.inviteUrl = '';
-  state.entries = [];
+  state.entries = []; state.partnerReport = null;
   render();
   if (Object.keys(state.catalog.products).includes(screen)) {
     try { const result = await api('/api/entries?org_id='+encodeURIComponent(state.orgId)+'&product='+encodeURIComponent(screen)); state.entries=result.records; render(); }
     catch(err){ toast(err.message); }
   }
   if (screen === 'settings') {
-    try { state.usage = await api('/api/usage?org_id='+encodeURIComponent(state.orgId)); render(); }
-    catch(err){ toast(err.message); }
+    try {
+      const org=selectedOrg();
+      state.usage=await api('/api/usage?org_id='+encodeURIComponent(state.orgId));
+      if (org?.white_label && roleIsManager()) state.partnerReport=await api('/api/partner/report?org_id='+encodeURIComponent(state.orgId));
+      render();
+    }catch(err){toast(err.message);}
   }
   window.scrollTo({top:0,behavior:'instant'});
 }
@@ -341,7 +365,7 @@ async function startCheckout(planId) {
     const org=selectedOrg();
     const payload = { plan:planId };
     if (org) payload.org_id=org.id;
-    else payload.org_name='My organization';
+    else { payload.org_name='My organization'; if (state.partnerBrand && validOrgId(referralId)) payload.reseller_org_id=referralId; }
     const result=await api('/api/checkout',{method:'POST',body:JSON.stringify(payload)});
     const u=new URL(result.checkout_url);
     if (u.protocol!=='https:' || u.hostname!=='checkout.paymongo.com') throw new Error('Checkout destination was not verified');
@@ -366,6 +390,10 @@ async function onMainClick(e) {
   }
   const action=b.dataset.action;
   if(action==='export-csv') return csvExport();
+  if(action==='copy-partner') {
+    const code=state.config.app_origin+'/?partner='+selectedOrg().id;
+    return navigator.clipboard.writeText(code).then(()=>toast('Partner sales link copied.')).catch(()=>toast('Copy unavailable.'));
+  }
   if(action==='copy-widget') {
     const org=selectedOrg(), code='<script src="'+state.config.app_origin+'/widget.js" data-senz-org="'+org.id+'" defer></script>';
     return navigator.clipboard.writeText(code).then(()=>toast('Widget code copied.')).catch(()=>toast('Copy unavailable.'));
@@ -426,6 +454,7 @@ async function init() {
   try {
     const results=await Promise.all([httpJson('/api/config'),httpJson('/api/catalog')]);
     state.config=results[0];state.catalog=results[1];
+    await loadPartnerBrand();
     if (!state.config.auth_ready) return showLogin('Platform authentication is not configured. The owner must complete setup before accounts can sign in.');
     if (!state.token) return showLogin();
     try { await loadMe(); }

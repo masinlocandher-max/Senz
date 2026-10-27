@@ -40,3 +40,6 @@ A 200 from /api/health proves only the Node process is alive, not successful pay
 
 ## Front Desk website integration
 A paying Front Desk organization can allow five HTTPS origins and copy the widget script from License & Settings. The widget uses only approved FAQ records, collects opted-in inquiries, and limits AI replies per day. This does not include Facebook Messenger, WhatsApp, SMS, voice or autonomous follow-up. Configure CSP to permit the app host. Verify checkout and origin restrictions before enabling live traffic.
+
+## Paid white-label reseller referral prototype
+A reseller with an active white-label license may share an account-creation URL from its License & Settings screen. The linked organization can sign up and buy its own paid license. The buyer's private records, members, documents and AI usage remain in a separate organization; the reseller cannot read them. Orders are attributed to the reseller and aggregate gross referred sales appear in its dashboard. This is **not** an automated commission system, payment split, reseller merchant-of-record service, or a guarantee of margins. All product prices are controlled centrally in approved server configuration, and commissions must be defined separately.
