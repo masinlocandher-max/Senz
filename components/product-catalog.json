@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "sourceRepository": "masinlocandher-max/Senzapp",
   "releaseState": "not_released",
   "checkoutEnabled": false,
@@ -34,13 +34,127 @@
     "ai": "Uses AI",
     "workflow": "Digital workflow (no AI)"
   },
+  "segments": {
+    "myself": "An individual",
+    "professional": "A professional or personal brand",
+    "business": "A business",
+    "organization": "A company or organization",
+    "education": "A school or educational institution",
+    "government": "A government office or public institution"
+  },
+  "launchWaves": {
+    "1": {
+      "label": "First release",
+      "meaning": "Offered first, to pilot customers, once the release checks pass."
+    },
+    "2": {
+      "label": "Second release",
+      "meaning": "Offered after the first release, set up by agreement."
+    },
+    "3": {
+      "label": "By agreement",
+      "meaning": "Offered only after a scoping review and a signed agreement."
+    }
+  },
+  "channels": {
+    "plans": "Through a plan",
+    "services": "Included with SENZ service engagements",
+    "agreement": "By custom implementation agreement"
+  },
+  "plans": [
+    {
+      "key": "individual",
+      "name": "Individual",
+      "segments": [
+        "myself",
+        "professional"
+      ],
+      "seats": "One person",
+      "selfRequest": true,
+      "products": [
+        "ai-workspace",
+        "communications-intelligence",
+        "fotolab"
+      ]
+    },
+    {
+      "key": "professional",
+      "name": "Professional",
+      "segments": [
+        "professional"
+      ],
+      "seats": "One person",
+      "selfRequest": true,
+      "products": [
+        "ai-workspace",
+        "communications-intelligence",
+        "digital-assistant",
+        "fotolab"
+      ]
+    },
+    {
+      "key": "business",
+      "name": "Business",
+      "segments": [
+        "business"
+      ],
+      "seats": "Seats for your team",
+      "selfRequest": true,
+      "products": [
+        "digital-assistant",
+        "ai-workspace",
+        "communications-intelligence"
+      ]
+    },
+    {
+      "key": "institution",
+      "name": "Institutional License",
+      "segments": [
+        "organization",
+        "education",
+        "government"
+      ],
+      "seats": "Seats assigned by your administrators",
+      "selfRequest": true,
+      "products": [
+        "ai-workspace",
+        "communications-intelligence",
+        "digital-assistant",
+        "fotolab"
+      ]
+    },
+    {
+      "key": "custom-contract",
+      "name": "Custom Implementation Contract",
+      "segments": [
+        "myself",
+        "professional",
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
+      "seats": "Scoped in the agreement",
+      "selfRequest": false,
+      "products": []
+    }
+  ],
   "products": [
     {
       "id": "ai-workspace",
       "name": "SENZ AI Workspace",
       "category": "ai",
+      "problem": "Drafting, summarizing, and organizing work takes too long.",
       "purpose": "Turn your own notes, goals, and source text into usable first drafts, and keep every version.",
       "audience": "Professionals, small businesses, and teams who write every day.",
+      "segments": [
+        "myself",
+        "professional",
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
       "includes": [
         "Seven drafting tools: email, summary, rewrite, action items, FAQ, plan, and comparison",
         "Refine with AI, edit by hand, and restore any earlier version",
@@ -50,6 +164,17 @@
       "summary": "Draft, summarize, rewrite, and structure real work with saved, versioned outputs.",
       "usesAi": true,
       "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "Included in the Individual, Professional, Business and Institutional License plans.",
+      "recommendedPlan": {
+        "myself": "individual",
+        "professional": "individual",
+        "business": "business",
+        "organization": "institution",
+        "education": "institution",
+        "government": "institution"
+      },
       "publicStatus": "in_development",
       "publicStatusLabel": "In development",
       "nextAction": "Request a Demonstration"
@@ -58,8 +183,17 @@
       "id": "communications-intelligence",
       "name": "SENZ Communications Intelligence",
       "category": "ai",
+      "problem": "Important messages go out unplanned, unclear, or without proper approval.",
       "purpose": "Prepare important messages properly: plan them, check them, and approve them before they go out.",
       "audience": "Communications officers, schools, local governments, agencies, and organizations.",
+      "segments": [
+        "myself",
+        "professional",
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
       "includes": [
         "Six structured tools: message brief, stakeholder plan, clarity and tone review, campaign narrative, issue and crisis preparation, and communications diagnostic",
         "Human approval required before export; every new version needs approval again",
@@ -69,6 +203,17 @@
       "summary": "Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval.",
       "usesAi": true,
       "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "Included in the Individual, Professional, Business and Institutional License plans.",
+      "recommendedPlan": {
+        "myself": "individual",
+        "professional": "individual",
+        "business": "business",
+        "organization": "institution",
+        "education": "institution",
+        "government": "institution"
+      },
       "publicStatus": "in_development",
       "publicStatusLabel": "In development",
       "nextAction": "Request a Demonstration"
@@ -77,8 +222,16 @@
       "id": "digital-assistant",
       "name": "SENZ Digital Assistant",
       "category": "ai",
+      "problem": "People keep asking the same questions, and answers are slow or inconsistent.",
       "purpose": "Answer the questions people keep asking on your website, using only answers you approve, and pass anything else to a person.",
       "audience": "Businesses, schools, clinics, venues, and organizations with repeat questions.",
+      "segments": [
+        "professional",
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
       "includes": [
         "An approved-knowledge library that you control",
         "Answers that cite their sources; unanswerable questions become handoff requests to your team",
@@ -88,6 +241,16 @@
       "summary": "An assistant that answers only from your approved knowledge and hands off to a person.",
       "usesAi": true,
       "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "Included in the Professional, Business and Institutional License plans.",
+      "recommendedPlan": {
+        "professional": "professional",
+        "business": "business",
+        "organization": "institution",
+        "education": "institution",
+        "government": "institution"
+      },
       "publicStatus": "in_development",
       "publicStatusLabel": "In development",
       "nextAction": "Request a Demonstration"
@@ -96,8 +259,14 @@
       "id": "fotolab",
       "name": "SENZ FotoLab",
       "category": "workflow",
+      "problem": "Photos are scattered, and editing them risks losing the originals.",
       "purpose": "Keep your photos in private projects and make careful edits without ever losing the original.",
       "audience": "Individuals and small teams who prepare their own images.",
+      "segments": [
+        "myself",
+        "professional",
+        "education"
+      ],
       "includes": [
         "Private photo projects with a rights acknowledgement for every upload",
         "Exposure, brightness, contrast, saturation, crop, resize, rotate, and flip, each saved as a new version",
@@ -107,6 +276,14 @@
       "summary": "Private photo projects with real non-destructive adjustments, versions, and export.",
       "usesAi": false,
       "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "Included in the Individual, Professional and Institutional License plans.",
+      "recommendedPlan": {
+        "myself": "individual",
+        "professional": "individual",
+        "education": "institution"
+      },
       "publicStatus": "in_development",
       "publicStatusLabel": "In development",
       "nextAction": "Request a Demonstration"
@@ -115,8 +292,16 @@
       "id": "client-portal",
       "name": "SENZ Client Portal",
       "category": "workflow",
+      "problem": "Clients of a SENZ project need one place to follow progress, review deliverables, and approve the work.",
       "purpose": "One private place for a contracted project between SENZ and a client: what is due, what was delivered, and what was approved.",
       "audience": "SENZ clients working under a signed project agreement.",
+      "segments": [
+        "professional",
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
       "includes": [
         "Milestones and deliverables with version history",
         "Comments, revision requests, approvals, and client uploads",
@@ -126,6 +311,16 @@
       "summary": "Contracted project workspace for milestones, deliverables, revisions, and approvals.",
       "usesAi": false,
       "mode": "contract",
+      "launchWave": 1,
+      "channel": "services",
+      "howToGet": "Included with SENZ service engagements; not sold on its own.",
+      "recommendedPlan": {
+        "professional": null,
+        "business": null,
+        "organization": null,
+        "education": null,
+        "government": null
+      },
       "publicStatus": "custom",
       "publicStatusLabel": "Custom implementation",
       "nextAction": "Request a Quote"
@@ -134,8 +329,15 @@
       "id": "event-systems",
       "name": "SENZ Event Systems",
       "category": "workflow",
+      "problem": "Event sign-ups are manual: overbooking, lost registrations, and slow check-in at the door.",
       "purpose": "Run event registration from announcement to the door: take sign-ups within capacity, manage a waitlist, and check people in.",
       "audience": "Schools, organizations, and event organizers.",
+      "segments": [
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
       "includes": [
         "A public registration page with capacity limits and an automatic waitlist",
         "Single-use check-in codes that block duplicate entry",
@@ -145,6 +347,15 @@
       "summary": "Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export.",
       "usesAi": false,
       "mode": "contract",
+      "launchWave": 2,
+      "channel": "agreement",
+      "howToGet": "Set up under a custom implementation agreement after a scoping review.",
+      "recommendedPlan": {
+        "business": "custom-contract",
+        "organization": "custom-contract",
+        "education": "custom-contract",
+        "government": "custom-contract"
+      },
       "publicStatus": "custom",
       "publicStatusLabel": "Custom implementation",
       "nextAction": "Request a Quote"
@@ -153,8 +364,13 @@
       "id": "digital-representative",
       "name": "SENZ Digital Representative",
       "category": "ai",
+      "problem": "A brand or public figure receives more questions than can be answered personally.",
       "purpose": "Let a brand or person be represented by a clearly disclosed text assistant that speaks only from approved information, and only while consent is in place.",
       "audience": "Public figures, brands, and organizations under a signed agreement.",
+      "segments": [
+        "professional",
+        "organization"
+      ],
       "includes": [
         "Recorded, revocable consent with an evidence reference",
         "Answers only from approved knowledge, always disclosed as automated",
@@ -164,6 +380,13 @@
       "summary": "Consent-based, disclosed text representative for a brand or person, with human approval.",
       "usesAi": true,
       "mode": "contract",
+      "launchWave": 3,
+      "channel": "agreement",
+      "howToGet": "Set up under a custom implementation agreement after a scoping review.",
+      "recommendedPlan": {
+        "professional": "custom-contract",
+        "organization": "custom-contract"
+      },
       "publicStatus": "custom",
       "publicStatusLabel": "Custom implementation",
       "nextAction": "Request a Quote"
@@ -172,8 +395,13 @@
       "id": "music-platform",
       "name": "SENZ Music Platform",
       "category": "workflow",
+      "problem": "Music projects are shared through scattered links, with unclear feedback and unconfirmed rights.",
       "purpose": "Review and deliver music projects privately: listen to protected previews, give timestamped feedback, confirm rights, then release the files.",
       "audience": "Artists, producers, and clients working with SENZ under a music project agreement.",
+      "segments": [
+        "professional",
+        "business"
+      ],
       "includes": [
         "Protected audio previews with version history",
         "Timestamped feedback and approvals",
@@ -183,6 +411,13 @@
       "summary": "Protected audio previews, timestamped feedback, rights confirmation, and delivery.",
       "usesAi": false,
       "mode": "contract",
+      "launchWave": 3,
+      "channel": "agreement",
+      "howToGet": "Set up under a custom implementation agreement after a scoping review.",
+      "recommendedPlan": {
+        "professional": "custom-contract",
+        "business": "custom-contract"
+      },
       "publicStatus": "custom",
       "publicStatusLabel": "Custom implementation",
       "nextAction": "Request a Quote"

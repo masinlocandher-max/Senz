@@ -28,3 +28,39 @@ test('backend never serves source, environment, Git history or encoded traversal
 test('the public catalog contains eight descriptive products and no enabled checkout',()=>{
  const c=require('../components/product-catalog.json');assert.equal(c.products.length,8);assert.equal(c.checkoutEnabled,false);assert.equal(c.products.filter(p=>p.usesAi).length,4);
 });
+test('every audience, from one person to a government office, can pick a first-release problem with a plan',()=>{
+ const c=require('../components/product-catalog.json');
+ for(const {value:audience} of engine.audiences){if(audience==='other')continue;
+  const first=engine.routes[audience].map(n=>engine.productNeeds[n]).filter(Boolean).map(id=>c.products.find(p=>p.id===id)).filter(p=>p.launchWave===1&&p.channel==='plans');
+  assert.ok(first.length>=2,`${audience} has first-release products`);
+  for(const p of first){const r=engine.recommend(answers(audience,Object.keys(engine.productNeeds).find(n=>engine.productNeeds[n]===p.id),{requirements:engine.questions({audience,need:'writing'}).find(q=>q.id==='requirements').options.find(o=>!['integration','sensitive'].includes(o.value)).value,current:'manual'}));
+   const plan=c.plans.find(x=>x.name===r.suggestedTier);assert.ok(plan&&plan.selfRequest&&plan.products.includes(p.id)&&plan.segments.includes(audience),`${audience}: ${p.id} suggests ${r.suggestedTier}`);}
+ }
+});
+test('a product is offered only to the audiences it serves, and every audience it serves can reach it',()=>{
+ const c=require('../components/product-catalog.json');
+ for(const p of c.products){
+  const need=Object.keys(engine.productNeeds).find(n=>engine.productNeeds[n]===p.id);
+  if(p.channel==='services'){assert.equal(need,undefined,'Client Portal comes with SENZ services');continue;}
+  for(const {value:audience} of engine.audiences){if(audience==='other')continue;assert.equal(engine.routes[audience].includes(need),p.segments.includes(audience),`${p.id} for ${audience}`);}
+ }
+ for(const {value:audience} of engine.audiences)for(const need of engine.routes[audience])for(const outcome of engine.questions({audience,need}).find(q=>q.id==='outcome').options){
+  const r=engine.recommend(answers(audience,need,{outcome:outcome.value}));assert.equal(r.valid,true);
+  if(r.productId&&audience!=='other')assert.ok(c.products.find(p=>p.id===r.productId).segments.includes(audience),`${audience}/${need} recommends ${r.productId}`);
+  assert.notEqual(r.productId,'client-portal','Client Portal is never sold as a product');
+  if(audience==='myself')assert.ok(!r.tiers.includes('Custom Implementation Contract'),'individuals are not pointed to contracts');
+ }
+});
+test('institutions serve students through Digital Assistant and staff through AI Workspace, on the Institutional License',()=>{
+ for(const audience of ['organization','education','government']){
+  const students=engine.recommend(answers(audience,'institutional',{outcome:'student',current:'manual',requirements:'unknown'}));
+  const staff=engine.recommend(answers(audience,'institutional',{outcome:'faculty',current:'manual',requirements:'unknown'}));
+  assert.equal(students.productId,'digital-assistant');assert.equal(staff.productId,'ai-workspace');
+  assert.equal(students.suggestedTier,'Institutional License');assert.ok(students.plans.some(p=>p.name==='Institutional License'&&p.suggested));
+ }
+});
+test('client delivery is a SENZ service, and service work names Client Portal',()=>{
+ const r=engine.recommend(answers('business','portal'));assert.equal(r.productId,null);assert.equal(r.name,'SENZ Client Delivery Setup');assert.match(r.limitations,/not offered as a portal for your own clients/);assert.equal(r.deliveredThrough.id,'client-portal');
+ assert.equal(engine.recommend(answers('business','unsure')).deliveredThrough,null);
+ assert.equal(engine.recommend(answers('business','communications',{requirements:'managed'})).productId,null);
+});
