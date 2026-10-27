@@ -4,6 +4,7 @@ begin;
 create table if not exists public.senz_organizations (
   id uuid primary key default gen_random_uuid(),
   owner_id uuid not null,
+  referred_by uuid references public.senz_organizations(id) on delete set null,
   name text not null,
   brand_color text not null default '#2451D9',
   white_label_name text,
@@ -33,6 +34,7 @@ create table if not exists public.senz_orders (
   id uuid primary key default gen_random_uuid(),
   org_id uuid not null references public.senz_organizations(id),
   user_id uuid not null,
+  reseller_org_id uuid references public.senz_organizations(id) on delete set null,
   plan text not null,
   products text[] not null,
   seats integer not null,
@@ -48,6 +50,7 @@ create table if not exists public.senz_orders (
   paid_at timestamptz
 );
 create index if not exists senz_orders_user_idx on public.senz_orders(user_id,created_at desc);
+create index if not exists senz_orders_reseller_idx on public.senz_orders(reseller_org_id,status,paid_at desc);
 create table if not exists public.senz_entries (
   id uuid primary key default gen_random_uuid(),
   org_id uuid not null references public.senz_organizations(id) on delete cascade,

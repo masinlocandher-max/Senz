@@ -106,6 +106,24 @@ async function access(user, orgId, product) {
 }
 function manager(role) { if (!['owner', 'admin'].includes(role)) failure(403, 'Organization administrator required'); }
 function owner(role) { if (role !== 'owner') failure(403, 'Organization owner required'); }
+async function partnerBrandOf(orgId) {
+  if (!orgId) return {};
+  const org = await one('senz_organizations', {id:'eq.'+orgId});
+  const entitlement = org ? await one('senz_entitlements', {org_id:'eq.'+orgId}) : null;
+  if (!active(entitlement) || !entitlement.white_label) return {};
+  return {
+    partner_brand_name: org.white_label_name || org.name,
+    partner_brand_logo: org.brand_logo_url || null,
+    partner_brand_color: org.brand_color
+  };
+}
+async function requirePaidPartner(user, orgId) {
+  const a = await access(user, orgId);
+  manager(a.membership.role);
+  if (!a.ent.white_label) failure(402, 'A paid white-label reseller license is required');
+  return a;
+}
+
 async function membershipView(user) {
   const memberships = await rows('senz_memberships', { user_id: 'eq.' + user.id, order: 'created_at.desc', limit: '100' });
   const organizations = [];
@@ -119,6 +137,7 @@ async function membershipView(user) {
       brand_logo_url: entitlement?.white_label ? org.brand_logo_url : null,
       widget_origins: active(entitlement) && entitlement.products.includes('frontdesk') ? org.widget_origins : [],
       widget_greeting: active(entitlement) && entitlement.products.includes('frontdesk') ? org.widget_greeting : null,
+      ...await partnerBrandOf(org.referred_by),
       role: m.role, licensed: active(entitlement), active_until: entitlement?.active_until || null,
       products: active(entitlement) ? entitlement.products : [],
       seats: entitlement?.seats || 0, white_label: Boolean(active(entitlement) && entitlement.white_label)
@@ -162,21 +181,29 @@ async function handleCheckout(user, req, res) {
   const plan = PLANS[p.plan];
   if (!plan || !prices[p.plan]) failure(422, 'This plan is not yet available for checkout');
   let orgId = p.org_id;
+  let resellerId = null;
   if (orgId) {
     assertUuid(orgId);
     const membership = await one('senz_memberships', { org_id: 'eq.' + orgId, user_id: 'eq.' + user.id });
     if (!membership) failure(403, 'You do not own this organization');
     owner(membership.role);
+    const existingOrg=await one('senz_organizations',{id:'eq.'+orgId});
+    resellerId=existingOrg?.referred_by || null;
   } else {
+    if (p.reseller_org_id) {
+      resellerId=assertUuid(p.reseller_org_id);
+      const reseller=await one('senz_entitlements',{org_id:'eq.'+resellerId});
+      if (!active(reseller) || !reseller.white_label) failure(422,'This referral belongs to an inactive partner');
+    }
     const name = requiredText(p.org_name || 'My organization', 100);
-    const result = await backend('senz_organizations', {}, 'POST', { owner_id: user.id, name });
+    const result = await backend('senz_organizations', {}, 'POST', { owner_id: user.id, name, referred_by: resellerId });
     orgId = result[0]?.id;
     if (!isUuid(orgId)) failure(503, 'Unable to start organization');
     await backend('senz_memberships', {}, 'POST', { org_id: orgId, user_id: user.id, role: 'owner' });
   }
   const amount = prices[p.plan];
   const newOrder = await backend('senz_orders', {}, 'POST', {
-    org_id: orgId, user_id: user.id, plan: p.plan, products: plan.products, seats: plan.seats,
+    org_id: orgId, user_id: user.id, reseller_org_id: resellerId, plan: p.plan, products: plan.products, seats: plan.seats,
     duration_days: plan.days, white_label: plan.whiteLabel, amount_centavos: amount,
     livemode: paymongoMode === 'live'
   });
@@ -356,10 +383,28 @@ async function api(req, res, u) {
     auth_ready: configured.auth, checkout_ready: configured.checkout,
     ai_ready: configured.ai, mode: paymongoMode
   });
+  if (req.method === 'GET' && u.pathname === '/api/partner/brand') {
+    const partnerId = assertUuid(u.searchParams.get('org_id'));
+    const brand = await partnerBrandOf(partnerId);
+    if (!brand.partner_brand_name) failure(404, 'Partner identity is not active');
+    return respond(res,200,brand);
+  }
   if (req.method === 'POST' && u.pathname === '/api/webhooks/paymongo') return handleWebhook(req, res);
   const user = await auth(req);
   if (req.method === 'GET' && u.pathname === '/api/me') return respond(res, 200, { email: user.email, organizations: await membershipView(user) });
   if (req.method === 'POST' && u.pathname === '/api/checkout') return handleCheckout(user, req, res);
+  if (req.method === 'GET' && u.pathname === '/api/partner/report') {
+    const partnerId=assertUuid(u.searchParams.get('org_id'));
+    await requirePaidPartner(user,partnerId);
+    const paid=await rows('senz_orders',{reseller_org_id:'eq.'+partnerId,status:'eq.paid',limit:'10000'});
+    return respond(res,200,{
+      paid_orders:paid.length,
+      gross_centavos:paid.reduce((total,o)=>total+Number(o.amount_centavos||0),0),
+      currency:'PHP',
+      payout_status:'not_configured',
+      note:'Gross sales attribution only. Commissions and payouts depend on separate agreements.'
+    });
+  }
   if (req.method === 'POST' && u.pathname === '/api/ai') return handleAi(user, req, res);
   if (req.method === 'GET' && u.pathname === '/api/entries') {
     const orgId = assertUuid(u.searchParams.get('org_id'));
