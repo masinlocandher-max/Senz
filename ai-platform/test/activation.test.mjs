@@ -15,6 +15,7 @@ test('mocked checkout-to-entitlement flow denies unpaid access, verifies webhook
   process.env.SENZ_PLAN_PRICING_JSON='{"frontdesk":100,"workspace":300}';
   const database = { senz_organizations:[], senz_memberships:[], senz_entitlements:[],
     senz_orders:[], senz_entries:[], senz_invites:[], senz_ai_usage:[], senz_widget_usage:[] };
+  let checkoutSequence=0;
   const nativeFetch=globalThis.fetch;
   const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'content-type':'application/json'}});
   function rowsFor(table,url){
@@ -69,9 +70,10 @@ test('mocked checkout-to-entitlement flow denies unpaid access, verifies webhook
     }
     if(url.host==='api.paymongo.com'){
       const data=JSON.parse(options.body);
-      assert.equal(data.data.attributes.line_items[0].amount,10000);
+      assert.ok([10000,30000].includes(data.data.attributes.line_items[0].amount));
       assert.equal(data.data.attributes.reference_number.length,36);
-      return json({data:{id:'cs_mock_1',attributes:{checkout_url:'https://checkout.paymongo.com/cs_mock_1'}}},201);
+      const id='cs_mock_'+(++checkoutSequence);
+      return json({data:{id,attributes:{checkout_url:'https://checkout.paymongo.com/'+id}}},201);
     }
     if(url.host==='api.openai.com'){
       const body=JSON.parse(options.body);
@@ -127,4 +129,46 @@ test('mocked checkout-to-entitlement flow denies unpaid access, verifies webhook
     {name:'Visitor',email:'visitor@example.org',message:'Please call about an appointment',consent:true});
   assert.equal(r.status,201);
   assert.ok(database.senz_entries.some(x=>x.title.startsWith('Website inquiry')));
+
+  // A fully licensed white-label supplier can refer customers into DISTINCT organizations.
+  // No customer record or entitlement is shared with the referring organization.
+  const partnerEnt=database.senz_entitlements.find(x=>x.org_id===org.id);
+  partnerEnt.white_label=true;
+  org.white_label_name='Harbor AI';
+  r=await nativeFetch(host+'/api/partner/brand?org_id='+org.id);
+  assert.equal(r.status,200);
+  assert.equal((await r.json()).partner_brand_name,'Harbor AI');
+  const referred=await post('/api/checkout',auth2,{plan:'workspace',org_name:'Ridge Ventures',reseller_org_id:org.id});
+  assert.equal(referred.status,201);
+  const referredCheckout=await referred.json();
+  assert.equal(referredCheckout.amount_centavos,30000);
+  const clientOrg=database.senz_organizations.find(x=>x.name==='Ridge Ventures');
+  assert.equal(clientOrg.referred_by,org.id);
+  assert.equal(database.senz_orders.find(o=>o.id===referredCheckout.order_id).reseller_org_id,org.id);
+  r=await post('/api/entries',auth2,{org_id:clientOrg.id,product:'workspace',title:'Client private work',body:'Must remain private'});
+  assert.equal(r.status,402,'Referral does not grant unpaid product access');
+  const secondEvent={data:{type:'checkout_session.payment.paid',livemode:false,id:'evt_mock_2',data:{
+    id:'cs_mock_2',attributes:{reference_number:referredCheckout.order_id,payments:[{id:'pay_mock_2',attributes:{status:'paid',currency:'PHP',amount:30000}}]}
+  }}};
+  const secondRaw=JSON.stringify(secondEvent);
+  const secondSig='t='+now+',te='+crypto.createHmac('sha256',process.env.PAYMONGO_WEBHOOK_SECRET).update(now+'.'+secondRaw).digest('hex')+',li=';
+  r=await nativeFetch(host+'/api/webhooks/paymongo',{method:'POST',headers:{'Paymongo-Signature':secondSig,'Content-Type':'application/json'},body:secondRaw});
+  assert.equal(r.status,200);
+  assert.equal((await r.json()).activated,true);
+  r=await post('/api/entries',auth2,{org_id:clientOrg.id,product:'workspace',title:'Client private work',body:'Must remain private'});
+  assert.equal(r.status,201);
+  r=await post('/api/entries',auth1,{org_id:clientOrg.id,product:'workspace',title:'Stolen data',body:'Nope'});
+  assert.equal(r.status,403,'Reseller cannot access customer organization');
+  r=await nativeFetch(host+'/api/partner/report?org_id='+org.id,{headers:auth1});
+  assert.equal(r.status,200);
+  const report=await r.json();
+  assert.equal(report.paid_orders,1);
+  assert.equal(report.gross_centavos,30000);
+  assert.equal(report.payout_status,'not_configured');
+  assert.equal(JSON.stringify(report).includes('Ridge Ventures'),false,'No client details in aggregate report');
+  r=await nativeFetch(host+'/api/partner/report?org_id='+org.id,{headers:auth2});
+  assert.equal(r.status,403);
+  r=await nativeFetch(host+'/api/me',{headers:auth2});
+  assert.equal(r.status,200);
+  assert.equal((await r.json()).organizations.find(o=>o.id===clientOrg.id).partner_brand_name,'Harbor AI');
 });
