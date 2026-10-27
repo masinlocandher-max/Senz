@@ -7,6 +7,7 @@ create table if not exists public.senz_organizations (
   name text not null,
   brand_color text not null default '#2451D9',
   white_label_name text,
+  brand_logo_url text,
   created_at timestamptz not null default now()
 );
 create table if not exists public.senz_memberships (

@@ -116,6 +116,7 @@ async function membershipView(user) {
     organizations.push({
       id: org.id, name: org.name, brand_color: org.brand_color,
       white_label_name: entitlement?.white_label ? org.white_label_name : null,
+      brand_logo_url: entitlement?.white_label ? org.brand_logo_url : null,
       role: m.role, licensed: active(entitlement), active_until: entitlement?.active_until || null,
       products: active(entitlement) ? entitlement.products : [],
       seats: entitlement?.seats || 0, white_label: Boolean(active(entitlement) && entitlement.white_label)
@@ -347,12 +348,17 @@ async function api(req, res, u) {
     const p = (await jsonBody(req)).value;
     const updates = {};
     if (p.name !== undefined) updates.name = requiredText(p.name, 100);
-    if (p.white_label_name !== undefined || p.brand_color !== undefined) {
+    if (p.white_label_name !== undefined || p.brand_color !== undefined || p.brand_logo_url !== undefined) {
       if (!a.ent.white_label) failure(402, 'A paid white-label license is required');
       if (p.white_label_name !== undefined) updates.white_label_name = requiredText(p.white_label_name, 100);
       if (p.brand_color !== undefined) {
         if (!/^#[0-9a-fA-F]{6}$/.test(p.brand_color)) failure(422, 'Enter a six-digit brand color');
         updates.brand_color = p.brand_color;
+      }
+      if (p.brand_logo_url !== undefined) {
+        const logo = optionalText(p.brand_logo_url, 500);
+        if (logo && (!/^https:\/\//i.test(logo) || new URL(logo).username || new URL(logo).password)) failure(422, 'Logo URL must use public HTTPS');
+        updates.brand_logo_url = logo || null;
       }
     }
     if (!Object.keys(updates).length) failure(422, 'No organization settings to update');

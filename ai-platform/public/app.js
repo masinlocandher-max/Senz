@@ -232,6 +232,7 @@ function settings() {
       '<form id="brand-form"><div class="field"><label for="org-name">Organization name</label><input id="org-name" maxlength="100" required value="' + esc(org.name) + '"/></div>' +
       '<div class="field"><label for="white-label-name">Your product brand name</label><input id="white-label-name" maxlength="100" required value="' + esc(org.white_label_name||org.name) + '"/></div>' +
       '<div class="field"><label for="brand-color">Brand color</label><input id="brand-color" pattern="#[A-Fa-f0-9]{6}" maxlength="7" value="' + esc(org.brand_color||'#2451D9') + '"/></div>' +
+      '<div class="field"><label for="brand-logo-url">Brand logo HTTPS URL (optional)</label><input id="brand-logo-url" type="url" maxlength="500" placeholder="https://example.com/logo.svg" value="' + esc(org.brand_logo_url||'') + '"/></div>' +
       '<button class="btn primary" type="submit" ' + (!isManager?'disabled':'') + '>Save brand identity</button></form></section>' :
       '<section class="panel"><h2>Organization settings</h2><p class="muted">White-label names and colors are available with a separately paid white-label product license.</p></section>';
   return headerMarkup('License and organization', 'Manage paid access, brand identity and verified member invitations.', 'ACCOUNT MANAGEMENT') +
@@ -249,6 +250,13 @@ function settings() {
 }
 function nav() {
   const org = selectedOrg();
+  const branded = Boolean(org?.white_label);
+  const brandName = branded ? (org.white_label_name || org.name) : 'SENZ AI';
+  el('sidebar-brand-name').textContent = brandName;
+  el('sidebar-brand-caption').textContent = branded ? 'Your licensed AI platform' : 'Business operating suite';
+  el('top-brand').textContent = brandName;
+  el('sidebar-brand-logo').src = branded && org.brand_logo_url ? org.brand_logo_url : 'https://www.senzpr.com/assets/senz-original-mark.png';
+  document.documentElement.style.setProperty('--royal',branded && /^#[0-9a-fA-F]{6}$/.test(org.brand_color||'') ? org.brand_color : '#2451D9');
   const opts = '<option value="">Choose organization</option>' + (state.user?.organizations||[]).map(o=>'<option value="' + esc(o.id) + '"'+ (o.id===state.orgId?' selected':'') +'>' + esc(o.white_label_name||o.name) + (o.licensed?'':' · inactive') + '</option>').join('');
   el('organization-select').innerHTML = opts;
   el('account-email').textContent = state.user.email;
@@ -374,7 +382,7 @@ async function onMainSubmit(e) {
   if(id==='brand-form') {
     e.preventDefault();setBusy(true);
     try {
-      await api('/api/organizations/'+encodeURIComponent(state.orgId),{method:'PATCH',body:JSON.stringify({name:el('org-name').value,white_label_name:el('white-label-name').value,brand_color:el('brand-color').value})});
+      await api('/api/organizations/'+encodeURIComponent(state.orgId),{method:'PATCH',body:JSON.stringify({name:el('org-name').value,white_label_name:el('white-label-name').value,brand_color:el('brand-color').value,brand_logo_url:el('brand-logo-url').value})});
       await loadMe();toast('White-label identity saved.');
     }catch(err){toast(err.message)}
     finally{setBusy(false)}
