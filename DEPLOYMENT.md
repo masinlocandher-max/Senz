@@ -32,6 +32,19 @@ GitHub Pages publishes static files. It does not run the repository's `server.js
 
 The presence of `vercel.json` is not proof of an active Vercel deployment. `VERCEL_DEPLOYMENT.md` is retained only as guidance for a separately approved future migration.
 
+### Where the inquiry forms actually go
+
+The static pages post inquiries to `SENZ_API_BASE_URL` in `components/site-config.js`, currently `https://senz-api-8vt4.onrender.com`. That is the `senz-api` service described in `render.yaml`: this repository's `server.js` on a Render free web service. It relays each inquiry to `SENZ_FORM_DELIVERY_ENDPOINT` (FormSubmit, to `info.senz.pr@gmail.com`) and fails loudly if the relay does not report success, so visitors see the email fallback instead of a false confirmation.
+
+A free Render service sleeps when idle and can take up to a minute to start. The forms therefore wake it when a visitor starts filling one in, wait up to 60 seconds, and say that the request is still sending after 8 seconds. A paid always-on plan removes the wait; that is an owner decision.
+
+None of this is verified live from this repository's tests. Before relying on the forms, the owner confirms and records, with dates:
+
+1. The Render service `senz-api` is deployed from this repository's `main`, and `GET /api/health` on the address above answers.
+2. FormSubmit is activated for `info.senz.pr@gmail.com` (FormSubmit holds submissions for a new address until the activation email is confirmed).
+3. A real submission from a normal browser on `https://www.senzpr.com`, clearly marked as a test, reaches the inbox, and its reference matches the one shown on the page. Do this once for the contact form and once for the discovery form.
+4. `SITE_ORIGIN` on Render lists both public domains, so browsers on either domain are allowed.
+
 ## Rollback
 
 Revert a faulty commit through a normal Git commit and verify the next Pages deployment. Do not move the source back to the monorepo or delete this repository as a rollback shortcut.

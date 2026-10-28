@@ -1,6 +1,9 @@
 (() => {
   const DESTINATION_EMAIL = "info.senz.pr@gmail.com";
-  const REQUEST_TIMEOUT_MS = 20000;
+  // The inquiry service sleeps when idle and can take up to a minute to start (see site-config.js).
+  const REQUEST_TIMEOUT_MS = 60000;
+  const SLOW_NOTICE_MS = 8000;
+  const SLOW_MESSAGE = "Still sending. The inquiry service can take up to a minute to start after a quiet period. Please keep this page open.";
   const CONSULTATION_PENDING_MESSAGE = "Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm by email before anything is added to a calendar.";
   const ERROR_MESSAGE = `We could not submit your request. Please try again or email ${DESTINATION_EMAIL}.`;
 
@@ -142,6 +145,7 @@
     if (submitButton) submitButton.disabled = true;
     form.setAttribute("aria-busy", "true");
     setStatus(statusEl, "sending", "Submitting your request securely…");
+    const slow = window.setTimeout(() => setStatus(statusEl, "sending", SLOW_MESSAGE), SLOW_NOTICE_MS);
 
     try {
       const response = await fetch(route, {
@@ -169,6 +173,7 @@
       return { ok: false, reason };
     } finally {
       window.clearTimeout(timeout);
+      window.clearTimeout(slow);
       form.removeAttribute("aria-busy");
       if (submitButton) submitButton.disabled = false;
     }
@@ -200,6 +205,8 @@
     bind,
     submit,
     buildPayload,
-    CONSULTATION_PENDING_MESSAGE
+    CONSULTATION_PENDING_MESSAGE,
+    REQUEST_TIMEOUT_MS,
+    SLOW_NOTICE_MS
   };
 })();
