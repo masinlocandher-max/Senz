@@ -104,3 +104,30 @@ test('logo links are named by their visible text', () => {
     }
   }
 });
+
+test('forms send the consent boxes as the visitor left them; marketing stays off unless ticked', () => {
+  const b = browser();
+  vm.runInContext(read('components/form-router.js'), b.context);
+  const payload = (values, formKind = 'general') => b.context.SENZForms.buildPayload({ dataset: { formKind }, values });
+  for (const kind of ['general', 'consultation', 'creative-pool']) {
+    assert.deepEqual([payload({ name: 'A', privacyConsent: 'on' }, kind).consent, payload({ name: 'A', privacyConsent: 'on' }, kind).marketingConsent], [true, false], kind);
+    assert.equal(payload({ name: 'A' }, kind).consent, false, `${kind}: no tick, no consent`);
+    assert.equal(payload({ name: 'A', privacyConsent: 'on', marketingConsent: 'on' }, kind).marketingConsent, true);
+  }
+  for (const page of ['contact.html', 'about.html', 'careers.html']) {
+    const html = read(page);
+    assert.match(html, /name="privacyConsent" required/, `${page}: consent to a reply is required`);
+    assert.match(html, /name="marketingConsent" \/>/, `${page}: the updates box is optional and unticked`);
+    assert.doesNotMatch(html, /name="marketingConsent"[^>]*(checked|required)/, `${page}: updates are never pre-ticked or required`);
+  }
+});
+
+test('discovery sends its consent boxes as left, and measurements carry no personal details', () => {
+  const source = read('components/discovery.js');
+  assert.match(source, /consent:values\.consent==='on',marketingConsent:values\.marketingConsent==='on'/);
+  assert.doesNotMatch(source, /consent:true/);
+  const metric = source.match(/function metric\(name\) \{([^}]*\}[^}]*)\}/);
+  assert.ok(metric, 'metric function found');
+  assert.match(metric[1], /#measurement-consent'\)\?\.checked/, 'measurements only when the visitor opts in');
+  assert.match(metric[1], /detail:\{event:name,rulesVersion:engine\.VERSION\}/, 'only the step name and rules version');
+});

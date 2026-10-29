@@ -79,6 +79,7 @@ test("valid inquiries are delivered as email payloads", async () => {
       projectType: "Website strategy",
       timeline: "2026-08-04 10:00",
       message: "A test project brief.",
+      consent: true,
       fields: { preferredDate: "2026-08-04" }
     })
   });
@@ -89,6 +90,33 @@ test("valid inquiries are delivered as email payloads", async () => {
   assert.match(deliveries[0]._subject, /consultation request/i);
   assert.equal(deliveries[0]._replyto, "visitor@example.com");
   assert.equal(deliveries[0]["Detail — preferredDate"], "2026-08-04");
+  assert.equal(deliveries[0]["Consent to reply"], "Yes (inquiry-2026-10-29)");
+  assert.equal(deliveries[0]["Marketing consent"], "No: reply to this inquiry only", "agreeing to a reply is not agreeing to marketing");
+});
+
+test("an inquiry without consent to a reply is refused and not delivered", async () => {
+  for (const consent of [undefined, false, "true", "on"]) {
+    const response = await fetch(`${apiUrl}/api/inquiries`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Origin": "https://www.senzpr.com" },
+      body: JSON.stringify({ formType: "general", name: "No Consent", email: "nc@example.com", projectType: "General", message: "Hello.", consent })
+    });
+    assert.equal(response.status, 422, `consent ${JSON.stringify(consent)}`);
+    assert.match((await response.json()).errors.join(" "), /privacy notice/);
+  }
+  assert.equal(deliveries.length, 1);
+});
+
+test("optional marketing consent is recorded separately, and only when ticked", async () => {
+  const response = await fetch(`${apiUrl}/api/inquiries`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Origin": "https://www.senzpr.com" },
+    body: JSON.stringify({ formType: "general", name: "Opted In", email: "in@example.com", projectType: "General", message: "Hello.", consent: true, marketingConsent: true, consentVersion: "forged-by-browser" })
+  });
+  assert.equal(response.status, 201);
+  const delivered = deliveries.pop();
+  assert.equal(delivered["Marketing consent"], "Yes: may receive SENZ updates until they ask to stop");
+  assert.equal(delivered["Consent to reply"], "Yes (inquiry-2026-10-29)", "the consent version is the server's, not the browser's");
 });
 
 test("unapproved browser origins are blocked", async () => {

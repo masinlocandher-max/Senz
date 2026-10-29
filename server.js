@@ -120,6 +120,10 @@ function cleanFields(fields) {
   );
 }
 
+// Consent to a reply is required for every form; consent to marketing is a separate, optional
+// choice. The versions are the server's, not values sent by the browser.
+const CONSENT_VERSIONS = { discovery: "discovery-2026-10-27", default: "inquiry-2026-10-29" };
+
 function buildInquiry(input) {
   const contact = clean(input.contact || input.phone || input.contactNumber, 180);
   const timeline = clean(input.timeline || input.date || input.availability, 120);
@@ -146,12 +150,16 @@ function buildInquiry(input) {
     budget: clean(input.budget, 120),
     message: messageParts.join("\n\n").slice(0, 3000),
     source: "website-intake",
-    details: cleanFields(input.fields)
+    details: cleanFields(input.fields),
+    consent: {
+      reply: input.consent === true,
+      marketing: input.marketingConsent === true,
+      version: CONSENT_VERSIONS[clean(input.formType || "general", 40).toLowerCase()] || CONSENT_VERSIONS.default
+    }
   };
   const discoveryErrors = [];
   if (formType === 'discovery') {
     const result = discovery.recommend(input.discovery);
-    if (input.consent !== true) discoveryErrors.push('Consent is required for a discovery inquiry.');
     if (input.discoveryVersion !== discovery.VERSION) discoveryErrors.push('The questionnaire has changed. Reload and review your answers.');
     if (!result.valid) discoveryErrors.push('Complete the discovery questions before submitting.');
     if (result.valid) {
@@ -170,7 +178,6 @@ function buildInquiry(input) {
         'Recommendation reasons': result.why.join('; '),
         'Information to confirm': result.informationGaps.join('; '),
         'Human review': result.humanReviewRequired ? 'Required' : 'Scope confirmation required',
-        'Consent': 'Inquiry response only; discovery-2026-10-27',
         'Quote status': 'New inquiry; no price or entitlement granted'
       };
     }
@@ -184,6 +191,7 @@ function buildInquiry(input) {
   };
 
   const errors = [...discoveryErrors];
+  if (!inquiry.consent.reply) errors.push("Agree to the privacy notice so SENZ can reply to this inquiry.");
   if (!inquiry.name) errors.push("Name is required.");
   if (inquiry.email && !isEmail(inquiry.email)) errors.push("Email must be valid when provided.");
   if (!inquiry.email && !inquiry.contact) errors.push("Email or phone/Messenger contact is required.");
@@ -245,6 +253,8 @@ async function deliverInquiry(inquiry) {
         "Budget": inquiry.budget,
         "Message": inquiry.message,
         "Recommended SENZ route": inquiry.assignedAgent.label,
+        "Consent to reply": `Yes (${inquiry.consent.version})`,
+        "Marketing consent": inquiry.consent.marketing ? "Yes: may receive SENZ updates until they ask to stop" : "No: reply to this inquiry only",
         ...details
       }),
       signal: controller.signal
@@ -284,16 +294,17 @@ async function handleInquiry(req, res) {
     const input = await readJsonBody(req);
     const { inquiry, errors, spamTrap, formStartedAt } = buildInquiry(input);
 
-    if (errors.length) {
-      sendJson(req, res, 422, { ok: false, errors });
-      return;
-    }
-
+    // The hidden field first: automated submissions get the same answer whatever else they sent.
     if (spamTrap) {
       sendJson(req, res, 201, {
         ok: true,
         message: "Inquiry received. SENZ Strategic Communications will review your brief and respond soon."
       });
+      return;
+    }
+
+    if (errors.length) {
+      sendJson(req, res, 422, { ok: false, errors });
       return;
     }
 

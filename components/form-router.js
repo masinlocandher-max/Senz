@@ -33,7 +33,10 @@
     const fullName = values.name || values.fullName || "Website Visitor";
     const antiSpam = {
       senzWebsite: values.senzWebsite || "",
-      formStartedAt: Number(form.dataset.formStartedAt || 0)
+      formStartedAt: Number(form.dataset.formStartedAt || 0),
+      // The required privacy box and the separate, optional updates box, as the visitor left them.
+      consent: values.privacyConsent === "on",
+      marketingConsent: values.marketingConsent === "on"
     };
 
     if (formKind === "consultation") {
