@@ -61,7 +61,8 @@ test('no page repeats product claims that contradict the app', () => {
     /clone studio/i,
     /Client Portals/,
     /portrait enhancement/i,
-    /curated countdowns/i,
+    // Countdowns are SENZ Music division editorial work (music.html), never a Music Platform feature.
+    [/curated countdowns/i, ['music.html']],
     /tracking coverage and sentiment/i,
     /data governance alignment/i,
     /previews, prototypes, or custom builds/i,
@@ -73,7 +74,23 @@ test('no page repeats product claims that contradict the app', () => {
   const hits = [];
   for (const file of files) {
     const text = read(file);
-    for (const re of stale) if (re.test(text)) hits.push(`${file}: ${re}`);
+    for (const entry of stale) {
+      const [re, except = []] = Array.isArray(entry) ? entry : [entry];
+      if (!except.includes(file) && re.test(text)) hits.push(`${file}: ${re}`);
+    }
   }
   assert.deepEqual(hits, []);
+});
+
+test('the SENZ Music division and the Music Platform software keep separate pages', () => {
+  const division = read('music.html');
+  const software = read('music-platform.html');
+  assert.match(division, /<title>SENZ Music \|/);
+  assert.doesNotMatch(division, /rel="canonical" href="(?!https:\/\/www\.senzpr\.com\/music\.html")/, 'the division page is not pointed at another URL');
+  assert.match(software, /<link rel="canonical" href="https:\/\/www\.senzpr\.com\/music-platform\.html">/);
+  assert.match(software, /<title>SENZ Music Platform \| SENZ<\/title>/);
+  assert.doesNotMatch(software, /countdown|playlist|artist discovery/i, 'the software page describes only the software');
+  assert.doesNotMatch(division, /SENZ App|licen[cs]e|subscription|Music Platform/i, 'the division page does not offer the software');
+  const links = read('digital-products.html');
+  assert.ok(links.includes('href="music-platform.html"') && links.includes('href="music.html"'), 'both pages can be reached');
 });
