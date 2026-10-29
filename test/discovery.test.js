@@ -59,6 +59,14 @@ test('institutions serve students through Digital Assistant and staff through AI
   assert.equal(students.suggestedTier,'Institutional License');assert.ok(students.plans.some(p=>p.name==='Institutional License'&&p.suggested));
  }
 });
+test('institutions can give students their own seats on the Institutional License; they never pay personally',()=>{
+ for(const audience of ['organization','education','government']){
+  const r=engine.recommend(answers(audience,'institutional',{outcome:'learners',current:'manual',requirements:'unknown'}));
+  assert.equal(r.valid,true);assert.equal(r.productId,'ai-workspace');assert.equal(r.suggestedTier,'Institutional License');
+  assert.match(r.limitations,/assigned seats/);assert.match(r.limitations,/Students and employees need not pay personally/);
+  assert.ok(!r.plans.some(p=>p.name==='Individual'),'students are not sent to a personal plan');
+ }
+});
 test('client delivery is a SENZ service, and service work names Client Portal',()=>{
  const r=engine.recommend(answers('business','portal'));assert.equal(r.productId,null);assert.equal(r.name,'SENZ Client Delivery Setup');assert.match(r.limitations,/not offered as a portal for your own clients/);assert.equal(r.deliveredThrough.id,'client-portal');
  assert.equal(engine.recommend(answers('business','unsure')).deliveredThrough,null);
