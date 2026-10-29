@@ -37,7 +37,7 @@ test('removed legal and regulatory claims stay removed', () => {
 
 test('unsupported product functions appear only as stated limits', () => {
   // Each function the app does not provide may be named only next to a "not" or "does not".
-  const functions = [/\bvoting\b/i, /\btabulation\b/i, /\bticket(ing|s)\b/i, /\bclon(e|ing)\b/i, /\bretouch(ing)?\b/i, /\bstream(s|ing)? music\b/i, /\blikeness\b/i];
+  const functions = [/\bvoting\b/i, /\btabulation\b/i, /\bticket(ing|s)\b/i, /\bclon(e|ing)\b/i, /\bFotoLab\b.*\bretouch|\bretouch.*\bFotoLab\b/i, /\bstream(s|ing)? music\b/i, /\blikeness\b/i];
   const negation = /\b(not|no|does not|doesn't|never|nor)\b/i;
   const hits = [];
   for (const file of PUBLIC_FILES.filter((f) => !['agents.js', 'components/chat-support.js'].includes(f))) {

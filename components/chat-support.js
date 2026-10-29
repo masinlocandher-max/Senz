@@ -32,8 +32,8 @@
       reply: 'Books and resources are still being prepared. For now, please use Contact Us if you want to be notified about future SENZ Strategic Communications releases.'
     },
     {
-      match: ['clone', 'assistant', 'representative', 'music', 'voting', 'tabulation', 'ticket'],
-      reply: 'The SENZ App has eight products: AI Workspace, Communications Intelligence, Digital Assistant, FotoLab, Client Portal, Event Systems, Digital Representative, and Music Platform. The AI Systems page explains what each one is for and what it does not do. None is released for self-service purchase yet. Event Systems covers registration, waitlists, and check-in, not voting, tabulation, or ticketing; the Digital Representative is a disclosed, consent-based text assistant, not a clone. Inquiries go to info.senz.pr@gmail.com.'
+      match: ['clone', 'assistant', 'representative', 'voting', 'tabulation', 'ticket'],
+      reply: 'The SENZ App has six products: AI Workspace, Communications Intelligence, Digital Assistant, Client Portal, Event Systems, and Digital Representative. The AI Systems page explains what each one is for and what it does not do. None is released for self-service purchase yet. Event Systems covers registration, waitlists, and check-in, not voting, tabulation, or ticketing; the Digital Representative is a disclosed, consent-based text assistant, not a clone. Inquiries go to info.senz.pr@gmail.com.'
     },
     {
       match: ['contact', 'email', 'message', 'book', 'consultation'],

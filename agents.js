@@ -27,9 +27,9 @@ const agents = [
     id: "digital-products",
     name: "Digital Product Architect",
     label: "Digital Products Agent",
-    focus: "The eight SENZ App products: AI Workspace, Communications Intelligence, Digital Assistant, FotoLab, Client Portal, Event Systems, Digital Representative, and Music Platform.",
+    focus: "The six SENZ App products: AI Workspace, Communications Intelligence, Digital Assistant, Client Portal, Event Systems, and Digital Representative.",
     priority: 40,
-    keywords: ["digital", "platform", "app", "ai", "assistant", "clone", "music", "workspace", "subscription", "individual", "personal plan", "ai tools", "ai systems", "communications intelligence", "fotolab"]
+    keywords: ["digital", "platform", "app", "ai", "assistant", "clone", "workspace", "subscription", "individual", "personal plan", "ai tools", "ai systems", "communications intelligence"]
   },
   {
     id: "institutional-sales",

@@ -14,13 +14,13 @@ const read = (file) => readFileSync(path.join(ROOT, file), 'utf8');
 const catalog = loadCatalog();
 const engine = createRequire(import.meta.url)('../components/discovery-engine.js');
 
-test('the catalog is the app export: eight products, each with a stated purpose, none on sale', () => {
+test('the catalog is the app export: six products, each with a stated purpose, none on sale', () => {
   assert.equal(catalog.schemaVersion, 3);
   assert.equal(catalog.sourceRepository, 'masinlocandher-max/Senzapp');
   assert.equal(catalog.checkoutEnabled, false);
   assert.equal(catalog.releaseState, 'not_released');
   assert.ok(catalog.platform.purpose && catalog.platform.principle);
-  assert.deepEqual(catalog.products.map((p) => p.id), ['ai-workspace', 'communications-intelligence', 'digital-assistant', 'fotolab', 'client-portal', 'event-systems', 'digital-representative', 'music-platform']);
+  assert.deepEqual(catalog.products.map((p) => p.id), ['ai-workspace', 'communications-intelligence', 'digital-assistant', 'client-portal', 'event-systems', 'digital-representative']);
   for (const p of catalog.products) {
     assert.ok(p.purpose.length >= 40, `${p.id} purpose`);
     assert.ok(p.problem && p.segments.length && p.howToGet, `${p.id} problem, segments, how to get it`);
@@ -61,8 +61,13 @@ test('no page repeats product claims that contradict the app', () => {
     /clone studio/i,
     /Client Portals/,
     /portrait enhancement/i,
-    // Countdowns are SENZ Music division editorial work (music.html), never a Music Platform feature.
-    [/curated countdowns/i, ['music.html']],
+    /curated countdowns/i,
+    // Removed by owner decision (October 29, 2026): the SENZ Music division page, and the parked
+    // FotoLab and Music Platform products.
+    /\bSENZ Music\b/,
+    /\bFotoLab\b/i,
+    /\bMusic Platform\b/i,
+    /\bmusic(-platform)?\.html\b/,
     /tracking coverage and sentiment/i,
     /data governance alignment/i,
     /previews, prototypes, or custom builds/i,
@@ -74,23 +79,8 @@ test('no page repeats product claims that contradict the app', () => {
   const hits = [];
   for (const file of files) {
     const text = read(file);
-    for (const entry of stale) {
-      const [re, except = []] = Array.isArray(entry) ? entry : [entry];
-      if (!except.includes(file) && re.test(text)) hits.push(`${file}: ${re}`);
-    }
+    for (const re of stale) if (re.test(text)) hits.push(`${file}: ${re}`);
   }
   assert.deepEqual(hits, []);
 });
 
-test('the SENZ Music division and the Music Platform software keep separate pages', () => {
-  const division = read('music.html');
-  const software = read('music-platform.html');
-  assert.match(division, /<title>SENZ Music \|/);
-  assert.doesNotMatch(division, /rel="canonical" href="(?!https:\/\/www\.senzpr\.com\/music\.html")/, 'the division page is not pointed at another URL');
-  assert.match(software, /<link rel="canonical" href="https:\/\/www\.senzpr\.com\/music-platform\.html">/);
-  assert.match(software, /<title>SENZ Music Platform \| SENZ<\/title>/);
-  assert.doesNotMatch(software, /countdown|playlist|artist discovery/i, 'the software page describes only the software');
-  assert.doesNotMatch(division, /SENZ App|licen[cs]e|subscription|Music Platform/i, 'the division page does not offer the software');
-  const links = read('digital-products.html');
-  assert.ok(links.includes('href="music-platform.html"') && links.includes('href="music.html"'), 'both pages can be reached');
-});

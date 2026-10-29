@@ -35,13 +35,9 @@ These are not compliance claims, but they promise something the owner must stand
 - `institutional.html`: "Early adopters contribute to product requirements and receive priority provisioning." This is a commercial benefit with no approved terms.
 - `institutional.html`: "Seat transfers require authorization from the institution's designated SENZ administrator." In the app, the organization's owners and administrators assign and revoke seats; the wording should match.
 
-## SENZ Music division page
+## Removed by owner decision (October 29, 2026)
 
-`music.html` is the SENZ Music division page that is live on `main`. An earlier draft (#27) replaced it with the Music Platform software page. The software page now has its own URL, `music-platform.html`, and `music.html` is kept exactly as it is live, except for the logo link's accessible name. `digital-products.html` links to both. The division page's content predates this review and needs the owner's decision before the revised website is promoted:
+- **SENZ Music.** The division page `music.html` is deleted, together with the Music Platform software page `music-platform.html` that an earlier draft had added, the SENZ Music entry in `components/division-services.js` (which no page loaded), and the roadmap line. Its artist spotlight, chart, and sponsor placements are therefore no longer published, and no owner confirmation is needed for them.
+- **FotoLab and Music Platform.** Both are parked in the app: not offered, not in any plan, and no longer exported to the website. Discovery, the AI Systems page, `llms.txt`, the FAQ, the chat helper, and `agents.js` now describe six products.
 
-- "Artist Spotlight: Mara Vale", with a quote and a player showing "Midnight Signal". If Mara Vale is not a real SENZ artist who agreed to be featured, label it as a sample or remove it.
-- "Top 10 signals", "Weekly Countdown Cover, Issue 01", and six genre lanes whose "View Tracks" buttons lead back to the countdown section rather than to tracks. Publish real editions or say these are coming.
-- "Sponsor Space" and "Small Sidebar Ad" placements, and "built for future Spotify, YouTube, or custom embed integrations". These describe plans, not current offers.
-- "Submit your music to SENZ" sends an email to the SENZ inbox. Confirm who reviews submissions and how quickly.
-
-The product-claim tests apply to every page. Their only exception is that "curated countdowns" may appear on `music.html`, because countdowns are division editorial work, not a software feature. A separate test keeps the two pages apart: the software page never describes countdowns or playlists, and the division page never offers the software.
+`test/catalog.test.mjs` fails if any public page or component mentions SENZ Music, FotoLab, Music Platform, or links to the removed pages. General creative services that include music or photography as part of a campaign (`services.html`) are SENZ agency work, not these products, and stay.

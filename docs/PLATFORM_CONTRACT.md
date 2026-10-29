@@ -3,7 +3,7 @@
 ## Source ownership and deployment boundary
 
 - `masinlocandher-max/Senz`: public website, discovery, recommendations, consented inquiries and quotation intake.
-- `masinlocandher-max/Senzapp`: private application, eight products, identity, billing records, entitlements, institutional seats and execution.
+- `masinlocandher-max/Senzapp`: private application, six offered products, identity, billing records, entitlements, institutional seats and execution.
 - The website is `www.senzpr.com`. `app.senzpr.com` is a planned app address, not evidence of deployment.
 - No other repository is an input or deployment target for this project.
 - Keep independent CI, credentials, staging and production. Do not merge a website PR into its production branch without deployment authorization.
@@ -23,7 +23,7 @@
 
 ## Descriptive product catalog
 
-The eight products, and what each one is for, are defined once in the private app's `src/catalog.js`: the customer problem it answers, purpose, audience and segments, what it includes, what it does not do, how it is sold, and its status. The app's `docs/PRODUCT_PLAN.md` explains which problem each product answers for each segment, from one person to public institutions, and the launch order. The app shows that text to customers, and its `docs/PRODUCTS.md` is generated from it. The website gets the same text through a public export:
+The products, and what each one is for, are defined once in the private app's `src/catalog.js`: the customer problem it answers, purpose, audience and segments, what it includes, what it does not do, how it is sold, and its status. The app's `docs/PRODUCT_PLAN.md` explains which problem each product answers for each segment, from one person to public institutions, and the launch order. The app shows that text to customers, and its `docs/PRODUCTS.md` is generated from it. The website gets the same text through a public export:
 
 1. In the app: `node scripts/export-public-catalog.js`. Copy only that JSON output to `components/product-catalog.json` here. Never transfer the private implementation. The export includes no credentials, customer records, prices, billing information, or entitlement logic.
 2. Here: `node scripts/render-catalog.mjs` (or `npm run render:catalog`) rewrites the marked catalog blocks in `ai-systems.html`, `llms.txt`, `llms-full.txt`, and the catalog data in `components/discovery-engine.js`.
@@ -33,7 +33,7 @@ To change how a product is described, change it in the app first, then repeat st
 
 Schema version 3: `sourceRepository`, `releaseState`, `checkoutEnabled`, `platform` (`name`, `principle`, `purpose`), `statuses` (label and meaning for each status, the same labels the app shows), `categories`, `segments` (the discovery audiences), `launchWaves`, `channels`, `plans[]` (`key`, `name`, `segments`, `seats`, `selfRequest`, `products`; no prices or allowances), and `products[]` with `id`, `name`, `category`, `problem`, `purpose`, `audience`, `segments`, `includes[]`, `limits`, `summary`, `usesAi`, `mode`, `launchWave`, `channel`, `howToGet`, `recommendedPlan` (plan key per segment, or null when the product comes with SENZ services), `publicStatus` (`in_development` or `custom`), `publicStatusLabel`, `nextAction`. This checked-in export intentionally remains `not_released` with checkout disabled. A local beta status in the app is not permission to mark the public product available. Release approval must reference verified hosting, live integrations, customer journeys, approved pricing and terms.
 
-Products: ai-workspace, communications-intelligence, digital-assistant, fotolab, client-portal, event-systems, digital-representative, music-platform. FotoLab, Client Portal, Event Systems and Music Platform are digital workflows, not AI products. SENZ services (strategy, PR, websites, scoped custom builds) are delivered by the SENZ team and are not app products.
+Products: ai-workspace, communications-intelligence, digital-assistant, client-portal, event-systems, digital-representative. Client Portal and Event Systems are digital workflows, not AI products. FotoLab and Music Platform are parked in the app (owner decision, October 29, 2026) and are not exported to the website. SENZ services (strategy, PR, websites, scoped custom builds) are delivered by the SENZ team and are not app products.
 
 ## Discovery → inquiry
 

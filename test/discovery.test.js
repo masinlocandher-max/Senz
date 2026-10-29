@@ -25,8 +25,8 @@ test('backend never serves source, environment, Git history or encoded traversal
  for(const p of ['/.env','/.env.production','/.git/config','/server.js','/test/server.test.js','/package.json','/assets/../server.js','/%2eenv','/%zz','/components/%2e%2e/server.js'])assert.equal(safeStaticPath(p),null,p);
  assert.ok(safeStaticPath('/get-started.html'));assert.ok(safeStaticPath('/components/discovery-engine.js'));
 });
-test('the public catalog contains eight descriptive products and no enabled checkout',()=>{
- const c=require('../components/product-catalog.json');assert.equal(c.products.length,8);assert.equal(c.checkoutEnabled,false);assert.equal(c.products.filter(p=>p.usesAi).length,4);
+test('the public catalog contains six descriptive products and no enabled checkout',()=>{
+ const c=require('../components/product-catalog.json');assert.equal(c.products.length,6);assert.equal(c.checkoutEnabled,false);assert.equal(c.products.filter(p=>p.usesAi).length,4);
 });
 test('every audience, from one person to a government office, can pick a first-release problem with a plan',()=>{
  const c=require('../components/product-catalog.json');

@@ -73,8 +73,7 @@
       "selfRequest": true,
       "products": [
         "ai-workspace",
-        "communications-intelligence",
-        "fotolab"
+        "communications-intelligence"
       ]
     },
     {
@@ -88,8 +87,7 @@
       "products": [
         "ai-workspace",
         "communications-intelligence",
-        "digital-assistant",
-        "fotolab"
+        "digital-assistant"
       ]
     },
     {
@@ -119,8 +117,7 @@
       "products": [
         "ai-workspace",
         "communications-intelligence",
-        "digital-assistant",
-        "fotolab"
+        "digital-assistant"
       ]
     },
     {
@@ -256,39 +253,6 @@
       "nextAction": "Request a Demonstration"
     },
     {
-      "id": "fotolab",
-      "name": "SENZ FotoLab",
-      "category": "workflow",
-      "problem": "Photos are scattered, and editing them risks losing the originals.",
-      "purpose": "Keep your photos in private projects and make careful edits without ever losing the original.",
-      "audience": "Individuals and small teams who prepare their own images.",
-      "segments": [
-        "myself",
-        "professional",
-        "education"
-      ],
-      "includes": [
-        "Private photo projects with a rights acknowledgement for every upload",
-        "Exposure, brightness, contrast, saturation, warmth, rotate, flip, resize, and crop to 1:1, 4:5, 3:2, or 16:9 at the position you choose, each saved as a new version",
-        "Originals kept untouched; download any version"
-      ],
-      "limits": "A self-service editor, not a retouching service by SENZ staff. It does not generate or alter images with AI.",
-      "summary": "Private photo projects with real non-destructive adjustments, versions, and export.",
-      "usesAi": false,
-      "mode": "subscription",
-      "launchWave": 1,
-      "channel": "plans",
-      "howToGet": "Included in the Individual, Professional and Institutional License plans.",
-      "recommendedPlan": {
-        "myself": "individual",
-        "professional": "individual",
-        "education": "institution"
-      },
-      "publicStatus": "in_development",
-      "publicStatusLabel": "In development",
-      "nextAction": "Request a Demonstration"
-    },
-    {
       "id": "client-portal",
       "name": "SENZ Client Portal",
       "category": "workflow",
@@ -386,37 +350,6 @@
       "recommendedPlan": {
         "professional": "custom-contract",
         "organization": "custom-contract"
-      },
-      "publicStatus": "custom",
-      "publicStatusLabel": "Custom implementation",
-      "nextAction": "Request a Quote"
-    },
-    {
-      "id": "music-platform",
-      "name": "SENZ Music Platform",
-      "category": "workflow",
-      "problem": "Music projects are shared through scattered links, with unclear feedback and unconfirmed rights.",
-      "purpose": "Review and deliver music projects privately: listen to protected previews, give timestamped feedback, confirm rights, then release the files.",
-      "audience": "Artists, producers, and clients working with SENZ under a music project agreement.",
-      "segments": [
-        "professional",
-        "business"
-      ],
-      "includes": [
-        "Protected audio previews with version history",
-        "Timestamped feedback and approvals",
-        "Downloads unlocked only after rights are confirmed and the project is delivered"
-      ],
-      "limits": "It does not stream music to the public, publish charts, or generate music.",
-      "summary": "Protected audio previews, timestamped feedback, rights confirmation, and delivery.",
-      "usesAi": false,
-      "mode": "contract",
-      "launchWave": 3,
-      "channel": "agreement",
-      "howToGet": "Set up under a custom implementation agreement after a scoping review.",
-      "recommendedPlan": {
-        "professional": "custom-contract",
-        "business": "custom-contract"
       },
       "publicStatus": "custom",
       "publicStatusLabel": "Custom implementation",
