@@ -71,7 +71,7 @@ Full AI reference document: https://www.senzpr.com/llms-full.txt
 1. **SENZ AI Workspace.** Draft, summarize, rewrite, and structure real work with saved, versioned outputs. It does not browse, send, or publish.
 2. **SENZ Communications Intelligence.** Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval. It does not send messages.
 3. **SENZ Digital Assistant.** Answers only from approved knowledge and hands off to a person. It does not take payments or bookings.
-4. **SENZ FotoLab.** Private photo projects with real non-destructive adjustments, versions, and export. Not a retouching service.
+4. **SENZ FotoLab.** Parked. It stays in the product list and is not offered. Private photo projects with real non-destructive adjustments, versions, and export. Not a retouching service.
 5. **SENZ Client Portal.** Contracted project workspace for milestones, deliverables, revisions, and approvals. Not a customer's own CRM.
 6. **SENZ Event Systems.** Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export. Not ticketing, voting, or tabulation.
 7. **SENZ Digital Representative.** Consent-based, disclosed text representative. Not a voice or video likeness.

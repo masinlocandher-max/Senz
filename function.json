@@ -20,6 +20,7 @@
     "The app catalog is the only description of what a product does. The website repeats it and does not invent features.",
     "Do not link the website to the app while app.released is false.",
     "Do not describe a product as ticketing, voting, tabulation, a clone studio, staff photo retouching, or a public music chart.",
+    "FotoLab stays in the product list and is parked. It is not offered on a plan.",
     "Service prices on the website are for SENZ engagements. App plan prices stay unset until the owner enters them. There is no checkout."
   ],
   "products": [
@@ -44,6 +45,7 @@
     {
       "key": "fotolab",
       "name": "SENZ FotoLab",
+      "parked": true,
       "function": "Private photo projects with real non-destructive adjustments, versions, and export.",
       "doesNot": "It is a private editor, not a retouching service by SENZ staff, and it does not generate images."
     },
