@@ -11,7 +11,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 function fixture(t) {
   const directory = mkdtempSync(path.join(os.tmpdir(), 'senz-source-'));
   t.after(() => rmSync(directory, { recursive: true, force: true }));
-  for (const file of ['source-of-truth.json', 'package.json', 'CNAME', 'index.html', '.nojekyll']) {
+  for (const file of ['source-of-truth.json', 'package.json', 'CNAME', 'index.html', '.nojekyll', 'function.json']) {
     copyFileSync(path.join(root, file), path.join(directory, file));
   }
   return directory;

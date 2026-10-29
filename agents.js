@@ -27,17 +27,17 @@ const agents = [
     id: "digital-products",
     name: "Digital Product Architect",
     label: "Digital Products Agent",
-    focus: "Music, clone studio, voting, tabulation, ticketing, and AI assistant platforms.",
+    focus: "Inquiries about the eight SENZ App products. The website explains them and does not grant access.",
     priority: 40,
-    keywords: ["digital", "platform", "app", "ai", "assistant", "clone", "music"]
+    keywords: ["digital", "platform", "app", "ai", "assistant", "fotolab", "workspace", "portal", "music"]
   },
   {
     id: "events-systems",
     name: "Events Systems Lead",
     label: "Events Platform Agent",
-    focus: "Event voting, tabulation, pageant operations, ticketing, and live dashboards.",
+    focus: "Event registration, waitlists, and check-in. Not ticketing, voting, or tabulation.",
     priority: 50,
-    keywords: ["event", "events", "pageant", "beauty", "queen", "king", "voting", "tabulation", "ticket"]
+    keywords: ["event", "events", "pageant", "registration", "rsvp", "check-in", "waitlist"]
   },
   {
     id: "founder-office",

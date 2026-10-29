@@ -32,8 +32,8 @@
       reply: 'Books and resources are still being prepared. For now, please use Contact Us if you want to be notified about future SENZ Strategic Communications releases.'
     },
     {
-      match: ['clone', 'assistant', 'representative', 'music', 'voting', 'tabulation', 'ticket'],
-      reply: 'Digital products include SENZ FotoLab, Digital Assistants, client portals, event systems, consent-based Digital Representatives, and the SENZ Music platform. Current availability depends on the product stage and project scope. Inquiries go to info.senz.pr@gmail.com.'
+      match: ['clone', 'assistant', 'representative', 'music', 'voting', 'tabulation', 'ticket', 'fotolab', 'workspace', 'portal', 'product'],
+      reply: 'This website explains SENZ and takes inquiries. It does not run products. The SENZ App is not open yet. When it is, a verified license is required for AI Workspace, Communications Intelligence, Digital Assistant, FotoLab, Client Portal, Event Systems, Digital Representative, and Music Platform. Event Systems does not sell tickets or run voting. FotoLab is a private editor, not a retouching service. Music Platform is private delivery, not the public SENZ Music page. Email info.senz.pr@gmail.com.'
     },
     {
       match: ['contact', 'email', 'message', 'book', 'consultation'],

@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "website": {
+    "repository": "masinlocandher-max/Senz",
+    "hosts": [
+      "www.senzpr.com",
+      "senzpr.com"
+    ],
+    "role": "public website",
+    "function": "Explain SENZ, describe services and these eight products accurately, and take inquiries. It does not sign people in, take payment for an app plan, grant a license, or run a product."
+  },
+  "app": {
+    "repository": "masinlocandher-max/Senzapp",
+    "plannedHost": "app.senzpr.com",
+    "released": false,
+    "role": "licensed application",
+    "function": "Run these eight products only after SENZ staff verify payment or a signed agreement. It is not the public website, and creating an account does not grant access."
+  },
+  "rules": [
+    "The app catalog is the only description of what a product does. The website repeats it and does not invent features.",
+    "Do not link the website to the app while app.released is false.",
+    "Do not describe a product as ticketing, voting, tabulation, a clone studio, staff photo retouching, or a public music chart.",
+    "Service prices on the website are for SENZ engagements. App plan prices stay unset until the owner enters them. There is no checkout."
+  ],
+  "products": [
+    {
+      "key": "ai-workspace",
+      "name": "SENZ AI Workspace",
+      "function": "Draft, summarize, rewrite, and structure real work with saved, versioned outputs.",
+      "doesNot": "It does not browse the web, send, or publish. Every draft needs a person to review it."
+    },
+    {
+      "key": "communications-intelligence",
+      "name": "SENZ Communications Intelligence",
+      "function": "Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval.",
+      "doesNot": "It does not publish or send messages, and it does not replace legal advice or a crisis team."
+    },
+    {
+      "key": "digital-assistant",
+      "name": "SENZ Digital Assistant",
+      "function": "An assistant that answers only from your approved knowledge and hands off to a person.",
+      "doesNot": "It does not take payments or bookings. If an answer is not in the approved knowledge, it goes to a person."
+    },
+    {
+      "key": "fotolab",
+      "name": "SENZ FotoLab",
+      "function": "Private photo projects with real non-destructive adjustments, versions, and export.",
+      "doesNot": "It is a private editor, not a retouching service by SENZ staff, and it does not generate images."
+    },
+    {
+      "key": "client-portal",
+      "name": "SENZ Client Portal",
+      "function": "Contracted project workspace for milestones, deliverables, revisions, and approvals.",
+      "doesNot": "It is how SENZ delivers a contracted project. It is not a CRM for a customer's own clients."
+    },
+    {
+      "key": "event-systems",
+      "name": "SENZ Event Systems",
+      "function": "Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export.",
+      "doesNot": "It does not sell tickets, and it does not run voting or tabulation."
+    },
+    {
+      "key": "digital-representative",
+      "name": "SENZ Digital Representative",
+      "function": "Consent-based, disclosed text representative for a brand or person, with human approval.",
+      "doesNot": "Text only, and only while recorded consent is current. It is not a voice or video likeness and is never the real person."
+    },
+    {
+      "key": "music-platform",
+      "name": "SENZ Music Platform",
+      "function": "Protected audio previews, timestamped feedback, rights confirmation, and delivery.",
+      "doesNot": "It does not stream music to the public or publish charts. The public SENZ Music page is a division showcase, not this product."
+    }
+  ]
+}

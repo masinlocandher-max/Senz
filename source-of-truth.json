@@ -5,5 +5,8 @@
   "canonicalDomain": "www.senzpr.com",
   "domains": ["www.senzpr.com", "senzpr.com"],
   "publisher": "github-pages",
-  "legacyCopy": "masinlocandher-max/FMB-Ecosystem/apps/senz"
+  "legacyCopy": "masinlocandher-max/FMB-Ecosystem/apps/senz",
+  "appRepository": "masinlocandher-max/Senzapp",
+  "appReleased": false,
+  "functionContract": "function.json"
 }

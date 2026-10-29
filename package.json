@@ -14,7 +14,7 @@
     "dev": "node server.js",
     "check:source": "node scripts/check-source.mjs",
     "check": "npm run check:source && node --check server.js && node --check components/form-router.js",
-    "test": "node --test test/server.test.js test/source.test.mjs"
+    "test": "node --test test/server.test.js test/source.test.mjs test/function.test.mjs"
   },
   "engines": {
     "node": ">=18"
