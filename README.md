@@ -40,7 +40,7 @@ Our approach combines:
 
 The direct-client website must not sell partner membership as a discounted client project. Partner pricing and products are separate. Position the Partner Program as an ongoing initiative, with current actions and product-specific availability. Online paid checkout remains unavailable in the reviewed source. Use `about.html#partner-program` for public information until the partner domain is verified.
 
-The licensed application is `masinlocandher-max/Senzapp`. Its job is to run the eight products after a verified payment or signed agreement. This website's job is to explain those products and take inquiries. `function.json` is the shared wording. The app is not released, so this site does not link to it.
+The licensed application is `masinlocandher-max/Senzapp`. Its job is to run these products only after a verified payment or signed agreement. Products still in development are listed and cannot be used until SENZ records a pilot. This website's job is to explain those products and take inquiries. `function.json` is the shared wording. The app is not released, so this site does not link to it. FotoLab and Music Platform are parked. QR Menu, Booking, Digital Catalog, Business Website, CRM, POS and Inventory, and Loyalty are SENZ products and are not offered yet.
 
 Communications, PR, digital, marketing, imaging, music and kits are capabilities within SENZ, not separate businesses the visitor must navigate. See [BRAND_GUIDE.md](BRAND_GUIDE.md).
 

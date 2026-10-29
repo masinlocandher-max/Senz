@@ -7,20 +7,21 @@
       "senzpr.com"
     ],
     "role": "public website",
-    "function": "Explain SENZ, describe services and these eight products accurately, and take inquiries. It does not sign people in, take payment for an app plan, grant a license, or run a product."
+    "function": "Explain SENZ, describe services and these products accurately, and take inquiries. It does not sign people in, take payment for an app plan, grant a license, or run a product."
   },
   "app": {
     "repository": "masinlocandher-max/Senzapp",
     "plannedHost": "app.senzpr.com",
     "released": false,
     "role": "licensed application",
-    "function": "Run these eight products only after SENZ staff verify payment or a signed agreement. It is not the public website, and creating an account does not grant access."
+    "function": "Run these products only after SENZ staff verify payment or a signed agreement. Products still in development are listed and cannot be used until SENZ staff record a pilot. It is not the public website, and creating an account does not grant access."
   },
   "rules": [
     "The app catalog is the only description of what a product does. The website repeats it and does not invent features.",
     "Do not link the website to the app while app.released is false.",
     "Do not describe a product as ticketing, voting, tabulation, a clone studio, staff photo retouching, or a public music chart.",
-    "FotoLab stays in the product list and is parked. It is not offered on a plan.",
+    "FotoLab and Music Platform stay in the product list and are parked. They are not offered on a plan.",
+    "QR Menu, Booking, Digital Catalog, Business Website, CRM, POS and Inventory, and Loyalty are SENZ products rebuilt from Fox Syli. They are listed and not offered until SENZ records a pilot. Do not use the Fox Syli name for them.",
     "Service prices on the website are for SENZ engagements. App plan prices stay unset until the owner enters them. There is no checkout."
   ],
   "products": [
@@ -28,7 +29,7 @@
       "key": "ai-workspace",
       "name": "SENZ AI Workspace",
       "function": "Draft, summarize, rewrite, and structure real work with saved, versioned outputs.",
-      "doesNot": "It does not browse the web, send, or publish. Every draft needs a person to review it."
+      "doesNot": "Uses only what you provide. It does not browse the web, send, or publish anything, and every draft needs human review."
     },
     {
       "key": "communications-intelligence",
@@ -40,38 +41,88 @@
       "key": "digital-assistant",
       "name": "SENZ Digital Assistant",
       "function": "An assistant that answers only from your approved knowledge and hands off to a person.",
-      "doesNot": "It does not take payments or bookings. If an answer is not in the approved knowledge, it goes to a person."
+      "doesNot": "It replies only from your approved knowledge: an answer must cite it, and every number, date, price, or contact detail must appear in what it cites, or the question goes to your team. It does not take payments or make bookings."
     },
     {
       "key": "fotolab",
       "name": "SENZ FotoLab",
       "parked": true,
       "function": "Private photo projects with real non-destructive adjustments, versions, and export.",
-      "doesNot": "It is a private editor, not a retouching service by SENZ staff, and it does not generate images."
+      "doesNot": "A self-service editor, not a retouching service by SENZ staff. It does not generate or alter images with AI."
     },
     {
       "key": "client-portal",
       "name": "SENZ Client Portal",
       "function": "Contracted project workspace for milestones, deliverables, revisions, and approvals.",
-      "doesNot": "It is how SENZ delivers a contracted project. It is not a CRM for a customer's own clients."
+      "doesNot": "Set up by SENZ for each contract. It is not a general CRM, form builder, or public file-sharing service."
     },
     {
       "key": "event-systems",
       "name": "SENZ Event Systems",
       "function": "Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export.",
-      "doesNot": "It does not sell tickets, and it does not run voting or tabulation."
+      "doesNot": "It does not sell tickets or run voting or tabulation."
     },
     {
       "key": "digital-representative",
       "name": "SENZ Digital Representative",
       "function": "Consent-based, disclosed text representative for a brand or person, with human approval.",
-      "doesNot": "Text only, and only while recorded consent is current. It is not a voice or video likeness and is never the real person."
+      "doesNot": "Text only. It has no voice or video likeness and is never presented as the real person."
     },
     {
       "key": "music-platform",
       "name": "SENZ Music Platform",
+      "parked": true,
       "function": "Protected audio previews, timestamped feedback, rights confirmation, and delivery.",
-      "doesNot": "It does not stream music to the public or publish charts. The public SENZ Music page is a division showcase, not this product."
+      "doesNot": "It does not stream music to the public, publish charts, or generate music."
+    },
+    {
+      "key": "qr-menu",
+      "name": "SENZ QR Menu",
+      "origin": "fox-syli:qr-menu",
+      "function": "A public menu with a QR code, sections, prices, dietary tags, and sold-out items.",
+      "doesNot": "Dietary information is entered by the business and is not checked by SENZ. It does not take orders or payments; guests show their list to staff."
+    },
+    {
+      "key": "booking",
+      "name": "SENZ Booking",
+      "origin": "fox-syli:booking",
+      "function": "Online appointment requests that you confirm, with no double-booking.",
+      "doesNot": "It does not take payments or deposits and sends no messages or reminders; you contact customers yourself."
+    },
+    {
+      "key": "digital-catalog",
+      "name": "SENZ Digital Catalog",
+      "origin": "fox-syli:catalog",
+      "function": "A shareable product catalog with search and inquiry lists.",
+      "doesNot": "It does not take orders or payments or track stock; you reply to each inquiry yourself."
+    },
+    {
+      "key": "business-website",
+      "name": "SENZ Business Website",
+      "origin": "fox-syli:website",
+      "function": "A one-page business website with services, FAQ, photos, and an inquiry inbox.",
+      "doesNot": "It is hosted at a SENZ web address: custom domains, online payments, and online stores are not included."
+    },
+    {
+      "key": "crm",
+      "name": "SENZ CRM",
+      "origin": "fox-syli:crm",
+      "function": "Contacts, stages, follow-ups, and notes for a small team.",
+      "doesNot": "It does not send emails or messages and does not import contacts from other systems."
+    },
+    {
+      "key": "pos",
+      "name": "SENZ POS and Inventory",
+      "origin": "fox-syli:pos",
+      "function": "Counter sales, stock counts, and daily totals.",
+      "doesNot": "It records sales and stock only. It is not a BIR-registered POS, does not issue official receipts or invoices, and does not process card or e-wallet payments."
+    },
+    {
+      "key": "loyalty",
+      "name": "SENZ Loyalty",
+      "origin": "fox-syli:loyalty",
+      "function": "A digital stamp card tied to your counter sales.",
+      "doesNot": "It sends no messages and has no public member page; members ask your staff for their card. A voided POS sale takes back its stamp."
     }
   ]
 }

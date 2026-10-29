@@ -33,7 +33,7 @@
     },
     {
       match: ['clone', 'assistant', 'representative', 'music', 'voting', 'tabulation', 'ticket', 'fotolab', 'workspace', 'portal', 'product'],
-      reply: 'This website explains SENZ and takes inquiries. It does not run products. The SENZ App is not open yet. When it is, a verified license is required for AI Workspace, Communications Intelligence, Digital Assistant, Client Portal, Event Systems, Digital Representative, and Music Platform. FotoLab stays in the product list and is parked, so it is not offered. Event Systems does not sell tickets or run voting. FotoLab is a private editor, not a retouching service. Music Platform is private delivery, not the public SENZ Music page. Email info.senz.pr@gmail.com.'
+      reply: 'This website explains SENZ and takes inquiries. It does not run products. The SENZ App is not open yet. Creating an account does not grant access. FotoLab and Music Platform stay in the product list and are parked, so they are not offered. QR Menu, Booking, Digital Catalog, Business Website, CRM, POS and Inventory, and Loyalty are SENZ products and are not offered until SENZ records a pilot. Event Systems does not sell tickets or run voting. FotoLab is a private editor, not a retouching service. Music Platform is private delivery, not the public SENZ Music page. Email info.senz.pr@gmail.com.'
     },
     {
       match: ['contact', 'email', 'message', 'book', 'consultation'],
