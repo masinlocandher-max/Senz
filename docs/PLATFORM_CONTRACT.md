@@ -8,6 +8,19 @@
 - No other repository is an input or deployment target for this project.
 - Keep independent CI, credentials, staging and production. Do not merge a website PR into its production branch without deployment authorization.
 
+## Responsibilities, routes, and data
+
+| | Website (`Senz`) | App (`Senzapp`) |
+| --- | --- | --- |
+| Purpose | Brand, services, discovery, recommendations, inquiries, quotation requests | Accounts, workspaces, products, licenses, seats, payments verified by staff, AI usage and cost |
+| Hosting | GitHub Pages for pages; the `senz-api` Render service (`render.yaml`) for inquiries | Its own Render services (`senz-app-staging`, then `senz-app`) with a persistent disk |
+| Server routes | `GET /api/health`, `GET /api/agents`, `POST /api/agents/recommend`, `POST /api/inquiries`, static files | Everything under `app.senzpr.com`, including sign-in, `/api/w/...`, `/api/admin/...`, `/api/public/...` |
+| Stores customer data | No. Inquiries are relayed by email and not stored (`docs/LEAD_PROCESS.md`) | Yes. It is the system of record for customers, licenses, and product data |
+| Can grant access | Never | Only staff, after a verified payment or signed contract, and only for the purchased scope |
+| Credentials | Email relay settings on Render only | App secrets on its own Render services only |
+
+`test/boundary.test.js` keeps the website's side of this. The website server may expose only the four routes above, and the repository may not contain app code: no licensing, seat, payment-approval or AI-provider logic, and no copy of the app's source.
+
 ## Descriptive product catalog
 
 The eight products, and what each one is for, are defined once in the private app's `src/catalog.js`: the customer problem it answers, purpose, audience and segments, what it includes, what it does not do, how it is sold, and its status. The app's `docs/PRODUCT_PLAN.md` explains which problem each product answers for each segment, from one person to public institutions, and the launch order. The app shows that text to customers, and its `docs/PRODUCTS.md` is generated from it. The website gets the same text through a public export:
@@ -26,7 +39,7 @@ Products: ai-workspace, communications-intelligence, digital-assistant, fotolab,
 
 The website's deterministic `components/discovery-engine.js` is shared by the browser and the website intake backend. It does not call AI. Each product answer in the problem question is that product's catalog `problem`, offered only to the audiences in its `segments`; a product recommendation lists the plans for the visitor's audience. Problems answered by SENZ services (visibility, reputation, websites, workflows, client delivery, needs review) lead to a quoted service delivered through Client Portal. Client Portal is never recommended as a product for a customer's own clients. `POST /api/inquiries` with `formType=discovery` accepts the defined answers, rules version, contact details, explicit inquiry consent, honeypot and timing fields. The backend validates and recomputes the recommendation, ignoring client prices, tiers, claimed access or package overrides. Unknown or incomplete route values are rejected.
 
-Consent is for responding to the inquiry, not a marketing subscription. No sensitive documents are requested. The browser keeps answers in memory; they are sent only when the visitor submits. The intake service does not expose or persist inquiries publicly. It sends the validated brief through the existing configured email delivery service. A provider acknowledgement is not proof of final inbox delivery. Live delivery must be verified before release. Release the compatible backend before the website discovery flow.
+Consent is for responding to the inquiry, not a marketing subscription. Every form also offers a separate, optional, unticked updates box; the email records both choices, with the consent version set by the server. No sensitive documents are requested. The browser keeps answers in memory; they are sent only when the visitor submits. The intake service does not expose or persist inquiries publicly. It sends the validated brief through the existing configured email delivery service. A provider acknowledgement is not proof of final inbox delivery. Live delivery must be verified before release. Release the compatible backend before the website discovery flow.
 
 Staff review process: use the submission reference as the inquiry key in the authorized SENZ inbox; mark New → Reviewing → Quote sent → Accepted / Declined. Confirm scope and approved pricing in the reply. An accepted quote is not an entitlement. Commercial app staff separately verify actual payment or authorized signed contract and grant the purchased scope in the private app. No public intake endpoint can grant access. Do not forward private customer data into public issues or repository files.
 
