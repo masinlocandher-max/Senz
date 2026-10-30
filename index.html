@@ -13,10 +13,10 @@
   <meta property="og:title" content="SENZ Strategic Communications & Digital Solutions" />
   <meta property="og:description" content="Explore SENZ communications services and see how SENZ App helps businesses manage QR menus, bookings and client follow-ups." />
   <meta property="og:url" content="https://www.senzpr.com/" />
-  <meta property="og:image" content="https://www.senzpr.com/assets/senz-app-preview.jpg" />
+  <meta property="og:image" content="https://www.senzpr.com/assets/senz-app-preview.jpg?v=workspace" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="SENZ App for menus, bookings and follow-ups. A sample café menu shows an ensaymada marked sold out." />
+  <meta property="og:image:alt" content="SENZ App shown on desktop and phone with real screens for client follow-ups and appointment booking, using sample data." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0a1730" />
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-latin-wght-v31.woff2" crossorigin>
@@ -89,7 +89,7 @@
 <link rel="stylesheet" href="components/senz-system.css?v=20261016"/>
 <link rel="stylesheet" href="components/commerce.css?v=20261031-journey">
 <link rel="stylesheet" href="components/navigation.css?v=20261031-journey">
-<link rel="stylesheet" href="components/app-spotlight.css?v=20261031-font">
+<link rel="stylesheet" href="components/app-spotlight.css?v=workspace-preview">
 </head>
 <body class="senz-unified">
   <a class="senz-skip" href="#main-content">Skip to content</a><header class="senz-global-header"><div class="senz-global-inner"><a class="senz-lockup" href="index.html"><img src="assets/senz-original-mark.png" width="48" height="48" alt=""><span><strong>SENZ</strong><small>Strategic Communications &amp; Digital Solutions<br>An FMB&amp;CO brand</small></span></a><nav class="senz-global-nav" id="primary-navigation" aria-label="Main navigation"><a href="index.html" aria-current="page">Home</a><a href="services.html">Services</a><a href="digital-products.html">Products</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></nav><a class="senz-start" href="get-started.html">Get Started</a><button class="senz-menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" hidden>Menu</button></div></header>
@@ -104,23 +104,39 @@
       </div>
       <article class="app-spotlight" id="senz-app" aria-labelledby="senz-app-heading">
         <header class="app-spotlight-heading">
-          <p class="app-wordmark"><img src="assets/senz-original-mark.png" alt="" width="28" height="28"> SENZ App</p>
-          <h2 id="senz-app-heading">One less thing to keep in your head.</h2>
-          <p>Your private workspace for the SENZ tools you choose. At a busy café, that can be as simple as keeping the menu up to date while you serve the next guest.</p>
+          <div class="app-identity"><span class="app-wordmark"><img src="assets/senz-original-mark.png" alt="" width="26" height="32">SENZ App</span><span class="app-preview-tag">Product preview</span></div>
+          <h2 id="senz-app-heading">Know who needs you next.</h2>
+          <p>See which client needs a follow-up and which booking needs your confirmation. Choose the tools you need in your private SENZ workspace.</p>
         </header>
-        <figure class="app-sample">
-          <img class="app-sample-photo" src="assets/senz-app-merienda.webp" width="1000" height="667" decoding="async" alt="A café worker slides a plate of ensaymada across a wooden counter.">
-          <figcaption class="app-sample-controls">
-            <span class="app-sample-label">Interactive example · SENZ QR Menu</span>
-            <p>Just sold the last ensaymada? Try updating the guest menu.</p>
-            <input type="checkbox" class="app-sold-toggle" id="sample-sold-out" aria-controls="sample-guest-menu"><label for="sample-sold-out">Mark as sold out</label>
-            <div class="app-menu-item" id="sample-guest-menu" aria-live="polite" aria-atomic="true">
-              <span><small>Guest menu</small><strong>Classic ensaymada</strong></span>
-              <span class="app-menu-status app-menu-available">Available</span><span class="app-menu-status app-menu-sold">Sold out</span>
+        <fieldset class="app-tour">
+          <legend>Preview a tool</legend>
+          <input class="app-choice" type="radio" name="app-screen" id="show-followups" aria-controls="preview-followups" checked><label for="show-followups">Follow-ups</label>
+          <input class="app-choice" type="radio" name="app-screen" id="show-bookings" aria-controls="preview-bookings"><label for="show-bookings">Bookings</label>
+          <input class="app-choice" type="radio" name="app-screen" id="show-menu" aria-controls="preview-menu"><label for="show-menu">QR Menu</label>
+          <figure class="app-preview" id="preview-followups">
+            <div class="app-stage">
+              <div class="app-window"><div class="app-window-bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/app-screen-followups.webp" width="1440" height="1009" decoding="async" alt="SENZ CRM desktop follow-up view showing client names, deal stages and next follow-up dates."></div>
+              <div class="app-phone"><img src="assets/app-screen-crm-mobile.webp" width="585" height="1170" decoding="async" alt="Mobile CRM with contact totals and the Follow-ups view selected."></div>
             </div>
-          </figcaption>
-        </figure>
-        <div class="app-spotlight-actions"><a class="button primary" href="products/qr-menu.html">See QR Menu pricing</a><a class="app-intro-link" href="digital-products.html">Explore all app products</a></div>
+            <figcaption><strong>Client follow-ups</strong><p>Keep the next follow-up date with each client record. Overdue follow-ups are flagged for your team.</p><div class="app-preview-links"><a href="products/crm.html">CRM features and pricing</a><a href="assets/app-screen-followups.webp">Enlarge CRM screen</a></div></figcaption>
+          </figure>
+          <figure class="app-preview" id="preview-bookings">
+            <div class="app-stage">
+              <div class="app-window app-booking-window"><div class="app-window-bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/app-screen-bookings.webp" width="1248" height="737" loading="lazy" decoding="async" alt="SENZ Booking shows confirmed and requested appointments, with controls to confirm or decline a request."></div>
+              <div class="app-phone"><img src="assets/app-screen-booking-mobile.webp" width="585" height="1170" loading="lazy" decoding="async" alt="A guest chooses a consultation and an available time on the mobile booking page."></div>
+            </div>
+            <figcaption><strong>Appointment requests</strong><p>Your client picks a time. You review the request and decide whether to confirm it.</p><div class="app-preview-links"><a href="products/booking.html">Booking features and pricing</a><a href="assets/app-screen-bookings.webp">Enlarge bookings screen</a></div></figcaption>
+          </figure>
+          <div class="app-preview app-menu-preview" id="preview-menu">
+            <div class="app-menu-demo">
+              <span class="app-demo-label">SENZ QR Menu · Interactive example</span><h3>Sold the last ensaymada?</h3><p>Change its availability to see what the next guest sees on the menu.</p>
+              <input type="checkbox" class="app-sold-toggle" id="sample-sold-out" aria-controls="sample-guest-menu"><label for="sample-sold-out">Mark as sold out</label>
+              <div class="app-menu-item" id="sample-guest-menu" aria-live="polite" aria-atomic="true"><span><small>Guest menu</small><strong>Classic ensaymada</strong></span><span class="app-menu-status app-menu-available">Available</span><span class="app-menu-status app-menu-sold">Sold out</span></div>
+            </div>
+            <div class="app-preview-links"><a href="products/qr-menu.html">See QR Menu pricing</a></div>
+          </div>
+        </fieldset>
+        <footer class="app-spotlight-footer"><span>Preview uses sample data.</span><a href="digital-products.html">All app products and prices <span aria-hidden="true">→</span></a></footer>
       </article>
     </div></section>
 
