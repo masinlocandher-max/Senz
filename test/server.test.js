@@ -200,3 +200,9 @@ test('public server exposes pages and assets, not application source or credenti
  for(const path of ['/','/purchase.html','/products/qr-menu.html','/components/purchase.js','/components/product-catalog.json','/robots.txt','/sitemap.xml'])assert.equal((await fetch(apiUrl+path)).status,200,path);
  const head=await fetch(apiUrl+'/purchase.html',{method:'HEAD'});assert.equal(head.status,200);assert.equal(await head.text(),'');
 });
+
+test('removed products are rejected before any email delivery',async()=>{
+ const before=deliveries.length;
+ for(const productKey of ['fotolab','music-platform']){const res=await postProduct({...productRequest,productKey});assert.equal(res.status,422);}
+ assert.equal(deliveries.length,before);
+});

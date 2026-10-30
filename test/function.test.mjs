@@ -15,7 +15,7 @@ test('public pages repeat each product function and do not invent another one', 
   const faq = read('faq.html');
   const agents = read('agents.js');
   const chat = read('components/chat-support.js');
-  for (const product of contract.products) {
+  for (const product of contract.products.filter(p => !p.parked)) {
     assert.ok(page.includes(product.name), product.name);
     assert.ok(page.includes(product.function), product.function);
   }
@@ -30,3 +30,4 @@ test('public pages repeat each product function and do not invent another one', 
   assert.equal(contract.website.function.includes('does not sign people in'), true);
   assert.equal(contract.app.function.includes('only after SENZ staff verify payment'), true);
 });
+

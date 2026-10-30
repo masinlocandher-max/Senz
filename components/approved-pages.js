@@ -209,8 +209,8 @@
   const query = new URLSearchParams(window.location.search);
   const interest = query.get('interest');
   const legacyProducts = { 'AI Workspace':'ai-workspace', 'Communications Intelligence':'communications-intelligence',
-    'Digital Assistant':'digital-assistant', 'FotoLab':'fotolab', 'Client Portal':'client-portal', 'Event Systems':'event-systems',
-    'Digital Representative':'digital-representative', 'Music Platform':'music-platform', 'QR Menu':'qr-menu', 'Booking':'booking',
+    'Digital Assistant':'digital-assistant', 'Client Portal':'client-portal', 'Event Systems':'event-systems',
+    'Digital Representative':'digital-representative', 'QR Menu':'qr-menu', 'Booking':'booking',
     'Digital Catalog':'digital-catalog', 'Business Website':'business-website', 'CRM':'crm', 'POS':'pos', 'Loyalty':'loyalty' };
   if (currentPage === 'contact.html' && query.has('offer') && legacyProducts[interest]) {
     location.replace('purchase.html?product=' + legacyProducts[interest]);

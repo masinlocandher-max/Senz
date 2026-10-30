@@ -6,18 +6,16 @@ Status: local verification is not production approval. Do not take payment for a
 
 The website explains SENZ, attracts relevant inquiries and helps buyers choose. The app runs licensed software with authenticated workspaces, named seats, staff payment verification and product-specific access. Strategic communications, creative work and custom implementations are separately scoped services.
 
-All fifteen products have the monthly PHP prices below. These retain the prices already published on main; no market-validated willingness-to-pay claim is made. One product license includes one named seat, one workspace and its stated storage. Extra seats cost the same product price. Bundles include 1 / 1 / 3 / 10 seats; additional bundle seats are rounded up from base price divided by included seats. There is no automatic card checkout or renewal.
+Thirteen active products have the monthly PHP prices below. These retain the prices already published on main; no market-validated willingness-to-pay claim is made. One product license includes one named seat, one workspace and its stated storage. Extra seats cost the same product price. Bundles include 1 / 1 / 3 / 10 seats; additional bundle seats are rounded up from base price divided by included seats. There is no automatic card checkout or renewal.
 
 | Product | PHP/month, one seat | AI credits/seat/month |
 | --- | ---: | ---: |
 | SENZ AI Workspace | 1,490 | 450 |
 | SENZ Communications Intelligence | 2,490 | 750 |
 | SENZ Digital Assistant | 2,990 | 900 |
-| SENZ FotoLab | 990 | 0 |
 | SENZ Client Portal | 4,900 | 0 |
 | SENZ Event Systems | 3,490 | 0 |
 | SENZ Digital Representative | 7,900 | 2400 |
-| SENZ Music Platform | 2,490 | 0 |
 | SENZ QR Menu | 790 | 0 |
 | SENZ Booking | 990 | 0 |
 | SENZ Digital Catalog | 790 | 0 |
@@ -46,3 +44,5 @@ Railway connection returned UNAUTHORIZED/requires reauthentication during this r
 ## Local verification
 
 See RELEASE_REPAIR.md for exact executed checks and remaining limitations. Tests protect existing customer data, legacy allowances, release notes, payment references, product boundaries, concurrency and backups. `function.json` remains `released: false`; this is intentional until live evidence exists.
+
+FotoLab and Music Platform are removed from the commercial offer. Existing licensed work is retained; no new purchase requests are offered.

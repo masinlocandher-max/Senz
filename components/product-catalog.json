@@ -220,24 +220,6 @@
       "storageMb": 1024
     },
     {
-      "key": "buy-fotolab",
-      "name": "FotoLab",
-      "segments": [
-        "myself",
-        "professional",
-        "education"
-      ],
-      "seats": "One workspace",
-      "selfRequest": true,
-      "products": [
-        "fotolab"
-      ],
-      "pricePhp": 990,
-      "includedSeats": 1,
-      "aiCreditsPerSeat": 0,
-      "storageMb": 1024
-    },
-    {
       "key": "buy-client-portal",
       "name": "Client Portal",
       "segments": [
@@ -291,23 +273,6 @@
       "pricePhp": 7900,
       "includedSeats": 1,
       "aiCreditsPerSeat": 2400,
-      "storageMb": 1024
-    },
-    {
-      "key": "buy-music-platform",
-      "name": "Music Platform",
-      "segments": [
-        "professional",
-        "business"
-      ],
-      "seats": "One workspace",
-      "selfRequest": true,
-      "products": [
-        "music-platform"
-      ],
-      "pricePhp": 2490,
-      "includedSeats": 1,
-      "aiCreditsPerSeat": 0,
       "storageMb": 1024
     },
     {
@@ -561,44 +526,6 @@
       "storageMb": 1024
     },
     {
-      "id": "fotolab",
-      "name": "SENZ FotoLab",
-      "category": "workflow",
-      "problem": "Photos are scattered, and editing them risks losing the originals.",
-      "purpose": "Keep your photos in private projects and make careful edits without ever losing the original.",
-      "audience": "Individuals and small teams who prepare their own images.",
-      "segments": [
-        "myself",
-        "professional",
-        "education"
-      ],
-      "includes": [
-        "Private photo projects with a rights acknowledgement for every upload",
-        "Exposure, brightness, contrast, saturation, warmth, rotate, flip, resize, and crop to 1:1, 4:5, 3:2, or 16:9 at the position you choose, each saved as a new version",
-        "Originals kept untouched; download any version"
-      ],
-      "limits": "A self-service editor, not a retouching service by SENZ staff. It does not generate or alter images with AI.",
-      "summary": "Private photo projects with real non-destructive adjustments, versions, and export.",
-      "pricePhp": 990,
-      "priceLabel": "₱990 per month",
-      "usesAi": false,
-      "mode": "subscription",
-      "launchWave": 1,
-      "channel": "plans",
-      "howToGet": "₱990 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
-      "recommendedPlan": {
-        "myself": "buy-fotolab",
-        "professional": "buy-fotolab",
-        "education": "buy-fotolab"
-      },
-      "publicStatus": "in_development",
-      "publicStatusLabel": "In development",
-      "nextAction": "Request availability",
-      "includedSeats": 1,
-      "aiCreditsPerSeat": 0,
-      "storageMb": 1024
-    },
-    {
       "id": "client-portal",
       "name": "SENZ Client Portal",
       "category": "workflow",
@@ -714,42 +641,6 @@
       "nextAction": "Request availability",
       "includedSeats": 1,
       "aiCreditsPerSeat": 2400,
-      "storageMb": 1024
-    },
-    {
-      "id": "music-platform",
-      "name": "SENZ Music Platform",
-      "category": "workflow",
-      "problem": "Music projects are shared through scattered links, with unclear feedback and unconfirmed rights.",
-      "purpose": "Review and deliver music projects privately: listen to protected previews, give timestamped feedback, confirm rights, then release the files.",
-      "audience": "Artists, producers, and clients working with SENZ under a music project agreement.",
-      "segments": [
-        "professional",
-        "business"
-      ],
-      "includes": [
-        "Protected audio previews with version history",
-        "Timestamped feedback and approvals",
-        "Downloads unlocked only after rights are confirmed and the project is delivered"
-      ],
-      "limits": "It does not stream music to the public, publish charts, or generate music.",
-      "summary": "Protected audio previews, timestamped feedback, rights confirmation, and delivery.",
-      "pricePhp": 2490,
-      "priceLabel": "₱2,490 per month",
-      "usesAi": false,
-      "mode": "subscription",
-      "launchWave": 1,
-      "channel": "plans",
-      "howToGet": "₱2,490 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
-      "recommendedPlan": {
-        "professional": "buy-music-platform",
-        "business": "buy-music-platform"
-      },
-      "publicStatus": "in_development",
-      "publicStatusLabel": "In development",
-      "nextAction": "Request availability",
-      "includedSeats": 1,
-      "aiCreditsPerSeat": 0,
       "storageMb": 1024
     },
     {
