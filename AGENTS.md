@@ -1,5 +1,9 @@
 # SENZ repository instructions
 
+## Function
+
+`function.json` is the shared contract with `masinlocandher-max/Senzapp`. This repository is the public website: explain SENZ, show each product's published monthly price, and take a purchase request. It does not sign people in, charge a card, grant a license, or run a product. Thirteen active products have published prices. FotoLab and Music Platform are removed from offers and plans; do not reinstate them without an explicit owner instruction. Availability requests stay open; paid activation waits for verified production readiness. Do not use the Fox Syli name for them. Do not link to `app.senzpr.com` while `app.released` is false. Do not describe a product as ticketing, voting, tabulation, a clone studio, staff photo retouching, or a public music chart. `music.html` is the Music division showcase, not the Music Platform.
+
 ## Source ownership
 
 The owner has designated `masinlocandher-max/Senz` as the canonical, independent source for `www.senzpr.com` and `senzpr.com`. Production branch: `main`. Source directory: repository root.
@@ -20,6 +24,3 @@ Read `DEPLOYMENT.md` before touching deployment settings. Confirm the exact repo
 
 Keep secrets in their hosting provider, never in Git, generated public files, logs, or chat. Do not print environment variable values. Keep SENZ data and credentials separate from Cognita, FMB News, Jewel, and other applications. Preserve existing approval and access boundaries.
 
-## Platform separation
-
-The protected eight-product application belongs only in private `masinlocandher-max/Senzapp`. The earlier six-product `ai-platform` draft is not the application source for this directive. Do not merge its backend into this public website. See `docs/PLATFORM_CONTRACT.md`.

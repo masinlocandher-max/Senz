@@ -27,25 +27,17 @@ const agents = [
     id: "digital-products",
     name: "Digital Product Architect",
     label: "Digital Products Agent",
-    focus: "The six SENZ App products: AI Workspace, Communications Intelligence, Digital Assistant, Client Portal, Event Systems, and Digital Representative.",
+    focus: "Purchase requests for the fifteen SENZ products. Each has a published monthly price. The website takes the request and does not charge a card or grant access.",
     priority: 40,
-    keywords: ["digital", "platform", "app", "ai", "assistant", "clone", "workspace", "subscription", "individual", "personal plan", "ai tools", "ai systems", "communications intelligence"]
-  },
-  {
-    id: "institutional-sales",
-    name: "Institutional Sales Lead",
-    label: "Institutional Licensing Agent",
-    focus: "Institutional licensing, organizational deployment, government procurement, seat management, and bulk access agreements.",
-    priority: 45,
-    keywords: ["institutional", "institution", "license", "licensing", "school", "university", "lgu", "government", "agency", "bac", "procurement", "philgeps", "enterprise", "organization", "bulk", "deployment", "seats", "seat", "corporate", "ched", "deped"]
+    keywords: ["digital", "platform", "app", "ai", "assistant", "fotolab", "workspace", "portal", "music"]
   },
   {
     id: "events-systems",
     name: "Events Systems Lead",
     label: "Events Platform Agent",
-    focus: "SENZ Event Systems (registration, capacity, waitlists, and check-in) and separately scoped custom event builds such as voting or tabulation.",
+    focus: "Event registration, waitlists, and check-in. Not ticketing, voting, or tabulation.",
     priority: 50,
-    keywords: ["event", "events", "pageant", "beauty", "queen", "king", "voting", "tabulation", "ticket"]
+    keywords: ["event", "events", "pageant", "registration", "rsvp", "check-in", "waitlist"]
   },
   {
     id: "founder-office",
@@ -76,7 +68,7 @@ function recommendAgent(inquiry) {
 
   const ranked = agents
     .map((agent) => ({ ...agent, score: scoreAgent(agent, text) }))
-    .sort((a, b) => b.score - a.score || a.priority - b.priority);
+    .sort((a, b) => b.score - a.score || b.priority - a.priority);
 
   return ranked[0].score > 0 ? ranked[0] : agents[0];
 }

@@ -1,12 +1,14 @@
 {
   "schemaVersion": 3,
   "sourceRepository": "masinlocandher-max/Senzapp",
-  "releaseState": "not_released",
+  "releaseState": "awaiting_release",
+  "forSale": false,
+  "requestsOpen": true,
   "checkoutEnabled": false,
   "platform": {
     "name": "SENZ App",
     "principle": "SENZ combines human strategic judgment with useful technology.",
-    "purpose": "The SENZ App is where licensed customers use SENZ software. The website explains the products and takes inquiries; the app opens a product only after SENZ verifies payment or a signed agreement."
+    "purpose": "The SENZ App is where customers buy and use SENZ software. Every product has a published monthly price. The website shows that price and takes a purchase request. The app opens a product only after SENZ verifies payment."
   },
   "statuses": {
     "available": {
@@ -74,7 +76,11 @@
       "products": [
         "ai-workspace",
         "communications-intelligence"
-      ]
+      ],
+      "pricePhp": 2990,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 900,
+      "storageMb": 1024
     },
     {
       "key": "professional",
@@ -88,7 +94,11 @@
         "ai-workspace",
         "communications-intelligence",
         "digital-assistant"
-      ]
+      ],
+      "pricePhp": 5490,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 1700,
+      "storageMb": 5120
     },
     {
       "key": "business",
@@ -102,7 +112,11 @@
         "digital-assistant",
         "ai-workspace",
         "communications-intelligence"
-      ]
+      ],
+      "pricePhp": 7490,
+      "includedSeats": 3,
+      "aiCreditsPerSeat": 750,
+      "storageMb": 5120
     },
     {
       "key": "institution",
@@ -118,7 +132,11 @@
         "ai-workspace",
         "communications-intelligence",
         "digital-assistant"
-      ]
+      ],
+      "pricePhp": 14900,
+      "includedSeats": 10,
+      "aiCreditsPerSeat": 450,
+      "storageMb": 20480
     },
     {
       "key": "custom-contract",
@@ -133,7 +151,247 @@
       ],
       "seats": "Scoped in the agreement",
       "selfRequest": false,
-      "products": []
+      "products": [],
+      "pricePhp": null,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": null,
+      "storageMb": 20480
+    },
+    {
+      "key": "buy-ai-workspace",
+      "name": "AI Workspace",
+      "segments": [
+        "myself",
+        "professional",
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "ai-workspace"
+      ],
+      "pricePhp": 1490,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 450,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-communications-intelligence",
+      "name": "Communications Intelligence",
+      "segments": [
+        "myself",
+        "professional",
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "communications-intelligence"
+      ],
+      "pricePhp": 2490,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 750,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-digital-assistant",
+      "name": "Digital Assistant",
+      "segments": [
+        "professional",
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "digital-assistant"
+      ],
+      "pricePhp": 2990,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 900,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-client-portal",
+      "name": "Client Portal",
+      "segments": [
+        "professional",
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "client-portal"
+      ],
+      "pricePhp": 4900,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-event-systems",
+      "name": "Event Systems",
+      "segments": [
+        "business",
+        "organization",
+        "education",
+        "government"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "event-systems"
+      ],
+      "pricePhp": 3490,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-digital-representative",
+      "name": "Digital Representative",
+      "segments": [
+        "professional",
+        "organization"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "digital-representative"
+      ],
+      "pricePhp": 7900,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 2400,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-qr-menu",
+      "name": "QR Menu",
+      "segments": [
+        "business"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "qr-menu"
+      ],
+      "pricePhp": 790,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-booking",
+      "name": "Booking",
+      "segments": [
+        "professional",
+        "business"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "booking"
+      ],
+      "pricePhp": 990,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-digital-catalog",
+      "name": "Digital Catalog",
+      "segments": [
+        "professional",
+        "business"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "digital-catalog"
+      ],
+      "pricePhp": 790,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-business-website",
+      "name": "Business Website",
+      "segments": [
+        "professional",
+        "business",
+        "organization"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "business-website"
+      ],
+      "pricePhp": 1490,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-crm",
+      "name": "CRM",
+      "segments": [
+        "professional",
+        "business",
+        "organization"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "crm"
+      ],
+      "pricePhp": 1290,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-pos",
+      "name": "POS and Inventory",
+      "segments": [
+        "business"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "pos"
+      ],
+      "pricePhp": 1490,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "key": "buy-loyalty",
+      "name": "Loyalty",
+      "segments": [
+        "business"
+      ],
+      "seats": "One workspace",
+      "selfRequest": true,
+      "products": [
+        "loyalty"
+      ],
+      "pricePhp": 490,
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
     }
   ],
   "products": [
@@ -159,22 +417,27 @@
       ],
       "limits": "Uses only what you provide. It does not browse the web, send, or publish anything, and every draft needs human review.",
       "summary": "Draft, summarize, rewrite, and structure real work with saved, versioned outputs.",
+      "pricePhp": 1490,
+      "priceLabel": "₱1,490 per month",
       "usesAi": true,
       "mode": "subscription",
       "launchWave": 1,
       "channel": "plans",
-      "howToGet": "Included in the Individual, Professional, Business and Institutional License plans.",
+      "howToGet": "₱1,490 per month on its own. Also included in Individual, Professional, Business and Institutional License. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
       "recommendedPlan": {
-        "myself": "individual",
-        "professional": "individual",
-        "business": "business",
-        "organization": "institution",
-        "education": "institution",
-        "government": "institution"
+        "myself": "buy-ai-workspace",
+        "professional": "buy-ai-workspace",
+        "business": "buy-ai-workspace",
+        "organization": "buy-ai-workspace",
+        "education": "buy-ai-workspace",
+        "government": "buy-ai-workspace"
       },
       "publicStatus": "in_development",
       "publicStatusLabel": "In development",
-      "nextAction": "Request a Demonstration"
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 450,
+      "storageMb": 1024
     },
     {
       "id": "communications-intelligence",
@@ -198,22 +461,27 @@
       ],
       "limits": "It does not publish or send messages, and it does not replace legal advice or a crisis team.",
       "summary": "Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval.",
+      "pricePhp": 2490,
+      "priceLabel": "₱2,490 per month",
       "usesAi": true,
       "mode": "subscription",
       "launchWave": 1,
       "channel": "plans",
-      "howToGet": "Included in the Individual, Professional, Business and Institutional License plans.",
+      "howToGet": "₱2,490 per month on its own. Also included in Individual, Professional, Business and Institutional License. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
       "recommendedPlan": {
-        "myself": "individual",
-        "professional": "individual",
-        "business": "business",
-        "organization": "institution",
-        "education": "institution",
-        "government": "institution"
+        "myself": "buy-communications-intelligence",
+        "professional": "buy-communications-intelligence",
+        "business": "buy-communications-intelligence",
+        "organization": "buy-communications-intelligence",
+        "education": "buy-communications-intelligence",
+        "government": "buy-communications-intelligence"
       },
       "publicStatus": "in_development",
       "publicStatusLabel": "In development",
-      "nextAction": "Request a Demonstration"
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 750,
+      "storageMb": 1024
     },
     {
       "id": "digital-assistant",
@@ -236,21 +504,26 @@
       ],
       "limits": "It replies only from your approved knowledge: an answer must cite it, and every number, date, price, or contact detail must appear in what it cites, or the question goes to your team. It does not take payments or make bookings.",
       "summary": "An assistant that answers only from your approved knowledge and hands off to a person.",
+      "pricePhp": 2990,
+      "priceLabel": "₱2,990 per month",
       "usesAi": true,
       "mode": "subscription",
       "launchWave": 1,
       "channel": "plans",
-      "howToGet": "Included in the Professional, Business and Institutional License plans.",
+      "howToGet": "₱2,990 per month on its own. Also included in Professional, Business and Institutional License. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
       "recommendedPlan": {
-        "professional": "professional",
-        "business": "business",
-        "organization": "institution",
-        "education": "institution",
-        "government": "institution"
+        "professional": "buy-digital-assistant",
+        "business": "buy-digital-assistant",
+        "organization": "buy-digital-assistant",
+        "education": "buy-digital-assistant",
+        "government": "buy-digital-assistant"
       },
       "publicStatus": "in_development",
       "publicStatusLabel": "In development",
-      "nextAction": "Request a Demonstration"
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 900,
+      "storageMb": 1024
     },
     {
       "id": "client-portal",
@@ -273,21 +546,26 @@
       ],
       "limits": "Set up by SENZ for each contract. It is not a general CRM, form builder, or public file-sharing service.",
       "summary": "Contracted project workspace for milestones, deliverables, revisions, and approvals.",
+      "pricePhp": 4900,
+      "priceLabel": "₱4,900 per month",
       "usesAi": false,
-      "mode": "contract",
+      "mode": "subscription",
       "launchWave": 1,
-      "channel": "services",
-      "howToGet": "Included with SENZ service engagements; not sold on its own.",
+      "channel": "plans",
+      "howToGet": "₱4,900 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
       "recommendedPlan": {
-        "professional": null,
-        "business": null,
-        "organization": null,
-        "education": null,
-        "government": null
+        "professional": "buy-client-portal",
+        "business": "buy-client-portal",
+        "organization": "buy-client-portal",
+        "education": "buy-client-portal",
+        "government": "buy-client-portal"
       },
-      "publicStatus": "custom",
-      "publicStatusLabel": "Custom implementation",
-      "nextAction": "Request a Quote"
+      "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
     },
     {
       "id": "event-systems",
@@ -309,20 +587,25 @@
       ],
       "limits": "It does not sell tickets or run voting or tabulation.",
       "summary": "Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export.",
+      "pricePhp": 3490,
+      "priceLabel": "₱3,490 per month",
       "usesAi": false,
-      "mode": "contract",
-      "launchWave": 2,
-      "channel": "agreement",
-      "howToGet": "Set up under a custom implementation agreement after a scoping review.",
+      "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "₱3,490 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
       "recommendedPlan": {
-        "business": "custom-contract",
-        "organization": "custom-contract",
-        "education": "custom-contract",
-        "government": "custom-contract"
+        "business": "buy-event-systems",
+        "organization": "buy-event-systems",
+        "education": "buy-event-systems",
+        "government": "buy-event-systems"
       },
-      "publicStatus": "custom",
-      "publicStatusLabel": "Custom implementation",
-      "nextAction": "Request a Quote"
+      "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
     },
     {
       "id": "digital-representative",
@@ -342,18 +625,273 @@
       ],
       "limits": "Text only. It has no voice or video likeness and is never presented as the real person.",
       "summary": "Consent-based, disclosed text representative for a brand or person, with human approval.",
+      "pricePhp": 7900,
+      "priceLabel": "₱7,900 per month",
       "usesAi": true,
-      "mode": "contract",
-      "launchWave": 3,
-      "channel": "agreement",
-      "howToGet": "Set up under a custom implementation agreement after a scoping review.",
+      "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "₱7,900 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
       "recommendedPlan": {
-        "professional": "custom-contract",
-        "organization": "custom-contract"
+        "professional": "buy-digital-representative",
+        "organization": "buy-digital-representative"
       },
-      "publicStatus": "custom",
-      "publicStatusLabel": "Custom implementation",
-      "nextAction": "Request a Quote"
+      "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 2400,
+      "storageMb": 1024
+    },
+    {
+      "id": "qr-menu",
+      "name": "SENZ QR Menu",
+      "category": "workflow",
+      "problem": "Printed menus go out of date, and guests cannot see what is available or suits their diet.",
+      "purpose": "Publish your menu at a link and QR code, with sections, prices, dietary notes, and sold-out items kept up to date.",
+      "audience": "Cafés, restaurants, and food stalls.",
+      "segments": [
+        "business"
+      ],
+      "includes": [
+        "Menu sections and items with prices, descriptions, photos, and dietary tags you enter",
+        "Mark an item sold out or available again; the public menu changes at once",
+        "A public menu page and a printable QR code; guests filter by dietary tag and build a list to show staff"
+      ],
+      "limits": "Dietary information is entered by the business and is not checked by SENZ. It does not take orders or payments; guests show their list to staff.",
+      "summary": "A public menu with a QR code, sections, prices, dietary tags, and sold-out items.",
+      "pricePhp": 790,
+      "priceLabel": "₱790 per month",
+      "usesAi": false,
+      "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "₱790 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
+      "recommendedPlan": {
+        "business": "buy-qr-menu"
+      },
+      "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "id": "booking",
+      "name": "SENZ Booking",
+      "category": "workflow",
+      "problem": "Appointment requests arrive by chat and phone, and the same time gets promised to two people.",
+      "purpose": "Take appointment requests online for the times you open, and confirm each one yourself without double-booking.",
+      "audience": "Salons, clinics, studios, consultants, and other appointment-based businesses.",
+      "segments": [
+        "professional",
+        "business"
+      ],
+      "includes": [
+        "Services with durations, open days and start times, closed dates, and optional staff",
+        "A public booking page and QR code; you confirm or decline each request, and a confirmed time cannot be given twice",
+        "Customers check or cancel a request with its reference; you add phone and walk-in bookings yourself"
+      ],
+      "limits": "It does not take payments or deposits and sends no messages or reminders; you contact customers yourself.",
+      "summary": "Online appointment requests that you confirm, with no double-booking.",
+      "pricePhp": 990,
+      "priceLabel": "₱990 per month",
+      "usesAi": false,
+      "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "₱990 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
+      "recommendedPlan": {
+        "professional": "buy-booking",
+        "business": "buy-booking"
+      },
+      "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "id": "digital-catalog",
+      "name": "SENZ Digital Catalog",
+      "category": "workflow",
+      "problem": "Customers keep asking what is available and how much, and product photos are scattered across chats.",
+      "purpose": "Show your products at a shareable link and QR code, and receive inquiries that list exactly what a customer wants.",
+      "audience": "Shops, makers, resellers, and suppliers.",
+      "segments": [
+        "professional",
+        "business"
+      ],
+      "includes": [
+        "Products with categories, descriptions, photos, and a price or \"price on request\"; hide an item without deleting it",
+        "A public catalog page and QR code with search and category filters",
+        "Customer inquiry lists with quantities arrive in your inbox with a reference"
+      ],
+      "limits": "It does not take orders or payments or track stock; you reply to each inquiry yourself.",
+      "summary": "A shareable product catalog with search and inquiry lists.",
+      "pricePhp": 790,
+      "priceLabel": "₱790 per month",
+      "usesAi": false,
+      "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "₱790 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
+      "recommendedPlan": {
+        "professional": "buy-digital-catalog",
+        "business": "buy-digital-catalog"
+      },
+      "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "id": "business-website",
+      "name": "SENZ Business Website",
+      "category": "workflow",
+      "problem": "The business has no simple website where people can see its services and send an inquiry.",
+      "purpose": "Publish a simple business website with your services, details, photos, and FAQ, and receive inquiries in one inbox.",
+      "audience": "Small businesses, professionals, and organizations that need a clear web presence.",
+      "segments": [
+        "professional",
+        "business",
+        "organization"
+      ],
+      "includes": [
+        "Services, highlights, about, photos, FAQ, and contact details on one page that you write and edit",
+        "An inquiry form whose messages arrive in your inbox with a reference",
+        "A page title and description for search engines, a SENZ web address, and a QR code"
+      ],
+      "limits": "It is hosted at a SENZ web address: custom domains, online payments, and online stores are not included.",
+      "summary": "A one-page business website with services, FAQ, photos, and an inquiry inbox.",
+      "pricePhp": 1490,
+      "priceLabel": "₱1,490 per month",
+      "usesAi": false,
+      "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "₱1,490 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
+      "recommendedPlan": {
+        "professional": "buy-business-website",
+        "business": "buy-business-website",
+        "organization": "buy-business-website"
+      },
+      "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "id": "crm",
+      "name": "SENZ CRM",
+      "category": "workflow",
+      "problem": "Leads and customers are tracked in chats and notebooks, and follow-ups are forgotten.",
+      "purpose": "Keep every lead and customer in one place, move them through your stages, and see which follow-ups are due or overdue.",
+      "audience": "Small sales teams, service businesses, and professionals.",
+      "segments": [
+        "professional",
+        "business",
+        "organization"
+      ],
+      "includes": [
+        "Contacts with deal value, stage, next follow-up date, and a dated notes history",
+        "Pipeline and follow-up views with overdue flags, search, and totals",
+        "Add an inquiry or booking request to the CRM in one step; export contacts as CSV"
+      ],
+      "limits": "It does not send emails or messages and does not import contacts from other systems.",
+      "summary": "Contacts, stages, follow-ups, and notes for a small team.",
+      "pricePhp": 1290,
+      "priceLabel": "₱1,290 per month",
+      "usesAi": false,
+      "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "₱1,290 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
+      "recommendedPlan": {
+        "professional": "buy-crm",
+        "business": "buy-crm",
+        "organization": "buy-crm"
+      },
+      "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "id": "pos",
+      "name": "SENZ POS and Inventory",
+      "category": "workflow",
+      "problem": "Counter sales are tallied by hand, stock runs out without warning, and the day's total never matches the cash drawer.",
+      "purpose": "Ring up counter sales from your item list, keep stock counts right, and see each day's totals by payment method.",
+      "audience": "Cafés, shops, stalls, and small retailers.",
+      "segments": [
+        "business"
+      ],
+      "includes": [
+        "Items with categories, prices, and stock counts; every restock and count is recorded with who made it",
+        "Ring up a sale with quantities, a discount, the payment method, and change for cash; stock goes down at once and an item cannot be sold past its stock",
+        "Daily totals by payment method, best sellers, low-stock alerts, voids that return stock, a printable sales slip, and CSV export"
+      ],
+      "limits": "It records sales and stock only. It is not a BIR-registered POS, does not issue official receipts or invoices, and does not process card or e-wallet payments.",
+      "summary": "Counter sales, stock counts, and daily totals.",
+      "pricePhp": 1490,
+      "priceLabel": "₱1,490 per month",
+      "usesAi": false,
+      "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "₱1,490 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
+      "recommendedPlan": {
+        "business": "buy-pos"
+      },
+      "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
+    },
+    {
+      "id": "loyalty",
+      "name": "SENZ Loyalty",
+      "category": "workflow",
+      "problem": "Paper stamp cards get lost or copied, and the business cannot see who its regular customers are.",
+      "purpose": "Run a digital stamp card: customers earn stamps on purchases, and you record each reward when it is redeemed.",
+      "audience": "Cafés, salons, shops, and other businesses with repeat customers.",
+      "segments": [
+        "business"
+      ],
+      "includes": [
+        "One stamp program with the number of stamps, the reward, and an optional minimum spend that you set",
+        "Members join with their agreement; stamps come from POS sales or are added by hand with a note (by owners and administrators unless you allow all staff), and a full card is redeemed for the reward",
+        "Each member's card with a dated history of stamps and rewards and who recorded them"
+      ],
+      "limits": "It sends no messages and has no public member page; members ask your staff for their card. A voided POS sale takes back its stamp.",
+      "summary": "A digital stamp card tied to your counter sales.",
+      "pricePhp": 490,
+      "priceLabel": "₱490 per month",
+      "usesAi": false,
+      "mode": "subscription",
+      "launchWave": 1,
+      "channel": "plans",
+      "howToGet": "₱490 per month on its own. SENZ confirms availability and the activation date before requesting payment. Access starts after verified payment. This website does not charge a card.",
+      "recommendedPlan": {
+        "business": "buy-loyalty"
+      },
+      "publicStatus": "in_development",
+      "publicStatusLabel": "In development",
+      "nextAction": "Request availability",
+      "includedSeats": 1,
+      "aiCreditsPerSeat": 0,
+      "storageMb": 1024
     }
   ]
 }

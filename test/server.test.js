@@ -7,6 +7,7 @@ let deliveryUrl;
 let apiServer;
 let apiUrl;
 const deliveries = [];
+let providerReply = { success: true };
 
 function listen(server) {
   return new Promise((resolve) => {
@@ -29,7 +30,7 @@ before(async () => {
     for await (const chunk of req) chunks.push(chunk);
     deliveries.push(JSON.parse(Buffer.concat(chunks).toString("utf8")));
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ success: true }));
+    res.end(JSON.stringify(providerReply));
   });
   deliveryUrl = await listen(deliveryServer);
 
@@ -79,8 +80,8 @@ test("valid inquiries are delivered as email payloads", async () => {
       projectType: "Website strategy",
       timeline: "2026-08-04 10:00",
       message: "A test project brief.",
-      consent: true,
-      fields: { preferredDate: "2026-08-04" }
+      privacyConsent: true,
+      fields: { preferredDate: "2026-08-04", preferredTime: "10:00" }
     })
   });
   const body = await response.json();
@@ -90,33 +91,6 @@ test("valid inquiries are delivered as email payloads", async () => {
   assert.match(deliveries[0]._subject, /consultation request/i);
   assert.equal(deliveries[0]._replyto, "visitor@example.com");
   assert.equal(deliveries[0]["Detail — preferredDate"], "2026-08-04");
-  assert.equal(deliveries[0]["Consent to reply"], "Yes (inquiry-2026-10-29)");
-  assert.equal(deliveries[0]["Marketing consent"], "No: reply to this inquiry only", "agreeing to a reply is not agreeing to marketing");
-});
-
-test("an inquiry without consent to a reply is refused and not delivered", async () => {
-  for (const consent of [undefined, false, "true", "on"]) {
-    const response = await fetch(`${apiUrl}/api/inquiries`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Origin": "https://www.senzpr.com" },
-      body: JSON.stringify({ formType: "general", name: "No Consent", email: "nc@example.com", projectType: "General", message: "Hello.", consent })
-    });
-    assert.equal(response.status, 422, `consent ${JSON.stringify(consent)}`);
-    assert.match((await response.json()).errors.join(" "), /privacy notice/);
-  }
-  assert.equal(deliveries.length, 1);
-});
-
-test("optional marketing consent is recorded separately, and only when ticked", async () => {
-  const response = await fetch(`${apiUrl}/api/inquiries`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "Origin": "https://www.senzpr.com" },
-    body: JSON.stringify({ formType: "general", name: "Opted In", email: "in@example.com", projectType: "General", message: "Hello.", consent: true, marketingConsent: true, consentVersion: "forged-by-browser" })
-  });
-  assert.equal(response.status, 201);
-  const delivered = deliveries.pop();
-  assert.equal(delivered["Marketing consent"], "Yes: may receive SENZ updates until they ask to stop");
-  assert.equal(delivered["Consent to reply"], "Yes (inquiry-2026-10-29)", "the consent version is the server's, not the browser's");
 });
 
 test("unapproved browser origins are blocked", async () => {
@@ -149,9 +123,86 @@ test("honeypot submissions return success without delivery", async () => {
       email: "bot@example.com",
       projectType: "General",
       message: "Automated spam.",
-      senzWebsite: "https://spam.invalid"
+      senzWebsite: "https://spam.invalid",
+      privacyConsent: true
     })
   });
   assert.equal(response.status, 201);
   assert.equal(deliveries.length, 1);
+});
+
+test("inquiries without privacy consent are rejected", async () => {
+  const response = await fetch(`${apiUrl}/api/inquiries`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Origin": "https://www.senzpr.com"
+    },
+    body: JSON.stringify({
+      name: "Test Visitor",
+      email: "visitor@example.com",
+      projectType: "General",
+      message: "A brief without consent."
+    })
+  });
+  assert.equal(response.status, 422);
+  assert.equal(deliveries.length, 1);
+});
+
+test("consultation requests need a preferred date and time", async () => {
+  const response = await fetch(`${apiUrl}/api/inquiries`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Origin": "https://www.senzpr.com"
+    },
+    body: JSON.stringify({
+      formType: "consultation",
+      name: "Test Visitor",
+      email: "visitor@example.com",
+      projectType: "Consultation",
+      message: "Need a time.",
+      privacyConsent: true,
+      fields: { preferredDate: "2026-08-04" }
+    })
+  });
+  const body = await response.json();
+  assert.equal(response.status, 422);
+  assert.match(body.errors.join(" "), /Preferred time is required/);
+  assert.equal(deliveries.length, 1);
+});
+
+
+const productRequest = { formType: 'product', productKey: 'qr-menu', seats: 2, name: 'Product QA', email: 'qa@example.com', message: 'A menu for our cafe', privacyConsent: true };
+const postProduct = async (body) => fetch(`${apiUrl}/api/inquiries`, {method:'POST',headers:{'Content-Type':'application/json',Origin:'https://www.senzpr.com'},body:JSON.stringify(body)});
+test('product requests use authoritative prices and preserve the chosen product', async () => {
+  const res=await postProduct({...productRequest,budget:'PHP 1',fields:{monthlyTotalPhp:'1',seats:'100'}});
+  assert.equal(res.status,201);
+  const delivered=deliveries.at(-1);
+  assert.equal(delivered['Detail — productKey'],'qr-menu');
+  assert.equal(delivered['Detail — seats'],'2');
+  assert.equal(delivered['Detail — monthlyTotalPhp'],'1580');
+  assert.match(delivered.Budget,/1580/);
+  assert.match(delivered._subject,/product request/);
+});
+test('invalid product, fractional seats and non-object payloads never reach delivery',async()=>{
+ const before=deliveries.length;
+ for(const body of [{...productRequest,productKey:'missing'},{...productRequest,seats:1.5},{...productRequest,seats:0},{...productRequest,seats:10001}])assert.equal((await postProduct(body)).status,422);
+ assert.equal((await postProduct(null)).status,400);
+ assert.equal(deliveries.length,before);
+});
+test('a provider HTTP 200 without acceptance is never reported as successful',async()=>{
+ providerReply={message:'unconfirmed'};
+ try {const res=await postProduct(productRequest);assert.equal(res.status,502);assert.equal((await res.json()).ok,false);}finally{providerReply={success:true};}
+});
+test('public server exposes pages and assets, not application source or credentials',async()=>{
+ for(const path of ['/server.js','/package.json','/.env','/.git/config','/test/server.test.js','/components/%2e%2e/server.js'])assert.notEqual((await fetch(apiUrl+path)).status,200,path);
+ for(const path of ['/','/purchase.html','/products/qr-menu.html','/components/purchase.js','/components/product-catalog.json','/robots.txt','/sitemap.xml'])assert.equal((await fetch(apiUrl+path)).status,200,path);
+ const head=await fetch(apiUrl+'/purchase.html',{method:'HEAD'});assert.equal(head.status,200);assert.equal(await head.text(),'');
+});
+
+test('removed products are rejected before any email delivery',async()=>{
+ const before=deliveries.length;
+ for(const productKey of ['fotolab','music-platform']){const res=await postProduct({...productRequest,productKey});assert.equal(res.status,422);}
+ assert.equal(deliveries.length,before);
 });

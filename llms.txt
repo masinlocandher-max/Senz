@@ -1,38 +1,21 @@
-# SENZ Strategic Communications
+# SENZ Strategic Communications and Digital Solutions
 
-Influence Through Clarity. An FMB&CO company, founded by Francine Marie Bautista.
-Primary market: Philippines. Contact: info.senz.pr@gmail.com.
+An FMB&CO brand serving clients in the Philippines. Website: https://www.senzpr.com/
 
-## Capabilities
-- Strategic Communications: positioning, branding, PR, reputation, stakeholder messages, and content strategy.
-- Digital Solutions: websites, portals, operations, and scoped integrations.
-- AI Systems: suitable AI-assisted writing, knowledge, and communications workflows.
+Professional services: strategic communications, brand strategy, PR, creative direction, websites, and scoped digital implementation.
 
-Start with the client's problem. Not every customer needs all three capabilities.
+Software: thirteen products with published monthly prices. Activation awaits verified release; request availability before payment. No automatic card checkout.
 
-## Product readiness
-Six products are offered from the private SENZ App source: AI Workspace, Communications Intelligence, Digital Assistant, Client Portal, Event Systems, and Digital Representative. Local source testing is not proof of live readiness. No self-service purchase is currently announced. Four products use AI; Client Portal and Event Systems are digital workflows, not generative AI products.
-
-## Products and their purpose
-<!-- catalog:llms:start -->
-- SENZ AI Workspace (In development; Uses AI): Solves: Drafting, summarizing, and organizing work takes too long. Turn your own notes, goals, and source text into usable first drafts, and keep every version. For: Professionals, small businesses, and teams who write every day. Limits: Uses only what you provide. It does not browse the web, send, or publish anything, and every draft needs human review. Included in the Individual, Professional, Business and Institutional License plans.
-- SENZ Communications Intelligence (In development; Uses AI): Solves: Important messages go out unplanned, unclear, or without proper approval. Prepare important messages properly: plan them, check them, and approve them before they go out. For: Communications officers, schools, local governments, agencies, and organizations. Limits: It does not publish or send messages, and it does not replace legal advice or a crisis team. Included in the Individual, Professional, Business and Institutional License plans.
-- SENZ Digital Assistant (In development; Uses AI): Solves: People keep asking the same questions, and answers are slow or inconsistent. Answer the questions people keep asking on your website, using only answers you approve, and pass anything else to a person. For: Businesses, schools, clinics, venues, and organizations with repeat questions. Limits: It replies only from your approved knowledge: an answer must cite it, and every number, date, price, or contact detail must appear in what it cites, or the question goes to your team. It does not take payments or make bookings. Included in the Professional, Business and Institutional License plans.
-- SENZ Client Portal (Custom implementation; Digital workflow (no AI)): Solves: Clients of a SENZ project need one place to follow progress, review deliverables, and approve the work. One private place for a contracted project between SENZ and a client: what is due, what was delivered, and what was approved. For: SENZ clients working under a signed project agreement. Limits: Set up by SENZ for each contract. It is not a general CRM, form builder, or public file-sharing service. Included with SENZ service engagements; not sold on its own.
-- SENZ Event Systems (Custom implementation; Digital workflow (no AI)): Solves: Event sign-ups are manual: overbooking, lost registrations, and slow check-in at the door. Run event registration from announcement to the door: take sign-ups within capacity, manage a waitlist, and check people in. For: Schools, organizations, and event organizers. Limits: It does not sell tickets or run voting or tabulation. Set up under a custom implementation agreement after a scoping review.
-- SENZ Digital Representative (Custom implementation; Uses AI): Solves: A brand or public figure receives more questions than can be answered personally. Let a brand or person be represented by a clearly disclosed text assistant that speaks only from approved information, and only while consent is in place. For: Public figures, brands, and organizations under a signed agreement. Limits: Text only. It has no voice or video likeness and is never presented as the real person. Set up under a custom implementation agreement after a scoping review.
-<!-- catalog:llms:end -->
-
-Pricing is based on requirements and approved quotations. Do not infer a price, guaranteed result, procurement eligibility, or production availability from this document.
-
-## Public routes
-- Home: https://www.senzpr.com/
-- Solutions: https://www.senzpr.com/solutions.html
-- Who we help: https://www.senzpr.com/who-we-help.html
-- Guided discovery: https://www.senzpr.com/get-started.html
-- Strategic Communications: https://www.senzpr.com/strategic-communications-philippines.html
-- Digital Solutions: https://www.senzpr.com/digital-solutions.html
-- Product catalog: https://www.senzpr.com/ai-systems.html
-- Institutional inquiry: https://www.senzpr.com/institutional.html
-- About: https://www.senzpr.com/about.html
-- Contact: https://www.senzpr.com/contact.html
+- SENZ AI Workspace: Draft, summarize, rewrite, and structure real work with saved, versioned outputs. PHP 1490/month for one seat. https://www.senzpr.com/products/ai-workspace.html
+- SENZ Communications Intelligence: Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval. PHP 2490/month for one seat. https://www.senzpr.com/products/communications-intelligence.html
+- SENZ Digital Assistant: An assistant that answers only from your approved knowledge and hands off to a person. PHP 2990/month for one seat. https://www.senzpr.com/products/digital-assistant.html
+- SENZ Client Portal: Contracted project workspace for milestones, deliverables, revisions, and approvals. PHP 4900/month for one seat. https://www.senzpr.com/products/client-portal.html
+- SENZ Event Systems: Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export. PHP 3490/month for one seat. https://www.senzpr.com/products/event-systems.html
+- SENZ Digital Representative: Consent-based, disclosed text representative for a brand or person, with human approval. PHP 7900/month for one seat. https://www.senzpr.com/products/digital-representative.html
+- SENZ QR Menu: A public menu with a QR code, sections, prices, dietary tags, and sold-out items. PHP 790/month for one seat. https://www.senzpr.com/products/qr-menu.html
+- SENZ Booking: Online appointment requests that you confirm, with no double-booking. PHP 990/month for one seat. https://www.senzpr.com/products/booking.html
+- SENZ Digital Catalog: A shareable product catalog with search and inquiry lists. PHP 790/month for one seat. https://www.senzpr.com/products/digital-catalog.html
+- SENZ Business Website: A one-page business website with services, FAQ, photos, and an inquiry inbox. PHP 1490/month for one seat. https://www.senzpr.com/products/business-website.html
+- SENZ CRM: Contacts, stages, follow-ups, and notes for a small team. PHP 1290/month for one seat. https://www.senzpr.com/products/crm.html
+- SENZ POS and Inventory: Counter sales, stock counts, and daily totals. PHP 1490/month for one seat. https://www.senzpr.com/products/pos.html
+- SENZ Loyalty: A digital stamp card tied to your counter sales. PHP 490/month for one seat. https://www.senzpr.com/products/loyalty.html

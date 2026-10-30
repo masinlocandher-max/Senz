@@ -5,8 +5,8 @@ const http = require("node:http");
 const path = require("node:path");
 const { URL } = require("node:url");
 const { agents, recommendAgent } = require("./agents");
-const discovery = require("./components/discovery-engine");
 
+const catalog = require('./components/product-catalog.json');
 const rootDir = __dirname;
 const port = Number(process.env.PORT || 4177);
 const siteOrigins = String(process.env.SITE_ORIGIN || "")
@@ -81,6 +81,11 @@ function cleanLong(value, maxLength = 3000) {
     .slice(0, maxLength);
 }
 
+function hasPrivacyConsent(input) {
+  const value = input.privacyConsent;
+  return value === true || value === "true" || value === "on" || value === "yes";
+}
+
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
@@ -120,11 +125,10 @@ function cleanFields(fields) {
   );
 }
 
-// Consent to a reply is required for every form; consent to marketing is a separate, optional
-// choice. The versions are the server's, not values sent by the browser.
-const CONSENT_VERSIONS = { discovery: "discovery-2026-10-27", default: "inquiry-2026-10-29" };
-
 function buildInquiry(input) {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) {
+    const error = new Error('Request must be a JSON object.'); error.statusCode = 400; throw error;
+  }
   const contact = clean(input.contact || input.phone || input.contactNumber, 180);
   const timeline = clean(input.timeline || input.date || input.availability, 120);
   const formType = clean(input.formType || "general", 40).toLowerCase();
@@ -150,36 +154,19 @@ function buildInquiry(input) {
     budget: clean(input.budget, 120),
     message: messageParts.join("\n\n").slice(0, 3000),
     source: "website-intake",
-    details: cleanFields(input.fields),
-    consent: {
-      reply: input.consent === true,
-      marketing: input.marketingConsent === true,
-      version: CONSENT_VERSIONS[clean(input.formType || "general", 40).toLowerCase()] || CONSENT_VERSIONS.default
-    }
+    details: cleanFields(input.fields)
   };
-  const discoveryErrors = [];
-  if (formType === 'discovery') {
-    const result = discovery.recommend(input.discovery);
-    if (input.discoveryVersion !== discovery.VERSION) discoveryErrors.push('The questionnaire has changed. Reload and review your answers.');
-    if (!result.valid) discoveryErrors.push('Complete the discovery questions before submitting.');
-    if (result.valid) {
-      // Do not trust client-supplied recommendations, pricing, tier or entitlement fields.
-      inquiry.projectType = result.name;
-      inquiry.timeline = result.answers.timeline;
-      inquiry.message = result.challenge + '\nDesired outcome: ' + result.outcome;
-      inquiry.details = {
-        'Rules version': discovery.VERSION,
-        'Discovery answers': JSON.stringify(result.answers),
-        'Recommended capability': result.capability,
-        'Proposed scope': result.scope.join('; '),
-        'Recommended product': result.productId || 'None (SENZ service)',
-        'Suggested tier': result.suggestedTier,
-        'Plan options': result.tiers.join('; '),
-        'Recommendation reasons': result.why.join('; '),
-        'Information to confirm': result.informationGaps.join('; '),
-        'Human review': result.humanReviewRequired ? 'Required' : 'Scope confirmation required',
-        'Quote status': 'New inquiry; no price or entitlement granted'
-      };
+  if (formType === 'product') {
+    const product = catalog.products.find(p => p.id === input.productKey);
+    const seats = Number(input.seats);
+    inquiry.productRequestValid = Boolean(product) && Number.isSafeInteger(seats) && seats >= 1 && seats <= 10000;
+    if (inquiry.productRequestValid) {
+      inquiry.projectType = product.name;
+      inquiry.budget = `PHP ${product.pricePhp * seats}/month for ${seats} named seat(s)`;
+      inquiry.details = { ...inquiry.details, productKey: product.id, seats: String(seats),
+        monthlyTotalPhp: String(product.pricePhp * seats), storageMb: String(product.storageMb),
+        aiCreditsPerSeat: String(product.aiCreditsPerSeat), releaseState: catalog.releaseState,
+        availability: 'Confirm working delivery and activation date before payment' };
     }
   }
   const assignedAgent = recommendAgent(inquiry);
@@ -190,13 +177,21 @@ function buildInquiry(input) {
     focus: assignedAgent.focus
   };
 
-  const errors = [...discoveryErrors];
-  if (!inquiry.consent.reply) errors.push("Agree to the privacy notice so SENZ can reply to this inquiry.");
+  const errors = [];
+  if (formType === 'product' && !inquiry.productRequestValid) errors.push('Choose a valid product and a whole number of seats from 1 to 10000.');
   if (!inquiry.name) errors.push("Name is required.");
   if (inquiry.email && !isEmail(inquiry.email)) errors.push("Email must be valid when provided.");
   if (!inquiry.email && !inquiry.contact) errors.push("Email or phone/Messenger contact is required.");
   if (!inquiry.projectType) errors.push("Project type is required.");
   if (!inquiry.message) errors.push("Project goal is required.");
+  if (!hasPrivacyConsent(input)) errors.push("Privacy consent is required.");
+  if (formType === "consultation") {
+    const fields = input.fields && typeof input.fields === "object" && !Array.isArray(input.fields) ? input.fields : {};
+    const preferredDate = clean(fields.preferredDate || input.date, 40);
+    const preferredTime = clean(fields.preferredTime || input.time, 40);
+    if (!preferredDate) errors.push("Preferred date is required.");
+    if (!preferredTime) errors.push("Preferred time is required.");
+  }
 
   return {
     inquiry,
@@ -207,6 +202,7 @@ function buildInquiry(input) {
 }
 
 function inquirySubject(inquiry) {
+  if (inquiry.formType === 'product') return `SENZ product request — ${inquiry.projectType} — ${inquiry.name}`;
   if (inquiry.formType === "consultation") {
     return `New SENZ consultation request — ${inquiry.name}`;
   }
@@ -253,15 +249,13 @@ async function deliverInquiry(inquiry) {
         "Budget": inquiry.budget,
         "Message": inquiry.message,
         "Recommended SENZ route": inquiry.assignedAgent.label,
-        "Consent to reply": `Yes (${inquiry.consent.version})`,
-        "Marketing consent": inquiry.consent.marketing ? "Yes: may receive SENZ updates until they ask to stop" : "No: reply to this inquiry only",
         ...details
       }),
       signal: controller.signal
     });
 
     const result = await response.json().catch(() => ({}));
-    if (!response.ok || ![true, "true"].includes(result.success)) {
+    if (!response.ok || !(result.success === true || result.success === "true")) {
       const error = new Error("The inquiry email provider did not accept the submission.");
       error.statusCode = 502;
       throw error;
@@ -276,42 +270,6 @@ async function deliverInquiry(inquiry) {
   } finally {
     clearTimeout(timeout);
   }
-}
-
-// Each address may send a few inquiries in a short window, and the whole site a bounded number an
-// hour, so a script cannot flood the SENZ inbox or use up the email provider's allowance.
-const inquiryLimits = {
-  perAddress: Number(process.env.SENZ_INQUIRY_LIMIT_PER_ADDRESS || 10),
-  perAddressWindowMs: 10 * 60 * 1000,
-  perHour: Number(process.env.SENZ_INQUIRY_LIMIT_PER_HOUR || 60)
-};
-const inquiriesByAddress = new Map();
-let siteInquiries = [];
-
-function clientAddress(req) {
-  // Render's proxy puts the visitor's address first in X-Forwarded-For. A visitor who sends a false
-  // one only moves to another per-address count; the hourly site limit still applies.
-  const forwarded = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
-  return forwarded || req.socket.remoteAddress || "unknown";
-}
-
-function overInquiryLimit(req, now = Date.now()) {
-  siteInquiries = siteInquiries.filter((at) => now - at < 60 * 60 * 1000);
-  const address = clientAddress(req);
-  const recent = (inquiriesByAddress.get(address) || []).filter((at) => now - at < inquiryLimits.perAddressWindowMs);
-  if (recent.length >= inquiryLimits.perAddress || siteInquiries.length >= inquiryLimits.perHour) {
-    inquiriesByAddress.set(address, recent);
-    return true;
-  }
-  recent.push(now);
-  siteInquiries.push(now);
-  inquiriesByAddress.set(address, recent);
-  if (inquiriesByAddress.size > 5000) {
-    for (const [key, times] of inquiriesByAddress) {
-      if (!times.some((at) => now - at < inquiryLimits.perAddressWindowMs)) inquiriesByAddress.delete(key);
-    }
-  }
-  return false;
 }
 
 function wasSubmittedTooQuickly(formStartedAt) {
@@ -330,7 +288,11 @@ async function handleInquiry(req, res) {
     const input = await readJsonBody(req);
     const { inquiry, errors, spamTrap, formStartedAt } = buildInquiry(input);
 
-    // The hidden field first: automated submissions get the same answer whatever else they sent.
+    if (errors.length) {
+      sendJson(req, res, 422, { ok: false, errors });
+      return;
+    }
+
     if (spamTrap) {
       sendJson(req, res, 201, {
         ok: true,
@@ -339,23 +301,10 @@ async function handleInquiry(req, res) {
       return;
     }
 
-    if (errors.length) {
-      sendJson(req, res, 422, { ok: false, errors });
-      return;
-    }
-
     if (wasSubmittedTooQuickly(formStartedAt)) {
       sendJson(req, res, 429, {
         ok: false,
         errors: ["Please wait a moment, then submit the form again."]
-      });
-      return;
-    }
-
-    if (overInquiryLimit(req)) {
-      sendJson(req, res, 429, {
-        ok: false,
-        errors: ["Many inquiries were sent from here in a short time. Please email info.senz.pr@gmail.com directly, or try again later."]
       });
       return;
     }
@@ -399,21 +348,20 @@ async function handleAgentRecommendation(req, res) {
 function safeStaticPath(urlPath) {
   let decoded;
   try { decoded = decodeURIComponent(urlPath); } catch { return null; }
-  if (decoded.includes('\\') || decoded.includes('\0') || decoded.split('/').some(part => part.startsWith('.'))) return null;
-  const relative = decoded === '/' ? 'index.html' : decoded.replace(/^\//, '');
-  // Only public website assets. Never serve Git history, environment, backend, tests or docs.
-  const rootPublic = /^[a-z0-9-]+\.html$/.test(relative) || ['robots.txt','sitemap.xml','llms.txt','llms-full.txt'].includes(relative);
-  const asset = /^(assets|components)\/[a-zA-Z0-9_./-]+\.(css|js|json|png|jpe?g|webp|svg|ico|mp3|mp4|woff2?)$/.test(relative);
-  if (!rootPublic && !asset) return null;
-  const full = path.resolve(rootDir, relative);
-  return full.startsWith(rootDir + path.sep) ? full : null;
+  const rel = decoded === '/' ? 'index.html' : decoded.replace(/^\/+/, '');
+  if (rel.split(/[\\/]/).some(p => p.startsWith('.') || p === '..')) return null;
+  const publicRoot = /^[^/]+\.(html|txt|xml)$/.test(rel) || rel === 'function.json';
+  const publicAsset = /^(assets|components|products)\//.test(rel) && /\.(html|css|js|json|png|jpg|jpeg|webp|svg|ico|mp3|mp4)$/.test(rel);
+  if (!publicRoot && !publicAsset) return null;
+  const result = path.resolve(rootDir, rel);
+  return result.startsWith(rootDir + path.sep) ? result : null;
 }
 
 function redirectToCanonicalHost(req, res, url) {
   const host = String(req.headers.host || "").split(":")[0].toLowerCase();
   if (!canonicalHost || !redirectHosts.has(host)) return false;
 
-  const proto = req.headers["x-forwarded-proto"] || "https";
+  const proto = "https";
   const location = `${proto}://${canonicalHost}${url.pathname}${url.search}`;
   res.writeHead(308, { Location: location, "Cache-Control": "public, max-age=3600" });
   res.end();
@@ -431,15 +379,13 @@ async function serveStatic(req, res, pathname) {
   try {
     const stat = await fsp.stat(filePath);
     if (stat.isDirectory()) filePath = path.join(filePath, "index.html");
-    const actualPath = await fsp.realpath(filePath);
-    if (!actualPath.startsWith(rootDir + path.sep)) { res.writeHead(403); res.end('Forbidden'); return; }
     const ext = path.extname(filePath).toLowerCase();
     res.writeHead(200, {
       "Content-Type": mimeTypes[ext] || "application/octet-stream",
-      "Cache-Control": "no-cache"
+      "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=3600"
     });
-    if (req.method === 'HEAD') { res.end(); return; }
-    fs.createReadStream(filePath).on('error', () => res.destroy()).pipe(res);
+    if (req.method === "HEAD") res.end();
+    else fs.createReadStream(filePath).on("error", () => res.destroy()).pipe(res);
   } catch {
     res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
     res.end(await fsp.readFile(path.join(rootDir, "index.html"), "utf8"));
@@ -510,6 +456,6 @@ module.exports = {
   deliverInquiry,
   inquirySubject,
   server,
-  wasSubmittedTooQuickly,
-  safeStaticPath
+  wasSubmittedTooQuickly
 };
+

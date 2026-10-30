@@ -1,5 +1,30 @@
 (() => {
   const divisions = {
+    music: {
+      name: "SENZ Music",
+      subtitle: "Music, sound, and sonic identity",
+      lead: "SENZ Music develops original sound for brands, campaigns, artists, events, and organizations that need to be heard with a clear identity, not just background audio.",
+      bestFor: [
+        "Brands and campaigns needing a memorable sonic identity",
+        "Artists or organizations preparing original releases",
+        "Events, pageants, schools, and institutions needing custom music",
+        "Content teams that need professional audio direction"
+      ],
+      services: [
+        "Original songs, themes, jingles, and campaign music",
+        "Songwriting, arrangement, and music production",
+        "Sonic branding and audio identity direction",
+        "Vocal production, recording guidance, and creative supervision",
+        "Music-led launch and promotional content"
+      ],
+      outputs: [
+        "Creative and music brief",
+        "Composition, arrangement, and production files",
+        "Final mix and master in agreed formats",
+        "Usage-ready campaign or release assets",
+        "Rollout recommendations when included in scope"
+      ]
+    },
     digital: {
       name: "SENZ Digital",
       subtitle: "Websites, systems, and digital experiences",
@@ -190,7 +215,12 @@
     const selectedName = activeDivision?.name || "";
     closeModal();
     const consultationModal = document.querySelector("#consultModal");
-    const serviceSelect = consultationModal?.querySelector('select[name="service"]');
+    if (!consultationModal) {
+      const interest = selectedName ? `?interest=${encodeURIComponent(selectedName)}` : "";
+      window.location.href = `contact.html${interest}`;
+      return;
+    }
+    const serviceSelect = consultationModal.querySelector('select[name="service"]');
     if (serviceSelect && selectedName) {
       const option = Array.from(serviceSelect.options).find((item) => item.textContent === selectedName);
       if (option) serviceSelect.value = option.value;

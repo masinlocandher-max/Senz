@@ -1,13 +1,11 @@
 (() => {
   const DESTINATION_EMAIL = "info.senz.pr@gmail.com";
-  // The inquiry service sleeps when idle and can take up to a minute to start (see site-config.js).
-  const REQUEST_TIMEOUT_MS = 60000;
-  const SLOW_NOTICE_MS = 8000;
-  const SLOW_MESSAGE = "Still sending. The inquiry service can take up to a minute to start after a quiet period. Please keep this page open.";
+  const REQUEST_TIMEOUT_MS = 20000;
   const CONSULTATION_PENDING_MESSAGE = "Thank you. Your consultation request has been received. SENZ will review your preferred schedule and confirm by email before anything is added to a calendar.";
   const ERROR_MESSAGE = `We could not submit your request. Please try again or email ${DESTINATION_EMAIL}.`;
 
   const routeByKind = {
+    product: () => window["CONTACT_FORM_ENDPOINT"] || defaultInquiryEndpoint(),
     general: () => window["CONTACT_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint(),
     consultation: () => window["CONSULTATION_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint(),
     "creative-pool": () => window["CAREERS_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint()
@@ -34,11 +32,16 @@
     const antiSpam = {
       senzWebsite: values.senzWebsite || "",
       formStartedAt: Number(form.dataset.formStartedAt || 0),
-      // The required privacy box and the separate, optional updates box, as the visitor left them.
-      consent: values.privacyConsent === "on",
-      marketingConsent: values.marketingConsent === "on"
+      privacyConsent: values.privacyConsent === "on"
     };
 
+    if (formKind === 'product') {
+      return { formType: 'product', name: fullName, email: values.email || '', brand: values.organization || '',
+        productKey: values.productKey, seats: Number(values.seats), projectType: form.dataset.productName || 'Product request',
+        budget: `PHP ${form.dataset.monthlyTotal}/month for ${values.seats} named seat(s) — subject to confirmation`,
+        fields: { productKey: values.productKey, seats: values.seats, monthlyTotalPhp: form.dataset.monthlyTotal, releaseState: form.dataset.releaseState },
+        message: values.message || '', timeline: values.timeline || '', ...antiSpam };
+    }
     if (formKind === "consultation") {
       const schedule = [values.date, values.time].filter(Boolean).join(" ");
       return {
@@ -121,6 +124,7 @@
   }
 
   function successMessage(formKind) {
+    if (formKind === 'product') return 'Your product request was accepted for delivery. SENZ will confirm availability, total price, and activation details by email. No payment was taken.';
     if (formKind === "consultation") return CONSULTATION_PENDING_MESSAGE;
     if (formKind === "creative-pool") return "Thank you. Your profile has been received. SENZ will review it for relevant project-based opportunities.";
     return "Thank you. Your request has been received. SENZ will review the commercial fit and respond by email with the strongest next step.";
@@ -148,7 +152,6 @@
     if (submitButton) submitButton.disabled = true;
     form.setAttribute("aria-busy", "true");
     setStatus(statusEl, "sending", "Submitting your request securely…");
-    const slow = window.setTimeout(() => setStatus(statusEl, "sending", SLOW_MESSAGE), SLOW_NOTICE_MS);
 
     try {
       const response = await fetch(route, {
@@ -159,12 +162,12 @@
       });
 
       const responseBody = await response.json().catch(() => ({}));
-      if (!response.ok || responseBody.ok === false) {
+      if (!response.ok || responseBody.ok !== true) {
         const serverMessage = Array.isArray(responseBody.errors) ? responseBody.errors.join(" ") : "";
         throw new Error(serverMessage || `Form route returned ${response.status}.`);
       }
 
-      setStatus(statusEl, "success", successMessage(formKind));
+      setStatus(statusEl, "success", successMessage(formKind) + (responseBody.id ? ` Reference: ${responseBody.id}.` : ""));
       form.reset();
       return { ok: true, response: responseBody };
     } catch (reason) {
@@ -176,7 +179,6 @@
       return { ok: false, reason };
     } finally {
       window.clearTimeout(timeout);
-      window.clearTimeout(slow);
       form.removeAttribute("aria-busy");
       if (submitButton) submitButton.disabled = false;
     }
@@ -208,8 +210,7 @@
     bind,
     submit,
     buildPayload,
-    CONSULTATION_PENDING_MESSAGE,
-    REQUEST_TIMEOUT_MS,
-    SLOW_NOTICE_MS
+    CONSULTATION_PENDING_MESSAGE
   };
 })();
+

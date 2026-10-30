@@ -68,3 +68,8 @@ Strategic communications, reputation monitoring, authority content, visibility i
 Published rates are starting benchmarks for planning and qualification, not fixed guaranteed quotations. Final pricing depends on strategy, scope, content, integrations, complexity, timeline, and support requirements.
 
 SENZ should recommend the smallest commercially useful engagement that can solve the priority problem. Larger projects and retainers should be proposed only when the additional scope has a defensible business case.
+
+
+## Software licenses
+
+Software prices, seats, AI allowances and readiness are documented in [Commercial readiness](docs/COMMERCIAL_READINESS.md) and generated into the public product pages. They are separate from the professional services above.

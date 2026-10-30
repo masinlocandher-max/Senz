@@ -13,6 +13,7 @@ Build SENZ into a scalable creative communications company combining strategy, t
 ## Phase 2: Product & Service Launch
 - Launch SENZ Digital services
 - Launch SENZ Imaging portfolio system
+- Launch SENZ Music creative projects
 - Develop PR and communication packages
 - Build client acquisition system
 

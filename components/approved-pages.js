@@ -94,14 +94,29 @@
   const main = document.querySelector("main");
   if (main && !main.id) main.id = "main-content";
 
-  // Card rails must remain keyboard-scrollable on small screens.
-  document.querySelectorAll('.icon-grid, .reason-grid').forEach((grid) => {
-    grid.tabIndex = 0;
-    grid.setAttribute('role', 'region');
-    grid.setAttribute('aria-label', grid.closest('section')?.querySelector('h2')?.textContent || 'SENZ capabilities');
-  });
+  if (!document.querySelector(".site-progress-banner")) {
+    const progressBanner = document.createElement("aside");
+    progressBanner.className = "site-progress-banner";
+    progressBanner.setAttribute("aria-label", "SENZ website update notice");
 
-  if (main && !document.querySelector(".skip-link, .senz-skip")) {
+    const bannerMessage = `
+      <span class="site-progress-banner__status">Live site refinement in progress</span>
+      <span>Services and inquiry channels remain available</span>
+      <span>Explore SENZ Strategic Communications, six specialist divisions, and digital products</span>
+      <a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a>
+    `;
+
+    progressBanner.innerHTML = `
+      <div class="site-progress-banner__track">
+        <div class="site-progress-banner__group">${bannerMessage}</div>
+        <div class="site-progress-banner__group" aria-hidden="true" inert>${bannerMessage}</div>
+      </div>
+    `;
+
+    document.body.prepend(progressBanner);
+  }
+
+  if (main && !document.querySelector(".skip-link")) {
     const skipLink = document.createElement("a");
     skipLink.className = "skip-link";
     skipLink.href = "#main-content";
@@ -191,10 +206,26 @@
 
   const currentPage = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
 
-  const interest = new URLSearchParams(window.location.search).get("interest");
+  const query = new URLSearchParams(window.location.search);
+  const interest = query.get('interest');
+  const legacyProducts = { 'AI Workspace':'ai-workspace', 'Communications Intelligence':'communications-intelligence',
+    'Digital Assistant':'digital-assistant', 'Client Portal':'client-portal', 'Event Systems':'event-systems',
+    'Digital Representative':'digital-representative', 'QR Menu':'qr-menu', 'Booking':'booking',
+    'Digital Catalog':'digital-catalog', 'Business Website':'business-website', 'CRM':'crm', 'POS':'pos', 'Loyalty':'loyalty' };
+  if (currentPage === 'contact.html' && query.has('offer') && legacyProducts[interest]) {
+    location.replace('purchase.html?product=' + legacyProducts[interest]);
+    return;
+  }
   const inquiryType = document.querySelector('select[name="inquiryType"]');
   if (interest && inquiryType) {
-    const matchingOption = Array.from(inquiryType.options).find((option) => option.value === interest);
+    const value = interest.trim().slice(0, 160);
+    let matchingOption = Array.from(inquiryType.options).find((option) => option.value === value);
+    if (!matchingOption && value) {
+      matchingOption = document.createElement("option");
+      matchingOption.value = value;
+      matchingOption.textContent = value;
+      inquiryType.append(matchingOption);
+    }
     if (matchingOption) inquiryType.value = matchingOption.value;
   }
 
@@ -218,7 +249,8 @@
       },
       {
         label: "Start",
-        action: "consult",
+        href: document.querySelector("#consultModal") ? "" : "contact.html",
+        action: document.querySelector("#consultModal") ? "consult" : "",
         primary: true,
         icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>'
       },
@@ -242,7 +274,7 @@
 
       if (item.href) {
         element.href = item.href;
-        if (item.pages.includes(currentPage)) {
+        if (item.pages?.includes(currentPage)) {
           element.classList.add("is-active");
           element.setAttribute("aria-current", "page");
         }
@@ -313,3 +345,4 @@
     });
   });
 })();
+
