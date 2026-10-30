@@ -109,7 +109,7 @@
     progressBanner.innerHTML = `
       <div class="site-progress-banner__track">
         <div class="site-progress-banner__group">${bannerMessage}</div>
-        <div class="site-progress-banner__group" aria-hidden="true">${bannerMessage}</div>
+        <div class="site-progress-banner__group" aria-hidden="true" inert>${bannerMessage}</div>
       </div>
     `;
 
@@ -206,7 +206,16 @@
 
   const currentPage = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
 
-  const interest = new URLSearchParams(window.location.search).get("interest");
+  const query = new URLSearchParams(window.location.search);
+  const interest = query.get('interest');
+  const legacyProducts = { 'AI Workspace':'ai-workspace', 'Communications Intelligence':'communications-intelligence',
+    'Digital Assistant':'digital-assistant', 'FotoLab':'fotolab', 'Client Portal':'client-portal', 'Event Systems':'event-systems',
+    'Digital Representative':'digital-representative', 'Music Platform':'music-platform', 'QR Menu':'qr-menu', 'Booking':'booking',
+    'Digital Catalog':'digital-catalog', 'Business Website':'business-website', 'CRM':'crm', 'POS':'pos', 'Loyalty':'loyalty' };
+  if (currentPage === 'contact.html' && query.has('offer') && legacyProducts[interest]) {
+    location.replace('purchase.html?product=' + legacyProducts[interest]);
+    return;
+  }
   const inquiryType = document.querySelector('select[name="inquiryType"]');
   if (interest && inquiryType) {
     const value = interest.trim().slice(0, 160);
@@ -336,3 +345,4 @@
     });
   });
 })();
+

@@ -5,6 +5,7 @@
   const ERROR_MESSAGE = `We could not submit your request. Please try again or email ${DESTINATION_EMAIL}.`;
 
   const routeByKind = {
+    product: () => window["CONTACT_FORM_ENDPOINT"] || defaultInquiryEndpoint(),
     general: () => window["CONTACT_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint(),
     consultation: () => window["CONSULTATION_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint(),
     "creative-pool": () => window["CAREERS_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint()
@@ -34,6 +35,13 @@
       privacyConsent: values.privacyConsent === "on"
     };
 
+    if (formKind === 'product') {
+      return { formType: 'product', name: fullName, email: values.email || '', brand: values.organization || '',
+        productKey: values.productKey, seats: Number(values.seats), projectType: form.dataset.productName || 'Product request',
+        budget: `PHP ${form.dataset.monthlyTotal}/month for ${values.seats} named seat(s) — subject to confirmation`,
+        fields: { productKey: values.productKey, seats: values.seats, monthlyTotalPhp: form.dataset.monthlyTotal, releaseState: form.dataset.releaseState },
+        message: values.message || '', timeline: values.timeline || '', ...antiSpam };
+    }
     if (formKind === "consultation") {
       const schedule = [values.date, values.time].filter(Boolean).join(" ");
       return {
@@ -116,6 +124,7 @@
   }
 
   function successMessage(formKind) {
+    if (formKind === 'product') return 'Your product request was accepted for delivery. SENZ will confirm availability, total price, and activation details by email. No payment was taken.';
     if (formKind === "consultation") return CONSULTATION_PENDING_MESSAGE;
     if (formKind === "creative-pool") return "Thank you. Your profile has been received. SENZ will review it for relevant project-based opportunities.";
     return "Thank you. Your request has been received. SENZ will review the commercial fit and respond by email with the strongest next step.";
@@ -153,12 +162,12 @@
       });
 
       const responseBody = await response.json().catch(() => ({}));
-      if (!response.ok || responseBody.ok === false) {
+      if (!response.ok || responseBody.ok !== true) {
         const serverMessage = Array.isArray(responseBody.errors) ? responseBody.errors.join(" ") : "";
         throw new Error(serverMessage || `Form route returned ${response.status}.`);
       }
 
-      setStatus(statusEl, "success", successMessage(formKind));
+      setStatus(statusEl, "success", successMessage(formKind) + (responseBody.id ? ` Reference: ${responseBody.id}.` : ""));
       form.reset();
       return { ok: true, response: responseBody };
     } catch (reason) {
@@ -204,3 +213,4 @@
     CONSULTATION_PENDING_MESSAGE
   };
 })();
+
