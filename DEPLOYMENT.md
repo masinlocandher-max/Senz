@@ -19,7 +19,7 @@ This is evidence of a Pages deployment to the configured custom domain, not an i
 
 ## Release checks
 
-1. Run `npm run check` and `npm test` on the proposed commit.
+1. Run `npm run check` and `npm test` on the proposed commit. The `Website checks` workflow (`.github/workflows/website.yml`) runs the same on every pull request and push to `main`, and fails if the generated product pages differ from `npm run build:products`.
 2. Review the diff and merge to `main` without rewriting history.
 3. Inspect the subsequent GitHub Pages run and verify that its head SHA matches the merged commit and its deploy job succeeds.
 4. Verify the public pages and inquiry flow from a normal browser. Do not report live email delivery based only on mocked tests.
@@ -29,6 +29,8 @@ The source checker validates committed metadata and, when supplied, GitHub/Verce
 ## Static website versus optional backend
 
 GitHub Pages publishes static files. It does not run the repository's `server.js` Node HTTP service. Keep the existing frontend behavior intact; an independently hosted Node backend must be verified separately. Tests exercise the email-only backend with test fixtures, not a live customer submission.
+
+The backend limits inquiries so a script cannot flood the SENZ inbox: 10 per visitor address per 10 minutes (`SENZ_INQUIRY_LIMIT_PER_ADDRESS`) and 60 per hour for the whole site (`SENZ_INQUIRY_LIMIT_PER_HOUR`). A refused visitor is told to try later or email SENZ directly. The counts live in memory, so they reset when the service restarts; run one instance.
 
 The presence of `vercel.json` is not proof of an active Vercel deployment. `VERCEL_DEPLOYMENT.md` is retained only as guidance for a separately approved future migration.
 
