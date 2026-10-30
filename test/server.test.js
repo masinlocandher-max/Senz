@@ -196,6 +196,11 @@ test('a provider HTTP 200 without acceptance is never reported as successful',as
  try {const res=await postProduct(productRequest);assert.equal(res.status,502);assert.equal((await res.json()).ok,false);}finally{providerReply={success:true};}
 });
 test('public server exposes pages and assets, not application source or credentials',async()=>{
+ const font = await fetch(apiUrl+'/assets/fonts/montserrat-latin-wght-v31.woff2');
+ assert.equal(font.status, 200);
+ assert.equal(font.headers.get('content-type'), 'font/woff2');
+ assert.equal(Buffer.from(await font.arrayBuffer()).toString('ascii', 0, 4), 'wOF2');
+ assert.equal((await fetch(apiUrl+'/assets/fonts/Montserrat-OFL.txt')).status, 200);
  for(const path of ['/server.js','/package.json','/.env','/.git/config','/test/server.test.js','/components/%2e%2e/server.js'])assert.notEqual((await fetch(apiUrl+path)).status,200,path);
  for(const path of ['/','/purchase.html','/products/qr-menu.html','/components/purchase.js','/components/product-catalog.json','/robots.txt','/sitemap.xml'])assert.equal((await fetch(apiUrl+path)).status,200,path);
  const head=await fetch(apiUrl+'/purchase.html',{method:'HEAD'});assert.equal(head.status,200);assert.equal(await head.text(),'');

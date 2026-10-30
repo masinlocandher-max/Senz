@@ -36,6 +36,7 @@ const mimeTypes = {
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
   ".webp": "image/webp",
+  ".woff2": "font/woff2",
   ".mp4": "video/mp4",
   ".txt": "text/plain; charset=utf-8"
 };
@@ -396,7 +397,8 @@ function safeStaticPath(urlPath) {
   if (rel.split(/[\\/]/).some(p => p.startsWith('.') || p === '..')) return null;
   const publicRoot = /^[^/]+\.(html|txt|xml)$/.test(rel) || rel === 'function.json';
   const publicAsset = /^(assets|components|products)\//.test(rel) && /\.(html|css|js|json|png|jpg|jpeg|webp|svg|ico|mp3|mp4)$/.test(rel);
-  if (!publicRoot && !publicAsset) return null;
+  const publicFont = /^assets\/fonts\/[\w-]+\.(woff2|txt)$/.test(rel);
+  if (!publicRoot && !publicAsset && !publicFont) return null;
   const result = path.resolve(rootDir, rel);
   return result.startsWith(rootDir + path.sep) ? result : null;
 }
