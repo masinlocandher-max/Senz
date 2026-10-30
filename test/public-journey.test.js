@@ -103,3 +103,22 @@ test('service search prices distinguish the free consultation from quoted starti
     assert.ok(plain(html.match(/<main\b[\s\S]*?<\/main>/)[0]).includes('₱'+price.toLocaleString('en-PH')));
   }
 });
+
+test('each homepage app preview has a labeled selector and a product details link', () => {
+  const html = read('index.html');
+  const tour = html.match(/<fieldset class="app-tour">([\s\S]*?)<\/fieldset>/)[1];
+  const choices = [...tour.matchAll(/<input class="app-choice"[^>]+id="([^"]+)" aria-controls="([^"]+)"([^>]*)>/g)];
+  assert.equal(choices.length, 3);
+  assert.equal(choices.filter(choice => /\bchecked\b/.test(choice[3])).length, 1);
+  for (const [, selector, panel] of choices) {
+    assert.ok(tour.includes(`for="${selector}"`));
+    assert.ok(tour.includes(`id="${panel}"`));
+  }
+  for (const key of ['crm', 'booking', 'qr-menu']) {
+    assert.ok(catalog.products.some(product => product.id === key));
+    assert.ok(tour.includes(`href="products/${key}.html"`));
+  }
+  if (!JSON.parse(read('function.json')).app.released) {
+    assert.doesNotMatch(tour, /href="https?:\/\/app\.senzpr\.com/i);
+  }
+});
