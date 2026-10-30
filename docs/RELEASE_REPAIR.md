@@ -22,3 +22,9 @@ The app rejects partially released bundles, snapshots requested offers and rejec
 Production app hosting, real AI credentials/budget, live paid activation, actual inquiry receipt, off-site recovery and alert delivery have not been verified. Railway reports that its connection requires reauthentication. The public app domain was unavailable during inspection. No production app or paid infrastructure was created by this repair. See COMMERCIAL_READINESS.md for the remaining release evidence.
 
 The website can receive availability inquiries. Do not represent the app as ready for paid activation until those checks pass. `app.released` remains false. Do not treat local mock AI output as evidence of real provider behavior.
+
+## Live website verification
+
+GitHub Pages run 41028973959 successfully published commit `cc9cb1183ba8ca3bdab6d5f6342299c5301fb7c8` on 30 October 2026. All 40 public HTML pages and five key catalog/configuration files matched the tested source after normalizing Cloudflare's email obfuscation. The live browser journey retained QR Menu and its PHP 790 price through the product-request form. The live Render inquiry API rejected an invalid product with the new validation message; the intentionally incomplete request sent no email. Actual inbox receipt remains unverified.
+
+App PR #10 (`7758b8e2f4f6cf049947966411b097dc391eaed2`) is saved but unmerged. CI run 41028522952 reports failed checks, skipped browser job, and no retrievable job log. Local checks pass; this does not justify claiming remote CI success. The app health URL returned HTTP 503. Hosting reconnection and live app release verification remain required.
