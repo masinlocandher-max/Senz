@@ -80,6 +80,11 @@ function cleanLong(value, maxLength = 3000) {
     .slice(0, maxLength);
 }
 
+function hasPrivacyConsent(input) {
+  const value = input.privacyConsent;
+  return value === true || value === "true" || value === "on" || value === "yes";
+}
+
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
@@ -161,6 +166,14 @@ function buildInquiry(input) {
   if (!inquiry.email && !inquiry.contact) errors.push("Email or phone/Messenger contact is required.");
   if (!inquiry.projectType) errors.push("Project type is required.");
   if (!inquiry.message) errors.push("Project goal is required.");
+  if (!hasPrivacyConsent(input)) errors.push("Privacy consent is required.");
+  if (formType === "consultation") {
+    const fields = input.fields && typeof input.fields === "object" && !Array.isArray(input.fields) ? input.fields : {};
+    const preferredDate = clean(fields.preferredDate || input.date, 40);
+    const preferredTime = clean(fields.preferredTime || input.time, 40);
+    if (!preferredDate) errors.push("Preferred date is required.");
+    if (!preferredTime) errors.push("Preferred time is required.");
+  }
 
   return {
     inquiry,

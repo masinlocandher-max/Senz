@@ -6,9 +6,15 @@
   if (!['own', 'rent'].includes(route)) return;
 
   const inquiryType = document.querySelector('select[name="inquiryType"]');
-  const digitalProductsOption = inquiryType
+  let digitalProductsOption = inquiryType
     ? Array.from(inquiryType.options).find((option) => option.value === 'Digital Products')
     : null;
+  if (inquiryType && !digitalProductsOption) {
+    digitalProductsOption = document.createElement('option');
+    digitalProductsOption.value = 'Digital Products';
+    digitalProductsOption.textContent = 'Digital Products';
+    inquiryType.append(digitalProductsOption);
+  }
   if (digitalProductsOption) inquiryType.value = digitalProductsOption.value;
 
   const message = document.querySelector('textarea[name="message"]');

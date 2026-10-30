@@ -209,7 +209,14 @@
   const interest = new URLSearchParams(window.location.search).get("interest");
   const inquiryType = document.querySelector('select[name="inquiryType"]');
   if (interest && inquiryType) {
-    const matchingOption = Array.from(inquiryType.options).find((option) => option.value === interest);
+    const value = interest.trim().slice(0, 160);
+    let matchingOption = Array.from(inquiryType.options).find((option) => option.value === value);
+    if (!matchingOption && value) {
+      matchingOption = document.createElement("option");
+      matchingOption.value = value;
+      matchingOption.textContent = value;
+      inquiryType.append(matchingOption);
+    }
     if (matchingOption) inquiryType.value = matchingOption.value;
   }
 
@@ -233,7 +240,8 @@
       },
       {
         label: "Start",
-        action: "consult",
+        href: document.querySelector("#consultModal") ? "" : "contact.html",
+        action: document.querySelector("#consultModal") ? "consult" : "",
         primary: true,
         icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>'
       },
@@ -257,7 +265,7 @@
 
       if (item.href) {
         element.href = item.href;
-        if (item.pages.includes(currentPage)) {
+        if (item.pages?.includes(currentPage)) {
           element.classList.add("is-active");
           element.setAttribute("aria-current", "page");
         }

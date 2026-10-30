@@ -215,7 +215,12 @@
     const selectedName = activeDivision?.name || "";
     closeModal();
     const consultationModal = document.querySelector("#consultModal");
-    const serviceSelect = consultationModal?.querySelector('select[name="service"]');
+    if (!consultationModal) {
+      const interest = selectedName ? `?interest=${encodeURIComponent(selectedName)}` : "";
+      window.location.href = `contact.html${interest}`;
+      return;
+    }
+    const serviceSelect = consultationModal.querySelector('select[name="service"]');
     if (serviceSelect && selectedName) {
       const option = Array.from(serviceSelect.options).find((item) => item.textContent === selectedName);
       if (option) serviceSelect.value = option.value;

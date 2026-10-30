@@ -79,7 +79,8 @@ test("valid inquiries are delivered as email payloads", async () => {
       projectType: "Website strategy",
       timeline: "2026-08-04 10:00",
       message: "A test project brief.",
-      fields: { preferredDate: "2026-08-04" }
+      privacyConsent: true,
+      fields: { preferredDate: "2026-08-04", preferredTime: "10:00" }
     })
   });
   const body = await response.json();
@@ -121,9 +122,51 @@ test("honeypot submissions return success without delivery", async () => {
       email: "bot@example.com",
       projectType: "General",
       message: "Automated spam.",
-      senzWebsite: "https://spam.invalid"
+      senzWebsite: "https://spam.invalid",
+      privacyConsent: true
     })
   });
   assert.equal(response.status, 201);
+  assert.equal(deliveries.length, 1);
+});
+
+test("inquiries without privacy consent are rejected", async () => {
+  const response = await fetch(`${apiUrl}/api/inquiries`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Origin": "https://www.senzpr.com"
+    },
+    body: JSON.stringify({
+      name: "Test Visitor",
+      email: "visitor@example.com",
+      projectType: "General",
+      message: "A brief without consent."
+    })
+  });
+  assert.equal(response.status, 422);
+  assert.equal(deliveries.length, 1);
+});
+
+test("consultation requests need a preferred date and time", async () => {
+  const response = await fetch(`${apiUrl}/api/inquiries`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Origin": "https://www.senzpr.com"
+    },
+    body: JSON.stringify({
+      formType: "consultation",
+      name: "Test Visitor",
+      email: "visitor@example.com",
+      projectType: "Consultation",
+      message: "Need a time.",
+      privacyConsent: true,
+      fields: { preferredDate: "2026-08-04" }
+    })
+  });
+  const body = await response.json();
+  assert.equal(response.status, 422);
+  assert.match(body.errors.join(" "), /Preferred time is required/);
   assert.equal(deliveries.length, 1);
 });

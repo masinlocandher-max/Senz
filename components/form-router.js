@@ -30,7 +30,8 @@
     const fullName = values.name || values.fullName || "Website Visitor";
     const antiSpam = {
       senzWebsite: values.senzWebsite || "",
-      formStartedAt: Number(form.dataset.formStartedAt || 0)
+      formStartedAt: Number(form.dataset.formStartedAt || 0),
+      privacyConsent: values.privacyConsent === "on"
     };
 
     if (formKind === "consultation") {
