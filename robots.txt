@@ -1,28 +1,17 @@
 User-agent: *
 Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Perplexity-User
-Allow: /
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
+Disallow: /api/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /test/
+Disallow: /supabase/
+Disallow: /.github/
+Disallow: /*.md$
+Disallow: /server.js
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /render.yaml
+Disallow: /vercel.json
+Disallow: /source-of-truth.json
 
 Sitemap: https://www.senzpr.com/sitemap.xml

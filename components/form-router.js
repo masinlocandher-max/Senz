@@ -137,6 +137,7 @@
   }
 
   async function submit(form, statusEl) {
+    if (form.getAttribute("aria-busy") === "true") return { ok: false };
     const formKind = form.dataset.formKind || "general";
     const route = routeByKind[formKind]?.() || "";
     const payload = buildPayload(form);
@@ -164,7 +165,11 @@
       const responseBody = await response.json().catch(() => ({}));
       if (!response.ok || responseBody.ok !== true) {
         const serverMessage = Array.isArray(responseBody.errors) ? responseBody.errors.join(" ") : "";
-        throw new Error(serverMessage || `Form route returned ${response.status}.`);
+        if (serverMessage && [422, 429].includes(response.status)) {
+          setStatus(statusEl, "error", serverMessage);
+          return { ok: false };
+        }
+        throw new Error(`Form route returned ${response.status}.`);
       }
 
       setStatus(statusEl, "success", successMessage(formKind) + (responseBody.id ? ` Reference: ${responseBody.id}.` : ""));
@@ -185,7 +190,11 @@
   }
 
   function bind(form) {
+    if (form.dataset.senzBound) return;
+    form.dataset.senzBound = 'true';
     form.dataset.formStartedAt = String(Date.now());
+    const send = form.querySelector('button[type="submit"]');
+    if (send) send.disabled = false;
     if (!form.elements.senzWebsite) {
       const honeypot = document.createElement("input");
       honeypot.type = "text";

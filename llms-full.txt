@@ -4,6 +4,8 @@ An FMB&CO brand serving clients in the Philippines. Website: https://www.senzpr.
 
 Professional services: strategic communications, brand strategy, PR, creative direction, websites, and scoped digital implementation.
 
+The website provides discovery, service inquiries and software availability requests. Licensed customers use products in the protected SENZ App.
+
 Software: thirteen products with published monthly prices. Activation awaits verified release; request availability before payment. No automatic card checkout.
 
 - SENZ AI Workspace: Draft, summarize, rewrite, and structure real work with saved, versioned outputs. PHP 1490/month for one seat. https://www.senzpr.com/products/ai-workspace.html
@@ -21,3 +23,8 @@ Software: thirteen products with published monthly prices. Activation awaits ver
 - SENZ Loyalty: A digital stamp card tied to your counter sales. PHP 490/month for one seat. https://www.senzpr.com/products/loyalty.html
 
 Website explains and collects requests. The protected SENZ App runs licensed products after verified payment and seat assignment. App public release is not verified.
+
+- Find a solution: https://www.senzpr.com/get-started.html
+- Professional services: https://www.senzpr.com/services.html
+- Software pricing and availability: https://www.senzpr.com/digital-products.html
+- Service and software questions: https://www.senzpr.com/faq.html
