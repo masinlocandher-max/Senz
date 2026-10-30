@@ -23,7 +23,7 @@
 
   body {
     min-height: 100dvh;
-    padding-bottom: calc(var(--mobile-dock-height) + var(--mobile-safe-bottom) + 24px);
+    padding-bottom: var(--mobile-safe-bottom);
     background:
       radial-gradient(circle at 82% 5%, rgba(48, 123, 255, 0.13), transparent 22rem),
       radial-gradient(circle at 8% 35%, rgba(143, 211, 255, 0.13), transparent 19rem),
@@ -627,3 +627,4 @@
     transition: none;
   }
 }
+

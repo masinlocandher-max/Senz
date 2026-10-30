@@ -13,7 +13,7 @@
     "start": "node server.js",
     "dev": "node server.js",
     "check:source": "node scripts/check-source.mjs",
-    "check": "npm run check:source && node --check server.js && node --check components/form-router.js && node --check components/purchase.js && node --check components/discovery.js && node --check scripts/render-products.mjs",
+    "check": "npm run check:source && node --check server.js && node --check components/form-router.js && node --check components/purchase.js && node --check components/discovery.js && node --check scripts/render-products.mjs && node --check components/discovery-model.js && node --check components/navigation.js && node --check components/approved-pages.js && node --check scripts/site-shell.mjs",
     "test": "node --test test/*.test.js test/*.test.mjs",
     "build:products": "node scripts/render-products.mjs"
   },

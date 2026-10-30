@@ -26,7 +26,10 @@ test('public pages repeat each product function and do not invent another one', 
     ));
     assert.deepEqual(hits, []);
   }
-  assert.match(read('music.html'), /not the SENZ Music Platform/);
+  const showcase = read('music.html');
+  assert.match(showcase, /SENZ Music division/);
+  assert.match(showcase, /rankings below are illustrative/);
+  assert.doesNotMatch(showcase, /purchase\.html\?product=music-platform/);
   assert.equal(contract.website.function.includes('does not sign people in'), true);
   assert.equal(contract.app.function.includes('only after SENZ staff verify payment'), true);
 });

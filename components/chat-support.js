@@ -9,7 +9,7 @@
     },
     {
       match: ['price', 'pricing', 'cost', 'rate', 'budget'],
-      reply: 'Pricing depends on the service path, scope, timeline, and level of production. For general inquiries, use Contact Us or email info.senz.pr@gmail.com. For a focused project discussion, use the consultation button in the Home, About, or Services hero.'
+      reply: 'Software has published monthly prices per named user. Use Products to see the price, inclusions and limits, or Get Started to find a fit. SENZ quotes professional services after reviewing the project.'
     },
     {
       match: ['website', 'digital presence', 'web'],
@@ -33,11 +33,11 @@
     },
     {
       match: ['clone', 'assistant', 'representative', 'music', 'voting', 'tabulation', 'ticket', 'fotolab', 'workspace', 'portal', 'product'],
-      reply: 'Thirteen SENZ products have listed monthly prices. Request availability before payment; activation awaits verified release. FotoLab and Music Platform are no longer offered. This website takes the purchase request. It does not charge a card, sign you in, or run the product. SENZ opens a product only after payment is verified. Event Systems does not sell tickets or run voting. FotoLab is a private editor, not a retouching service. Music Platform is private delivery, not the public SENZ Music page. Email info.senz.pr@gmail.com.'
+      reply: 'Compare 13 software products on the Products page. Select your product and seat count to request availability. SENZ confirms the scope, price and activation date before asking for payment. The SENZ App is where customers use their licensed tools.'
     },
     {
       match: ['contact', 'email', 'message', 'book', 'consultation'],
-      reply: 'For general questions, use the Contact Us page. For consultation requests, use the Book a Consultation button in the Home, About, or Services hero so SENZ Strategic Communications receives the right details.'
+      reply: 'Use Get Started for a recommendation, Products for software pricing, or Contact to send a project brief. SENZ replies by email.'
     }
   ];
 
@@ -53,7 +53,7 @@
     const normalized = text.toLowerCase();
     const found = answers.find((item) => item.match.some((word) => normalized.includes(word)));
     if (found) return found.reply;
-    return 'I can answer general questions about SENZ Strategic Communications services and how to start. For project-specific advice, use Book a Consultation or send a general inquiry through Contact Us.';
+    return 'I can answer general questions about SENZ Strategic Communications services and how to start. Use Get Started for a recommendation or Contact to discuss your project.';
   }
 
   function appendMessage(log, message, type) {
