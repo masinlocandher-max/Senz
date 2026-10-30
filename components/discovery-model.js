@@ -66,7 +66,11 @@
       scope: a.scope, setup: a.setup, when: a.when, intent: a.intent });
     if (product) {
       q.set('product', product.id);
-      if (seatCount(a.scope)) q.set('seats', String(seatCount(a.scope)));
+      if (!seatCount(a.scope)) {
+        q.set('interest', product.name + ' — seat estimate');
+        return 'contact.html?' + q;
+      }
+      q.set('seats', String(seatCount(a.scope)));
       return 'purchase.html?' + q;
     }
     q.set('interest', services[a.need].interest);
@@ -79,9 +83,14 @@
     const a = normalize(Object.fromEntries(q), catalog);
     if (Object.keys(a).length !== keys.length) return null;
     const product = a.route === 'software' && productFor(a, catalog);
-    if (kind === 'product' && (!product || q.get('product') !== product.id)) return null;
-    if (kind === 'service' && (product || !owns(services, a.need))) return null;
-    if (kind === 'service' && q.get('interest') !== services[a.need].interest) return null;
+    const estimate = product && a.scope === 'estimate';
+    if (product && q.get('product') !== product.id) return null;
+    if (kind === 'product' && (!product || estimate)) return null;
+    if (kind === 'service') {
+      if (product && !estimate) return null;
+      const expected = estimate ? product.name + ' — seat estimate' : services[a.need]?.interest;
+      if (!expected || q.get('interest') !== expected) return null;
+    }
     const intent = (product ? softwareActions : serviceActions)[a.intent];
     const setup = (product ? softwareSetups : serviceSetups)[a.setup];
     const brief = [intent + '.', 'For: ' + audiences[a.audience] + '.', 'Starting point: ' + setup + '.'];

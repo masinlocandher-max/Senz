@@ -34,9 +34,13 @@
   const servicePages = { brand:'brand-strategy-philippines.html', pr:'public-relations-philippines.html', website:'website-strategy-philippines.html', campaign:'strategic-communications-philippines.html', review:'services.html' };
   if (product ? !location.pathname.endsWith('/products/' + product + '.html') : servicePages[query.get('need')] !== file) return;
   for (const a of document.querySelectorAll('main a[href]')) {
-    const target = new URL(a.href);
+    let target = new URL(a.href);
     if (target.origin !== location.origin) continue;
     if (product ? !target.pathname.endsWith('/purchase.html') || target.searchParams.get('product') !== product : !target.pathname.endsWith('/contact.html')) continue;
+    if (product && query.get('scope') === 'estimate') {
+      target = new URL('../contact.html', location.href);
+      target.searchParams.set('product', product);
+    }
     for (const key of ['guide','audience','route','need','scope','setup','when','intent','seats','interest']) {
       if (query.has(key)) target.searchParams.set(key, query.get(key).slice(0,160));
     }

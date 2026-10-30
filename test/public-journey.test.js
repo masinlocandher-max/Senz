@@ -42,7 +42,11 @@ test('services and undecided visitors receive a project brief, while an estimate
   }
   const answers = { audience:'business', route:'software', need:'qr-menu', scope:'estimate', setup:'manual', when:'soon', intent:'demo' };
   const url = new URL(model.handoff(answers, catalog),'https://www.senzpr.com/');
-  assert.equal(model.readHandoff(url.search, 'product', catalog).seats, null);
+  assert.equal(url.pathname, '/contact.html');
+  const estimate = model.readHandoff(url.search, 'service', catalog);
+  assert.equal(estimate.seats, null);
+  assert.match(estimate.message, /estimate the number/);
+  assert.equal(model.readHandoff(url.search, 'product', catalog), null);
   url.searchParams.set('product','booking');
   assert.equal(model.readHandoff(url.search, 'product', catalog), null);
   assert.equal(model.seatCount('0'), null);

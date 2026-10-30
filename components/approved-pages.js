@@ -176,10 +176,17 @@
   }
 
   const serviceForm = document.querySelector('form[data-form-kind="general"]');
-  const guided = window.SENZDiscovery?.readHandoff(location.search, 'service');
-  if (guided && serviceForm) {
-    serviceForm.elements.timeline.value = guided.timeline;
-    if (!serviceForm.elements.message.value) serviceForm.elements.message.value = guided.message;
+  if (serviceForm && window.SENZDiscovery && query.get('guide') === '1') {
+    function prefill(catalog) {
+      const guided = window.SENZDiscovery.readHandoff(location.search, 'service', catalog);
+      if (!guided) return;
+      if (!serviceForm.elements.timeline.value) serviceForm.elements.timeline.value = guided.timeline;
+      if (!serviceForm.elements.message.value) serviceForm.elements.message.value = guided.message;
+    }
+    if (query.get('route') === 'software' && query.get('scope') === 'estimate') {
+      fetch('components/product-catalog.json').then(r => r.ok ? r.json() : null)
+        .then(catalog => { if (catalog) prefill(catalog); }).catch(() => {});
+    } else prefill();
   }
 
   const today = new Date();
