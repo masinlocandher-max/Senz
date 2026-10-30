@@ -12,6 +12,8 @@ test('every public page has a unique title, description, one heading and canonic
   const title=html.match(/<title>(.*?)<\/title>/s)?.[1];assert.ok(title,file);assert.ok(!titles.has(title),file+' duplicate title');titles.add(title);
   assert.match(html,/<meta\s+name="description"\s+content="[^" ]/i,file);
   assert.equal((html.match(/<h1(?:\s|>)/g)||[]).length,1,file);
+  const ids = [...html.matchAll(/\sid=["']([^"']+)["']/g)].map(match => match[1]);
+  assert.equal(new Set(ids).size, ids.length, file+' duplicate element ID');
   const canonical=html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1];assert.ok(canonical?.startsWith('https://www.senzpr.com/'),file);assert.ok(sitemap.includes(canonical),file+' sitemap');
   for(const match of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(match[1]),file);
  }
