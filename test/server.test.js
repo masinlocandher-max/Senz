@@ -7,6 +7,7 @@ let deliveryUrl;
 let apiServer;
 let apiUrl;
 const deliveries = [];
+let providerReply = { success: true };
 
 function listen(server) {
   return new Promise((resolve) => {
@@ -29,7 +30,7 @@ before(async () => {
     for await (const chunk of req) chunks.push(chunk);
     deliveries.push(JSON.parse(Buffer.concat(chunks).toString("utf8")));
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ success: true }));
+    res.end(JSON.stringify(providerReply));
   });
   deliveryUrl = await listen(deliveryServer);
 
@@ -169,4 +170,33 @@ test("consultation requests need a preferred date and time", async () => {
   assert.equal(response.status, 422);
   assert.match(body.errors.join(" "), /Preferred time is required/);
   assert.equal(deliveries.length, 1);
+});
+
+
+const productRequest = { formType: 'product', productKey: 'qr-menu', seats: 2, name: 'Product QA', email: 'qa@example.com', message: 'A menu for our cafe', privacyConsent: true };
+const postProduct = async (body) => fetch(`${apiUrl}/api/inquiries`, {method:'POST',headers:{'Content-Type':'application/json',Origin:'https://www.senzpr.com'},body:JSON.stringify(body)});
+test('product requests use authoritative prices and preserve the chosen product', async () => {
+  const res=await postProduct({...productRequest,budget:'PHP 1',fields:{monthlyTotalPhp:'1',seats:'100'}});
+  assert.equal(res.status,201);
+  const delivered=deliveries.at(-1);
+  assert.equal(delivered['Detail — productKey'],'qr-menu');
+  assert.equal(delivered['Detail — seats'],'2');
+  assert.equal(delivered['Detail — monthlyTotalPhp'],'1580');
+  assert.match(delivered.Budget,/1580/);
+  assert.match(delivered._subject,/product request/);
+});
+test('invalid product, fractional seats and non-object payloads never reach delivery',async()=>{
+ const before=deliveries.length;
+ for(const body of [{...productRequest,productKey:'missing'},{...productRequest,seats:1.5},{...productRequest,seats:0},{...productRequest,seats:10001}])assert.equal((await postProduct(body)).status,422);
+ assert.equal((await postProduct(null)).status,400);
+ assert.equal(deliveries.length,before);
+});
+test('a provider HTTP 200 without acceptance is never reported as successful',async()=>{
+ providerReply={message:'unconfirmed'};
+ try {const res=await postProduct(productRequest);assert.equal(res.status,502);assert.equal((await res.json()).ok,false);}finally{providerReply={success:true};}
+});
+test('public server exposes pages and assets, not application source or credentials',async()=>{
+ for(const path of ['/server.js','/package.json','/.env','/.git/config','/test/server.test.js','/components/%2e%2e/server.js'])assert.notEqual((await fetch(apiUrl+path)).status,200,path);
+ for(const path of ['/','/purchase.html','/products/qr-menu.html','/components/purchase.js','/components/product-catalog.json','/robots.txt','/sitemap.xml'])assert.equal((await fetch(apiUrl+path)).status,200,path);
+ const head=await fetch(apiUrl+'/purchase.html',{method:'HEAD'});assert.equal(head.status,200);assert.equal(await head.text(),'');
 });

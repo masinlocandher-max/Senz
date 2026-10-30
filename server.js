@@ -6,6 +6,7 @@ const path = require("node:path");
 const { URL } = require("node:url");
 const { agents, recommendAgent } = require("./agents");
 
+const catalog = require('./components/product-catalog.json');
 const rootDir = __dirname;
 const port = Number(process.env.PORT || 4177);
 const siteOrigins = String(process.env.SITE_ORIGIN || "")
@@ -125,6 +126,9 @@ function cleanFields(fields) {
 }
 
 function buildInquiry(input) {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) {
+    const error = new Error('Request must be a JSON object.'); error.statusCode = 400; throw error;
+  }
   const contact = clean(input.contact || input.phone || input.contactNumber, 180);
   const timeline = clean(input.timeline || input.date || input.availability, 120);
   const formType = clean(input.formType || "general", 40).toLowerCase();
@@ -152,6 +156,19 @@ function buildInquiry(input) {
     source: "website-intake",
     details: cleanFields(input.fields)
   };
+  if (formType === 'product') {
+    const product = catalog.products.find(p => p.id === input.productKey);
+    const seats = Number(input.seats);
+    inquiry.productRequestValid = Boolean(product) && Number.isSafeInteger(seats) && seats >= 1 && seats <= 10000;
+    if (inquiry.productRequestValid) {
+      inquiry.projectType = product.name;
+      inquiry.budget = `PHP ${product.pricePhp * seats}/month for ${seats} named seat(s)`;
+      inquiry.details = { ...inquiry.details, productKey: product.id, seats: String(seats),
+        monthlyTotalPhp: String(product.pricePhp * seats), storageMb: String(product.storageMb),
+        aiCreditsPerSeat: String(product.aiCreditsPerSeat), releaseState: catalog.releaseState,
+        availability: 'Confirm working delivery and activation date before payment' };
+    }
+  }
   const assignedAgent = recommendAgent(inquiry);
   inquiry.assignedAgent = {
     id: assignedAgent.id,
@@ -161,6 +178,7 @@ function buildInquiry(input) {
   };
 
   const errors = [];
+  if (formType === 'product' && !inquiry.productRequestValid) errors.push('Choose a valid product and a whole number of seats from 1 to 10000.');
   if (!inquiry.name) errors.push("Name is required.");
   if (inquiry.email && !isEmail(inquiry.email)) errors.push("Email must be valid when provided.");
   if (!inquiry.email && !inquiry.contact) errors.push("Email or phone/Messenger contact is required.");
@@ -184,6 +202,7 @@ function buildInquiry(input) {
 }
 
 function inquirySubject(inquiry) {
+  if (inquiry.formType === 'product') return `SENZ product request — ${inquiry.projectType} — ${inquiry.name}`;
   if (inquiry.formType === "consultation") {
     return `New SENZ consultation request — ${inquiry.name}`;
   }
@@ -236,7 +255,7 @@ async function deliverInquiry(inquiry) {
     });
 
     const result = await response.json().catch(() => ({}));
-    if (!response.ok || result.success === false || result.success === "false") {
+    if (!response.ok || !(result.success === true || result.success === "true")) {
       const error = new Error("The inquiry email provider did not accept the submission.");
       error.statusCode = 502;
       throw error;
@@ -327,18 +346,22 @@ async function handleAgentRecommendation(req, res) {
 }
 
 function safeStaticPath(urlPath) {
-  const decoded = decodeURIComponent(urlPath);
-  const normalized = path.normalize(decoded).replace(/^(\.\.[/\\])+/, "");
-  const filePath = path.join(rootDir, normalized === "/" ? "index.html" : normalized);
-  if (!filePath.startsWith(rootDir)) return null;
-  return filePath;
+  let decoded;
+  try { decoded = decodeURIComponent(urlPath); } catch { return null; }
+  const rel = decoded === '/' ? 'index.html' : decoded.replace(/^\/+/, '');
+  if (rel.split(/[\\/]/).some(p => p.startsWith('.') || p === '..')) return null;
+  const publicRoot = /^[^/]+\.(html|txt|xml)$/.test(rel) || rel === 'function.json';
+  const publicAsset = /^(assets|components|products)\//.test(rel) && /\.(html|css|js|json|png|jpg|jpeg|webp|svg|ico|mp3|mp4)$/.test(rel);
+  if (!publicRoot && !publicAsset) return null;
+  const result = path.resolve(rootDir, rel);
+  return result.startsWith(rootDir + path.sep) ? result : null;
 }
 
 function redirectToCanonicalHost(req, res, url) {
   const host = String(req.headers.host || "").split(":")[0].toLowerCase();
   if (!canonicalHost || !redirectHosts.has(host)) return false;
 
-  const proto = req.headers["x-forwarded-proto"] || "https";
+  const proto = "https";
   const location = `${proto}://${canonicalHost}${url.pathname}${url.search}`;
   res.writeHead(308, { Location: location, "Cache-Control": "public, max-age=3600" });
   res.end();
@@ -359,9 +382,10 @@ async function serveStatic(req, res, pathname) {
     const ext = path.extname(filePath).toLowerCase();
     res.writeHead(200, {
       "Content-Type": mimeTypes[ext] || "application/octet-stream",
-      "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=31536000, immutable"
+      "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=3600"
     });
-    fs.createReadStream(filePath).pipe(res);
+    if (req.method === "HEAD") res.end();
+    else fs.createReadStream(filePath).on("error", () => res.destroy()).pipe(res);
   } catch {
     res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
     res.end(await fsp.readFile(path.join(rootDir, "index.html"), "utf8"));
@@ -434,3 +458,4 @@ module.exports = {
   server,
   wasSubmittedTooQuickly
 };
+
