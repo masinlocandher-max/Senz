@@ -31,3 +31,14 @@ test('product pages preserve catalog prices, scope and pending release status',(
  const c=JSON.parse(fs.readFileSync(root+'/components/product-catalog.json','utf8'));
  for(const p of c.products){const html=contents.get('products/'+p.id+'.html');assert.ok(html,p.id);assert.ok(html.includes('purchase.html?product='+p.id));assert.ok(html.includes(p.pricePhp.toLocaleString('en-PH')));assert.ok(html.includes('What is outside the scope'));if(!c.forSale)assert.ok(!html.includes('"@type":"Offer"'),p.id+' premature offer');}
 });
+
+test('removed music and photo products cannot reappear as offers',()=>{
+ const c=JSON.parse(fs.readFileSync(root+'/components/product-catalog.json','utf8'));
+ assert.equal(c.products.length,13);
+ for(const key of ['fotolab','music-platform']){
+  assert.ok(!c.products.some(p=>p.id===key));assert.ok(!c.plans.some(p=>p.products.includes(key)));
+  assert.ok(!fs.existsSync(root+'/products/'+key+'.html'));assert.ok(!sitemap.includes('/products/'+key+'.html'));
+  assert.ok(!contents.get('purchase.html').includes('value="'+key+'"'));
+  for(const file of ['llms.txt','llms-full.txt'])assert.ok(!fs.readFileSync(root+'/'+file,'utf8').includes('/products/'+key+'.html'));
+ }
+});

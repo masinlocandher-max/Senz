@@ -33,7 +33,7 @@
     },
     {
       match: ['clone', 'assistant', 'representative', 'music', 'voting', 'tabulation', 'ticket', 'fotolab', 'workspace', 'portal', 'product'],
-      reply: 'All fifteen SENZ products are for sale at the monthly price on the product page. This website takes the purchase request. It does not charge a card, sign you in, or run the product. SENZ opens a product only after payment is verified. Event Systems does not sell tickets or run voting. FotoLab is a private editor, not a retouching service. Music Platform is private delivery, not the public SENZ Music page. Email info.senz.pr@gmail.com.'
+      reply: 'Thirteen SENZ products have listed monthly prices. Request availability before payment; activation awaits verified release. FotoLab and Music Platform are no longer offered. This website takes the purchase request. It does not charge a card, sign you in, or run the product. SENZ opens a product only after payment is verified. Event Systems does not sell tickets or run voting. FotoLab is a private editor, not a retouching service. Music Platform is private delivery, not the public SENZ Music page. Email info.senz.pr@gmail.com.'
     },
     {
       match: ['contact', 'email', 'message', 'book', 'consultation'],
@@ -149,3 +149,4 @@
     initChat();
   }
 })();
+

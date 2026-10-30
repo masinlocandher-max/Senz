@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "website": {
     "repository": "masinlocandher-max/Senz",
     "hosts": [
@@ -18,7 +18,7 @@
   },
   "rules": [
     "The app catalog defines product capabilities, limits, prices, seats, and allowances. Generate the website catalog from it.",
-    "All fifteen products are in commercial scope. A price is not production-release evidence. Do not collect payment for a product until its activation date and working delivery are confirmed.",
+    "Thirteen products are in commercial scope. FotoLab and Music Platform are removed and must not appear in offers, discovery recommendations or purchase plans. A price is not production-release evidence. Do not collect payment for a product until its activation date and working delivery are confirmed.",
     "The website explains and takes requests. The customer app manages accounts, licensed products, usage, teams, renewals, and support.",
     "Keep app links off the public website until app.released is true and the production customer journey passes.",
     "Access needs a verified license and, for organizations, an assigned seat. A signup, request, screenshot of payment, or accepted quote alone does not activate access.",
@@ -58,9 +58,10 @@
       "name": "SENZ FotoLab",
       "function": "Private photo projects with real non-destructive adjustments, versions, and export.",
       "doesNot": "A self-service editor, not a retouching service by SENZ staff. It does not generate or alter images with AI.",
-      "pricePhp": 990,
+      "pricePhp": null,
       "forSale": false,
-      "requestable": true
+      "requestable": false,
+      "parked": true
     },
     {
       "key": "client-portal",
@@ -94,9 +95,10 @@
       "name": "SENZ Music Platform",
       "function": "Protected audio previews, timestamped feedback, rights confirmation, and delivery.",
       "doesNot": "It does not stream music to the public, publish charts, or generate music.",
-      "pricePhp": 2490,
+      "pricePhp": null,
       "forSale": false,
-      "requestable": true
+      "requestable": false,
+      "parked": true
     },
     {
       "key": "qr-menu",
