@@ -272,6 +272,42 @@ async function deliverInquiry(inquiry) {
   }
 }
 
+// Each address may send a few inquiries in a short window, and the whole site a bounded number an
+// hour, so a script cannot flood the SENZ inbox or use up the email provider's allowance.
+const inquiryLimits = {
+  perAddress: Number(process.env.SENZ_INQUIRY_LIMIT_PER_ADDRESS || 10),
+  perAddressWindowMs: 10 * 60 * 1000,
+  perHour: Number(process.env.SENZ_INQUIRY_LIMIT_PER_HOUR || 60)
+};
+const inquiriesByAddress = new Map();
+let siteInquiries = [];
+
+function clientAddress(req) {
+  // Render's proxy puts the visitor's address first in X-Forwarded-For. A visitor who sends a false
+  // one only moves to another per-address count; the hourly site limit still applies.
+  const forwarded = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
+  return forwarded || req.socket.remoteAddress || "unknown";
+}
+
+function overInquiryLimit(req, now = Date.now()) {
+  siteInquiries = siteInquiries.filter((at) => now - at < 60 * 60 * 1000);
+  const address = clientAddress(req);
+  const recent = (inquiriesByAddress.get(address) || []).filter((at) => now - at < inquiryLimits.perAddressWindowMs);
+  if (recent.length >= inquiryLimits.perAddress || siteInquiries.length >= inquiryLimits.perHour) {
+    inquiriesByAddress.set(address, recent);
+    return true;
+  }
+  recent.push(now);
+  siteInquiries.push(now);
+  inquiriesByAddress.set(address, recent);
+  if (inquiriesByAddress.size > 5000) {
+    for (const [key, times] of inquiriesByAddress) {
+      if (!times.some((at) => now - at < inquiryLimits.perAddressWindowMs)) inquiriesByAddress.delete(key);
+    }
+  }
+  return false;
+}
+
 function wasSubmittedTooQuickly(formStartedAt) {
   if (!Number.isFinite(formStartedAt) || formStartedAt <= 0) return false;
   const elapsed = Date.now() - formStartedAt;
@@ -305,6 +341,14 @@ async function handleInquiry(req, res) {
       sendJson(req, res, 429, {
         ok: false,
         errors: ["Please wait a moment, then submit the form again."]
+      });
+      return;
+    }
+
+    if (overInquiryLimit(req)) {
+      sendJson(req, res, 429, {
+        ok: false,
+        errors: ["Too many inquiries were sent recently. Please try again later, or email info.senz.pr@gmail.com."]
       });
       return;
     }
