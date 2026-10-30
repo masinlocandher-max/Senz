@@ -2,7 +2,7 @@
 
 ## Function
 
-`function.json` is the shared contract with `masinlocandher-max/Senzapp`. This repository is the public website: explain SENZ, describe the products exactly as the app does, and take inquiries. It does not sign people in, grant a license, or run a product. FotoLab and Music Platform stay listed and are parked. QR Menu, Booking, Digital Catalog, Business Website, CRM, POS and Inventory, and Loyalty are SENZ products and are not offered yet. Do not use the Fox Syli name for them. Do not link to `app.senzpr.com` while `app.released` is false. Do not describe a product as ticketing, voting, tabulation, a clone studio, staff photo retouching, or a public music chart. `music.html` is the Music division showcase, not the Music Platform.
+`function.json` is the shared contract with `masinlocandher-max/Senzapp`. This repository is the public website: explain SENZ, show each product's published monthly price, and take a purchase request. It does not sign people in, charge a card, grant a license, or run a product. All fifteen products are for sale, including FotoLab, Music Platform, and the seven business products. Do not use the Fox Syli name for them. Do not link to `app.senzpr.com` while `app.released` is false. Do not describe a product as ticketing, voting, tabulation, a clone studio, staff photo retouching, or a public music chart. `music.html` is the Music division showcase, not the Music Platform.
 
 ## Source ownership
 

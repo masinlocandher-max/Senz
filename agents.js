@@ -27,7 +27,7 @@ const agents = [
     id: "digital-products",
     name: "Digital Product Architect",
     label: "Digital Products Agent",
-    focus: "Inquiries about the SENZ App products. The website explains them and does not grant access. Seven rebuilt products are listed and not offered yet.",
+    focus: "Purchase requests for the fifteen SENZ products. Each has a published monthly price. The website takes the request and does not charge a card or grant access.",
     priority: 40,
     keywords: ["digital", "platform", "app", "ai", "assistant", "fotolab", "workspace", "portal", "music"]
   },

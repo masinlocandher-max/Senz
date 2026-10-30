@@ -62,27 +62,27 @@ Full AI reference document: https://www.senzpr.com/llms-full.txt
 
 ## Website and app
 
-- **This website** (https://www.senzpr.com/) explains SENZ, describes services, and takes inquiries. It does not sign people in, grant a license, or run a product.
-- **SENZ App** (private repository `masinlocandher-max/Senzapp`, planned host `app.senzpr.com`) runs these products only after SENZ verifies payment or a signed agreement. Products still in development are listed and cannot be used until SENZ records a pilot. It is not released. Do not send people there yet.
-- **Do not attribute these to a SENZ product:** ticketing, voting, tabulation, a clone studio, staff photo retouching, public music charts, or checkout.
+- **This website** (https://www.senzpr.com/) explains SENZ and takes a purchase request at each product's published monthly price. It does not sign people in, charge a card, grant a license, or run a product.
+- **SENZ App** (private repository `masinlocandher-max/Senzapp`, planned host `app.senzpr.com`) sells and runs these products. A product opens only after SENZ verifies payment. The app is not linked from the website yet. Do not send people there yet.
+- **Do not attribute these to a SENZ product:** ticketing, voting, tabulation, a clone studio, staff photo retouching, or public music charts. There is no card checkout.
 
 ## Products (same wording as the app)
 
-1. **SENZ AI Workspace.** Draft, summarize, rewrite, and structure real work with saved, versioned outputs. It does not browse, send, or publish.
-2. **SENZ Communications Intelligence.** Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval. It does not send messages.
-3. **SENZ Digital Assistant.** Answers only from approved knowledge and hands off to a person. It does not take payments or bookings.
-4. **SENZ FotoLab.** Parked. It stays in the product list and is not offered. Private photo projects with real non-destructive adjustments, versions, and export. Not a retouching service.
-5. **SENZ Client Portal.** Contracted project workspace for milestones, deliverables, revisions, and approvals. Not a customer's own CRM.
-6. **SENZ Event Systems.** Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export. Not ticketing, voting, or tabulation.
-7. **SENZ Digital Representative.** Consent-based, disclosed text representative. Not a voice or video likeness.
-8. **SENZ Music Platform.** Parked. It stays in the product list and is not offered. Protected audio previews, timestamped feedback, rights confirmation, and delivery. The public Music page is a division showcase, not this product.
-9. **SENZ QR Menu.** Not offered yet. A public menu with a QR code, sections, prices, dietary tags, and sold-out items.
-10. **SENZ Booking.** Not offered yet. Online appointment requests that you confirm, with no double-booking.
-11. **SENZ Digital Catalog.** Not offered yet. A shareable product catalog with search and inquiry lists.
-12. **SENZ Business Website.** Not offered yet. A one-page business website with services, FAQ, photos, and an inquiry inbox.
-13. **SENZ CRM.** Not offered yet. Contacts, stages, follow-ups, and notes for a small team.
-14. **SENZ POS and Inventory.** Not offered yet. Counter sales, stock counts, and daily totals.
-15. **SENZ Loyalty.** Not offered yet. A digital stamp card tied to your counter sales.
+1. **SENZ AI Workspace.** For sale at ₱1,490/month. Draft, summarize, rewrite, and structure real work with saved, versioned outputs. It does not browse, send, or publish.
+2. **SENZ Communications Intelligence.** For sale at ₱2,490/month. Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval. It does not send messages.
+3. **SENZ Digital Assistant.** For sale at ₱2,990/month. Answers only from approved knowledge and hands off to a person. It does not take payments or bookings.
+4. **SENZ FotoLab.** For sale at ₱990/month. Private photo projects with real non-destructive adjustments, versions, and export. Not a retouching service.
+5. **SENZ Client Portal.** For sale at ₱4,900/month. Contracted project workspace for milestones, deliverables, revisions, and approvals. Not a customer's own CRM.
+6. **SENZ Event Systems.** For sale at ₱3,490/month. Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export. Not ticketing, voting, or tabulation.
+7. **SENZ Digital Representative.** For sale at ₱7,900/month. Consent-based, disclosed text representative. Not a voice or video likeness.
+8. **SENZ Music Platform.** For sale at ₱2,490/month. Protected audio previews, timestamped feedback, rights confirmation, and delivery. The public Music page is a division showcase, not this product.
+9. **SENZ QR Menu.** For sale at ₱790/month. A public menu with a QR code, sections, prices, dietary tags, and sold-out items.
+10. **SENZ Booking.** For sale at ₱990/month. Online appointment requests that you confirm, with no double-booking.
+11. **SENZ Digital Catalog.** For sale at ₱790/month. A shareable product catalog with search and inquiry lists.
+12. **SENZ Business Website.** For sale at ₱1,490/month. A one-page business website with services, FAQ, photos, and an inquiry inbox.
+13. **SENZ CRM.** For sale at ₱1,290/month. Contacts, stages, follow-ups, and notes for a small team.
+14. **SENZ POS and Inventory.** For sale at ₱1,490/month. Counter sales, stock counts, and daily totals.
+15. **SENZ Loyalty.** For sale at ₱490/month. A digital stamp card tied to your counter sales.
 
 Product page: https://www.senzpr.com/digital-products.html
 
