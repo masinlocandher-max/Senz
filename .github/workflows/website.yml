@@ -20,3 +20,18 @@ jobs:
       # Product pages are generated from the catalog; a hand edit or a stale page fails here.
       - run: npm run build:products
       - run: git diff --exit-code
+  browser:
+    # Every page at phone and desktop widths, and every form and questionnaire path, in Chromium
+    # through the real inquiry server to a local stand-in for the email provider. Nothing reaches
+    # the SENZ inbox.
+    needs: website
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
