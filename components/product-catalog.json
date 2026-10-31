@@ -8,7 +8,7 @@
   "platform": {
     "name": "SENZ App",
     "principle": "SENZ combines human strategic judgment with useful technology.",
-    "purpose": "The SENZ App is where customers buy and use SENZ software. Every product has a published monthly price. The website shows that price and takes a purchase request. The app opens a product only after SENZ verifies payment."
+    "purpose": "One protected workspace for your licensed SENZ tools. Choose the products you need, with clear monthly prices. Availability is confirmed before payment; access follows verified payment or an authorized agreement."
   },
   "statuses": {
     "available": {
@@ -33,8 +33,8 @@
     }
   },
   "categories": {
-    "ai": "Uses AI",
-    "workflow": "Digital workflow (no AI)"
+    "ai": "Writing & communication",
+    "workflow": "Business operations"
   },
   "segments": {
     "myself": "An individual",
@@ -159,7 +159,7 @@
     },
     {
       "key": "buy-ai-workspace",
-      "name": "AI Workspace",
+      "name": "Workspace",
       "segments": [
         "myself",
         "professional",
@@ -397,7 +397,7 @@
   "products": [
     {
       "id": "ai-workspace",
-      "name": "SENZ AI Workspace",
+      "name": "SENZ Workspace",
       "category": "ai",
       "problem": "Drafting, summarizing, and organizing work takes too long.",
       "purpose": "Turn your own notes, goals, and source text into usable first drafts, and keep every version.",
@@ -412,7 +412,7 @@
       ],
       "includes": [
         "Seven drafting tools: email, summary, rewrite, action items, FAQ, plan, and comparison",
-        "Refine with AI, edit by hand, and restore any earlier version",
+        "Refine a draft, edit by hand, and restore any earlier version",
         "Search your documents and export them as Markdown or plain text"
       ],
       "limits": "Uses only what you provide. It does not browse the web, send, or publish anything, and every draft needs human review.",

@@ -8,7 +8,8 @@ const { agents, recommendAgent } = require("./agents");
 
 const catalog = require('./components/product-catalog.json');
 const rootDir = __dirname;
-const port = Number(process.env.PORT || 4177);
+const portArgument = process.argv.indexOf('--port');
+const port = Number(process.env.PORT || (portArgument >= 0 ? process.argv[portArgument + 1] : 4177));
 const siteOrigins = String(process.env.SITE_ORIGIN || "")
   .split(",")
   .map((origin) => origin.trim())

@@ -64,7 +64,7 @@
       const price = seats ? `${money(product.pricePhp * seats)}/month for ${seats} named ${seats === 1 ? 'user' : 'users'} in one workspace.` :
         `From ${money(product.pricePhp)}/month for one named user. SENZ can help estimate your seat count.`;
       host.append(el('p', price + ' ' + product.storageMb.toLocaleString('en-PH') + ' MB storage per workspace.' +
-        (product.usesAi ? ' ' + product.aiCreditsPerSeat + ' AI credits per named user each month.' : ''), 'offer-summary'));
+        (product.usesAi ? ' ' + product.aiCreditsPerSeat + ' processing credits per named user each month.' : ''), 'offer-summary'));
       host.append(el('p', a.setup === 'system' ? 'Start with the one product above. If you need existing records moved, ask SENZ to quote migration separately.' :
         'Start with one product. SENZ will confirm availability, setup work and an activation date before requesting payment.'));
     } else {

@@ -21,7 +21,7 @@
     title.textContent = product.name;
     const text = document.createElement('p');
     text.textContent = count ? `₱${total.toLocaleString('en-PH')}/month for ${count} named ${count === 1 ? 'user' : 'users'} in one workspace. ${product.storageMb.toLocaleString('en-PH')} MB storage per workspace.` +
-      (product.usesAi ? ` ${product.aiCreditsPerSeat} AI credits per named user each month.` : '') : 'Enter a seat count from 1 to 10,000 to see the monthly total.';
+      (product.usesAi ? ` ${product.aiCreditsPerSeat} processing credits per named user each month.` : '') : 'Enter a seat count from 1 to 10,000 to see the monthly total.';
     const limits = document.createElement('p'); limits.textContent = product.limits;
     summary.append(title, text, limits);
     button.disabled = !count;
