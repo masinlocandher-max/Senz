@@ -228,5 +228,28 @@
       button.setAttribute("aria-expanded", String(isOpen));
     });
   });
+
+  // On phones these grids become sideways carousels. While one scrolls, keyboard users need to
+  // reach it, so it becomes a labelled, focusable region; on wider screens it is left alone.
+  const carousels = document.querySelectorAll(".icon-grid, .service-grid, .reason-grid, .fit-grid, .process-grid, .deliverable-grid");
+  const updateCarousels = () => {
+    carousels.forEach((grid) => {
+      if (grid.scrollWidth > grid.clientWidth + 1) {
+        const heading = grid.closest("section")?.querySelector("h2, h3")?.textContent.trim();
+        grid.setAttribute("tabindex", "0");
+        grid.setAttribute("role", "region");
+        grid.setAttribute("aria-label", heading ? `${heading} (scroll sideways)` : "Scroll sideways for more");
+      } else if (grid.getAttribute("role") === "region") {
+        grid.removeAttribute("tabindex");
+        grid.removeAttribute("role");
+        grid.removeAttribute("aria-label");
+      }
+    });
+  };
+  if (carousels.length) {
+    updateCarousels();
+    window.addEventListener("load", updateCarousels);
+    window.addEventListener("resize", updateCarousels);
+  }
 })();
 
