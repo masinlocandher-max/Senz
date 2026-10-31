@@ -8,7 +8,7 @@ The website provides discovery, service inquiries and software availability requ
 
 Software: thirteen products with published monthly prices. Activation awaits verified release; request availability before payment. No automatic card checkout.
 
-- SENZ AI Workspace: Draft, summarize, rewrite, and structure real work with saved, versioned outputs. PHP 1490/month for one seat. https://www.senzpr.com/products/ai-workspace.html
+- SENZ Workspace: Draft, summarize, rewrite, and structure real work with saved, versioned outputs. PHP 1490/month for one seat. https://www.senzpr.com/products/ai-workspace.html
 - SENZ Communications Intelligence: Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval. PHP 2490/month for one seat. https://www.senzpr.com/products/communications-intelligence.html
 - SENZ Digital Assistant: An assistant that answers only from your approved knowledge and hands off to a person. PHP 2990/month for one seat. https://www.senzpr.com/products/digital-assistant.html
 - SENZ Client Portal: Contracted project workspace for milestones, deliverables, revisions, and approvals. PHP 4900/month for one seat. https://www.senzpr.com/products/client-portal.html

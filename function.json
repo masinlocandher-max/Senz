@@ -28,7 +28,7 @@
   "products": [
     {
       "key": "ai-workspace",
-      "name": "SENZ AI Workspace",
+      "name": "SENZ Workspace",
       "function": "Draft, summarize, rewrite, and structure real work with saved, versioned outputs.",
       "doesNot": "Uses only what you provide. It does not browse the web, send, or publish anything, and every draft needs human review.",
       "pricePhp": 1490,
@@ -57,7 +57,7 @@
       "key": "fotolab",
       "name": "SENZ FotoLab",
       "function": "Private photo projects with real non-destructive adjustments, versions, and export.",
-      "doesNot": "A self-service editor, not a retouching service by SENZ staff. It does not generate or alter images with AI.",
+      "doesNot": "A self-service editor, not a retouching service by SENZ staff. It does not generate images or replace their contents.",
       "pricePhp": null,
       "forSale": false,
       "requestable": false,
@@ -172,3 +172,4 @@
     }
   ]
 }
+

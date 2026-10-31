@@ -154,7 +154,7 @@
 
   const query = new URLSearchParams(window.location.search);
   const interest = query.get('interest');
-  const legacyProducts = { 'AI Workspace':'ai-workspace', 'Communications Intelligence':'communications-intelligence',
+  const legacyProducts = { 'AI Workspace':'ai-workspace', 'Workspace':'ai-workspace', 'Communications Intelligence':'communications-intelligence',
     'Digital Assistant':'digital-assistant', 'Client Portal':'client-portal', 'Event Systems':'event-systems',
     'Digital Representative':'digital-representative', 'QR Menu':'qr-menu', 'Booking':'booking',
     'Digital Catalog':'digital-catalog', 'Business Website':'business-website', 'CRM':'crm', 'POS':'pos', 'Loyalty':'loyalty' };
@@ -176,6 +176,17 @@
   }
 
   const serviceForm = document.querySelector('form[data-form-kind="general"]');
+  if (serviceForm && query.get('planner') === '1') {
+    fetch('components/product-catalog.json').then(r => r.ok ? r.json() : null).then(catalog => {
+      if (!catalog) return;
+      const ids = [...new Set((query.get('tools') || '').split(','))];
+      const chosen = ids.map(id => catalog.products.find(p => p.id === id));
+      const count = window.SENZDiscovery?.seatCount(query.get('seats'));
+      if (!count || !chosen.length || chosen.some(p => !p)) return;
+      if (!serviceForm.elements.message.value) serviceForm.elements.message.value =
+        `Please confirm availability and quote these tools: ${chosen.map(p => p.name).join(', ')}. ${count} named users per tool in one workspace. Please confirm setup requirements, any suitable bundle, and the final total.`;
+    }).catch(() => {});
+  }
   if (serviceForm && window.SENZDiscovery && query.get('guide') === '1') {
     function prefill(catalog) {
       const guided = window.SENZDiscovery.readHandoff(location.search, 'service', catalog);
