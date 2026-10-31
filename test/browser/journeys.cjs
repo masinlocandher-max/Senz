@@ -260,6 +260,25 @@ async function main() {
     await page.context().close();
   }
 
+  // Returning clients get useful next steps without repeating discovery or receiving an unverified app link.
+  {
+    const page = await newPage();
+    await page.goto(`${base}/index.html`);
+    await page.getByRole('link', { name: 'Client access', exact: true }).click();
+    assert.ok(page.url().endsWith('/client-access.html'));
+    assert.equal(await page.locator('a[href^="https://app.senzpr.com"]').count(), 0);
+    await page.getByRole('link', { name: 'I’ve sent my request', exact: true }).click();
+    await page.getByRole('link', { name: /Follow up on my request/ }).click();
+    await page.waitForFunction(() => document.querySelector('textarea[name=message]').value.includes('already submitted'));
+    assert.equal(await page.locator('select[name=inquiryType]').inputValue(), 'Existing client support');
+    await page.goBack();
+    await page.getByRole('link', { name: 'Install the app', exact: true }).click();
+    await page.getByText('iPhone or iPad', { exact: true }).click();
+    assert.ok(await page.locator('details[open]').innerText().then(text => text.includes('Add to Home Screen')));
+    log.push('Returning client → follow-up form is prefilled; device installation guide opens; unreleased app stays gated');
+    await page.context().close();
+  }
+
   await browser.close(); server.close(); delivery.close();
   console.log(log.join('\n'));
   console.log(`\n${delivered.length} inquiries delivered to the stand-in provider; script/console errors: ${errors.length}`);

@@ -1,0 +1,150 @@
+/* SENZ signature system: Inter, cobalt, navy, glass and steel. Last shared layer. */
+@font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url('../assets/fonts/InterVariable.woff2') format('woff2')}
+:root{--senz-font:Inter,Arial,Helvetica,sans-serif;--senz-ink:#010522;--senz-blue:#003df9;--senz-muted:#526078;--senz-line:#dce4f0;--senz-surface:#edf3ff;--senz-radius:4px}
+body.senz-unified{font-family:var(--senz-font);font-optical-sizing:auto}
+.senz-unified .button{border-radius:2px;display:inline-flex;align-items:center;justify-content:center;gap:24px;min-height:50px;font-size:14px;font-weight:600;padding:15px 22px;box-sizing:border-box;letter-spacing:0}
+.senz-unified .button:hover{transform:none;filter:brightness(.94)}
+.senz-unified .senz-global-header{background:#fff;border:0}
+.senz-unified .senz-global-header .senz-global-inner{width:calc(100% - 96px);max-width:1392px;min-height:88px;gap:22px;flex-wrap:nowrap;padding:12px 0}
+.senz-unified .senz-global-header .senz-lockup{gap:12px;margin-right:auto}
+.senz-unified .senz-global-header .senz-lockup img{width:40px;height:50px}
+.senz-unified .senz-global-header .senz-lockup strong{font-size:25px;letter-spacing:.42em;font-weight:550;line-height:1.2}
+.senz-unified .senz-global-header .senz-lockup small{font-size:8px;font-weight:500;letter-spacing:.015em;max-width:230px;margin-top:5px}
+.senz-unified .senz-global-header .senz-global-nav{font-size:13px;gap:22px;flex:0 1 auto}
+.senz-unified .senz-global-header .senz-global-nav a{font-weight:500;padding:5px 0}
+.senz-unified .senz-global-header :is(.senz-client-access,.senz-start,.senz-menu-toggle){border-radius:2px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0 18px;font-size:13px;font-weight:600;line-height:1.3;box-sizing:border-box;white-space:nowrap;text-decoration:none}
+.senz-unified .senz-global-header .senz-client-access{border:1px solid var(--senz-blue);color:var(--senz-blue);margin-left:8px}
+.senz-unified .senz-global-header .senz-start{background:var(--senz-blue);border:1px solid var(--senz-blue);color:#fff}
+.senz-unified .senz-global-header .senz-client-access:hover{background:var(--senz-surface)}
+.senz-unified .senz-global-header [hidden]{display:none!important}
+.signature-shell{width:min(1392px,calc(100% - 112px));margin-inline:auto;min-width:0}
+.signature-hero{position:relative;isolation:isolate;background:var(--senz-ink);color:#fff;min-height:660px;display:flex;align-items:center;overflow:hidden}
+.signature-architecture{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center}
+.signature-hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#01052250 0%,#01052218 48%,transparent 75%)}
+.signature-hero-copy{padding:68px 0 72px;max-width:700px}
+.senz-unified .signature-hero h1{font-size:clamp(68px,7.2vw,108px);letter-spacing:-.065em;line-height:.98;font-weight:650;margin:0 0 32px;color:#fff;text-wrap:initial}
+.senz-unified .signature-hero p{font-size:clamp(17px,1.7vw,23px);color:#d4def2;line-height:1.5;margin:0 0 32px;max-width:550px}
+.signature-hero .button-row{gap:16px;flex-wrap:wrap}
+.senz-unified .signature-hero .button.secondary{border-color:#94a4c2;color:#fff;background:#01052250}
+.client-ribbon{display:block;color:var(--senz-ink);text-decoration:none;background:#fff;border-bottom:1px solid var(--senz-line)}
+.client-ribbon>.signature-shell{display:flex;align-items:center;gap:34px;min-height:92px;padding:18px 0;box-sizing:border-box}
+.client-ribbon strong{font-size:20px;font-weight:650;letter-spacing:-.03em;flex-shrink:0}
+.client-ribbon span>span:last-child{font-size:14px;color:var(--senz-muted);display:flex;gap:28px;align-items:center}
+.client-ribbon b{font-size:25px;line-height:1;color:var(--senz-ink);font-weight:400}
+.ribbon-rule{height:1px;background:var(--senz-line);flex:1;min-width:30px}
+.client-ribbon:hover strong{color:var(--senz-blue)}
+.signature-connection{padding:100px 0}
+.signature-connection-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:center}
+.signature-connection-copy{min-width:0}
+.senz-unified .signature-connection h2{font-size:clamp(34px,3.5vw,52px);line-height:1.05;letter-spacing:-.055em;margin:0 0 24px;font-weight:650}
+.signature-connection h2 span{color:var(--senz-blue)}
+.signature-connection-copy>p{color:var(--senz-muted);max-width:420px;font-size:16px;line-height:1.6;margin:0 0 24px}
+.signature-steps{list-style:none;padding:0;margin:0}
+.signature-steps li{display:grid;grid-template-columns:56px 1fr;gap:20px;border-top:1px solid #b5c2d6;padding:21px 0;margin:0}
+.signature-steps li>span{font-size:38px;letter-spacing:-.07em;color:#66738b;line-height:1.2;font-weight:350}
+.signature-steps a{display:grid;grid-template-columns:1fr auto;gap:3px 18px;align-items:center;color:var(--senz-ink);text-decoration:none}
+.signature-steps strong{font-size:23px;line-height:1.2;font-weight:650;letter-spacing:-.03em}
+.signature-steps small{font-size:13px;line-height:1.5;color:var(--senz-muted);grid-column:1}
+.signature-steps b{font-size:23px;grid-column:2;grid-row:1/3;font-weight:400}
+.signature-steps a:hover strong{text-decoration:underline;text-underline-offset:5px}
+.signature-fine{font-size:11px!important;line-height:1.65!important;letter-spacing:0;font-weight:400}
+.signature-connection .signature-fine{margin:18px 0 0;max-width:none}
+.signature-people{margin:0;min-width:0}
+.signature-people img{display:block;width:100%;height:auto;aspect-ratio:1.16;object-fit:cover;object-position:54% center}
+.signature-people figcaption{display:flex;align-items:start;justify-content:space-between;gap:24px;padding:22px 0 0}
+.signature-people figcaption strong{font-size:21px;font-weight:600;line-height:1.3;letter-spacing:-.025em}
+.signature-people figcaption>span{color:var(--senz-muted);font-size:12px;text-align:right;line-height:1.7;max-width:200px;padding-top:3px}
+.signature-people figcaption small{display:block;font-size:10px;margin-top:7px}
+.signature-app{background:var(--senz-ink);color:#fff;padding:88px 0}
+.signature-app-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:44px;align-items:center}
+.signature-app-copy{min-width:0}
+.signature-label{display:block;font-size:18px;letter-spacing:.09em;font-weight:600;color:#b5c9fb;margin-bottom:26px}
+.senz-unified .signature-app h2{font-size:clamp(40px,4.3vw,65px);line-height:1.02;letter-spacing:-.055em;font-weight:600;color:#fff;margin:0 0 24px}
+.signature-app-copy>p{color:#c7d3ec;font-size:18px;margin:0 0 30px;line-height:1.55}
+.signature-app .button-row{display:flex;align-items:flex-start;flex-direction:column;gap:18px}
+.signature-text-link{font-size:14px;color:#d9e5ff;text-underline-offset:5px;display:inline-flex;align-items:center;min-height:44px;gap:22px}
+.signature-app-copy .signature-app-value{border-top:1px solid #3a4566;padding-top:24px;margin-top:32px;margin-bottom:18px}
+.signature-app-value strong{display:block;color:white;font-size:21px;line-height:1.3;font-weight:550;letter-spacing:-.025em}
+.signature-app-value a{display:inline-flex;align-items:center;min-height:44px;color:#cbdcfd;font-size:12px;text-underline-offset:5px;margin-top:3px}
+.signature-app-demo{min-width:0}
+.signature-app .app-spotlight{margin:0;background:none;box-shadow:none;border:0;border-radius:0;color:#fff;--app-pad:0;overflow:visible}
+.signature-app .app-tour{border:0;padding:0;min-width:0;margin:0}
+.signature-app .app-tour legend{font-size:11px;color:#c5d2eb;margin:0 0 12px;padding:0;letter-spacing:0}
+.signature-app .app-choice+label{background:transparent;border:1px solid #7185ac;color:#d8e4fc;border-radius:2px;font-size:12px;margin:0 7px 22px 0;padding:0 16px;min-height:44px;box-sizing:border-box}
+.signature-app .app-choice:first-of-type+label{margin-left:0}
+.signature-app .app-choice:checked+label{background:#fff;color:var(--senz-ink);border-color:#fff}
+.signature-app .app-preview{margin:0;border:0;border-radius:0;overflow:visible;box-shadow:none;background:transparent}
+.signature-app .app-stage{background:transparent;aspect-ratio:1.55;min-height:0;overflow:visible;margin:10px 0 25px}
+.signature-app .app-window{width:91%;top:0;left:0;transform:none;border:4px solid #708198;border-radius:10px;box-shadow:none;max-height:100%;overflow:hidden;background:#080f27}
+.signature-app .app-window-bar{height:17px;background:#101b31}
+.signature-app .app-window-bar i{width:4px;height:4px;background:#c4cbd9}
+.signature-app .app-phone{right:0;bottom:-1%;width:22%;padding:4px;background:#101628;border:2px solid #8392aa;border-radius:18px;box-shadow:0 12px 24px #0004;transform:none}
+.signature-app .app-phone img{border-radius:12px}
+.signature-app .app-preview figcaption{padding:15px 0 8px;background:transparent;color:white}
+.signature-app .app-preview figcaption>strong{color:#fff;font-size:19px;font-weight:550}
+.signature-app .app-preview figcaption p{font-size:13px;color:#c7d3ec;margin:8px 0;max-width:600px}
+.signature-app .app-preview-links{gap:20px;margin:8px 0 0;justify-content:flex-start}
+.signature-app .app-preview-links a{color:#c7d9ff;font-size:11px;min-height:44px;display:inline-flex;align-items:center;text-underline-offset:4px}
+.signature-app .app-spotlight-footer{background:transparent;color:#bdcce6;font-size:10px;border:0;padding:12px 0 0;gap:8px;flex-wrap:wrap}
+.signature-app .app-spotlight-footer a{color:#c7d9ff;font-size:11px}
+.signature-app .app-menu-demo{padding:22px;background:#fff;color:var(--senz-ink);border-radius:3px}
+.signature-app .app-menu-demo h3,.signature-app .app-menu-demo p{color:var(--senz-ink)}
+.signature-clients{background:var(--senz-blue);color:#fff;padding:72px 0 64px}
+.signature-clients-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.senz-unified .signature-clients h2{font-size:clamp(44px,5.3vw,78px);line-height:1.02;letter-spacing:-.055em;color:#fff;font-weight:600;margin:0 0 22px}
+.signature-clients p{font-size:21px;color:#e0e9ff;line-height:1.5;margin:0}
+.client-paths{display:grid;border-top:1px solid #90acff}
+.client-paths a{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:80px;padding:18px 4px;border-bottom:1px solid #90acff;font-size:20px;font-weight:450;color:white;text-decoration:none}
+.client-paths a span{font-size:30px;font-weight:300}
+.client-paths a:hover{background:#ffffff12;padding-left:12px}
+.signature-clients .signature-fine{margin-top:20px;color:#e0e9ff}
+.senz-unified .signature-clients :is(a,button):focus-visible{outline-color:#fff}
+.signature-invitation{padding:44px 0;background:#fff;border-bottom:1px solid var(--senz-line)}
+.signature-invitation>div{display:flex;justify-content:space-between;align-items:center;gap:26px}
+.senz-unified .signature-invitation h2{font-size:25px;font-weight:550;margin:0;line-height:1.3;letter-spacing:-.035em}
+.signature-invitation a{color:var(--senz-blue);font-size:14px;min-height:44px;display:flex;align-items:center;gap:28px;text-decoration:none}
+.signature-invitation a:hover{text-decoration:underline}
+.senz-unified .senz-global-footer{background:#edf3ff;padding:54px 0 24px!important}
+.senz-unified .senz-global-footer .senz-lockup strong{font-weight:550;letter-spacing:.42em}
+.senz-unified .catalog-nav a,.senz-unified .product-symbol,.senz-unified .planner-total,.senz-unified .service-map{border-radius:3px}
+.request-next-step{display:block;color:var(--senz-blue);font-weight:650;min-height:44px;padding-top:12px;text-underline-offset:5px}
+.client-shortcut{font-size:14px!important;padding-top:18px;margin-top:20px;border-top:1px solid var(--senz-line)}
+.client-shortcut a{color:var(--senz-blue);font-weight:650;text-underline-offset:4px}
+/* The client entrance uses the same hierarchy as the homepage, with actual next steps. */
+.client-hero{background:var(--senz-ink);color:#fff;padding:74px 0 64px;position:relative;isolation:isolate;overflow:hidden}
+.client-hero:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#010522 25%,#0105228f 100%),url('../assets/senz-signature-glass.webp') right center/cover}
+.senz-unified .client-hero h1{font-size:clamp(50px,6vw,88px);letter-spacing:-.06em;line-height:1.03;color:#fff;font-weight:600;margin:0 0 20px}
+.client-hero p{font-size:21px;color:#d0ddf5;margin:0 0 28px}
+.client-hero .client-jump{display:flex;gap:14px;flex-wrap:wrap}
+.client-jump a{display:inline-flex;align-items:center;min-height:48px;border:1px solid #8496b8;color:white;padding:8px 18px;font-size:13px;text-decoration:none;border-radius:2px}
+.client-jump a:hover{background:#ffffff15}
+.client-status{padding:24px 0;border-bottom:1px solid var(--senz-line);background:var(--senz-surface)}
+.client-status p{font-size:14px;max-width:850px;color:var(--senz-muted);margin:0}
+.client-status strong{color:var(--senz-ink)}
+.client-content{padding:26px 0 50px}
+.client-step{display:grid;grid-template-columns:70px minmax(0,.85fr) minmax(0,1.15fr);gap:30px;padding:44px 0;border-bottom:1px solid var(--senz-line);scroll-margin-top:24px}
+.client-step>span{font-size:43px;color:#66738b;font-weight:350;line-height:1;letter-spacing:-.06em}
+.senz-unified .client-step h2{font-size:30px;line-height:1.1;font-weight:600;margin:0 0 14px;letter-spacing:-.04em}
+.client-step p{font-size:14px;color:var(--senz-muted);line-height:1.75;margin:0 0 18px}
+.client-step ol{padding-left:20px;margin:0 0 18px;font-size:14px;color:var(--senz-muted)}
+.client-step li{margin-bottom:10px;padding-left:4px}
+.client-step details{padding:16px 0;border-top:1px solid var(--senz-line)}
+.client-step summary{cursor:pointer;font-weight:600;font-size:15px;min-height:30px}
+.client-step details ol{margin-top:14px}
+.client-step .button{font-size:13px;gap:20px}
+.client-step .client-step-links{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
+.client-step-links>a:not(.button){color:var(--senz-blue);font-size:13px;min-height:44px;display:inline-flex;align-items:center}
+.client-help{background:var(--senz-surface);padding:40px 0}
+.client-help h2{font-size:27px;margin:0 0 10px}
+.client-help p{font-size:14px;color:var(--senz-muted);margin:0}
+.client-help a{font-weight:650;color:var(--senz-blue)}
+@media(min-width:1600px){.signature-hero{min-height:740px}.signature-hero-copy{padding:85px 0}}
+@media(max-width:1100px){.senz-unified .senz-global-header .senz-global-inner{width:calc(100% - 48px);gap:14px}.senz-unified .senz-global-header .senz-lockup .brand-descriptor{display:none}.senz-unified .senz-global-header .senz-global-nav{gap:16px}.signature-shell{width:calc(100% - 64px)}.signature-connection-grid{gap:38px}.signature-app-grid{gap:28px}.signature-clients-grid{gap:44px}.client-paths a{font-size:18px}}
+@media(max-width:960px){.senz-unified .senz-global-header .senz-global-inner{width:calc(100% - 40px);flex-wrap:wrap;gap:10px;min-height:76px;padding:10px 0}.senz-unified .senz-global-header .senz-global-nav{order:5;flex:1 0 100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:8px 0;border-top:1px solid var(--senz-line)}.senz-unified .senz-global-header .senz-client-access{margin-left:0}.senz-unified .senz-global-header .senz-lockup small{max-width:none}.signature-hero{min-height:600px}.signature-hero-copy{padding:62px 0;max-width:580px}.signature-hero:after{background:linear-gradient(90deg,#010522a0,#01052233 65%,transparent)}.signature-connection{padding:64px 0}.signature-connection-grid{grid-template-columns:1fr 1fr;gap:30px}.signature-steps li{grid-template-columns:42px 1fr;gap:12px}.signature-steps strong{font-size:20px}.signature-steps small{font-size:12px}.signature-people img{aspect-ratio:.78}.signature-people figcaption{display:block}.signature-people figcaption>span{display:block;text-align:left;margin-top:12px;max-width:none}.signature-people figcaption small{margin-top:2px}.signature-app{padding:64px 0}.signature-app-grid{grid-template-columns:1fr;gap:35px}.signature-app-copy{display:grid;grid-template-columns:1fr 1fr;column-gap:30px}.signature-app-copy>h2{grid-column:1/3}.signature-app-copy .signature-label{grid-column:1/3}.signature-app-copy>p{grid-column:1}.signature-app-copy .button-row{grid-column:1;grid-row:4/6}.signature-app-copy .signature-app-value{grid-column:2;grid-row:3/5;margin:0;padding-top:0;border:0}.signature-app-copy>.signature-fine{grid-column:2;grid-row:5}.signature-app-demo{max-width:740px;width:100%;margin:auto}.signature-clients-grid{gap:32px}.signature-clients h2{font-size:52px}.client-step{grid-template-columns:50px minmax(0,.9fr) minmax(0,1.1fr);gap:20px}}
+@media(max-width:700px){.senz-unified .senz-global-header .senz-global-inner{width:calc(100% - 32px);gap:8px;min-height:74px}.senz-unified .senz-global-header .senz-lockup{gap:7px}.senz-unified .senz-global-header .senz-lockup img{width:28px;height:37px}.senz-unified .senz-global-header .senz-lockup strong{font-size:19px;letter-spacing:.23em}.senz-unified .senz-global-header .senz-lockup small{font-size:7px}.senz-unified .senz-global-header :is(.senz-client-access,.senz-start,.senz-menu-toggle){padding:0 11px;font-size:11px;min-height:42px}.senz-unified .senz-global-header .senz-start{display:none}.senz-unified .senz-global-header .senz-global-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}.signature-shell{width:calc(100% - 40px)}.signature-hero{min-height:610px;align-items:flex-start}.signature-hero-copy{padding:54px 0 56px;max-width:100%}.senz-unified .signature-hero h1{font-size:clamp(64px,13vw,86px);margin-bottom:26px;line-height:.98}.senz-unified .signature-hero p{font-size:16px;max-width:350px;margin-bottom:30px}.signature-architecture{object-position:70% center;opacity:.75}.signature-hero:after{background:linear-gradient(90deg,#010522e6,#0105229c 45%,#01052220)}.signature-hero .button-row{gap:12px;align-items:flex-start;flex-direction:column}.signature-hero .button{min-width:208px;justify-content:space-between;font-size:13px;min-height:48px;padding:14px 19px}.client-ribbon>.signature-shell{display:block;padding:22px 0;min-height:0}.client-ribbon strong{font-size:19px;display:block;margin-bottom:6px}.client-ribbon span>span:last-child{font-size:12px;justify-content:space-between;gap:10px}.ribbon-rule{display:none}.signature-connection{padding:52px 0}.signature-connection-grid{grid-template-columns:1fr;gap:36px}.senz-unified .signature-connection h2{font-size:38px;line-height:1.07}.signature-connection-copy>p{font-size:15px}.signature-steps li{grid-template-columns:44px 1fr;padding:19px 0;gap:14px}.signature-steps strong{font-size:22px}.signature-steps small{font-size:13px}.signature-people img{aspect-ratio:1.12;object-position:60% center}.signature-people figcaption{display:flex;gap:16px}.signature-people figcaption strong{font-size:20px}.signature-people figcaption>span{text-align:right;font-size:11px;max-width:140px;margin:0}.signature-app{padding:52px 0}.signature-app-copy{display:block}.signature-label{margin-bottom:23px}.senz-unified .signature-app h2{font-size:45px}.signature-app-copy>p{font-size:17px;margin-bottom:24px}.signature-app-copy .signature-app-value{margin:24px 0 12px;padding-top:22px;border-top:1px solid #3a4566}.signature-app-value strong{font-size:20px}.signature-app-copy>.signature-fine{margin-bottom:0}.signature-app-grid{gap:35px}.signature-app .app-stage{aspect-ratio:1.5;margin-bottom:20px}.signature-app .app-window{border-width:3px}.signature-app .app-window-bar{height:11px}.signature-app .app-phone{border-radius:13px;padding:3px}.signature-app .app-phone img{border-radius:8px}.signature-app .app-choice+label{padding:0 12px;margin-right:5px}.signature-app .app-preview figcaption>strong{font-size:19px}.signature-app .app-preview figcaption p{font-size:13px}.signature-app .app-menu-demo{padding:20px}.signature-app .app-preview-links{gap:14px;flex-wrap:wrap}.signature-app .app-spotlight-footer{font-size:10px;align-items:flex-start}.signature-clients{padding:48px 0}.signature-clients-grid{grid-template-columns:1fr;gap:30px}.senz-unified .signature-clients h2{font-size:49px;margin-bottom:16px}.signature-clients p{font-size:19px}.client-paths a{font-size:17px;min-height:72px;padding:14px 0}.signature-invitation{padding:34px 0}.signature-invitation>div{display:block}.senz-unified .signature-invitation h2{font-size:25px;max-width:330px}.signature-invitation a{margin-top:14px;font-size:13px;gap:18px}.client-hero{padding:52px 0 40px}.senz-unified .client-hero h1{font-size:55px}.client-hero p{font-size:18px}.client-jump{gap:9px!important}.client-jump a{padding:9px 12px;font-size:12px}.client-step{grid-template-columns:42px 1fr;gap:18px;padding:34px 0}.client-step>span{font-size:35px}.client-step>div:last-child{grid-column:2}.client-step h2{font-size:28px!important}.client-step p,.client-step ol{font-size:13px}.client-content{padding:12px 0 30px}.client-help{padding:32px 0}.client-help h2{font-size:25px}.client-help a{overflow-wrap:anywhere}}
+@media(max-width:360px){.senz-unified .senz-global-header .senz-lockup strong{font-size:17px;letter-spacing:.18em}.senz-unified .senz-global-header .senz-lockup img{width:24px;height:33px}.senz-unified .senz-global-header :is(.senz-client-access,.senz-menu-toggle){padding:0 9px;font-size:10px}.signature-shell{width:calc(100% - 32px)}.signature-hero{min-height:600px}.senz-unified .signature-hero h1{font-size:62px}.senz-unified .signature-connection h2{font-size:33px}.signature-people figcaption{display:block}.signature-people figcaption>span{text-align:left;max-width:none;margin-top:12px}.senz-unified .signature-clients h2{font-size:43px}.client-step{grid-template-columns:32px 1fr;gap:14px}}
+@media(prefers-reduced-motion:reduce){.signature-hero *,.client-paths a{animation:none;transition:none}}
+
+.signature-app .app-spotlight-footer>span{color:#bdcce6}
+.senz-unified .senz-global-header .senz-mobile-start{display:none}
+@media(max-width:700px){.senz-unified .senz-global-header .senz-mobile-start{display:flex;color:var(--senz-blue);font-weight:650}}
