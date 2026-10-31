@@ -14,6 +14,8 @@ test('every public page has a unique title, description, one heading and canonic
   assert.equal((html.match(/<h1(?:\s|>)/g)||[]).length,1,file);
   const ids = [...html.matchAll(/\sid=["']([^"']+)["']/g)].map(match => match[1]);
   assert.equal(new Set(ids).size, ids.length, file+' duplicate element ID');
+  // The not-found page is served at any missing address: it must not be indexed or listed.
+  if(file==='404.html'){assert.match(html,/<meta name="robots" content="noindex"/);assert.ok(!/rel="canonical"/.test(html));assert.ok(!sitemap.includes('404.html'));continue;}
   const canonical=html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1];assert.ok(canonical?.startsWith('https://www.senzpr.com/'),file);assert.ok(sitemap.includes(canonical),file+' sitemap');
   for(const match of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(match[1]),file);
  }
@@ -43,4 +45,8 @@ test('removed music and photo products cannot reappear as offers',()=>{
   assert.ok(!contents.get('purchase.html').includes('value="'+key+'"'));
   for(const file of ['llms.txt','llms-full.txt'])assert.ok(!fs.readFileSync(root+'/'+file,'utf8').includes('/products/'+key+'.html'));
  }
+});
+test('no page or stylesheet loads a font from an outside provider',()=>{
+ const files=[...pages,...fs.readdirSync(root+'/components').filter(x=>x.endsWith('.css')).map(x=>'components/'+x)];
+ for(const file of files)assert.doesNotMatch(fs.readFileSync(root+'/'+file,'utf8'),/fonts\.(googleapis|gstatic)\.com/,file);
 });

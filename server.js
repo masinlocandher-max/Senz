@@ -433,8 +433,9 @@ async function serveStatic(req, res, pathname) {
     if (req.method === "HEAD") res.end();
     else fs.createReadStream(filePath).on("error", () => res.destroy()).pipe(res);
   } catch {
+    // Same page GitHub Pages serves for a missing address.
     res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(await fsp.readFile(path.join(rootDir, "index.html"), "utf8"));
+    res.end(await fsp.readFile(path.join(rootDir, "404.html"), "utf8"));
   }
 }
 
