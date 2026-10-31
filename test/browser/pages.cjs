@@ -91,6 +91,22 @@ async function main() {
     }
   }
 
+  // The not-found page, served at a nested missing address, still loads every style and script.
+  {
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    const page = await context.newPage();
+    const failed = [];
+    page.on('response', (r) => { if (new URL(r.url()).origin === base && r.status() >= 400 && !r.url().endsWith('/products/fotolab.html')) failed.push(`${r.status()} ${r.url()}`); });
+    page.on('pageerror', (e) => failed.push(e.message));
+    const res = await page.goto(`${base}/products/fotolab.html`, { waitUntil: 'load' });
+    if (res.status() !== 404) note('404.html', 390, 'status', res.status());
+    if (!(await page.getByRole('heading', { name: 'This page is not here.' }).isVisible())) note('404.html', 390, 'not rendered', '');
+    const styled = await page.evaluate(() => getComputedStyle(document.querySelector('.senz-global-header')).position);
+    if (!styled || styled === 'static') note('404.html', 390, 'header unstyled at a nested address', styled);
+    for (const f of failed) note('404.html', 390, 'nested address', f);
+    await context.close();
+  }
+
   await browser.close();
   server.close(); delivery.close();
   console.log(`Pages: ${pages.length} at 320, 390 and 1440px; ${linkTargets.size} internal links; outside hosts: ${[...external].sort().join(', ') || 'none'}`);

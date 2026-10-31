@@ -211,3 +211,14 @@ test('removed products are rejected before any email delivery',async()=>{
  for(const productKey of ['fotolab','music-platform']){const res=await postProduct({...productRequest,productKey});assert.equal(res.status,422);}
  assert.equal(deliveries.length,before);
 });
+
+test("a missing address gets the SENZ not-found page with status 404", async () => {
+  for (const missing of ["/no-such-page.html", "/products/fotolab.html", "/products/music-platform.html"]) {
+    const response = await fetch(apiUrl + missing);
+    assert.equal(response.status, 404, missing);
+    const html = await response.text();
+    assert.match(html, /This page is not here\./, missing);
+    assert.match(html, /<base href="\/" \/>/, "links resolve from the site root at any address");
+    assert.match(html, /<meta name="robots" content="noindex"/);
+  }
+});
