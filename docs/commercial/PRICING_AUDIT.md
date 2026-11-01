@@ -22,12 +22,13 @@ Historical amounts below were present on main. No explicit approval record was f
 | buy-crm | 1290 | monthly | Unverified |
 | buy-pos | 1490 | monthly | Unverified |
 | buy-loyalty | 490 | monthly | Unverified |
+| Digital Presence & Authority Check consultation | 0 (legacy “free” claim) | Initial conversation; legacy claim of up to 30 minutes | Unverified; withdrawn from visible copy and search metadata |
 
 Seats and usage remain specified separately from monetary approval. Implementation, renewal, taxes and add-ons have no verified approval; confirm them in each quote. Legacy service benchmarks (25,000 / 55,000 / 95,000 / 180,000 project; 5,000 / 18,000 / 45,000 monthly) are also unverified, withdrawn from live copy and retained here as historical evidence. No market or affordability claim is inferred.
 
 ## Provenance and scope requiring approval
 
-Source: pre-reorganization Senzapp main `1f7517cc87b99ffcf72bf2e4e2e44ead533fc6c7`, `src/catalog.js`, and Senz main `4f423d28fd4554ae8d9fce073f5cd4bbf402d05c`, `services.html` / `PRICING.md`. Presence on main is not proof of owner approval. Case-study pricing is excluded entirely.
+Source: pre-reorganization Senzapp main `1f7517cc87b99ffcf72bf2e4e2e44ead533fc6c7`, `src/catalog.js`, and Senz main `4f423d28fd4554ae8d9fce073f5cd4bbf402d05c`, `services.html` / `contact.html` / `PRICING.md`. Presence on main is not proof of owner approval. Case-study pricing is excluded entirely.
 
 | Historical plan | Included seats | Usage per seat | Storage MB | Setup / renewal / taxes / add-ons |
 | --- | ---: | --- | ---: | --- |

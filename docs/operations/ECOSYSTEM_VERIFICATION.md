@@ -41,11 +41,11 @@ Run commands from the named repository unless paths are shown. The browser harne
 | --- | --- |
 | Senz `npm run check` | Source ownership, syntax, catalog and domain checks pass |
 | Senz `npm test` | 47 passed |
-| Senz browser `pages.cjs`, `mobile.cjs` | 42 pages at 320/390/1440px, 196 internal links, 4,599 control checks; mobile navigation and axe checks pass |
-| Senz browser `journeys.cjs`, `questionnaire.cjs`, `controls.cjs`, `legit-site.cjs` | 131 questionnaire paths; 35 general/product form deliveries to an isolated receiver; five LOS personas; controls, keyboard, provider-failure and responsive checks passed in individual runs |
+| Senz browser `pages.cjs`, `mobile.cjs` | 42 pages at 320/390/1440px, 194 internal links, control checks; mobile navigation and axe checks pass |
+| Senz browser `journeys.cjs`, `questionnaire.cjs`, `controls.cjs`, `legit-site.cjs` | 134 questionnaire paths; 35 general/product form deliveries to an isolated receiver; five LOS personas; controls, keyboard, provider-failure and responsive checks passed in individual runs |
 | Senzapp `npm run check` | Syntax of 136 files, current-source secret scan and local commercial projection pass |
 | Senzapp `npm test` | 255 passed, including auth, CSRF, sessions, roles, membership, seat caps, isolation, expiry/suspension, migrations, backups, release gates, private preview and quote-only requests |
-| Senzapp `scripts/run-e2e-local.sh` | Full customer/staff/product journeys exercised; CI re-runs the final branch and uploads browser evidence |
+| Senzapp `scripts/run-e2e-local.sh` | 73 customer/staff/product screens exercised; final PR CI passed and uploaded browser evidence |
 | Senzapp `npm run e2e:mobile` | Login/privacy gate, locked/active/suspended products, API denial; 30 route/viewport checks across six widths passed |
 | Senzapp `npm run e2e:website` | Local public request → verified simulated authorization → seat → QR Menu publication passed |
 | Senzapp `npm run e2e:legit` | Complete local LOS journey below passed |
@@ -61,18 +61,18 @@ The LOS rehearsal uses the real acquisition handler in a browser routing fixture
 | Environment | Evidence / limit |
 | --- | --- |
 | Local | Sources and tests above verified; no real provider charges or customer data |
-| CI | Current PR checks and Actions runs provide head-specific results; do not infer success from this document |
+| CI | Architecture PR checks passed: [Senz #44](https://github.com/masinlocandher-max/Senz/pull/44), [Senzapp #18](https://github.com/masinlocandher-max/Senzapp/pull/18), [LegitOfficialSite #1](https://github.com/masinlocandher-max/LegitOfficialSite/pull/1). The app rerun passed against both corrected public main branches. Later changes require their own head-specific checks |
 | Staging | Not verified; no connected host/credentials were used |
-| Production public SENZ | Existing canonical page and three-step professional questionnaire were opened in the cloud browser and reached the correctly prefilled inquiry form. This observation preceded this architecture merge; verify the new Pages deployment separately |
+| Production public SENZ | [Pages deployment](https://github.com/masinlocandher-max/Senz/actions/runs/41337925085) passed for merge `be843c1`. The live catalog showed all 13 products as quote-only/not currently released; a two-seat planner selection remained quote-only. The canonical product page showed “Your website. Your space. Your rules.” and its professional questionnaire reached a correctly prefilled inquiry. No form was sent. A first-click entrance-motion issue found in this live check is addressed by excluding interactive content from entrance movement, with a dedicated browser regression |
 | Production inquiry delivery | Not verified; no real inquiry was sent, and inbox receipt was not checked |
-| Production acquisition hosts | Apex and www showed upstream connection errors in this browser; no working redirect was observed. This is not proof of the authoritative DNS state or a global outage |
+| Production acquisition hosts | On the final browser check, the apex showed an upstream connection error and www reached `https://www.legitofficialsite.com/lander`, displaying a parked-domain page. Neither produced the required SENZ redirect. No registrar account was opened and no DNS state, registrant ownership or global outage is inferred from this observation |
 | Production SENZ App | App origin showed an upstream connection error in this browser; no login, data persistence or actual entitlement operation verified |
 
-No deployment account, DNS zone, payment channel, paid AI provider or customer account was changed. Existing deployment configurations remain in place. Main-branch public Pages publication may follow merge; verify its run and live content before claiming the new source is deployed.
+No deployment account, DNS zone, payment channel, paid AI provider or customer account was changed. Existing deployment configurations remain in place. The recorded Pages evidence applies to `be843c1`; later changes require their own deployment and live checks. The combined public source preserved concurrent homepage/navigation PR #43 rather than overwriting it.
 
 ## 7. Remaining blockers
 
-Actual acquisition DNS/edge-provider access; verified app hosting/TLS/persistent storage and restore drill; approved production policies and delivery process; current commercial/price or quote-only approval; confirmed email receipt; verified staff payment reconciliation. AI products additionally need their existing approved provider configuration and a bounded live evaluation. Custom/subdomain automation is not implemented.
+Selection of the existing Render workspace before connector inspection; actual acquisition DNS/edge-provider access; verified app hosting/TLS/persistent storage and restore drill; approved production policies and delivery process; current commercial/price or quote-only approval; confirmed email receipt; verified staff payment reconciliation. AI products additionally need their existing approved provider configuration and a bounded live evaluation. Custom/subdomain automation is not implemented.
 
 ## 8. Risks
 
@@ -80,7 +80,7 @@ Separate repository updates are not atomic: use the actual cross-repository chec
 
 ## 9. Next actions
 
-1. Merge only passing coordinated changes and verify the resulting public Pages build and content.
+1. Keep coordinated checks passing; verify the first-click follow-up in its Pages deployment and live browser.
 2. Identify existing acquisition DNS/edge configuration and app deployment; validate staging, persistence, backup restoration and tenant isolation using synthetic data.
 3. Confirm inquiry inbox receipt and the staff quote/payment/activation process.
 4. Record approved policies, delivery evidence and per-product production verification, then approve commercial availability. Publish prices only with approval references; quote-only is valid after the remaining gates pass.

@@ -18,6 +18,11 @@ const catalog = require('../../components/product-catalog.json');
     const context = await browser.newContext({ viewport: { width, height: 900 } });
     const page = await context.newPage();
     await page.goto(`${base}/digital-products.html`);
+    // One pointer activation must work as the product first enters the viewport.
+    // A translating card used to move the link between pointer-down and pointer-up.
+    await page.getByRole('link', { name: 'Legit Official Site', exact: true }).click();
+    await page.waitForURL(`${base}/legit-official-site/`, { timeout: 5000 });
+    await page.goto(`${base}/digital-products.html`);
     await page.getByText('Preview how three tools work', { exact: true }).click();
     for (const [choice, preview] of [['show-bookings', 'preview-bookings'], ['show-menu', 'preview-menu'], ['show-followups', 'preview-followups']]) {
       await page.locator(`label[for="${choice}"]`).click();
