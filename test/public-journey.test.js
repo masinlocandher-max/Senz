@@ -94,6 +94,11 @@ test('unapproved service prices are absent from visible copy and structured data
  const html=read('services.html');
  assert.doesNotMatch(html,/₱[0-9]|"(?:price|minPrice|lowPrice|highPrice)"\s*:/);
  assert.match(html,/Request a Quote/);
+ // A zero-fee service promise also needs approval; old copy must not bypass the catalog audit.
+ for (const file of ['services.html','contact.html']) {
+   assert.doesNotMatch(read(file),/\b(?:free|complimentary)\b/i, file);
+   assert.match(read(file),/any fee before booking/, file);
+ }
 });
 
 test('each catalog app preview has a labeled selector and a product details link', () => {
