@@ -46,8 +46,8 @@
       if (reduced.matches || el.contains(document.activeElement)) continue;
       // Start at the element's real position; no layout shift or hidden tab stops.
       const animation = el.animate([
-        { opacity: 0.25, transform: 'translateY(18px)' },
-        { opacity: 1, transform: 'translateY(0)' }
+        { transform: 'translateY(18px)' },
+        { transform: 'translateY(0)' }
       ], { duration: 650, easing: 'cubic-bezier(.2,.65,.3,1)' });
       animations.set(el, animation);
       animation.onfinish = () => animations.delete(el);

@@ -46,5 +46,5 @@ export function applySiteShell(html, file) {
   result = result.replaceAll('assets/fonts/montserrat-latin-wght-v31.woff2', 'assets/fonts/InterVariable.woff2');
   // Pages/CDN caches old script URLs. Update the revision when changing the public journey.
   const changedAsset = /(components\/(?:navigation\.(?:css|js)|experience\.css|signature\.css|signature-motion\.js|launch-polish\.css|chat-support\.js|cost-(?:model|planner)\.js|discovery(?:-model)?\.js|approved-pages\.js|form-router\.js|purchase\.js|commerce\.css))(?:\?v=[^"']*)?(?=["'])/g;
-  return normalizeControlIcons(result.replace(changedAsset, '$1?v=20261101-signature-v5'));
+  return normalizeControlIcons(result.replace(changedAsset, '$1?v=20261101-signature-v6'));
 }

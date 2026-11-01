@@ -1,7 +1,7 @@
 (() => {
   const polishStylesheet = document.createElement("link");
   polishStylesheet.rel = "stylesheet";
-  polishStylesheet.href = "components/launch-polish.css?v=20261101-signature-v5";
+  polishStylesheet.href = "components/launch-polish.css?v=20261101-signature-v6";
   document.head.insertBefore(polishStylesheet, document.querySelector('link[href*="components/signature.css"]'));
 
   const glassNavigationStylesheet = document.createElement("link");
