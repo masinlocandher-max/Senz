@@ -31,6 +31,8 @@ test('incomplete or tampered selections cannot fabricate a quote, price or perso
   assert.doesNotMatch(href,/private|price|checkout/);
   const offer=require('../commercial/catalog.json').products.find(p=>p.id==='legit-official-site');
   assert.equal(offer.pricing.approved,false);assert.equal(offer.pricing.amount,null);assert.equal(offer.quoteOnly,true);
+  assert.equal(data.acquisitionHosts, undefined, 'acquisition hosts must stay out of public configuration');
+  assert.doesNotMatch(JSON.stringify(data.domains), /[a-z0-9-]+\.(com|net|org)(?:[\s/"]|$)/i, 'address options must not disclose hostnames');
 });
 test('one canonical product page keeps ownership and release limits explicit', () => {
   const html = fs.readFileSync(require.resolve('../legit-official-site/index.html'),'utf8');

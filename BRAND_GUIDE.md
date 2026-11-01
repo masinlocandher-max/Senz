@@ -24,7 +24,7 @@ The Partner Program is an ongoing initiative, not a future-launch announcement. 
 Strategic, warm, precise and human. Explain the customer outcome before the capability. Avoid inflated claims, internal revenue language and unsupported results.
 Preserve the approved SENZ logo. The November 2026 redesign follows the owner’s supplied identity board: navy #010522, cobalt #003DF9, ice #EDF3FF, steel #66738B and white. Use self-hosted Inter with its included SIL Open Font License. The mark remains the original artwork.
 
-Lead with confident editorial typography, glass and steel imagery, straight rules and restrained square controls. Hospitality comes through inclusive people imagery and helpful next steps. Generated scenes are illustrative; do not imply they show actual staff, clients or premises.
+Lead with confident editorial typography, glass and steel imagery, straight rules and raised, rounded controls with soft shadows, generous touch targets and space in the normal page flow. Hospitality comes through inclusive people imagery and helpful next steps. Generated scenes are illustrative; do not imply they show actual staff, clients or premises.
 
 The homepage promotes SENZ App through real product screens and a clear path to tools and pricing. Client access is a first-class navigation item. Returning clients should not repeat discovery. The public client entrance distinguishes workspace access, request follow-up and installation. Installation links appear only after the shared release contract is verified.
 

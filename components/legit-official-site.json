@@ -4,10 +4,6 @@
   "provider": "SENZ",
   "version": 1,
   "path": "/legit-official-site/",
-  "acquisitionHosts": [
-    "legitofficialsite.com",
-    "www.legitofficialsite.com"
-  ],
   "audiences": {
     "myself": {
       "label": "For Myself",
@@ -62,8 +58,8 @@
   },
   "domains": {
     "senz": {
-      "label": "A SENZ subdomain",
-      "hint": "Ask about yourname.legitofficialsite.com. Subject to setup and availability."
+      "label": "A managed website address",
+      "hint": "SENZ confirms the address, setup and availability in your quote."
     },
     "existing": {
       "label": "I already have a domain",

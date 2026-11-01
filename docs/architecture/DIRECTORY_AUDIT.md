@@ -81,3 +81,5 @@ Audit covered tracked files, package scripts/imports, routes, API access checks,
 | `what-is-brand-strategy.html` | KEEP | Retained existing source/content; references and tests preserved. |
 
 No per-customer repository was introduced. No auth, customer database, licenses or private execution was found in the active Senz public runtime; the unused historical Supabase schema was archived rather than copied into a live app migration. Existing app schema and purchased data remain intact. Source files under docs/archive and case-studies are not executable deployment instructions.
+
+Integration note: concurrent SENZ PR #43 (49649eb) was preserved: generated homepage, public catalog previews, navigation and shared controls. The homepage now consumes canonical product URLs and derived release labels. The commercial catalog remains authoritative; no old prices were reintroduced.
