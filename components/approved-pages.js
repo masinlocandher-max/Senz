@@ -29,27 +29,6 @@
     viewport.content = `${viewport.content}, viewport-fit=cover`;
   }
 
-  const mobileMeta = [
-    ["apple-mobile-web-app-capable", "yes"],
-    ["apple-mobile-web-app-status-bar-style", "default"],
-    ["apple-mobile-web-app-title", "SENZ"]
-  ];
-
-  mobileMeta.forEach(([name, content]) => {
-    if (document.querySelector(`meta[name="${name}"]`)) return;
-    const meta = document.createElement("meta");
-    meta.name = name;
-    meta.content = content;
-    document.head.appendChild(meta);
-  });
-
-  if (!document.querySelector('link[rel="apple-touch-icon"]')) {
-    const appleTouchIcon = document.createElement("link");
-    appleTouchIcon.rel = "apple-touch-icon";
-    appleTouchIcon.href = "assets/senz-original-mark.png";
-    document.head.appendChild(appleTouchIcon);
-  }
-
   const conceptIcons = {
     positioning: `
       <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -176,6 +155,16 @@
   }
 
   const serviceForm = document.querySelector('form[data-form-kind="general"]');
+  const clientTopics = {
+    request: 'I have already submitted a SENZ request. Please help me confirm the next step. My request reference (if available): ',
+    access: 'I am an existing SENZ client and need help finding or restoring my workspace invitation. My business or organization: ',
+    install: 'I am an existing SENZ client and need help installing SENZ App. My device and browser: '
+  };
+  if (serviceForm && Object.hasOwn(clientTopics, query.get('client'))) {
+    if (!serviceForm.elements.message.value) serviceForm.elements.message.value = clientTopics[query.get('client')];
+    const heading = document.querySelector('h1');
+    if (heading) heading.textContent = 'Welcome back. Let’s help you move forward.';
+  }
   if (serviceForm && query.get('planner') === '1') {
     fetch('components/product-catalog.json').then(r => r.ok ? r.json() : null).then(catalog => {
       if (!catalog) return;

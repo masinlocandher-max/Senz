@@ -22,7 +22,13 @@ The Partner Program is an ongoing initiative, not a future-launch announcement. 
 
 ## Voice and design
 Strategic, warm, precise and human. Explain the customer outcome before the capability. Avoid inflated claims, internal revenue language and unsupported results.
-Preserve the approved SENZ logo and existing layout. Core palette: navy #0A1730, blue #2451D9, cyan #8FD3FF. Use existing typography and components.
+Preserve the approved SENZ logo. The November 2026 redesign follows the owner’s supplied identity board: navy #010522, cobalt #003DF9, ice #EDF3FF, steel #66738B and white. Use self-hosted Inter with its included SIL Open Font License. The mark remains the original artwork.
+
+Lead with confident editorial typography, glass and steel imagery, straight rules and restrained square controls. Hospitality comes through inclusive people imagery and helpful next steps. Generated scenes are illustrative; do not imply they show actual staff, clients or premises.
+
+The homepage promotes SENZ App through real product screens and a clear path to tools and pricing. Client access is a first-class navigation item. Returning clients should not repeat discovery. The public client entrance distinguishes workspace access, request follow-up and installation. Installation links appear only after the shared release contract is verified.
+
+Keep public copy outcome-led. Do not use “AI” as a marketing label or make unsupported cheapest/best claims. Product behavior, automation disclosures, prices and access rules must remain accurate.
 
 ## Capabilities
 Communications, PR, marketing, digital systems, imaging, music and creative kits are capabilities within SENZ. Do not present them as unrelated companies or require clients to navigate internal divisions.
