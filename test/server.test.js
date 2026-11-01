@@ -93,6 +93,29 @@ test("valid inquiries are delivered as email payloads", async () => {
   assert.equal(deliveries[0]["Detail — preferredDate"], "2026-08-04");
 });
 
+test("partner applications receive a distinct subject and preserve qualification details", async () => {
+  const response = await fetch(`${apiUrl}/api/inquiries`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Origin": "https://www.senzpr.com" },
+    body: JSON.stringify({
+      formType: "partner",
+      name: "Partner Applicant",
+      email: "partner@example.com",
+      brand: "Independent Studio",
+      projectType: "SENZ Partner Program application",
+      timeline: "Within 1–3 months",
+      message: "I work with small businesses in Zambales.",
+      privacyConsent: true,
+      fields: { location: "Zambales", customerFocus: "Micro and small businesses" }
+    })
+  });
+  assert.equal(response.status, 201);
+  const delivered = deliveries.at(-1);
+  assert.match(delivered._subject, /Partner Program application/i);
+  assert.equal(delivered["Submission type"], "partner");
+  assert.equal(delivered["Detail — location"], "Zambales");
+});
+
 test("unapproved browser origins are blocked", async () => {
   const response = await fetch(`${apiUrl}/api/inquiries`, {
     method: "POST",
@@ -108,7 +131,7 @@ test("unapproved browser origins are blocked", async () => {
     })
   });
   assert.equal(response.status, 403);
-  assert.equal(deliveries.length, 1);
+  assert.equal(deliveries.length, 2);
 });
 
 test("honeypot submissions return success without delivery", async () => {
@@ -128,7 +151,7 @@ test("honeypot submissions return success without delivery", async () => {
     })
   });
   assert.equal(response.status, 201);
-  assert.equal(deliveries.length, 1);
+  assert.equal(deliveries.length, 2);
 });
 
 test("inquiries without privacy consent are rejected", async () => {
@@ -146,7 +169,7 @@ test("inquiries without privacy consent are rejected", async () => {
     })
   });
   assert.equal(response.status, 422);
-  assert.equal(deliveries.length, 1);
+  assert.equal(deliveries.length, 2);
 });
 
 test("consultation requests need a preferred date and time", async () => {
@@ -169,7 +192,7 @@ test("consultation requests need a preferred date and time", async () => {
   const body = await response.json();
   assert.equal(response.status, 422);
   assert.match(body.errors.join(" "), /Preferred time is required/);
-  assert.equal(deliveries.length, 1);
+  assert.equal(deliveries.length, 2);
 });
 
 

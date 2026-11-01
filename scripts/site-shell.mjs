@@ -3,6 +3,7 @@ import { normalizeControlIcons } from './control-icons.mjs';
 const primaryLinks = [
   ['services.html', 'Solutions'],
   ['digital-products.html', 'SENZ App'],
+  ['partner-program.html', 'Partners'],
   ['about.html', 'About'],
   ['contact.html', 'Contact']
 ];
@@ -19,7 +20,7 @@ export function siteHeader(file) {
 
 export function siteFooter(file) {
   const p = file.startsWith('products/') ? '../' : '';
-  return `<footer class="senz-global-footer"><div class="senz-footer-inner"><div><a class="senz-lockup" href="${p}index.html"><img src="${p}assets/senz-original-mark.png" width="48" height="48" alt=""><span><strong>SENZ</strong><small><span class="brand-descriptor">Strategic Communications &amp; Digital Solutions</span>An FMB&amp;CO brand</small></span></a><p>Influence Through Clarity.</p></div><div><h2>Work with SENZ</h2><nav aria-label="Services and software"><a href="${p}client-access.html">Client access &amp; app installation</a><a href="${p}get-started.html">Find a solution</a><a href="${p}services.html">Professional services</a><a href="${p}digital-products.html">SENZ App &amp; pricing</a><a href="${p}contact.html">Discuss a project</a><a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a></nav></div><div><h2>About SENZ</h2><nav aria-label="Company and resources"><a href="${p}about.html#partner-program">Partner Program</a><a href="${p}careers.html">Creative Network</a><a href="${p}answers.html">Communications guides</a><a href="${p}faq.html">Frequently asked questions</a><a href="${p}privacy.html">Privacy</a><a href="${p}terms.html">Terms</a></nav></div></div><div class="senz-footer-bottom"><span>© 2026 SENZ. An FMB&amp;CO brand.</span></div></footer>`;
+  return `<footer class="senz-global-footer"><div class="senz-footer-inner"><div><a class="senz-lockup" href="${p}index.html"><img src="${p}assets/senz-original-mark.png" width="48" height="48" alt=""><span><strong>SENZ</strong><small><span class="brand-descriptor">Strategic Communications &amp; Digital Solutions</span>An FMB&amp;CO brand</small></span></a><p>Influence Through Clarity.</p></div><div><h2>Work with SENZ</h2><nav aria-label="Services and software"><a href="${p}client-access.html">Client access &amp; app installation</a><a href="${p}get-started.html">Find a solution</a><a href="${p}services.html">Professional services</a><a href="${p}digital-products.html">SENZ App &amp; pricing</a><a href="${p}contact.html">Discuss a project</a><a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a></nav></div><div><h2>About SENZ</h2><nav aria-label="Company and resources"><a href="${p}partner-program.html">Partner Program</a><a href="${p}careers.html">Creative Network</a><a href="${p}answers.html">Communications guides</a><a href="${p}faq.html">Frequently asked questions</a><a href="${p}privacy.html">Privacy</a><a href="${p}terms.html">Terms</a></nav></div></div><div class="senz-footer-bottom"><span>© 2026 SENZ. An FMB&amp;CO brand.</span></div></footer>`;
 }
 
 // Keep the same working links in the HTML sent to browsers and crawlers, including without JavaScript.
@@ -45,6 +46,6 @@ export function applySiteShell(html, file) {
   }
   result = result.replaceAll('assets/fonts/montserrat-latin-wght-v31.woff2', 'assets/fonts/InterVariable.woff2');
   // Pages/CDN caches old script URLs. Update the revision when changing the public journey.
-  const changedAsset = /(components\/(?:navigation\.(?:css|js)|experience\.css|signature\.css|signature-motion\.js|launch-polish\.css|chat-support\.js|cost-(?:model|planner)\.js|discovery(?:-model)?\.js|approved-pages\.js|form-router\.js|purchase\.js|commerce\.css))(?:\?v=[^"']*)?(?=["'])/g;
-  return normalizeControlIcons(result.replace(changedAsset, '$1?v=20261101-signature-v6'));
+  const changedAsset = /(components\/(?:navigation\.(?:css|js)|experience\.css|signature\.css|signature-motion\.js|partner-program\.css|launch-polish\.css|chat-support\.js|cost-(?:model|planner)\.js|discovery(?:-model)?\.js|approved-pages\.js|form-router\.js|purchase\.js|commerce\.css))(?:\?v=[^"']*)?(?=["'])/g;
+  return normalizeControlIcons(result.replace(changedAsset, '$1?v=20261101-partners-v1'));
 }

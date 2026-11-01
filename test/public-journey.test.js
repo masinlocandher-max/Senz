@@ -122,3 +122,14 @@ test('each homepage app preview has a labeled selector and a product details lin
     assert.doesNotMatch(tour, /href="https?:\/\/app\.senzpr\.com/i);
   }
 });
+
+test('partner prospects receive a dedicated, honest application path', () => {
+  const html = read('partner-program.html');
+  assert.match(html, /data-form-kind="partner"/);
+  assert.match(html, /does not create employment/i);
+  assert.match(html, /does not guarantee customers|No customers or income are guaranteed/i);
+  assert.match(html, /Nothing is charged through this application|does not take payment/i);
+  assert.doesNotMatch(html, /<h[1-6][^>]*>[^<]*guaranteed (income|sales|customers)/i);
+  assert.match(read('about.html'), /href="partner-program\.html"/);
+  assert.ok(read('sitemap.xml').includes('https://www.senzpr.com/partner-program.html'));
+});

@@ -165,7 +165,13 @@ async function main() {
       await page.fill('input[name=name]', 'Carla Diaz'); await page.fill('input[name=email]', 'carla@example.com');
       await page.fill('input[name=portfolio]', 'https://example.com/portfolio');
       await page.fill('textarea[name=introduction]', 'Photographer and designer based in Manila.');
-    }, 'creative-pool']
+    }, 'creative-pool'],
+    ['partner-program.html', async (page) => {
+      await page.fill('input[name=name]', 'Dina Mercado'); await page.fill('input[name=email]', 'dina@example.com');
+      await page.fill('input[name=location]', 'Zambales');
+      for (const sel of ['businessStage', 'customerFocus', 'partnerInterest', 'timeline']) await page.locator(`select[name=${sel}]`).selectOption({ index: 1 });
+      await page.fill('textarea[name=message]', 'I advise small businesses and want to offer practical customer experience tools.');
+    }, 'partner']
   ];
   for (const [file, fill, type] of simple) {
     for (const width of [390, 1440]) {
