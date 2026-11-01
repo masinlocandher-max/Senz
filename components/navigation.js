@@ -4,7 +4,7 @@
   const toggle = header?.querySelector('.senz-menu-toggle');
   if (!menu || !toggle) return;
 
-  const compact = window.matchMedia('(max-width: 960px)');
+  const compact = window.matchMedia('(max-width: 1200px)');
   function setOpen(open) {
     toggle.hidden = !compact.matches;
     menu.hidden = compact.matches && !open;
