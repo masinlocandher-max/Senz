@@ -31,9 +31,14 @@ test('local page and component links resolve, including named anchors',()=>{
   }
  }
 });
-test('product pages preserve catalog prices, scope and pending release status',()=>{
+test('product pages keep quote-only scope and the website alias has one canonical destination',()=>{
  const c=JSON.parse(fs.readFileSync(root+'/components/product-catalog.json','utf8'));
- for(const p of c.products){const html=contents.get('products/'+p.id+'.html');assert.ok(html,p.id);assert.ok(html.includes('purchase.html?product='+p.id));assert.ok(html.includes(p.pricePhp.toLocaleString('en-PH')));assert.ok(html.includes('What is outside the scope'));if(!c.forSale)assert.ok(!html.includes('"@type":"Offer"'),p.id+' premature offer');}
+ for(const p of c.products){
+  const file=p.publicSlug.slice(1)+(p.publicSlug.endsWith('/')?'index.html':'');const html=contents.get(file);assert.ok(html,p.id);
+  assert.equal(p.pricePhp,null);assert.ok(!html.includes('"@type":"Offer"'),p.id+' premature offer');
+  if(p.id!=='business-website'){assert.ok(html.includes('purchase.html?product='+p.id));assert.match(html,/Request a Quote/);assert.ok(html.includes('What is outside the scope'));}
+ }
+ const alias=contents.get('products/business-website.html');assert.match(alias,/noindex,follow/);assert.match(alias,/https:\/\/www.senzpr.com\/legit-official-site\//);assert.ok(!sitemap.includes('/products/business-website.html'));
 });
 
 test('removed music and photo products cannot reappear as offers',()=>{

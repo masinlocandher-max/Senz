@@ -15,9 +15,9 @@ test('public pages repeat each product function and do not invent another one', 
   const faq = read('faq.html');
   const agents = read('agents.js');
   const chat = read('components/chat-support.js');
-  for (const product of contract.products.filter(p => !p.parked)) {
+  for (const product of JSON.parse(read('components/product-catalog.json')).products) {
     assert.ok(page.includes(product.name), product.name);
-    assert.ok(page.includes(product.function), product.function);
+    assert.ok(page.includes(product.summary), product.summary);
   }
   assert.equal(page.includes('app.senzpr.com'), false);
   for (const file of [page, faq, agents, chat]) {

@@ -26,7 +26,7 @@ async function main() {
   await new Promise((r) => server.listen(0, '127.0.0.1', r));
   const base = `http://127.0.0.1:${server.address().port}`;
   const catalog = JSON.parse(fs.readFileSync(path.join(siteDir, 'components/product-catalog.json'), 'utf8'));
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({executablePath:process.env.CHROMIUM_EXECUTABLE_PATH||undefined});
   const log = [];
   const errors = [];
 
@@ -78,22 +78,22 @@ async function main() {
     }
     await page.waitForSelector('#discovery .offer-summary');
     const offer = await page.locator('#discovery .offer-summary').textContent();
-    const total = (product.pricePhp * 3).toLocaleString('en-PH');
-    assert.ok(offer.includes(`₱${total}/month for 3 named users`), `${product.id}: recommendation shows ₱${total} for 3 users, got: ${offer}`);
+    const total = 'Quote required';
+    assert.match(offer,/Request a Quote/);
     assert.equal(await page.locator('#discovery h3').textContent(), product.name);
     // Product page from the recommendation shows the same price and links to the request.
     const detailHref = await page.locator('#discovery a.button.secondary').getAttribute('href');
     const detail = await newPage(1440);
     await detail.goto(`${base}/${detailHref}`);
     const detailText = await detail.locator('main').innerText();
-    assert.ok(detailText.includes(`₱${product.pricePhp.toLocaleString('en-PH')}`), `${product.id}: product page shows its price`);
+    assert.ok(!/₱\d/.test(detailText),`${product.id}: no unapproved price`);
     const requestLinks = await detail.locator(`a[href*="purchase.html"][href*="product=${product.id}"]`).count();
-    assert.ok(requestLinks > 0, `${product.id}: product page links to its request form`);
+    assert.ok(requestLinks > 0 || product.id==='business-website', `${product.id}: product page links to its request form`);
     await detail.context().close();
     // Request from the recommendation.
     await page.locator('#discovery a.button.primary').click();
     await page.waitForURL(/purchase\.html/);
-    await page.waitForFunction(() => document.querySelector('#product-request').dataset.monthlyTotal);
+    await page.waitForFunction(() => document.querySelector('#product-request').dataset.productName);
     assert.equal(await page.locator('#product-choice').inputValue(), product.id);
     assert.equal(await page.locator('input[name=seats]').inputValue(), '3');
     await page.fill('input[name=name]', 'Maria Santos');
@@ -103,17 +103,18 @@ async function main() {
     assert.equal(sent['Detail — productKey'], product.id);
     assert.equal(sent['Submission type'], 'product');
     assert.equal(sent['Detail — seats'], '3');
-    assert.equal(Number(sent['Detail — monthlyTotalPhp']), product.pricePhp * 3, `${product.id}: SENZ receives the right total`);
+    assert.equal(sent['Detail — monthlyTotalPhp'], 'Quote required', `${product.id}: SENZ receives the right total`);
     assert.equal(sent.Email, 'maria@example.com');
-    log.push(`${product.name}: questionnaire → recommendation ₱${total} for 3 → product page → request delivered (seats 3, ₱${total})`);
+    log.push(`${product.name}: questionnaire → recommendation ${total} for 3 → product page → request delivered (seats 3, ${total})`);
     await page.context().close();
 
+    if(product.id==='business-website') continue; // Canonical website configuration journey is covered by legit-site.cjs.
     // Request from the product page, one seat.
     const direct = await newPage(1440);
     await direct.goto(`${base}/products/${product.id}.html`);
     await direct.locator(`a[href*="purchase.html"][href*="product=${product.id}"]`).first().click();
     await direct.waitForURL(/purchase\.html/);
-    await direct.waitForFunction(() => document.querySelector('#product-request').dataset.monthlyTotal);
+    await direct.waitForFunction(() => document.querySelector('#product-request').dataset.productName);
     assert.equal(await direct.locator('#product-choice').inputValue(), product.id);
     if (!(await direct.locator('input[name=seats]').inputValue())) await direct.fill('input[name=seats]', '1');
     const seatsChosen = Number(await direct.locator('input[name=seats]').inputValue());
@@ -122,8 +123,8 @@ async function main() {
     await direct.fill('input[name=email]', 'jose@example.com');
     await direct.check('input[name=privacyConsent]');
     const sent2 = await submitAndConfirm(direct);
-    assert.equal(Number(sent2['Detail — monthlyTotalPhp']), product.pricePhp * seatsChosen);
-    log.push(`${product.name}: product page → request delivered (${seatsChosen} seat, ₱${(product.pricePhp * seatsChosen).toLocaleString('en-PH')})`);
+    assert.equal(sent2['Detail — monthlyTotalPhp'], 'Quote required');
+    log.push(`${product.name}: product page → request delivered (${seatsChosen} seat, quote required)`);
     await direct.context().close();
   }
 
@@ -131,10 +132,10 @@ async function main() {
   {
     const page = await newPage();
     await page.goto(`${base}/purchase.html?product=qr-menu`);
-    await page.waitForFunction(() => document.querySelector('#product-request').dataset.monthlyTotal);
+    await page.waitForFunction(() => document.querySelector('#product-request').dataset.productName);
     await page.fill('input[name=seats]', '7');
     const p = catalog.products.find((x) => x.id === 'qr-menu');
-    assert.ok((await page.locator('#offer-summary').innerText()).includes(`₱${(p.pricePhp * 7).toLocaleString('en-PH')}/month for 7`));
+    assert.match(await page.locator('#offer-summary').innerText(), /Request a Quote for 7/);
     await page.fill('input[name=seats]', '0');
     assert.equal(await page.locator('#product-request button[type=submit]').isDisabled(), true, 'zero seats cannot be sent');
     await page.goto(`${base}/purchase.html?product=fotolab`);

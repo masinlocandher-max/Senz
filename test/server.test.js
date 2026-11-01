@@ -204,8 +204,8 @@ test('product requests use authoritative prices and preserve the chosen product'
   const delivered=deliveries.at(-1);
   assert.equal(delivered['Detail — productKey'],'qr-menu');
   assert.equal(delivered['Detail — seats'],'2');
-  assert.equal(delivered['Detail — monthlyTotalPhp'],'1580');
-  assert.match(delivered.Budget,/1580/);
+  assert.equal(delivered['Detail — monthlyTotalPhp'],'Quote required');
+  assert.match(delivered.Budget,/Request a Quote/);
   assert.match(delivered._subject,/product request/);
 });
 test('invalid product, fractional seats and non-object payloads never reach delivery',async()=>{

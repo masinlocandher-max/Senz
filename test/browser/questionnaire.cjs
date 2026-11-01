@@ -5,7 +5,7 @@ const siteDir = path.resolve(__dirname, '../..');
 (async () => {
   process.chdir(siteDir); const { server } = require(path.join(siteDir, 'server.js'));
   await new Promise((r) => server.listen(0, '127.0.0.1', r)); const base = `http://127.0.0.1:${server.address().port}`;
-  const browser = await chromium.launch(); const ctx = await browser.newContext({ viewport: { width: 390, height: 900 } });
+  const browser = await chromium.launch({executablePath:process.env.CHROMIUM_EXECUTABLE_PATH||undefined}); const ctx = await browser.newContext({ viewport: { width: 390, height: 900 } });
   const errors = []; let paths = 0; const ends = {};
   const page = await ctx.newPage(); page.on('pageerror', (e) => errors.push(`${page.url()}: ${e.message}`));
   await page.goto(`${base}/get-started.html`); await page.waitForSelector('#discovery .choice');

@@ -10,7 +10,7 @@ const axeSource = fs.readFileSync(axePath, 'utf8');
   const base = `http://127.0.0.1:${server.address().port}`;
   const pages = fs.readdirSync(siteDir).filter((n) => n.endsWith('.html')).concat(fs.readdirSync('products').map((n) => `products/${n}`));
   pages.push('legit-official-site/');
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({executablePath:process.env.CHROMIUM_EXECUTABLE_PATH||undefined});
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   const problems = [];
   for (const name of pages) {

@@ -1,0 +1,60 @@
+{
+  "platform": {
+    "name": "SENZ App",
+    "principle": "SENZ combines human strategic judgment with useful technology.",
+    "purpose": "One protected workspace for your authorized SENZ tools. Request a quote; access follows verified authorization and delivery readiness."
+  },
+  "statuses": {
+    "available": {
+      "label": "Available",
+      "meaning": "Released and supported for licensed customers."
+    },
+    "beta": {
+      "label": "Beta",
+      "meaning": "Working for licensed pilot customers, with its limitations disclosed. Feedback shapes the release."
+    },
+    "custom": {
+      "label": "Custom implementation",
+      "meaning": "Set up for each client under a signed agreement and quotation."
+    },
+    "in_development": {
+      "label": "In development",
+      "meaning": "Built and tested by SENZ but not yet offered to customers. Ask for a demonstration."
+    },
+    "retired": {
+      "label": "Retired",
+      "meaning": "No longer offered to new customers; existing licenses keep working until they end."
+    }
+  },
+  "categories": {
+    "ai": "Writing & communication",
+    "workflow": "Business operations"
+  },
+  "segments": {
+    "myself": "An individual",
+    "professional": "A professional or personal brand",
+    "business": "A business",
+    "organization": "A company or organization",
+    "education": "A school or educational institution",
+    "government": "A government office or public institution"
+  },
+  "launchWaves": {
+    "1": {
+      "label": "First release",
+      "meaning": "Offered first, to pilot customers, once the release checks pass."
+    },
+    "2": {
+      "label": "Second release",
+      "meaning": "Offered after the first release, set up by agreement."
+    },
+    "3": {
+      "label": "By agreement",
+      "meaning": "Offered only after a scoping review and a signed agreement."
+    }
+  },
+  "channels": {
+    "plans": "Through a plan",
+    "services": "Included with SENZ service engagements",
+    "agreement": "By custom implementation agreement"
+  }
+}
