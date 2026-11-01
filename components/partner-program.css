@@ -64,6 +64,7 @@
 .partner-terms strong{color:#fff}
 .partner-application{display:grid;grid-template-columns:.72fr 1.28fr;gap:70px;align-items:start}
 .partner-application-copy{position:sticky;top:110px}
+.partner-application-copy .partner-eyebrow{color:var(--senz-blue)}
 .partner-application-copy h2{font-size:clamp(38px,4vw,58px);line-height:1.04;letter-spacing:-.055em;margin:0 0 22px}
 .partner-application-copy p{color:var(--senz-muted);line-height:1.7;margin:0 0 20px}
 .partner-check{border-top:1px solid var(--senz-line);padding-top:20px;margin-top:26px}
