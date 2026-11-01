@@ -211,6 +211,9 @@ function inquirySubject(inquiry) {
   if (inquiry.formType === "creative-pool") {
     return `New SENZ creative network submission — ${inquiry.name}`;
   }
+  if (inquiry.formType === "partner") {
+    return `New SENZ Partner Program application — ${inquiry.name}`;
+  }
   return `New SENZ website inquiry — ${inquiry.name}`;
 }
 

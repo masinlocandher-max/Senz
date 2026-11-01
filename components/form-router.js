@@ -8,7 +8,8 @@
     product: () => window["CONTACT_FORM_ENDPOINT"] || defaultInquiryEndpoint(),
     general: () => window["CONTACT_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint(),
     consultation: () => window["CONSULTATION_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint(),
-    "creative-pool": () => window["CAREERS_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint()
+    "creative-pool": () => window["CAREERS_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint(),
+    partner: () => window["CONTACT_FORM_" + "END" + "POINT"] || defaultInquiryEndpoint()
   };
 
   function defaultInquiryEndpoint() {
@@ -95,6 +96,35 @@
       };
     }
 
+    if (formKind === "partner") {
+      return {
+        formType: "partner",
+        destinationEmail: DESTINATION_EMAIL,
+        subject: `New SENZ Partner Program application - ${fullName}`,
+        submittedAt,
+        name: fullName,
+        email: values.email || "",
+        contact: values.phone || "",
+        brand: values.organization || "",
+        projectType: "SENZ Partner Program application",
+        timeline: values.timeline || "",
+        message: values.message || "Partner Program application.",
+        ...antiSpam,
+        fields: {
+          fullName,
+          email: values.email || "",
+          phone: values.phone || "",
+          businessName: values.organization || "",
+          location: values.location || "",
+          businessStage: values.businessStage || "",
+          customerFocus: values.customerFocus || "",
+          partnerInterest: values.partnerInterest || "",
+          timeline: values.timeline || "",
+          businessSummary: values.message || ""
+        }
+      };
+    }
+
     return {
       formType: "general",
       destinationEmail: DESTINATION_EMAIL,
@@ -128,6 +158,7 @@
     if (formKind === 'product') return 'Your product request was accepted for delivery. SENZ will confirm availability, total price, and activation details by email. No payment was taken.';
     if (formKind === "consultation") return CONSULTATION_PENDING_MESSAGE;
     if (formKind === "creative-pool") return "Thank you. Your profile has been received. SENZ will review it for relevant project-based opportunities.";
+    if (formKind === "partner") return "Thank you. Your Partner Program application has been received. SENZ will review your business fit and reply by email. Applying does not create a membership or require payment.";
     return "Thank you. Your request has been received. SENZ will review the commercial fit and respond by email with the strongest next step.";
   }
 
