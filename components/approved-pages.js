@@ -160,12 +160,29 @@
     access: 'I am an existing SENZ client and need help finding or restoring my workspace invitation. My business or organization: ',
     install: 'I am an existing SENZ client and need help installing SENZ App. My device and browser: '
   };
-  if (serviceForm && Object.hasOwn(clientTopics, query.get('client'))) {
+  const isClientSupport = serviceForm && Object.hasOwn(clientTopics, query.get('client'));
+  if (isClientSupport) {
+    serviceForm.dataset.clientSupport = 'true';
     if (!serviceForm.elements.message.value) serviceForm.elements.message.value = clientTopics[query.get('client')];
-    const heading = document.querySelector('h1');
-    if (heading) heading.textContent = 'Welcome back. Let’s help you move forward.';
+    // Returning clients need assistance, not another sales qualification form.
+    const hero = serviceForm.closest('.hero');
+    const panel = serviceForm.closest('.form-panel');
+    hero.querySelector('h1').textContent = 'Welcome back.';
+    hero.querySelector('.kicker').textContent = 'Client support';
+    hero.querySelector('.lead').textContent = 'Tell us what you need help with. Use the email on your SENZ account or earlier request.';
+    hero.querySelector('.trust-row')?.remove();
+    panel.querySelector('.mini-label').textContent = 'Existing clients';
+    panel.querySelector('h2').textContent = 'How can we help?';
+    panel.querySelector('.body-copy').textContent = 'Include your request reference if you have one. We’ll review your message and reply by email.';
+    for (const name of ['timeline', 'budget', 'position', 'phone']) serviceForm.elements[name]?.closest('label')?.remove();
+    const topic = document.createElement('input');
+    topic.type = 'hidden'; topic.name = 'inquiryType'; topic.value = 'Existing client support';
+    serviceForm.elements.inquiryType.closest('label').replaceWith(topic);
+    serviceForm.elements.message.closest('label').firstChild.textContent = 'Your message *';
+    serviceForm.querySelector('button[type="submit"]').textContent = 'Send support request';
+    document.querySelectorAll('main > .page-section').forEach(section => section.remove());
   }
-  if (serviceForm && query.get('planner') === '1') {
+  if (serviceForm && !isClientSupport && query.get('planner') === '1') {
     fetch('components/product-catalog.json').then(r => r.ok ? r.json() : null).then(catalog => {
       if (!catalog) return;
       const ids = [...new Set((query.get('tools') || '').split(','))];
@@ -176,7 +193,7 @@
         `Please confirm availability and quote these tools: ${chosen.map(p => p.name).join(', ')}. ${count} named users per tool in one workspace. Please confirm setup requirements, any suitable bundle, and the final total.`;
     }).catch(() => {});
   }
-  if (serviceForm && window.SENZDiscovery && query.get('guide') === '1') {
+  if (serviceForm && !isClientSupport && window.SENZDiscovery && query.get('guide') === '1') {
     function prefill(catalog) {
       const guided = window.SENZDiscovery.readHandoff(location.search, 'service', catalog);
       if (!guided) return;

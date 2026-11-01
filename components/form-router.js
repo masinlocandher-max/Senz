@@ -123,7 +123,8 @@
     };
   }
 
-  function successMessage(formKind) {
+  function successMessage(formKind, clientSupport) {
+    if (clientSupport) return "Your support request was accepted for delivery. SENZ will review your message and reply by email.";
     if (formKind === 'product') return 'Your product request was accepted for delivery. SENZ will confirm availability, total price, and activation details by email. No payment was taken.';
     if (formKind === "consultation") return CONSULTATION_PENDING_MESSAGE;
     if (formKind === "creative-pool") return "Thank you. Your profile has been received. SENZ will review it for relevant project-based opportunities.";
@@ -172,7 +173,7 @@
         throw new Error(`Form route returned ${response.status}.`);
       }
 
-      setStatus(statusEl, "success", successMessage(formKind) + (responseBody.id ? ` Reference: ${responseBody.id}.` : ""));
+      setStatus(statusEl, "success", successMessage(formKind, form.dataset.clientSupport === 'true') + (responseBody.id ? ` Reference: ${responseBody.id}.` : ""));
       if (statusEl && ['product', 'general', 'consultation'].includes(formKind)) {
         const next = document.createElement('a');
         next.href = 'client-access.html#request';
