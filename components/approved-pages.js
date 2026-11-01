@@ -1,28 +1,28 @@
 (() => {
   const polishStylesheet = document.createElement("link");
   polishStylesheet.rel = "stylesheet";
-  polishStylesheet.href = "components/launch-polish.css?v=20260714-progress";
-  document.head.appendChild(polishStylesheet);
+  polishStylesheet.href = "components/launch-polish.css?v=20261101-signature-v6";
+  document.head.insertBefore(polishStylesheet, document.querySelector('link[href*="components/signature.css"]'));
 
   const glassNavigationStylesheet = document.createElement("link");
   glassNavigationStylesheet.rel = "stylesheet";
   glassNavigationStylesheet.href = "components/glass-nav.css?v=20260711-glass";
-  document.head.appendChild(glassNavigationStylesheet);
+  document.head.insertBefore(glassNavigationStylesheet, document.querySelector('link[href*="components/signature.css"]'));
 
   const iconSystemStylesheet = document.createElement("link");
   iconSystemStylesheet.rel = "stylesheet";
   iconSystemStylesheet.href = "components/senz-icon-system.css?v=20260711-concepts";
-  document.head.appendChild(iconSystemStylesheet);
+  document.head.insertBefore(iconSystemStylesheet, document.querySelector('link[href*="components/signature.css"]'));
 
   const mobileAppStylesheet = document.createElement("link");
   mobileAppStylesheet.rel = "stylesheet";
   mobileAppStylesheet.href = "components/mobile-app-shell.css?v=20261031-navigation";
-  document.head.appendChild(mobileAppStylesheet);
+  document.head.insertBefore(mobileAppStylesheet, document.querySelector('link[href*="components/signature.css"]'));
 
   const mobileServicesStylesheet = document.createElement("link");
   mobileServicesStylesheet.rel = "stylesheet";
   mobileServicesStylesheet.href = "components/mobile-services-shell.css?v=20260712-iphone";
-  document.head.appendChild(mobileServicesStylesheet);
+  document.head.insertBefore(mobileServicesStylesheet, document.querySelector('link[href*="components/signature.css"]'));
 
   const viewport = document.querySelector('meta[name="viewport"]');
   if (viewport && !viewport.content.includes("viewport-fit=cover")) {

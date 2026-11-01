@@ -25,6 +25,7 @@ async function main() {
   const external = new Set();
   const linkTargets = new Map(); // url -> [from pages]
   const anchorIds = new Map();   // page path -> Set(ids)
+  let controlsChecked = 0;
   const note = (page, width, kind, detail) => problems.push({ page, width, kind, detail: String(detail).slice(0, 300) });
 
   for (const width of [320, 390, 1440]) {
@@ -56,10 +57,27 @@ async function main() {
         ids: [...document.querySelectorAll('[id]')].map((e) => e.id),
         h1: document.querySelectorAll('h1').length,
         title: document.title,
-        lang: document.documentElement.lang
+        lang: document.documentElement.lang,
+        brandFont: getComputedStyle(document.body).fontFamily,
+        brandColor: getComputedStyle(document.documentElement).getPropertyValue('--senz-blue').trim(),
+        header: document.querySelectorAll('.senz-global-header').length,
+        footer: document.querySelectorAll('.senz-global-footer').length,
+        motion: Boolean(document.querySelector('.senz-reading-progress')),
+        controls: [...document.querySelectorAll('a,button,summary,[role=button],input[type=submit],input[type=button]')].map(el => ({
+          text: [el.textContent, el.getAttribute('aria-label'), el.value, getComputedStyle(el, '::before').content, getComputedStyle(el, '::after').content].filter(Boolean).join(' '),
+          name: el.getAttribute('aria-label') || el.textContent.trim() || el.value || '',
+          icons: [...el.querySelectorAll('.senz-control-icon')].every(icon => icon.getAttribute('aria-hidden') === 'true' && icon.getAttribute('focusable') === 'false')
+        }))
       }));
       if (info.overflow > 1) note(name, width, 'horizontal overflow', `${info.overflow}px ${info.wide.join(' ')}`);
       for (const src of info.brokenImages) note(name, width, 'broken image', src);
+      if (!info.brandFont.startsWith('Inter') || info.brandColor !== '#003df9' || info.header !== 1 || info.footer !== 1 || !info.motion) note(name, width, 'inconsistent SENZ shell', JSON.stringify({ font: info.brandFont, color: info.brandColor, header: info.header, footer: info.footer, motion: info.motion }));
+      controlsChecked += info.controls.length;
+      for (const control of info.controls) {
+        if (/[\p{Extended_Pictographic}\u2190-\u21ff\u2600-\u27bf\uFE0F\u200D×]/u.test(control.text)) note(name, width, 'emoji or font icon in control', control.text);
+        if (!control.name) note(name, width, 'unnamed control', '');
+        if (!control.icons) note(name, width, 'decorative icon exposed to accessibility tree', control.name);
+      }
       if (width === 1440) {
         if (info.h1 !== 1) note(name, width, 'h1 count', info.h1);
         if (!info.title) note(name, width, 'missing title', '');
@@ -110,6 +128,7 @@ async function main() {
   await browser.close();
   server.close(); delivery.close();
   console.log(`Pages: ${pages.length} at 320, 390 and 1440px; ${linkTargets.size} internal links; outside hosts: ${[...external].sort().join(', ') || 'none'}`);
+  console.log(`Control labels and icons checked: ${controlsChecked}; shared SENZ font, palette, header, footer and motion present on every page`);
   if (problems.length) { console.log(JSON.stringify(problems, null, 1)); process.exit(1); }
 }
 main().catch((e) => { console.error(e); process.exit(1); });
