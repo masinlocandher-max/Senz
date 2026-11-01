@@ -28,7 +28,9 @@
 
   if (!('IntersectionObserver' in window) || !Element.prototype.animate) return;
   const animations = new Map();
-  // Animate content groups, never forms, modal dialogs, live status or whole sections.
+  // Moving a link during pointer-down/focus can make pointer-up miss it. Keep
+  // interactive groups still; entrance motion is for non-interactive content.
+  const interactive = 'a[href],button,input,select,textarea,summary,[tabindex],[role="button"]';
   const targets = [...main.querySelectorAll([
     '.signature-hero-copy', '.hero-text', '.guide-intro h1', '.experience-heading h1',
     '.experience-hero h1', '.client-hero h1', '.signature-connection h2',
@@ -37,7 +39,7 @@
     '.catalog-section h2', '.catalog-item', '.service-rail article',
     '.engagement-list li', '.client-step', '.reason-card', '.icon-card',
     '.process-step', '.answer-card', '.product-journey li', '.signature-steps li'
-  ].join(','))];
+  ].join(','))].filter(el => !el.matches(interactive) && !el.querySelector(interactive));
   const reveal = new IntersectionObserver(entries => {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
