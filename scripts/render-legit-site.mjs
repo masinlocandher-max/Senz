@@ -25,7 +25,7 @@ const html = `<!doctype html>
 <meta name="description" content="Your website. Your identity. Your rules. Personal, portfolio and business websites in the Philippines, built around you by SENZ. Find your setup and request a quote.">
 <meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.senzpr.com/legit-official-site/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="SENZ"><meta property="og:locale" content="en_PH"><meta property="og:title" content="Your website. Your identity. Your rules. | Legit Official Site"><meta property="og:description" content="Your place on the internet. A personal, professional or business website built around you. A Digital Solution by SENZ."><meta property="og:url" content="https://www.senzpr.com/legit-official-site/"><meta property="og:image" content="https://www.senzpr.com/assets/legit-site-still-life.webp"><meta property="og:image:alt" content="Botanical still life from the illustrative personal website concept"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#010522">
-<link rel="icon" href="../assets/senz-original-mark.png"><link rel="preload" as="font" type="font/woff2" href="../assets/fonts/InterVariable.woff2" crossorigin><link rel="stylesheet" href="../components/senz-system.css"><link rel="stylesheet" href="../components/legit-site.css?v=20261101-los-v2">
+<link rel="icon" href="../assets/senz-original-mark.png"><link rel="preload" as="font" type="font/woff2" href="../assets/fonts/InterVariable.woff2" crossorigin><link rel="stylesheet" href="../components/senz-system.css"><link rel="stylesheet" href="../components/legit-site.css?v=20261101-los-v3">
 <script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script>
 </head><body class="senz-unified los-page"><a class="senz-skip" href="#main-content">Skip to content</a>
 ${siteHeader('legit-official-site/index.html')}
@@ -42,6 +42,6 @@ ${siteHeader('legit-official-site/index.html')}
 fs.mkdirSync(path.join(root,'legit-official-site'),{recursive:true});
 let result = applySiteShell(html,'legit-official-site/index.html');
 // Product-specific styles follow shared layers while retaining all existing brand/navigation tokens.
-result = result.replace('<link rel="stylesheet" href="../components/legit-site.css?v=20261101-los-v2">','').replace('</head>','<link rel="stylesheet" href="../components/legit-site.css?v=20261101-los-v2">\n</head>');
+result = result.replace('<link rel="stylesheet" href="../components/legit-site.css?v=20261101-los-v3">','').replace('</head>','<link rel="stylesheet" href="../components/legit-site.css?v=20261101-los-v3">\n</head>');
 fs.writeFileSync(path.join(root,'legit-official-site/index.html'),result);
 console.log('Generated Legit Official Site from its product configuration.');

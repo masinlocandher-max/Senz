@@ -23,7 +23,7 @@ const personas = [
  const browser=await chromium.launch(); const errors=[];
  try {
   for(const width of [320,390,768,1440]) {
-   const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
+   const context=await browser.newContext({viewport:{width,height:900},reducedMotion:width===1440?'no-preference':'reduce'});
    await context.addInitScript(api=>window.SENZ_API_BASE_URL=api,base);
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
    await page.goto(base+'/legit-official-site/'); await page.waitForSelector('.los-choice');
