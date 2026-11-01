@@ -1,0 +1,213 @@
+{
+  "id": "legit-official-site",
+  "name": "Legit Official Site",
+  "provider": "SENZ",
+  "version": 1,
+  "path": "/legit-official-site/",
+  "acquisitionHosts": [
+    "legitofficialsite.com",
+    "www.legitofficialsite.com"
+  ],
+  "commercial": {
+    "mode": "quote",
+    "currency": "PHP",
+    "pricesApproved": false,
+    "setup": null,
+    "monthly": null,
+    "annual": null,
+    "checkoutEnabled": false
+  },
+  "audiences": {
+    "myself": {
+      "label": "For Myself",
+      "hint": "A home for my name, story and interests.",
+      "configuration": "personal"
+    },
+    "profession": {
+      "label": "For My Profession",
+      "hint": "My work, expertise and services.",
+      "configuration": "professional"
+    },
+    "personal-brand": {
+      "label": "For My Personal Brand",
+      "hint": "One place for my public presence.",
+      "configuration": "professional"
+    },
+    "business": {
+      "label": "For My Business",
+      "hint": "Help customers understand and reach me.",
+      "configuration": "business"
+    },
+    "company": {
+      "label": "For My Company",
+      "hint": "A clear introduction to our company.",
+      "configuration": "company"
+    },
+    "organization": {
+      "label": "For My Organization",
+      "hint": "Our purpose, people and work.",
+      "configuration": "company"
+    },
+    "other": {
+      "label": "Something Else",
+      "hint": "Help me shape the right starting point.",
+      "configuration": "personal"
+    }
+  },
+  "goals": {
+    "about": "Learn about me",
+    "work": "See my work",
+    "contact": "Contact me",
+    "services": "View my services",
+    "quote": "Request a quote",
+    "booking": "Book an appointment",
+    "products": "See my products",
+    "catalog": "Browse a catalog",
+    "order": "Order",
+    "location": "Visit my location",
+    "channels": "Follow my official channels",
+    "updates": "Read updates or content",
+    "other": "Something else"
+  },
+  "domains": {
+    "senz": {
+      "label": "A SENZ subdomain",
+      "hint": "Ask about yourname.legitofficialsite.com. Subject to setup and availability."
+    },
+    "existing": {
+      "label": "I already have a domain",
+      "hint": "Keep it in your name. We review how to connect it."
+    },
+    "custom": {
+      "label": "I would like my own domain",
+      "hint": "Registration and renewals are quoted separately."
+    },
+    "decide": {
+      "label": "Help me decide",
+      "hint": "You do not need to know the technical details."
+    }
+  },
+  "configurations": {
+    "personal": {
+      "name": "Personal site",
+      "intro": "Give your name a home online.",
+      "description": "For an individual who wants an official presence, with or without a business.",
+      "scope": "Start with a focused page introducing you, your story and how to reach you.",
+      "sections": [
+        "Profile",
+        "About",
+        "Contact",
+        "Official links"
+      ],
+      "demoName": "Mara Reyes",
+      "demoHeadline": "A little about me. A place for my work.",
+      "demoSubline": "Stories, photographs and the things I’m making.",
+      "demoAction": "Explore my work",
+      "style": "personal",
+      "demoNavigation": [
+        "About",
+        "Work",
+        "Contact"
+      ]
+    },
+    "professional": {
+      "name": "Professional site",
+      "intro": "Let your work speak for you.",
+      "description": "For freelancers, consultants, creators, artists and public-facing professionals.",
+      "scope": "Start with your introduction, selected work, relevant services and one clear contact path.",
+      "sections": [
+        "Profile",
+        "Selected work",
+        "Services",
+        "Credentials",
+        "Inquiry"
+      ],
+      "demoName": "Luna Studio",
+      "demoHeadline": "Considered work. A clear point of view.",
+      "demoSubline": "Independent design, direction and visual storytelling.",
+      "demoAction": "View selected work",
+      "style": "professional",
+      "demoNavigation": [
+        "Projects",
+        "Expertise",
+        "Inquire"
+      ]
+    },
+    "business": {
+      "name": "Business site",
+      "intro": "Make the next step easy.",
+      "description": "For sellers, salons, restaurants and businesses that want their own customer destination.",
+      "scope": "Start with what you offer, why it matters, your contact details and the next customer action.",
+      "sections": [
+        "Business profile",
+        "Products or services",
+        "Location",
+        "Inquiry"
+      ],
+      "demoName": "Common Ground",
+      "demoHeadline": "Good things, made for everyday.",
+      "demoSubline": "Objects, flowers and a little room to slow down.",
+      "demoAction": "Explore the collection",
+      "style": "business",
+      "demoNavigation": [
+        "Collection",
+        "Visit",
+        "Contact"
+      ]
+    },
+    "company": {
+      "name": "Company site",
+      "intro": "A clear home for a bigger story.",
+      "description": "For companies and organizations presenting their purpose, people, services and projects.",
+      "scope": "Start with a clear company overview. Add separate pages only where the content and audience need them.",
+      "sections": [
+        "Company profile",
+        "Solutions",
+        "People",
+        "Projects",
+        "Contact"
+      ],
+      "demoName": "North & Co.",
+      "demoHeadline": "Progress starts with a clear direction.",
+      "demoSubline": "People, ideas and practical work moving together.",
+      "demoAction": "Meet our company",
+      "style": "company",
+      "demoNavigation": [
+        "Company",
+        "Solutions",
+        "People"
+      ],
+      "demoFocus": [
+        "Strategy",
+        "Communication",
+        "Delivery"
+      ]
+    }
+  },
+  "extensions": {
+    "booking": {
+      "name": "Appointment booking",
+      "product": "booking",
+      "available": false,
+      "note": "SENZ will confirm booking availability and scope before including it."
+    },
+    "catalog": {
+      "name": "Managed digital catalog",
+      "product": "digital-catalog",
+      "available": false,
+      "note": "A simple product showcase may be enough. Catalog management is scoped separately."
+    },
+    "order": {
+      "name": "Ordering",
+      "product": null,
+      "available": false,
+      "note": "Ordering and online payment need a separate feasibility review; they are not included or available for instant activation."
+    },
+    "updates": {
+      "name": "Regular updates",
+      "product": null,
+      "available": false,
+      "note": "Agree the update workflow and any ongoing content service in your quote."
+    }
+  }
+}

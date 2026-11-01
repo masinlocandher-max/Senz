@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-01",
+  "baseCommit": "54f81ff740f96cb559a5cbd438e7c76c1652f2d5",
+  "environment": "Local Node 24.22.1, Chromium 152.0.7977.30; isolated inquiry delivery provider; no real email",
+  "unitTests": 43,
+  "pages": 42,
+  "internalLinks": 198,
+  "questionnairePaths": 131,
+  "existingInquiries": 36,
+  "legitSiteInquiries": 5,
+  "legitSiteWidths": [
+    320,
+    390,
+    768,
+    1440
+  ],
+  "legitSiteAccessibilityViolations": 0,
+  "scriptErrors": 0,
+  "checks": [
+    "examples",
+    "goal validation",
+    "reload persistence",
+    "contact handoff",
+    "optional company and budget",
+    "failed delivery preserves message",
+    "reduced motion",
+    "no JavaScript fallback"
+  ],
+  "domainConfigured": false,
+  "liveEmailDeliveryVerified": false
+}

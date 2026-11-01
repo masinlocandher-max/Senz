@@ -1,3 +1,4 @@
+export const legitSiteInvitation = "<section class=\"los-promo\"><div class=\"signature-shell\"><div><p class=\"los-product\">LEGIT OFFICIAL SITE \u00b7 A DIGITAL SOLUTION BY SENZ</p><h2>Your website. Your identity. Your rules.</h2><p>A place online for you, your work or your business. Tell us what you need; we help make it yours.</p></div><a class=\"button primary\" href=\"legit-official-site/\">Find my website setup</a></div></section>";
 const esc = value => String(value).replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
 const money = n => '₱' + Number(n).toLocaleString('en-PH');
 const groups = [

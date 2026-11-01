@@ -397,9 +397,9 @@ async function handleAgentRecommendation(req, res) {
 function safeStaticPath(urlPath) {
   let decoded;
   try { decoded = decodeURIComponent(urlPath); } catch { return null; }
-  const rel = decoded === '/' ? 'index.html' : decoded.replace(/^\/+/, '');
+  const rel = ['/legit-official-site', '/legit-official-site/'].includes(decoded) ? 'legit-official-site/index.html' : decoded === '/' ? 'index.html' : decoded.replace(/^\/+/, '');
   if (rel.split(/[\\/]/).some(p => p.startsWith('.') || p === '..')) return null;
-  const publicRoot = /^[^/]+\.(html|txt|xml)$/.test(rel) || rel === 'function.json';
+  const publicRoot = /^[^/]+\.(html|txt|xml)$/.test(rel) || rel === 'function.json' || rel === 'legit-official-site/index.html';
   const publicAsset = /^(assets|components|products)\//.test(rel) && /\.(html|css|js|json|png|jpg|jpeg|webp|svg|ico|mp3|mp4)$/.test(rel);
   const publicFont = /^assets\/fonts\/[\w-]+\.(woff2|txt)$/.test(rel);
   if (!publicRoot && !publicAsset && !publicFont) return null;

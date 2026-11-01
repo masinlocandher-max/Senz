@@ -9,7 +9,7 @@ const primaryLinks = [
 ];
 
 export function siteHeader(file) {
-  const prefix = file.startsWith('products/') ? '../' : '';
+  const prefix = (file.startsWith('products/') || file.startsWith('legit-official-site/')) ? '../' : '';
   const home = prefix + 'index.html';
   const links = primaryLinks.map(([href, label]) => {
     const current = (href === file || (href === 'digital-products.html' && file.startsWith('products/'))) ? ' aria-current="page"' : '';
@@ -19,13 +19,13 @@ export function siteHeader(file) {
 }
 
 export function siteFooter(file) {
-  const p = file.startsWith('products/') ? '../' : '';
-  return `<footer class="senz-global-footer"><div class="senz-footer-inner"><div><a class="senz-lockup" href="${p}index.html"><img src="${p}assets/senz-original-mark.png" width="48" height="48" alt=""><span><strong>SENZ</strong><small><span class="brand-descriptor">Strategic Communications &amp; Digital Solutions</span>An FMB&amp;CO brand</small></span></a><p>Influence Through Clarity.</p></div><div><h2>Work with SENZ</h2><nav aria-label="Services and software"><a href="${p}client-access.html">Client access &amp; app installation</a><a href="${p}get-started.html">Find a solution</a><a href="${p}services.html">Professional services</a><a href="${p}digital-products.html">SENZ App &amp; pricing</a><a href="${p}contact.html">Discuss a project</a><a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a></nav></div><div><h2>About SENZ</h2><nav aria-label="Company and resources"><a href="${p}partner-program.html">Partner Program</a><a href="${p}careers.html">Creative Network</a><a href="${p}answers.html">Communications guides</a><a href="${p}faq.html">Frequently asked questions</a><a href="${p}privacy.html">Privacy</a><a href="${p}terms.html">Terms</a></nav></div></div><div class="senz-footer-bottom"><span>© 2026 SENZ. An FMB&amp;CO brand.</span></div></footer>`;
+  const p = (file.startsWith('products/') || file.startsWith('legit-official-site/')) ? '../' : '';
+  return `<footer class="senz-global-footer"><div class="senz-footer-inner"><div><a class="senz-lockup" href="${p}index.html"><img src="${p}assets/senz-original-mark.png" width="48" height="48" alt=""><span><strong>SENZ</strong><small><span class="brand-descriptor">Strategic Communications &amp; Digital Solutions</span>An FMB&amp;CO brand</small></span></a><p>Influence Through Clarity.</p></div><div><h2>Work with SENZ</h2><nav aria-label="Services and software"><a href="${p}client-access.html">Client access &amp; app installation</a><a href="${p}get-started.html">Find a solution</a><a href="${p}services.html">Professional services</a><a href="${p}legit-official-site/">Legit Official Site</a><a href="${p}digital-products.html">SENZ App &amp; pricing</a><a href="${p}contact.html">Discuss a project</a><a href="mailto:info.senz.pr@gmail.com">info.senz.pr@gmail.com</a></nav></div><div><h2>About SENZ</h2><nav aria-label="Company and resources"><a href="${p}partner-program.html">Partner Program</a><a href="${p}careers.html">Creative Network</a><a href="${p}answers.html">Communications guides</a><a href="${p}faq.html">Frequently asked questions</a><a href="${p}privacy.html">Privacy</a><a href="${p}terms.html">Terms</a></nav></div></div><div class="senz-footer-bottom"><span>© 2026 SENZ. An FMB&amp;CO brand.</span></div></footer>`;
 }
 
 // Keep the same working links in the HTML sent to browsers and crawlers, including without JavaScript.
 export function applySiteShell(html, file) {
-  const p = file.startsWith('products/') ? '../' : '';
+  const p = (file.startsWith('products/') || file.startsWith('legit-official-site/')) ? '../' : '';
   let result = html
     .replace(/<header class="senz-global-header">[\s\S]*?<\/header>/, () => siteHeader(file))
     .replace(/<footer class="senz-global-footer">[\s\S]*?<\/footer>/, () => siteFooter(file));
