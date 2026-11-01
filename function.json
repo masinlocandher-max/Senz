@@ -170,6 +170,24 @@
       "forSale": false,
       "requestable": true
     }
+  ],
+  "managedServices": [
+    {
+      "id": "legit-official-site",
+      "name": "Legit Official Site",
+      "provider": "SENZ",
+      "path": "/legit-official-site/",
+      "acquisitionRepository": "masinlocandher-max/LegitOfficialSite",
+      "configurations": [
+        "personal",
+        "professional",
+        "business",
+        "company"
+      ],
+      "commercialMode": "quote",
+      "pricingSource": "Senz/components/legit-official-site.json",
+      "managementProduct": "business-website",
+      "managementRequires": "Purchased entitlement, customer-specific release readiness and verified payment or authorized agreement. No automatic access; custom domains and ordering are separately scoped."
+    }
   ]
 }
-

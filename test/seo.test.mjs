@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
-const pages=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')),...fs.readdirSync(root+'/products').map(x=>'products/'+x)];
+const pages=['legit-official-site/index.html',...fs.readdirSync(root).filter(x=>x.endsWith('.html')),...fs.readdirSync(root+'/products').map(x=>'products/'+x)];
 const sitemap=fs.readFileSync(root+'/sitemap.xml','utf8');
 const contents=new Map(pages.map(file=>[file,fs.readFileSync(root+'/'+file,'utf8')]));
 test('every public page has a unique title, description, one heading and canonical sitemap entry',()=>{
@@ -24,7 +24,7 @@ test('local page and component links resolve, including named anchors',()=>{
  for(const [file,html]of contents)for(const m of html.matchAll(/(?:href|src)="([^"]+)"/g)){
   if(/^(https?:|mailto:|tel:|data:|javascript:)/.test(m[1]))continue;
   const url=new URL(m[1].replaceAll('&amp;','&'),'https://www.senzpr.com/'+file);
-  const target=decodeURIComponent(url.pathname.slice(1))||'index.html';
+  let target=decodeURIComponent(url.pathname.slice(1))||'index.html'; if(target.endsWith('/')) target+='index.html';
   assert.ok(fs.existsSync(root+'/'+target),file+' -> '+target);
   if(url.hash&&contents.has(target)){
     const id=decodeURIComponent(url.hash.slice(1));assert.ok(contents.get(target).includes(`id="${id}"`)||contents.get(target).includes(`id='${id}'`),file+' -> '+target+url.hash);

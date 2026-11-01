@@ -20,6 +20,7 @@ async function main() {
 
   const pages = fs.readdirSync(siteDir).filter((n) => n.endsWith('.html'))
     .concat(fs.readdirSync(path.join(siteDir, 'products')).filter((n) => n.endsWith('.html')).map((n) => `products/${n}`));
+  pages.push('legit-official-site/');
   const browser = await chromium.launch();
   const problems = [];
   const external = new Set();
