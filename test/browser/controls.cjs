@@ -41,8 +41,14 @@ const catalog = require('../../components/product-catalog.json');
     assert.equal(flow.second, 'website-rental');
     assert.ok(flow.radius >= 24 && flow.shadow !== 'none');
     assert.ok(!['absolute','fixed'].includes(flow.position));
+    // Wait for the browser's completed scroll, not an intermediate progress frame.
+    await page.evaluate(() => {
+      window.senzTestScrollEnded = false;
+      document.addEventListener('scrollend', () => { window.senzTestScrollEnded = true; }, { once: true });
+    });
     await page.keyboard.press('Control+End');
-    await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('.senz-reading-progress')).transform.split('(')[1].split(',')[0]) > 0.95);
+    await page.waitForFunction(() => window.senzTestScrollEnded && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2);
+    assert.ok(await page.evaluate(() => Number(getComputedStyle(document.querySelector('.senz-reading-progress')).transform.split('(')[1].split(',')[0]) > 0.95));
     await page.keyboard.press('Control+Home');
     await page.waitForFunction(() => window.scrollY < 5);
     await page.locator('.home-connection a[href="#digital-solutions"]').click();
