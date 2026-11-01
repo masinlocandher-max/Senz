@@ -270,12 +270,22 @@ async function main() {
     await page.getByRole('link', { name: 'I’ve sent my request', exact: true }).click();
     await page.getByRole('link', { name: /Follow up on my request/ }).click();
     await page.waitForFunction(() => document.querySelector('textarea[name=message]').value.includes('already submitted'));
-    assert.equal(await page.locator('select[name=inquiryType]').inputValue(), 'Existing client support');
+    assert.equal(await page.locator('input[name=inquiryType]').inputValue(), 'Existing client support');
+    assert.equal(await page.locator('[name=budget], [name=timeline]').count(), 0, 'returning clients do not repeat sales qualification');
+    await page.fill('input[name=name]', 'Existing Client');
+    await page.fill('input[name=email]', 'client@example.com');
+    await page.check('input[name=privacyConsent]');
+    const followup = await submitAndConfirm(page);
+    assert.equal(followup['Project type'], 'Existing client support');
+    assert.equal(followup.Budget, '');
+    assert.equal(followup['Preferred schedule or timeline'], '');
+    assert.match(await page.locator('.form-status').textContent(), /support request was accepted for delivery/);
+    assert.equal(await page.locator('input[name=inquiryType]').inputValue(), 'Existing client support', 'form reset preserves support routing');
     await page.goBack();
     await page.getByRole('link', { name: 'Install the app', exact: true }).click();
     await page.getByText('iPhone or iPad', { exact: true }).click();
     assert.ok(await page.locator('details[open]').innerText().then(text => text.includes('Add to Home Screen')));
-    log.push('Returning client → follow-up form is prefilled; device installation guide opens; unreleased app stays gated');
+    log.push('Returning client → follow-up delivered without sales questions; device installation guide opens; unreleased app stays gated');
     await page.context().close();
   }
 

@@ -58,3 +58,7 @@ Intentional functional/accuracy adjustments from image concepts:
 ## Release boundary
 
 Website publishing remains GitHub Pages from this repository’s main/root. The private app source is separate. `function.json.app.released` stays false in both repositories. Production app deployment, persistent storage, backups/restore, legal approval, applicable provider credentials/budget and full live activation remain required before advertising a working download. Device installation must be checked on the final HTTPS host; a local HTTP preview cannot prove a native installation prompt.
+
+## Follow-up form completion
+
+The live review found that the first client-support prefill still exposed the prospect form’s budget and timing questions. Returning-client links now open a short support variant: name, email, optional organization, message and privacy consent. The sales qualification fields and sales-only copy are removed from this route; normal project inquiries keep their existing form. A hidden support category survives form reset. Confirmation describes accepted delivery and an email reply rather than a commercial-fit review. The browser journey now sends a fixture support request without budget/timing and verifies its category and confirmation.

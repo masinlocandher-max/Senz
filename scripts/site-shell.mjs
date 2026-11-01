@@ -33,13 +33,13 @@ export function applySiteShell(html, file) {
     result = result.replace('</body>', `<script src="${p}components/navigation.js" defer></script>\n</body>`);
   }
   if (!result.includes('components/experience.css')) {
-    result = result.replace('</head>', `<link rel="stylesheet" href="${p}components/experience.css?v=20261101-signature-v2">\n</head>`);
+    result = result.replace('</head>', `<link rel="stylesheet" href="${p}components/experience.css?v=20261101-signature-v3">\n</head>`);
   }
   if (!result.includes('components/signature.css')) {
-    result = result.replace('</head>', `<link rel="stylesheet" href="${p}components/signature.css?v=20261101-signature-v2">\n</head>`);
+    result = result.replace('</head>', `<link rel="stylesheet" href="${p}components/signature.css?v=20261101-signature-v3">\n</head>`);
   }
   result = result.replaceAll('assets/fonts/montserrat-latin-wght-v31.woff2', 'assets/fonts/InterVariable.woff2');
   // Pages/CDN caches old script URLs. Update the revision when changing the public journey.
   const changedAsset = /(components\/(?:navigation\.(?:css|js)|experience\.css|signature\.css|cost-(?:model|planner)\.js|discovery(?:-model)?\.js|approved-pages\.js|form-router\.js|purchase\.js|commerce\.css))(?:\?v=[^"']*)?(?=["'])/g;
-  return result.replace(changedAsset, '$1?v=20261101-signature-v2');
+  return result.replace(changedAsset, '$1?v=20261101-signature-v3');
 }
