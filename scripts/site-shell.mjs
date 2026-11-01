@@ -47,7 +47,7 @@ export function applySiteShell(html, file) {
   }
   // The shared interaction layer must follow page-specific styles.
   result = result.replace(/<link[^>]+href=["'][^"']*components\/controls\.css[^"']*["'][^>]*>\s*/g, '');
-  result = result.replace('</head>', `<link rel="stylesheet" href="${p}components/controls.css?v=20261102-organized-v2">\n</head>`);
+  result = result.replace('</head>', `<link rel="stylesheet" href="${p}components/controls.css?v=20261102-organized-v3">\n</head>`);
   result = result.replaceAll('assets/fonts/montserrat-latin-wght-v31.woff2', 'assets/fonts/InterVariable.woff2');
   // Pages/CDN caches old script URLs. Update the revision when changing the public journey.
   const changedAsset = /(components\/(?:navigation\.(?:css|js)|experience\.css|signature\.css|signature-motion\.js|partner-program\.css|launch-polish\.css|chat-support\.js|cost-(?:model|planner)\.js|discovery(?:-model)?\.js|approved-pages\.js|form-router\.js|purchase\.js|commerce\.css))(?:\?v=[^"']*)?(?=["'])/g;

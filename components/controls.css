@@ -33,3 +33,9 @@ body.senz-unified .senz-global-header [hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){body.senz-unified :is(button,.button,.choice,.filter,.catalog-nav a,.senz-start,.senz-client-access,.app-choice+label){transition:none;transform:none}}
 
 .catalog-previews .app-spotlight{max-width:900px;margin:28px auto 0}.catalog-previews .app-preview-links{flex-wrap:wrap}.catalog-previews .app-preview{margin-top:20px}
+.catalog-previews .app-tour{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 8px;padding:16px 16px 0}
+.catalog-previews .app-tour legend{margin:0;padding:0 0 8px}
+body.senz-unified .catalog-previews .app-choice+label{justify-content:center;margin:0;padding:10px 8px;border:1px solid #536783;background:#223451;color:#e3ebfa;font-size:12px;box-shadow:0 4px 12px #01052230}
+body.senz-unified .catalog-previews .app-choice:checked+label{background:#fff;color:#010522;border-color:#fff}
+body.senz-unified .catalog-previews .app-choice:focus-visible+label{outline:3px solid #9abfff;outline-offset:3px}
+.catalog-previews .app-preview{grid-column:1/-1;margin-inline:-16px}
