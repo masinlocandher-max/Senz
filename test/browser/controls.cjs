@@ -17,7 +17,8 @@ const catalog = require('../../components/product-catalog.json');
   for (const width of [390, 1440]) {
     const context = await browser.newContext({ viewport: { width, height: 900 } });
     const page = await context.newPage();
-    await page.goto(`${base}/index.html`);
+    await page.goto(`${base}/digital-products.html`);
+    await page.getByText('Preview how three tools work', { exact: true }).click();
     for (const [choice, preview] of [['show-bookings', 'preview-bookings'], ['show-menu', 'preview-menu'], ['show-followups', 'preview-followups']]) {
       await page.locator(`label[for="${choice}"]`).click();
       assert.ok(await page.locator(`#${choice}`).isChecked());
@@ -28,12 +29,24 @@ const catalog = require('../../components/product-catalog.json');
     assert.ok(await page.locator('.app-menu-sold').isVisible());
     await page.locator('label[for="sample-sold-out"]').click();
     assert.ok(await page.locator('.app-menu-available').isVisible());
+    await page.goto(`${base}/index.html`);
+    assert.equal(await page.locator('.home-product-groups li').count(), catalog.products.length);
+    const flow = await page.evaluate(() => {
+      const hero = document.querySelector('.home-opening');
+      const sections = [...document.querySelector('main').children];
+      const control = hero.querySelector('.button');
+      const style = getComputedStyle(control);
+      return { second: sections[1].id, radius: parseFloat(style.borderRadius), shadow: style.boxShadow, position: style.position };
+    });
+    assert.equal(flow.second, 'website-rental');
+    assert.ok(flow.radius >= 24 && flow.shadow !== 'none');
+    assert.ok(!['absolute','fixed'].includes(flow.position));
     await page.keyboard.press('Control+End');
     await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('.senz-reading-progress')).transform.split('(')[1].split(',')[0]) > 0.95);
     await page.keyboard.press('Control+Home');
     await page.waitForFunction(() => window.scrollY < 5);
-    await page.getByRole('link', { name: 'Discover how it connects', exact: true }).click();
-    await page.waitForFunction(() => Math.abs(document.querySelector('#solutions').getBoundingClientRect().top) < 40);
+    await page.locator('.home-connection a[href="#digital-solutions"]').click();
+    await page.waitForFunction(() => Math.abs(document.querySelector('#digital-solutions').getBoundingClientRect().top) < 40);
 
     await page.goto(`${base}/faq.html`);
     for (const filter of await page.locator('[data-faq-filter]').all()) {

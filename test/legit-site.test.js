@@ -30,6 +30,8 @@ test('incomplete or tampered selections cannot fabricate a quote, price or perso
   const href = model.handoff({audience:'myself',goals:['about'],domain:'decide',email:'private@example.com',message:'private'},data);
   assert.doesNotMatch(href,/private|price|checkout/);
   assert.equal(data.commercial.pricesApproved,false); assert.equal(data.commercial.checkoutEnabled,false);
+  assert.equal(data.acquisitionHosts, undefined, 'acquisition hosts must stay out of public configuration');
+  assert.doesNotMatch(JSON.stringify(data.domains), /[a-z0-9-]+\.(com|net|org)(?:[\s/"]|$)/i, 'address options must not disclose hostnames');
   assert.equal(data.commercial.setup,null); assert.equal(data.commercial.monthly,null);
 });
 test('one canonical product page keeps ownership and release limits explicit', () => {

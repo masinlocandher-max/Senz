@@ -42,6 +42,6 @@ The five perspectives are an individual (Personal), freelancer (Professional), F
 
 Publish through this repository's existing main/GitHub Pages path, then verify the actual URL and matching deployment commit. Local inquiry delivery used an isolated provider and sent no real emails.
 
-The acquisition repository contains a tested 308 redirect for exactly `legitofficialsite.com` and `www.legitofficialsite.com`, preserving bounded UTM parameters. Its destination is `https://senzpr.com/legit-official-site`, which follows the existing canonical www policy. No duplicate marketing page is published. Domain-provider access is still required to attach the redirect and TLS while preserving DNS, MX, TXT and customer subdomains. No DNS or hosting migration was performed.
+The acquisition repository contains a tested 308 redirect for exactly `the acquisition hostname` and `the www acquisition hostname`, preserving bounded UTM parameters. Its destination is `https://senzpr.com/legit-official-site`, which follows the existing canonical www policy. No duplicate marketing page is published. Domain-provider access is still required to attach the redirect and TLS while preserving DNS, MX, TXT and customer subdomains. No DNS or hosting migration was performed.
 
 The repeatable delivery process and domain/rights responsibilities are documented in the acquisition repository's `SERVICE_DELIVERY.md`. Approved fees, service terms and actual customer delivery readiness remain prerequisites to accepting payment or activating a customer site.

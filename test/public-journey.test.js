@@ -104,8 +104,8 @@ test('service search prices distinguish the free consultation from quoted starti
   }
 });
 
-test('each homepage app preview has a labeled selector and a product details link', () => {
-  const html = read('index.html');
+test('each catalog app preview has a labeled selector and a product details link', () => {
+  const html = read('digital-products.html');
   const tour = html.match(/<fieldset class="app-tour">([\s\S]*?)<\/fieldset>/)[1];
   const choices = [...tour.matchAll(/<input class="app-choice"[^>]+id="([^"]+)" aria-controls="([^"]+)"([^>]*)>/g)];
   assert.equal(choices.length, 3);

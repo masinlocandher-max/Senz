@@ -1,0 +1,16 @@
+{
+  "productGroups": [
+    { "name": "Communicate with clarity", "ids": ["ai-workspace", "communications-intelligence", "digital-assistant", "digital-representative"] },
+    { "name": "Serve your customers", "ids": ["qr-menu", "booking", "digital-catalog", "business-website"] },
+    { "name": "Manage the work", "ids": ["crm", "pos", "loyalty", "client-portal", "event-systems"] }
+  ],
+  "rentalAudiences": [
+    { "title": "For freelancers", "text": "Show your work, explain your services and make inquiries easier." },
+    { "title": "For startups", "text": "Introduce your business clearly, build credibility and give customers a next step." }
+  ],
+  "journey": [
+    { "title": "Tell us your goal", "text": "Start with a short guide or tell SENZ what you need." },
+    { "title": "Agree the right setup", "text": "Review the recommended scope, availability, fees and timeline." },
+    { "title": "Prepare and activate", "text": "Share your requirements, review the work and activate the agreed service." }
+  ]
+}
