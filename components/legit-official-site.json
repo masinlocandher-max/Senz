@@ -4,15 +4,6 @@
   "provider": "SENZ",
   "version": 1,
   "path": "/legit-official-site/",
-  "commercial": {
-    "mode": "quote",
-    "currency": "PHP",
-    "pricesApproved": false,
-    "setup": null,
-    "monthly": null,
-    "annual": null,
-    "checkoutEnabled": false
-  },
   "audiences": {
     "myself": {
       "label": "For Myself",
@@ -184,25 +175,21 @@
     "booking": {
       "name": "Appointment booking",
       "product": "booking",
-      "available": false,
       "note": "SENZ will confirm booking availability and scope before including it."
     },
     "catalog": {
       "name": "Managed digital catalog",
       "product": "digital-catalog",
-      "available": false,
       "note": "A simple product showcase may be enough. Catalog management is scoped separately."
     },
     "order": {
       "name": "Ordering",
       "product": null,
-      "available": false,
       "note": "Ordering and online payment need a separate feasibility review; they are not included or available for instant activation."
     },
     "updates": {
       "name": "Regular updates",
       "product": null,
-      "available": false,
       "note": "Agree the update workflow and any ongoing content service in your quote."
     }
   }

@@ -16,11 +16,11 @@
       return;
     }
     const count = window.SENZDiscovery.seatCount(seats.value);
-    const total = count ? product.pricePhp * count : null;
+    const total = count && product.pricePhp!=null ? product.pricePhp * count : null;
     const title = document.createElement('strong');
     title.textContent = product.name;
     const text = document.createElement('p');
-    text.textContent = count ? `₱${total.toLocaleString('en-PH')}/month for ${count} named ${count === 1 ? 'user' : 'users'} in one workspace. ${product.storageMb.toLocaleString('en-PH')} MB storage per workspace.` +
+    text.textContent = total===null && count ? `Request a Quote for ${count} named user(s). Scope, fees and activation are confirmed before payment.` : count ? `₱${total.toLocaleString('en-PH')}/month for ${count} named ${count === 1 ? 'user' : 'users'} in one workspace. ${product.storageMb.toLocaleString('en-PH')} MB storage per workspace.` +
       (product.usesAi ? ` ${product.aiCreditsPerSeat} processing credits per named user each month.` : '') : 'Enter a seat count from 1 to 10,000 to see the monthly total.';
     const limits = document.createElement('p'); limits.textContent = product.limits;
     summary.append(title, text, limits);

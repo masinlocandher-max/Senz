@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "generated": true,
+  "owner": "masinlocandher-max/Senzapp",
+  "sourcePath": "src/catalog.js",
+  "sha256": "8aad57a79553d6f26efea4e782a63f4582e226e47a4235d6d0d31f801025df85",
+  "data": {
+    "schemaVersion": 1,
+    "owner": "masinlocandher-max/Senzapp",
+    "platform": {
+      "plannedOrigin": "https://app.senzpr.com",
+      "productionVerified": false,
+      "lastVerifiedAt": null,
+      "evidenceReference": null
+    },
+    "products": [
+      {
+        "id": "ai-workspace",
+        "entitlementId": "ai-workspace",
+        "displayName": "SENZ Workspace",
+        "category": "ai",
+        "usesAi": true,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "Seven drafting tools: email, summary, rewrite, action items, FAQ, plan, and comparison",
+          "Refine a draft, edit by hand, and restore any earlier version",
+          "Search your documents and export them as Markdown or plain text"
+        ],
+        "limitations": "Uses only what you provide. It does not browse the web, send, or publish anything, and every draft needs human review.",
+        "summary": "Draft, summarize, rewrite, and structure real work with saved, versioned outputs.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "verified-real-provider",
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "communications-intelligence",
+        "entitlementId": "communications-intelligence",
+        "displayName": "SENZ Communications Intelligence",
+        "category": "ai",
+        "usesAi": true,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "Six structured tools: message brief, stakeholder plan, clarity and tone review, campaign narrative, issue and crisis preparation, and communications diagnostic",
+          "Human approval required before export; every new version needs approval again",
+          "Optional SENZ strategic review of a version you choose to share"
+        ],
+        "limitations": "It does not publish or send messages, and it does not replace legal advice or a crisis team.",
+        "summary": "Message briefs, stakeholder plans, clarity reviews, and issue preparation with human approval.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "verified-real-provider",
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "digital-assistant",
+        "entitlementId": "digital-assistant",
+        "displayName": "SENZ Digital Assistant",
+        "category": "ai",
+        "usesAi": true,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "An approved-knowledge library that you control",
+          "Answers that cite their sources; unanswerable questions become handoff requests to your team",
+          "An embed code that works only on the websites you allow, with pause and unpublish at any time"
+        ],
+        "limitations": "It replies only from your approved knowledge: an answer must cite it, and every number, date, price, or contact detail must appear in what it cites, or the question goes to your team. It does not take payments or make bookings.",
+        "summary": "An assistant that answers only from your approved knowledge and hands off to a person.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "verified-real-provider",
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "fotolab",
+        "entitlementId": "fotolab",
+        "displayName": "SENZ FotoLab",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "retired",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": false,
+        "capabilities": [
+          "Private photo projects with a rights acknowledgement for every upload",
+          "Exposure, brightness, contrast, saturation, warmth, rotate, flip, resize, and crop to 1:1, 4:5, 3:2, or 16:9 at the position you choose, each saved as a new version",
+          "Originals kept untouched; download any version"
+        ],
+        "limitations": "A self-service editor, not a retouching service by SENZ staff. It does not generate images or replace their contents.",
+        "summary": "Private photo projects with real non-destructive adjustments, versions, and export.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "client-portal",
+        "entitlementId": "client-portal",
+        "displayName": "SENZ Client Portal",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "Milestones and deliverables with version history",
+          "Comments, revision requests, approvals, and client uploads",
+          "Final delivery with a record of who approved what and when"
+        ],
+        "limitations": "Set up by SENZ for each contract. It is not a general CRM, form builder, or public file-sharing service.",
+        "summary": "Contracted project workspace for milestones, deliverables, revisions, and approvals.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "event-systems",
+        "entitlementId": "event-systems",
+        "displayName": "SENZ Event Systems",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "A public registration page with capacity limits and an automatic waitlist; attendees check their status with their code",
+          "Single-use check-in codes that block duplicate entry",
+          "Attendee export and deletion of attendee data after the event"
+        ],
+        "limitations": "It does not sell tickets or run voting or tabulation.",
+        "summary": "Event publishing, capacity-safe RSVP, waitlists, check-in, and attendee export.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "digital-representative",
+        "entitlementId": "digital-representative",
+        "displayName": "SENZ Digital Representative",
+        "category": "ai",
+        "usesAi": true,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "Recorded, revocable consent with an evidence reference",
+          "Answers only from approved knowledge, always disclosed as automated",
+          "Publication stops immediately when consent is revoked"
+        ],
+        "limitations": "Text only. It has no voice or video likeness and is never presented as the real person.",
+        "summary": "Consent-based, disclosed text representative for a brand or person, with human approval.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "verified-real-provider",
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "music-platform",
+        "entitlementId": "music-platform",
+        "displayName": "SENZ Music Platform",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "retired",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": false,
+        "capabilities": [
+          "Protected audio previews with version history",
+          "Timestamped feedback and approvals",
+          "Downloads unlocked only after rights are confirmed and the project is delivered"
+        ],
+        "limitations": "It does not stream music to the public, publish charts, or generate music.",
+        "summary": "Protected audio previews, timestamped feedback, rights confirmation, and delivery.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "qr-menu",
+        "entitlementId": "qr-menu",
+        "displayName": "SENZ QR Menu",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "Menu sections and items with prices, descriptions, photos, and dietary tags you enter",
+          "Mark an item sold out or available again; the public menu changes at once",
+          "A public menu page and a printable QR code; guests filter by dietary tag and build a list to show staff"
+        ],
+        "limitations": "Dietary information is entered by the business and is not checked by SENZ. It does not take orders or payments; guests show their list to staff.",
+        "summary": "A public menu with a QR code, sections, prices, dietary tags, and sold-out items.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "booking",
+        "entitlementId": "booking",
+        "displayName": "SENZ Booking",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "Services with durations, open days and start times, closed dates, and optional staff",
+          "A public booking page and QR code; you confirm or decline each request, and a confirmed time cannot be given twice",
+          "Customers check or cancel a request with its reference; you add phone and walk-in bookings yourself"
+        ],
+        "limitations": "It does not take payments or deposits and sends no messages or reminders; you contact customers yourself.",
+        "summary": "Online appointment requests that you confirm, with no double-booking.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "digital-catalog",
+        "entitlementId": "digital-catalog",
+        "displayName": "SENZ Digital Catalog",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "Products with categories, descriptions, photos, and a price or \"price on request\"; hide an item without deleting it",
+          "A public catalog page and QR code with search and category filters",
+          "Customer inquiry lists with quantities arrive in your inbox with a reference"
+        ],
+        "limitations": "It does not take orders or payments or track stock; you reply to each inquiry yourself.",
+        "summary": "A shareable product catalog with search and inquiry lists.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "business-website",
+        "entitlementId": "business-website",
+        "displayName": "Legit Official Site",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "Services, highlights, about, photos, FAQ, and contact details on one page that you write and edit",
+          "An inquiry form whose messages arrive in your inbox with a reference",
+          "A page title and description for search engines, a SENZ web address, and a QR code",
+          "A private authenticated preview before you confirm publication"
+        ],
+        "limitations": "The current renderer uses a path on the configured SENZ App host. Automatic subdomains, custom domains, multi-page editing, blogs, arbitrary plugins and online payments are not implemented. Published edits appear immediately; unpublish for private revisions.",
+        "summary": "A managed one-page website for your identity, work or organization, with photos and an inquiry inbox.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "crm",
+        "entitlementId": "crm",
+        "displayName": "SENZ CRM",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "Contacts with deal value, stage, next follow-up date, and a dated notes history",
+          "Pipeline and follow-up views with overdue flags, search, and totals",
+          "Add an inquiry or booking request to the CRM in one step; export contacts as CSV"
+        ],
+        "limitations": "It does not send emails or messages and does not import contacts from other systems.",
+        "summary": "Contacts, stages, follow-ups, and notes for a small team.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "pos",
+        "entitlementId": "pos",
+        "displayName": "SENZ POS and Inventory",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "Items with categories, prices, and stock counts; every restock and count is recorded with who made it",
+          "Ring up a sale with quantities, a discount, the payment method, and change for cash; stock goes down at once and an item cannot be sold past its stock",
+          "Daily totals by payment method, best sellers, low-stock alerts, voids that return stock, a printable sales slip, and CSV export"
+        ],
+        "limitations": "It records sales and stock only. It is not a BIR-registered POS, does not issue official receipts or invoices, and does not process card or e-wallet payments.",
+        "summary": "Counter sales, stock counts, and daily totals.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      },
+      {
+        "id": "loyalty",
+        "entitlementId": "loyalty",
+        "displayName": "SENZ Loyalty",
+        "category": "workflow",
+        "usesAi": false,
+        "technicalStatus": "development",
+        "productionVerified": false,
+        "lastVerifiedAt": null,
+        "releaseEvidence": null,
+        "customerVisible": true,
+        "capabilities": [
+          "One stamp program with the number of stamps, the reward, and an optional minimum spend that you set",
+          "Members join with their agreement; stamps come from POS sales or are added by hand with a note (by owners and administrators unless you allow all staff), and a full card is redeemed for the reward",
+          "Each member's card with a dated history of stamps and rewards and who recorded them"
+        ],
+        "limitations": "It sends no messages and has no public member page; members ask your staff for their card. A voided POS sale takes back its stamp.",
+        "summary": "A digital stamp card tied to your counter sales.",
+        "seatRules": "Active workspace entitlement; organization members also need an assigned seat",
+        "usageLimits": "Defined by the purchased entitlement; enforced server-side",
+        "dependencies": [
+          "persistent-storage"
+        ],
+        "documentation": "docs/PRODUCTS.md"
+      }
+    ]
+  }
+}

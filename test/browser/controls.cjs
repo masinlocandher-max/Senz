@@ -12,7 +12,7 @@ const catalog = require('../../components/product-catalog.json');
 (async () => {
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const base = `http://127.0.0.1:${server.address().port}`;
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({executablePath:process.env.CHROMIUM_EXECUTABLE_PATH||undefined});
   let faqButtons = 0, disclosures = 0;
   for (const width of [390, 1440]) {
     const context = await browser.newContext({ viewport: { width, height: 900 } });
@@ -89,7 +89,7 @@ const catalog = require('../../components/product-catalog.json');
     await booking.check();
     await page.locator('[name=namedUsers]').fill('2');
     const price = catalog.products.find(product => product.id === 'booking').pricePhp;
-    await page.waitForFunction(total => document.querySelector('[data-cost-total]').textContent === total, `₱${(price * 2).toLocaleString('en-PH')}`);
+    await page.waitForFunction(total => document.querySelector('[data-cost-total]').textContent === total, price==null?'Request a Quote':`₱${(price * 2).toLocaleString('en-PH')}`);
     assert.match(await page.locator('[data-cost-action]').getAttribute('href'), /product=booking&seats=2/);
     await page.locator('[name=tools][value=crm]').check();
     assert.match(await page.locator('[data-cost-action]').getAttribute('href'), /contact\.html\?planner=1/);

@@ -25,7 +25,8 @@ export function checkSource(root = projectRoot, env = process.env) {
   assert.equal(roles.website.repository, repository, 'Website function must name this repository.');
   assert.equal(roles.app.repository, contract.appRepository, 'App function must name Senzapp.');
   assert.equal(roles.app.released, false, 'function.json must not claim the app is released.');
-  assert.equal(roles.products.length, 15, 'The contract lists the SENZ app products.');
+  assert.equal(roles.products, undefined, 'Ownership metadata must not duplicate the product registry.');
+  assert.equal(roles.acquisition.repository, 'masinlocandher-max/LegitOfficialSite');
   assert.equal(pkg.repository?.url, `https://github.com/${repository}.git`, 'Package repository mismatch.');
   assert.equal(pkg.homepage, `https://${contract.canonicalDomain}`, 'Package homepage mismatch.');
   assert.equal(readFileSync(path.join(root, 'CNAME'), 'utf8').trim(), contract.canonicalDomain, 'CNAME mismatch.');

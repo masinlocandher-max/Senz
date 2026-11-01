@@ -20,7 +20,7 @@ test('website recommendations include all audiences without forcing a business p
   const personal = model.recommend({ audience:'myself', goals:['about','work','contact'], domain:'decide' }, data);
   assert.equal(personal.kind, 'personal'); assert.deepEqual(personal.additions, []);
   const order = model.recommend({ audience:'business', goals:['order'], domain:'custom' }, data);
-  assert.deepEqual(order.additions, ['order']); assert.equal(data.extensions.order.available, false);
+  assert.deepEqual(order.additions, ['order']); assert.match(data.extensions.order.note, /not|separate|scope|confirm/i);
 });
 test('incomplete or tampered selections cannot fabricate a quote, price or personal-data handoff', () => {
   assert.equal(model.recommend({ audience:'myself', goals:[], domain:'decide' }, data),null);
@@ -29,10 +29,10 @@ test('incomplete or tampered selections cannot fabricate a quote, price or perso
   assert.equal(model.readHandoff('?los=1&audience=myself&goals=about&domain=invalid',data),null);
   const href = model.handoff({audience:'myself',goals:['about'],domain:'decide',email:'private@example.com',message:'private'},data);
   assert.doesNotMatch(href,/private|price|checkout/);
-  assert.equal(data.commercial.pricesApproved,false); assert.equal(data.commercial.checkoutEnabled,false);
+  const offer=require('../commercial/catalog.json').products.find(p=>p.id==='legit-official-site');
+  assert.equal(offer.pricing.approved,false);assert.equal(offer.pricing.amount,null);assert.equal(offer.quoteOnly,true);
   assert.equal(data.acquisitionHosts, undefined, 'acquisition hosts must stay out of public configuration');
   assert.doesNotMatch(JSON.stringify(data.domains), /[a-z0-9-]+\.(com|net|org)(?:[\s/"]|$)/i, 'address options must not disclose hostnames');
-  assert.equal(data.commercial.setup,null); assert.equal(data.commercial.monthly,null);
 });
 test('one canonical product page keeps ownership and release limits explicit', () => {
   const html = fs.readFileSync(require.resolve('../legit-official-site/index.html'),'utf8');
@@ -41,5 +41,5 @@ test('one canonical product page keeps ownership and release limits explicit', (
   for (const phrase of ['Fictional identity','not SENZ client work','subject to setup and availability','This is not unrestricted hosting','Your identity and content remain yours']) assert.ok(html.includes(phrase),phrase);
   const contract = require('../function.json');
   assert.equal(contract.app.released,false);
-  assert.equal(contract.managedServices.find(p=>p.id===data.id).commercialMode,'quote');
+  assert.equal(require('../commercial/catalog.json').products.find(p=>p.id===data.id).quoteOnly,true);
 });

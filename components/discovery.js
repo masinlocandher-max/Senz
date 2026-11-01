@@ -61,7 +61,7 @@
       const list = el('ul'); for (const item of product.includes) list.append(el('li', item));
       host.append(list, el('p', product.limits));
       const seats = model.seatCount(a.scope);
-      const price = seats ? `${money(product.pricePhp * seats)}/month for ${seats} named ${seats === 1 ? 'user' : 'users'} in one workspace.` :
+      const price = product.pricePhp==null ? 'Request a Quote. SENZ confirms your scope and fees before payment.' : seats ? `${money(product.pricePhp * seats)}/month for ${seats} named ${seats === 1 ? 'user' : 'users'} in one workspace.` :
         `From ${money(product.pricePhp)}/month for one named user. SENZ can help estimate your seat count.`;
       host.append(el('p', price + ' ' + product.storageMb.toLocaleString('en-PH') + ' MB storage per workspace.' +
         (product.usesAi ? ' ' + product.aiCreditsPerSeat + ' processing credits per named user each month.' : ''), 'offer-summary'));
@@ -77,7 +77,7 @@
     add('Preferred timing', model.timings[a.when]);
     const actions = el('div', null, 'button-row');
     const request = model.handoff(a, catalog);
-    const detail = product ? 'products/' + product.id + '.html' : service.page;
+    const detail = product ? product.publicSlug.slice(1) : service.page;
     actions.append(anchor((product ? model.softwareActions : model.serviceActions)[a.intent], request),
       anchor(product ? 'Review product and pricing' : 'Read about this service', detail + '?' + request.split('?')[1], true));
     host.append(details, actions);

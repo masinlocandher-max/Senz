@@ -1,3 +1,5 @@
+> Current authority: commercial/catalog.json in Senz and src/catalog.js in Senzapp. Historical price/release statements below do not authorize current offers. Follow docs/architecture/ECOSYSTEM.md and docs/COMMERCIAL_READINESS.md.
+
 # SENZ signature design and client access review
 
 1 November 2026. This is the design and source verification record; production publication is verified separately after merge.

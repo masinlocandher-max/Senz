@@ -20,14 +20,14 @@ const personas = [
  process.chdir(path.resolve(__dirname,'../..'));
  const {server}=require('../../server'); await new Promise(r=>server.listen(0,'127.0.0.1',r));
  const base=`http://127.0.0.1:${server.address().port}`;
- const browser=await chromium.launch(); const errors=[];
+ const browser=await chromium.launch({executablePath:process.env.CHROMIUM_EXECUTABLE_PATH||undefined}); const errors=[];
  try {
   for(const width of [320,390,768,1440]) {
    const context=await browser.newContext({viewport:{width,height:900},reducedMotion:width===1440?'no-preference':'reduce'});
    await context.addInitScript(api=>window.SENZ_API_BASE_URL=api,base);
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
    await page.goto(base+'/legit-official-site/'); await page.waitForSelector('.los-choice');
-   assert.equal(await page.locator('h1').innerText(),'Your website.\nYour identity.\nYour rules.');
+   assert.equal(await page.locator('h1').innerText(),'Your website.\nYour space.\nYour rules.');
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${width}: overflow`);
    await page.addScriptTag({path:require.resolve('axe-core/axe.min.js')});
    let violations=await page.evaluate(async()=>(await axe.run(document,{runOnly:['wcag2a','wcag2aa','wcag21a','wcag21aa']})).violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)})));

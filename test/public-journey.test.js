@@ -87,21 +87,13 @@ test('the visible software FAQ and its search markup agree about products, avail
     assert.equal(org.email,'info.senz.pr@gmail.com');
   }
   const list = markup(read('digital-products.html')).find(x=>x['@type']==='ItemList');
-  assert.deepEqual(list.itemListElement.map(x=>x.url.split('/').pop()).sort(),catalog.products.map(p=>p.id+'.html').sort());
+  assert.deepEqual(list.itemListElement.map(x=>new URL(x.url).pathname).sort(),catalog.products.map(p=>p.publicSlug).sort());
 });
 
-test('service search prices distinguish the free consultation from quoted starting prices', () => {
-  const html = read('services.html');
-  const service = markup(html).find(x=>x['@type']==='Service');
-  const [check, project, build, support] = service.hasOfferCatalog.itemListElement;
-  assert.equal(check.price, '0');
-  assert.match(html, /Free · Up to 30 minutes/);
-  for (const [offer, price] of [[project,25000],[build,95000],[support,5000]]) {
-    assert.equal(offer.price, undefined, 'custom work should not be a fixed-price offer');
-    assert.equal(offer.priceSpecification.minPrice, price);
-    assert.equal(offer.priceSpecification.priceCurrency, 'PHP');
-    assert.ok(plain(html.match(/<main\b[\s\S]*?<\/main>/)[0]).includes('₱'+price.toLocaleString('en-PH')));
-  }
+test('unapproved service prices are absent from visible copy and structured data', () => {
+ const html=read('services.html');
+ assert.doesNotMatch(html,/₱[0-9]|"(?:price|minPrice|lowPrice|highPrice)"\s*:/);
+ assert.match(html,/Request a Quote/);
 });
 
 test('each catalog app preview has a labeled selector and a product details link', () => {

@@ -16,9 +16,9 @@
       error.textContent = result.error || '';
       action.hidden = Boolean(result.error) || !selected.length;
       if (result.error) { amount.textContent = '—'; detail.textContent = 'Check your entries.'; difference.textContent = ''; return; }
-      amount.textContent = pesos(result.total);
+      amount.textContent = result.quoteRequired ? 'Request a Quote' : pesos(result.total);
       detail.textContent = selected.length ? `per month · ${selected.length} ${selected.length === 1 ? 'tool' : 'tools'} · ${seats} named ${seats === 1 ? 'user' : 'users'}` : 'Select the tools you need.';
-      difference.textContent = result.difference == null ? 'Add your current monthly spend to compare the totals.' : result.difference === 0 ? 'The monthly totals are the same.' : `${pesos(Math.abs(result.difference))} ${result.difference > 0 ? 'less' : 'more'} per month than the amount you entered.`;
+      difference.textContent = result.quoteRequired ? 'SENZ will confirm the total after reviewing your requirements.' : result.difference == null ? 'Add your current monthly spend to compare the totals.' : result.difference === 0 ? 'The monthly totals are the same.' : `${pesos(Math.abs(result.difference))} ${result.difference > 0 ? 'less' : 'more'} per month than the amount you entered.`;
       if (selected.length === 1) { action.href = 'purchase.html?' + new URLSearchParams({product:selected[0],seats:String(seats)}); action.textContent = 'Request this tool'; }
       else { action.href = 'contact.html?' + new URLSearchParams({planner:'1', tools:selected.join(','), seats:String(seats)}); action.textContent = 'Discuss these tools'; }
     }

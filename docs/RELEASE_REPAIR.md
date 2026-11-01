@@ -1,3 +1,5 @@
+> Current authority: commercial/catalog.json in Senz and src/catalog.js in Senzapp. Historical price/release statements below do not authorize current offers. Follow docs/architecture/ECOSYSTEM.md and docs/COMMERCIAL_READINESS.md.
+
 > Scope correction: the owner removed FotoLab and Music Platform. The active offer has 13 products. The earlier 15-product test run below is historical coverage, not authorization to offer those two products.
 
 # SENZ repair verification — 30 October 2026 (Asia/Manila)

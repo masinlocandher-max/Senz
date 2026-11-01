@@ -9,7 +9,7 @@
     },
     {
       match: ['price', 'pricing', 'cost', 'rate', 'budget'],
-      reply: 'Software has published monthly prices per named user. Use Products to see the price, inclusions and limits, or Get Started to find a fit. SENZ quotes professional services after reviewing the project.'
+      reply: 'Software pricing is confirmed in your quotation. Use Products to review scope and limits, or Get Started to find a fit. SENZ quotes professional services after reviewing the project.'
     },
     {
       match: ['website', 'digital presence', 'web'],

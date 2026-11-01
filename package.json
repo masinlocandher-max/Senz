@@ -15,9 +15,11 @@
     "check:source": "node scripts/check-source.mjs",
     "check": "npm run check:source && node --check server.js && node --check components/form-router.js && node --check components/purchase.js && node --check components/discovery.js && node --check scripts/render-products.mjs && node --check components/discovery-model.js && node --check components/navigation.js && node --check components/approved-pages.js && node --check scripts/site-shell.mjs && node --check scripts/control-icons.mjs && node --check components/signature-motion.js && node --check scripts/client-access.mjs && npm run check:catalog && node --check scripts/catalog-presentation.mjs && node --check components/cost-model.js && node --check components/cost-planner.js && node --check scripts/render-legit-site.mjs && node --check components/legit-site-model.js && node --check components/legit-site.js && node --check scripts/render-home.mjs",
     "test": "node --test test/*.test.js test/*.test.mjs",
-    "build:products": "node scripts/render-products.mjs && node scripts/render-legit-site.mjs",
+    "build:products": "npm run build:catalog && node scripts/render-products.mjs && node scripts/render-legit-site.mjs",
     "test:browser": "node test/browser/pages.cjs && node test/browser/mobile.cjs && node test/browser/journeys.cjs && node test/browser/questionnaire.cjs && node test/browser/controls.cjs && node test/browser/legit-site.cjs",
-    "check:catalog": "node scripts/check-catalog.mjs"
+    "check:catalog": "node scripts/check-catalog.mjs",
+    "build:catalog": "node scripts/compose-catalog.mjs",
+    "sync:ecosystem": "node scripts/sync-ecosystem.mjs"
   },
   "engines": {
     "node": ">=18"

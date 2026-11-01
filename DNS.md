@@ -1,24 +1,9 @@
-# SENZ Domain DNS Setup
+# SENZ domain boundary
 
-This repository is configured for the canonical host:
+The configured canonical host is `www.senzpr.com`, as recorded by `CNAME`, `source-of-truth.json` and generated canonical tags. The apex is an alternate entrance. Never reverse this direction based on historical apex instructions.
 
-```text
-senzpr.com
-```
+GitHub Pages is the existing public publisher; the inquiry API uses its separately configured existing backend. The presence of `vercel.json` or `render.yaml` is not evidence that either hosts the public pages.
 
-## Required DNS records
+Inspect the actual provider zone and current targets before any authorized DNS action. This change performs none. Preserve nameservers, MX, SPF, DKIM, DMARC, CAA and unrelated records. `app.senzpr.com` is a planned application origin until deployment is verified. `legitofficialsite.com` and `www.legitofficialsite.com` route only to `https://www.senzpr.com/legit-official-site/`; customer subdomains are outside that redirect.
 
-Create or verify these records at the DNS provider for `senzpr.com`:
-
-| Host | Type | Value | Purpose |
-| --- | --- | --- | --- |
-| `@` | `A`, `ALIAS`, or `ANAME` | the active hosting target for this site | Serves `https://senzpr.com` as the primary website |
-| `www` | `CNAME` | the active hosting target or `masinlocandher-max.github.io` when using GitHub Pages | Allows `https://www.senzpr.com` to redirect to the primary domain |
-
-For GitHub Pages, keep the repository `CNAME` set to `senzpr.com`, use GitHub Pages' documented apex `A` records for `@`, and point `www` to `masinlocandher-max.github.io` with a CNAME record.
-
-For Render, add both `senzpr.com` and `www.senzpr.com` as custom domains and copy Render's exact DNS targets into the DNS provider.
-
-## Canonical URL behavior
-
-The primary public address is `https://senzpr.com`. The `www` version should redirect to the apex domain after its DNS record is correctly connected.
+See DEPLOYMENT.md for publisher evidence and the acquisition repository for exact host-routing tests. Do not copy guessed DNS targets from example configuration.

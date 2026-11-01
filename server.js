@@ -159,14 +159,14 @@ function buildInquiry(input) {
     details: cleanFields(input.fields)
   };
   if (formType === 'product') {
-    const product = catalog.products.find(p => p.id === input.productKey);
+    const product = catalog.products.find(p => p.id === input.productKey && p.requestable);
     const seats = Number(input.seats);
     inquiry.productRequestValid = Boolean(product) && Number.isSafeInteger(seats) && seats >= 1 && seats <= 10000;
     if (inquiry.productRequestValid) {
       inquiry.projectType = product.name;
-      inquiry.budget = `PHP ${product.pricePhp * seats}/month for ${seats} named seat(s)`;
+      inquiry.budget = product.pricePhp==null ? `Request a Quote for ${seats} named seat(s)` : `PHP ${product.pricePhp * seats}/month for ${seats} named seat(s)`;
       inquiry.details = { ...inquiry.details, productKey: product.id, seats: String(seats),
-        monthlyTotalPhp: String(product.pricePhp * seats), storageMb: String(product.storageMb),
+        monthlyTotalPhp: product.pricePhp==null ? 'Quote required' : String(product.pricePhp * seats), storageMb: String(product.storageMb),
         aiCreditsPerSeat: String(product.aiCreditsPerSeat), releaseState: catalog.releaseState,
         availability: 'Confirm working delivery and activation date before payment' };
     }
