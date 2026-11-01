@@ -76,7 +76,7 @@
             <span class="senz-chat-kicker">Digital Assistant</span>
             <h2 class="senz-chat-title">How can we help?</h2>
           </div>
-          <button class="senz-chat-close" type="button" aria-label="Close digital assistant">&times;</button>
+          <button class="senz-chat-close" type="button" aria-label="Close digital assistant"><svg class="senz-control-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
         </div>
         <div class="senz-chat-log" aria-live="polite"></div>
         <div class="senz-chat-prompts" aria-label="Suggested questions"></div>

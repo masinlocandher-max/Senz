@@ -178,7 +178,7 @@
         const next = document.createElement('a');
         next.href = 'client-access.html#request';
         next.className = 'request-next-step';
-        next.textContent = 'Already submitted? See your next steps →';
+          next.textContent = 'Already submitted? See your next steps';
         statusEl.append(document.createTextNode(' '), next);
       }
       form.reset();

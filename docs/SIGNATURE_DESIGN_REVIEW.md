@@ -62,3 +62,16 @@ Website publishing remains GitHub Pages from this repository’s main/root. The 
 ## Follow-up form completion
 
 The live review found that the first client-support prefill still exposed the prospect form’s budget and timing questions. Returning-client links now open a short support variant: name, email, optional organization, message and privacy consent. The sales qualification fields and sales-only copy are removed from this route; normal project inquiries keep their existing form. A hidden support category survives form reset. Confirmation describes accepted delivery and an email reply rather than a commercial-fit review. The browser journey now sends a fixture support request without budget/timing and verifies its category and confirmation.
+
+
+## Sitewide consistency and motion — 1 November 2026
+
+This polish extends the existing approved signature system; it does not introduce a new visual concept. Inter, navy #010522, cobalt #003DF9, white, the original SENZ mark, architectural imagery and welcoming people imagery remain the references. Inner-page heading weights, gutters, image corners, panels, input fields and action geometry now use those same tokens. Legacy styles load before the signature layer, including styles injected by the older editorial-page script.
+
+Action arrows and close controls use one 20px/1.7-stroke SVG family, hidden from assistive technology while labels remain readable. FAQ and installation disclosures use matching line chevrons. The build normalizes editorial and generated controls together, so regeneration preserves the icon treatment. Font icons and decorative emoji are prohibited in controls.
+
+Native scrolling is preserved. A cobalt progress rule shows page position; visible content groups enter once over 650ms. The homepage connection rules draw as the visitor reaches strategy, digital presence and SENZ App. The existing people image settles into its full frame. There is no scroll interception, forced section snapping or repeating animation. Keyboard focus cancels an entrance, reduced-motion preferences disable movement, and content remains visible without JavaScript. The new homepage discovery link goes to the real solutions section.
+
+Review points: unchanged brand copy and navigation; existing image crops and palette; lighter shared inner-page heading weight; 3px media and control corners; consistent 20px directional icons; native scroll and keyboard behavior. The discovery link is the sole intentional new hero copy.
+
+Validation: source/catalog checks and 38 unit tests pass locally. Hosted browser checks cover every page at 320/390/1440px, internal destinations and anchors, label/icon consistency, shared shell tokens, menu states, inquiry journeys to a stand-in provider, all questionnaire routes, all FAQ toggles/filters, native disclosures, previews, pricing, consultation close, reduced motion and a no-JavaScript client path. Current hosted results are recorded on the pull request. No customer inquiry is submitted during QA.

@@ -1,6 +1,60 @@
 /* SENZ signature system: Inter, cobalt, navy, glass and steel. Last shared layer. */
 @font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url('../assets/fonts/InterVariable.woff2') format('woff2')}
 :root{--senz-font:Inter,Arial,Helvetica,sans-serif;--senz-ink:#010522;--senz-blue:#003df9;--senz-muted:#526078;--senz-line:#dce4f0;--senz-surface:#edf3ff;--senz-radius:4px}
+/* Shared finish for the editorial pages, catalog, forms and client entrance. */
+body.senz-unified{--ink:var(--senz-ink);--navy:var(--senz-ink);--deep-navy:var(--senz-ink);--muted:var(--senz-muted);--line-soft:var(--senz-line)}
+.senz-unified :is(h1,h2,h3){font-weight:600}
+.senz-unified :is(.shell,.experience-shell){width:min(1280px,calc(100% - 112px))}
+.senz-unified :is(.hero,.experience-hero,.experience-heading){border-bottom:1px solid var(--senz-line)}
+.senz-unified .hero h1{font-size:clamp(38px,4.5vw,68px);font-weight:600;letter-spacing:-.055em;line-height:1.06}
+.senz-unified :is(.hero,.experience-heading) .lead{color:var(--senz-muted);font-size:18px;line-height:1.65}
+.senz-unified :is(.visual-box,.icon-card,.reason-card,.process-step,.showcase-card,.form-panel,.contact-panel,.category-panel,.starting-tool,.mini-work,.hero-proof span){border-radius:3px;box-shadow:none}
+.senz-unified .visual-box{overflow:hidden}
+.senz-unified .visual-box:before,.senz-unified .visual-box:after{border-radius:3px}
+.senz-unified :is(.icon-card,.reason-card,.process-step){background:#fff;border-color:var(--senz-line)}
+.senz-unified .icon{border-radius:3px;background:var(--senz-surface);color:var(--senz-blue)}
+.senz-unified .page-section{background-image:none}
+.senz-unified .kicker{font-size:11px;font-weight:600;letter-spacing:.1em}
+.senz-unified :is(.form-grid input:not([type=checkbox]):not([type=radio]),.form-grid select,.form-grid textarea,.planner-total input){border-radius:3px;border-color:#aab8ce;font-size:16px}
+.senz-unified :is(.filter,.choice,.catalog-nav a){border-radius:3px;font-family:var(--senz-font)}
+.senz-unified .choice{color:var(--senz-ink);border-color:#aab8ce;font-size:15px;font-weight:500}
+.senz-unified .choice:is(:hover,:focus-visible){outline-color:var(--senz-blue)}
+.senz-unified .discovery .choice[aria-pressed=true]{background:var(--senz-surface);border-color:var(--senz-blue)}
+.senz-unified .guide-text-button{color:var(--senz-blue);font-size:14px;font-weight:600}
+.senz-unified .filter.is-active{background:var(--senz-blue);border-color:var(--senz-blue);color:#fff}
+.senz-unified .read-link{display:inline-flex;align-items:center;gap:12px;min-height:44px}
+.senz-control-icon{display:inline-block;width:20px;height:20px;flex:0 0 20px;vertical-align:middle;pointer-events:none;transition:transform 200ms ease}
+a>.senz-control-icon{margin-left:8px}
+.senz-unified .button>.senz-control-icon{margin-left:0}
+.senz-unified :is(.consult-close,.senz-chat-close){display:grid;place-items:center;min-width:44px;min-height:44px;border-radius:3px}
+.senz-unified :is(.button,.read-link,.signature-text-link,.client-paths a):hover .senz-control-icon{transform:translateX(3px)}
+.senz-unified .button:focus-visible{outline:3px solid var(--senz-blue);outline-offset:4px}
+.senz-unified .faq-question::after{content:'';width:20px;height:20px;flex:0 0 20px;background:currentColor;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform 200ms ease}
+.senz-unified .faq-item.is-open .faq-question::after{content:'';transform:rotate(180deg)}
+.senz-unified :is(.client-step,.details-rail) summary{position:relative;padding-right:36px;list-style:none;min-height:36px;display:flex;align-items:center}
+.senz-unified :is(.client-step,.details-rail) summary::-webkit-details-marker{display:none}
+.senz-unified :is(.client-step,.details-rail) summary::after{content:'';position:absolute;right:0;width:20px;height:20px;background:currentColor;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform 200ms ease}
+.senz-unified :is(.client-step,.details-rail) details[open]>summary::after{transform:rotate(180deg)}
+.senz-reading-progress{position:fixed;z-index:100;inset:0 0 auto;height:3px;background:var(--senz-blue);transform:scaleX(0);transform-origin:left;pointer-events:none}
+.signature-scroll{position:absolute;right:56px;bottom:22px;display:inline-flex;align-items:center;gap:14px;color:#d4def2;font-size:11px;letter-spacing:.025em;text-decoration:none;min-height:44px}
+.signature-scroll svg{width:16px;height:22px;transition:transform 200ms ease}
+.signature-scroll:hover svg{transform:translateY(3px)}
+.signature-scroll:hover{text-decoration:underline;text-underline-offset:5px}
+/* The same cobalt rule follows the strategy-to-experience sequence. */
+.signature-steps li{position:relative}
+.signature-steps li:before{content:'';position:absolute;left:0;top:-1px;width:100%;height:2px;background:var(--senz-blue);transform-origin:left;transform:scaleX(1)}
+@supports(animation-timeline:view()){
+ @media(prefers-reduced-motion:no-preference){
+  .signature-steps li:before{animation:senz-connect linear both;animation-timeline:view();animation-range:entry 0% cover 40%}
+  .signature-people img{animation:senz-image-settle linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
+ }
+}
+@keyframes senz-connect{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes senz-image-settle{from{clip-path:inset(0 0 6% 0)}to{clip-path:inset(0)}}
+@media(max-width:1100px){.senz-unified :is(.shell,.experience-shell){width:calc(100% - 64px)}}
+@media(max-width:700px){.senz-unified :is(.shell,.experience-shell){width:calc(100% - 40px)}.senz-unified .hero h1{font-size:clamp(34px,8.7vw,48px)}.senz-unified :is(.hero,.experience-heading) .lead{font-size:16px}.signature-scroll{right:20px;bottom:16px}}
+@media(prefers-reduced-motion:reduce){.senz-control-icon,.signature-scroll svg{transition:none}.senz-unified :is(.button,.read-link,.signature-text-link,.client-paths a):hover .senz-control-icon,.signature-scroll:hover svg{transform:none}.signature-people img{clip-path:none}}
+@media print{.senz-reading-progress,.signature-scroll{display:none}}
 body.senz-unified{font-family:var(--senz-font);font-optical-sizing:auto}
 .senz-unified .button{border-radius:2px;display:inline-flex;align-items:center;justify-content:center;gap:24px;min-height:50px;font-size:14px;font-weight:600;padding:15px 22px;box-sizing:border-box;letter-spacing:0}
 .senz-unified .button:hover{transform:none;filter:brightness(.94)}

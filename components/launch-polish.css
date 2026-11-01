@@ -254,10 +254,15 @@
 }
 
 .offer-list li::before {
-  content: "✓";
+  content: "";
   position: absolute;
   left: 0;
-  top: 15px;
+  top: 21px;
+  width: 7px;
+  height: 12px;
+  border: solid currentColor;
+  border-width: 0 1.7px 1.7px 0;
+  transform: rotate(45deg);
   color: #8fd3ff;
   font-weight: 900;
 }
