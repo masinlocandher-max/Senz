@@ -1,0 +1,108 @@
+{
+  "navigation": [
+    { "label": "Website rental", "id": "website-rental" },
+    { "label": "What you can create", "id": "website-examples" },
+    { "label": "What’s included", "id": "website-inclusions" },
+    { "label": "Costs & terms", "id": "rental-quote" },
+    { "label": "How it works", "id": "how-it-works" },
+    { "label": "Questions", "id": "ownership" }
+  ],
+  "audiences": [
+    { "title": "Freelancers", "text": "Present your work, services and a clear way to inquire." },
+    { "title": "Startups", "text": "Give your idea a professional home as you begin to grow." },
+    { "title": "Your own presence", "text": "Personal profiles, creative portfolios and company introductions also belong here." }
+  ],
+  "inclusionHeadings": [
+    "Your story and services",
+    "A clear inquiry path",
+    "Search and sharing essentials",
+    "Review before publication"
+  ],
+  "customization": ["Brand colors", "Typography", "Photography", "Section order", "Your words", "Calls to action"],
+  "quote": [
+    { "title": "Getting started", "text": "Setup, content preparation, agreed sections and review rounds." },
+    { "title": "Keeping it online", "text": "Billing period, hosting, support, update allowance and renewal fees." },
+    { "title": "Anything extra", "text": "Additional content, strategic services and tools need a separate agreed scope." },
+    { "title": "Ending or changing", "text": "Minimum term if any, notice, outstanding fees, export and migration arrangements." }
+  ],
+  "customerProvides": [
+    "Your story and accurate information",
+    "Photos and content you have rights to use",
+    "A contact method and timely feedback"
+  ],
+  "rights": [
+    { "title": "Content & identity", "text": "Your identity and content remain yours, subject to the applicable service agreement and third-party rights." },
+    { "title": "Domain", "text": "An independently purchased domain stays with its registered owner. A managed address is part of the agreed service; it is not a domain purchase." },
+    { "title": "Design & custom work", "text": "The agreement states the design licence and whether any specifically commissioned work is transferred or licensed." },
+    { "title": "Software & platform", "text": "SENZ software and platform components are provided under the applicable licence. Website rental does not transfer the platform or its source code." },
+    { "title": "Hosting", "text": "Hosting is an ongoing service. Its duration, limits and renewal responsibilities belong in your agreement." },
+    { "title": "Data", "text": "The agreement must define access, privacy responsibilities, retention, export and deletion arrangements, including any applicable fees." }
+  ],
+  "questions": [
+    {
+      "id": "address",
+      "question": "Can I use my own domain?",
+      "paragraphs": [
+        "Tell SENZ if you already own a domain or would like one. The current website configuration uses a managed website address, subject to setup and availability. Automatic subdomains and custom-domain connection are not currently included; SENZ must review feasibility before offering them.",
+        "Registration, connection and renewals are not automatically included. Your quote must name the registered owner and who pays for and manages renewals. SENZ does not acquire your independently purchased domain by helping with it."
+      ]
+    },
+    {
+      "id": "updates",
+      "question": "Who updates the website?",
+      "paragraphs": [
+        "Agree this before starting. Your quote defines whether SENZ handles content changes, what update allowance and review rounds apply, how you request help and any additional fees. Unlimited updates or a particular response time are not assumed.",
+        "Self-management applies only to eligible tools activated for your account. In the current editor, changes to a published page appear immediately. Unpublish first when you need to work privately; there is no separate staged revision queue."
+      ]
+    },
+    {
+      "id": "renewal",
+      "question": "What happens at renewal or cancellation?",
+      "paragraphs": [
+        "Before you commit, confirm the billing period, any minimum term, renewal method, notice required, outstanding charges and any refund terms. These are set by your written agreement, not by this page.",
+        "A hosted page may go offline when hosting or its licence ends. Confirm what content or data can be exported, the format, timing, assistance and any fees before ending the service. A complete transferable copy of SENZ software or design is not automatically included. Independent domain renewals remain separate."
+      ]
+    },
+    {
+      "id": "extensions",
+      "question": "Can I add more pages, booking or a store?",
+      "paragraphs": [
+        "Start with one useful page. The current website configuration does not include multi-page editing, a blog, arbitrary plugins, online ordering or payments. Tell SENZ what you need so feasibility and an appropriate alternative can be reviewed.",
+        "Booking, digital catalog, CRM and other SENZ products have separate scopes and readiness requirements. They are not automatically included, integrated or activated by a website rental. A simple portfolio or service introduction does not require a larger software package."
+      ],
+      "link": { "label": "Explore SENZ digital products", "href": "../digital-products.html" }
+    },
+    {
+      "id": "senzapp",
+      "question": "What will I manage in Senzapp?",
+      "paragraphs": [
+        "Your public website is what your audience sees. Senzapp is where an owner manages eligible purchased SENZ tools after those tools are ready and activated for the account.",
+        "An inquiry does not create an account, collect payment or unlock applications. SENZ confirms delivery readiness, your agreement, account access and any verified payment requirements before activation."
+      ],
+      "link": { "label": "Already a SENZ client? Find your next step", "href": "../client-access.html" }
+    },
+    {
+      "id": "timeline",
+      "question": "How long does it take, and what do I prepare?",
+      "paragraphs": [
+        "Share your purpose, short introduction, services or selected work, photographs you can use and preferred contact details. You can start the conversation before everything is ready. Copywriting, photography or wider communications work can be scoped separately.",
+        "SENZ proposes a delivery schedule after reviewing availability, the agreed work and your content. You review the site before initial publication. There is no fixed launch-time promise; content, feedback and requested changes affect the schedule."
+      ]
+    },
+    {
+      "id": "rules",
+      "question": "What does “your rules” mean?",
+      "paragraphs": [
+        "You decide how your legitimate online presence should look, communicate and work within the supported configuration: your message, content, brand, section priorities and customer actions.",
+        "Applicable law, security, privacy, intellectual-property rights, acceptable-use rules, hosting limits, payment requirements and SENZ service terms still apply. This is not unrestricted hosting or a verification badge."
+      ]
+    },
+    {
+      "id": "social",
+      "question": "Do I need a business, or have to leave social media?",
+      "paragraphs": [
+        "Neither. You can create a personal profile, professional portfolio or public presence without operating a formal business. Keep using the social channels that work for you. Your website gives those visitors one place to understand your story and take the next step."
+      ]
+    }
+  ]
+}

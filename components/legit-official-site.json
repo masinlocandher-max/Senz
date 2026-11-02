@@ -63,11 +63,11 @@
     },
     "existing": {
       "label": "I already have a domain",
-      "hint": "Keep it in your name. We review how to connect it."
+      "hint": "Your domain stays yours. Custom-domain connection requires a separate feasibility review."
     },
     "custom": {
       "label": "I would like my own domain",
-      "hint": "Registration and renewals are quoted separately."
+      "hint": "Tell us your preference. Connection is not currently included; registration and renewals are separate."
     },
     "decide": {
       "label": "Help me decide",
@@ -146,7 +146,7 @@
       "name": "Company site",
       "intro": "A clear home for a bigger story.",
       "description": "For companies and organizations presenting their purpose, people, services and projects.",
-      "scope": "Start with a clear company overview. Add separate pages only where the content and audience need them.",
+      "scope": "Start with a clear company overview on one page. Discuss any need for additional pages separately; multi-page editing is not part of the current configuration.",
       "sections": [
         "Company profile",
         "Solutions",

@@ -13,3 +13,58 @@
 @media(prefers-reduced-motion:reduce){.los-page{scroll-behavior:auto}.los-page *{animation:none!important;transition:none!important}}
 
 .los-company-focus{background:#102d4e;color:white;padding:20px 16px;align-self:stretch;display:flex;flex-direction:column;justify-content:center}.los-company-focus>small{font-size:9px;letter-spacing:.12em;margin-bottom:20px}.los-company-focus>div{padding:13px 0;border-top:1px solid #71879e;display:flex;gap:12px;align-items:center}.los-company-focus span{font-size:9px;color:#ccdaea}.los-company-focus b{font-size:14px;font-weight:500}@media(max-width:480px){.los-company-focus{padding:15px 10px}.los-company-focus>div{gap:6px}.los-company-focus b{font-size:10px}}
+
+/* Rental details use the same open editorial layout and in-flow raised controls. */
+.los-page-nav{background:#fff;border-bottom:1px solid var(--senz-line)}
+.los-page-nav .los-wrap{display:flex;flex-wrap:wrap;gap:4px 28px;padding-block:16px}
+.los-page-nav a{display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:600;color:var(--senz-ink);text-decoration:underline;text-decoration-color:#b8c9e6;text-underline-offset:6px}
+.los-page-nav a:hover{color:var(--senz-blue)}
+.los-page-nav a:focus-visible,.los-questions a:focus-visible{outline:3px solid var(--senz-blue);outline-offset:5px}
+.los-rental-band{background:#f3f7ff}
+.los-rental-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:start}
+.los-rental-grid>div>p{font-size:17px;line-height:1.7;color:var(--senz-muted);max-width:600px;margin-bottom:30px}
+.los-definition-rows{margin:0}
+.los-definition-rows>div{display:grid;grid-template-columns:.8fr 1.6fr;gap:24px;padding:25px 0;border-top:1px solid #b9c9e1}
+.los-definition-rows dt{font-size:18px;line-height:1.45;font-weight:650;letter-spacing:-.025em}
+.los-definition-rows dd{margin:0;font-size:16px;line-height:1.65;color:var(--senz-muted)}
+.los-inclusions-grid{display:grid;grid-template-columns:1.55fr .85fr;gap:64px;align-items:start}
+.los-inclusions{list-style:none;padding:0;margin:0}
+.los-inclusions>li{display:grid;grid-template-columns:62px 1fr;gap:24px;padding:24px 0;border-top:1px solid #c5d2e6}
+.los-inclusions>li>span{font-size:34px;line-height:1.2;font-weight:600;letter-spacing:-.06em;color:var(--senz-blue)}
+.los-inclusions h3{font-size:21px;letter-spacing:-.035em;margin:0 0 7px}
+.los-inclusions p{font-size:16px;color:var(--senz-muted);line-height:1.65;margin:0}
+.los-customization{padding:28px 30px;background:#f3f7ff;border-radius:8px}
+.los-customization h3{font-size:23px;letter-spacing:-.04em;margin-bottom:18px}
+.los-customization ul{list-style:none;padding:0;margin:0 0 24px}
+.los-customization li{font-size:15px;border-bottom:1px solid #d2dff0;padding:11px 0}
+.los-customization p{font-size:14px;line-height:1.7;color:var(--senz-muted);margin:0}
+.los-questions-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+.los-questions-grid>div>p{font-size:18px;color:var(--senz-muted);line-height:1.6}
+.los-prepare{margin-top:40px}
+.los-prepare h3{font-size:23px;letter-spacing:-.035em}
+.los-prepare ul{list-style:none;margin:0 0 36px;padding:0;display:grid;gap:20px}
+.los-prepare li{display:flex;align-items:flex-start;gap:14px;font-size:15px;line-height:1.65;color:var(--senz-muted)}
+.los-prepare svg{width:32px;height:32px;flex-shrink:0;padding:6px;background:#f3f7ff;border-radius:50%;color:var(--senz-blue)}
+.los-prepare p{font-size:16px;color:var(--senz-muted);max-width:410px}
+.los-questions details{margin:0 0 12px;border:0;padding:0}
+.los-page .los-questions summary{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 18px;font-size:16px;font-weight:600;line-height:1.5;list-style:none}
+.los-questions summary::-webkit-details-marker{display:none}
+.los-questions summary::marker{content:''}
+.los-questions summary:after{display:none}
+.los-disclosure-icon{width:18px;height:18px;flex:0 0 18px}
+.los-questions details[open] .los-disclosure-icon{transform:rotate(180deg)}
+.los-questions details[open]{border-radius:16px;background:#f3f7ff;padding-bottom:22px}
+.los-page .los-questions details[open]>summary{background:#f3f7ff;border-color:transparent;box-shadow:none;margin-bottom:0}
+.los-answer{padding:0 22px}
+.los-answer p{font-size:14px;line-height:1.7;color:var(--senz-muted);margin:12px 0 0}
+.los-rights{margin:20px 0 0}
+.los-rights>div{display:grid;grid-template-columns:140px 1fr;gap:20px;padding:15px 0;border-top:1px solid #c6d5e9}
+.los-rights dt{font-size:14px;font-weight:650;line-height:1.6}
+.los-rights dd{font-size:14px;color:var(--senz-muted);line-height:1.7;margin:0}
+.los-questions a{color:var(--senz-blue);text-underline-offset:4px}
+.los-questions .los-policy-links{font-size:13px;margin:28px 0 0}
+.los-policy-links a{display:inline-block;padding-block:12px}
+.los-page section[id]{scroll-margin-top:24px}
+@media(max-width:1100px){.los-rental-grid{gap:40px}.los-definition-rows>div{gap:18px}.los-inclusions-grid,.los-questions-grid{gap:40px}.los-rights>div{grid-template-columns:110px 1fr}}
+@media(max-width:800px){.los-rental-grid,.los-inclusions-grid,.los-questions-grid{grid-template-columns:1fr;gap:36px}.los-rental-grid>div>p{max-width:none}.los-page-nav .los-wrap{gap:4px 22px;padding-block:12px}.los-definition-rows>div{grid-template-columns:.7fr 1.5fr}.los-inclusions>li{grid-template-columns:50px 1fr;gap:18px}.los-customization{padding:28px}.los-prepare{margin-top:30px}.los-rights>div{grid-template-columns:140px 1fr}}
+@media(max-width:480px){.los-page-nav .los-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px}.los-page-nav a{font-size:12px}.los-rental-grid>div>p{font-size:16px}.los-definition-rows>div{grid-template-columns:1fr;gap:8px;padding:22px 0}.los-definition-rows dd{font-size:15px}.los-inclusions>li{grid-template-columns:35px 1fr;gap:14px}.los-inclusions>li>span{font-size:28px}.los-inclusions h3{font-size:19px}.los-inclusions p{font-size:15px}.los-questions summary{font-size:15px}.los-answer{padding:0 18px}.los-rights>div{grid-template-columns:1fr;gap:5px}.los-questions-grid>div>p{font-size:16px}.los-customization{padding:24px}}
