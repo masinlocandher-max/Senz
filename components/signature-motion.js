@@ -32,7 +32,7 @@
   // interactive groups still; entrance motion is for non-interactive content.
   const interactive = 'a[href],button,input,select,textarea,summary,[tabindex],[role="button"]';
   const targets = [...main.querySelectorAll([
-    '.signature-hero-copy', '.hero-text', '.guide-intro h1', '.experience-heading h1',
+    '.home-hero-image', '.home-section-copy h2', '.home-section-heading h2', '.home-app-copy h2', '.home-closing h2', '.signature-hero-copy', '.hero-text', '.guide-intro h1', '.experience-heading h1',
     '.experience-hero h1', '.client-hero h1', '.signature-connection h2',
     '.signature-app-copy', '.signature-app-demo', '.signature-clients h2',
     '.signature-people', '.visual-box', '.hero-product', '.center-head',
