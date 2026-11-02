@@ -12,7 +12,7 @@
   const button = (label, cls, action) => { const el = node('button', label, cls); el.type = 'button'; el.addEventListener('click', action); return el; };
   const link = (label, href, cls = 'button primary') => { const el = node('a', label, cls); el.href = href; return el; };
   document.querySelectorAll('[data-los-cta]').forEach(el => el.addEventListener('click', () => track('cta', { placement: el.dataset.losCta })));
-  fetch('/components/legit-official-site.json').then(r => { if (!r.ok) throw Error(); return r.json(); }).then(data => {
+  fetch('/components/legit-official-site.json', { cache: 'no-cache' }).then(r => { if (!r.ok) throw Error(); return r.json(); }).then(data => {
     const contactForm = document.querySelector('form[data-form-kind="general"]');
     if (contactForm) {
       const brief = model.readHandoff(location.search, data);

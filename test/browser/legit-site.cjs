@@ -32,6 +32,23 @@ const personas = [
    await page.addScriptTag({path:require.resolve('axe-core/axe.min.js')});
    let violations=await page.evaluate(async()=>(await axe.run(document,{runOnly:['wcag2a','wcag2aa','wcag21a','wcag21aa']})).violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)})));
    assert.deepEqual(violations,[],`${width}: accessibility`);
+   // Visitors can reach the complete offer first, then inspect terms and request a quote.
+   await page.goto(base+'/');
+   await page.getByRole('link',{name:'Explore website rental',exact:true}).click();
+   assert.equal(new URL(page.url()).pathname,'/legit-official-site/');
+   assert.equal(new URL(page.url()).hash,'');
+   await page.getByRole('navigation',{name:'Website rental page sections'}).getByRole('link',{name:'Questions',exact:true}).click();
+   for(const id of ['address','updates','renewal','extensions','senzapp','timeline','rules','social']) {
+    const details=page.locator('#rental-'+id);
+    await details.locator('summary').click();
+    assert.equal(await details.getAttribute('open'),'');
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${width}: expanded FAQ overflow`);
+    await details.locator('summary').click();
+   }
+   await page.getByRole('link',{name:'Request a rental quote',exact:true}).click();
+   await page.waitForSelector('.los-contact-summary');
+   assert.equal(await page.locator('[name=inquiryType]').inputValue(),'Legit Official Site');
+   await page.goto(base+'/legit-official-site/'); await page.waitForSelector('.los-choice');
    for(const kind of Object.keys(data.configurations)) {
     await page.locator(`[data-example="${kind}"]`).click();
     assert.equal(await page.locator(`[data-example-panel="${kind}"]`).isVisible(),true);

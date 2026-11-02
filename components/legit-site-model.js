@@ -27,7 +27,7 @@
     ])];
     return { kind, ...config, sections, additions, answers: a,
       reason: `${data.audiences[a.audience].label.replace(/^For /, '')}: ${a.goals.map(key => data.goals[key].toLowerCase()).join(', ')}.`,
-      limitation: 'Page count, content, design, hosting, updates and any additional tools are confirmed in your quote. This recommendation does not activate a service.' };
+      limitation: 'The current configuration is one page. Availability, content, design, hosting, updates and any additional requirements are reviewed in your quote. This recommendation does not activate a service.' };
   }
   function handoff(input, data) {
     const result = recommend(input, data);
@@ -50,7 +50,7 @@
       `Address preference: ${data.domains[r.answers.domain].label}.`,
       `Recommended starting point: ${r.scope}`,
       ...r.additions.map(key => `Please review: ${data.extensions[key].name}. ${data.extensions[key].note}`),
-      'Please confirm the scope, rights, total fee, renewals and delivery date before any payment.'
+      'Please confirm website rental availability, scope, setup and recurring fees, billing period, support and update allowance, rights, renewal and cancellation terms, and delivery date before any payment.'
     ].join('\n\n') };
   }
   const api = { normalize, recommend, handoff, readHandoff };

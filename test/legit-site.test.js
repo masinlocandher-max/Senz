@@ -43,3 +43,17 @@ test('one canonical product page keeps ownership and release limits explicit', (
   assert.equal(contract.app.released,false);
   assert.equal(require('../commercial/catalog.json').products.find(p=>p.id===data.id).quoteOnly,true);
 });
+
+test('rental details follow the approved capability source and preserve a details-first inquiry journey', () => {
+  const html = fs.readFileSync(require.resolve('../legit-official-site/index.html'),'utf8');
+  const home = fs.readFileSync(require.resolve('../index.html'),'utf8');
+  const offer = require('../commercial/catalog.json').products.find(p=>p.id===data.id);
+  for (const capability of offer.includes) assert.ok(html.includes(capability), `Missing authoritative inclusion: ${capability}`);
+  assert.match(home, /href="legit-official-site\/"[^>]*>Explore website rental/);
+  for (const id of ['website-inclusions','rental-quote','rental-rights','rental-renewal','rental-updates']) assert.ok(html.includes(`id="${id}"`));
+  assert.match(html, /Automatic subdomains and custom-domain connection are not currently included/);
+  const brief = model.readHandoff('los=1&audience=profession&goals=work&domain=existing', data);
+  assert.match(brief.message, /setup and recurring fees/);
+  assert.match(brief.message, /renewal and cancellation/);
+  assert.match(data.domains.existing.hint, /feasibility review/);
+});
