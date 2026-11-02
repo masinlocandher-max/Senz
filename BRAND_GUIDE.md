@@ -7,7 +7,7 @@ FMB&CO is the parent brand; SENZ serves clients directly and operates the SENZ P
 ## Positioning
 Influence Through Clarity.
 Public headline: Be found. Be trusted. Be chosen.
-SENZ helps businesses become clearer, more credible, and easier to choose through strategic communications and digital solutions.
+SENZ is a human-led technology and strategic communications company. It helps businesses become clearer, more credible, and easier to choose by connecting communication strategy with websites, digital experiences and practical business tools. Show the people and strategic judgment behind the technology alongside the product experience.
 
 ## Two distinct audiences
 - senzpr.com: businesses hiring SENZ for defined projects and ongoing support.
