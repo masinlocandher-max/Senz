@@ -2,7 +2,7 @@
 :root{--senz-control-radius:999px;--senz-control-shadow:0 3px 6px #0105220b,0 8px 18px #003df916}
 body.senz-unified :is(button,.button,.senz-start,.senz-client-access,.senz-mobile-start,.filter,.catalog-nav a,.client-jump a,.app-choice+label){border-radius:var(--senz-control-radius);box-shadow:var(--senz-control-shadow);min-height:48px;transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease;max-width:100%;box-sizing:border-box}
 body.senz-unified .button{display:inline-flex;align-items:center;justify-content:center;gap:16px;font-size:13px;font-weight:600;line-height:1.45;padding:14px 22px;white-space:normal;text-align:center;text-decoration:none;position:relative;inset:auto}
-body.senz-unified .button.primary{background:#003df9;color:#fff;border:1px solid #003df9;box-shadow:0 3px 5px #003df91a,0 8px 20px #003df92b}
+body.senz-unified .button.primary{background:linear-gradient(125deg,#264e7b,#071b34);color:#fff;border:1px solid #183b61;box-shadow:0 3px 5px #071b341a,0 8px 20px #071b3426}
 body.senz-unified .button.secondary{background:#fff;color:#010522;border:1px solid #d7e0ef}
 body.senz-unified .button-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;overflow:visible}
 body.senz-unified :is(.choice,.los-choice,.los-option,.quiz-option){border-radius:16px;box-shadow:0 4px 14px #01052209;min-height:56px}
@@ -16,14 +16,14 @@ body.senz-unified summary:after{right:18px}body.senz-unified details[open]>summa
 body.senz-unified .senz-global-header{position:relative;inset:auto;background:#fff;box-shadow:none;border-bottom:1px solid #e5eaf2;z-index:5}
 body.senz-unified .senz-global-header .senz-global-inner{width:min(1376px,calc(100% - 64px));min-height:88px;gap:18px;display:flex;flex-wrap:wrap;padding:12px 0}
 body.senz-unified .senz-global-header .senz-lockup{gap:10px;flex-shrink:0}
-body.senz-unified .senz-global-header .senz-lockup strong{font-size:25px;letter-spacing:.15em}
+body.senz-unified .senz-global-header .senz-lockup strong{font-size:25px;letter-spacing:.025em}
 body.senz-unified .senz-global-header .senz-lockup small{font-size:8px;max-width:190px;line-height:1.4}
 body.senz-unified .senz-global-header .senz-lockup img{width:30px;height:40px}
 body.senz-unified .senz-global-header .senz-global-nav{position:static;inset:auto;display:flex;flex:1;justify-content:center;gap:18px;flex-wrap:wrap;width:auto;background:#fff;border:0;box-shadow:none}
 body.senz-unified .senz-global-header .senz-global-nav a{font-size:12px;line-height:1.4;min-height:44px;display:inline-flex;align-items:center;color:#010522}
 body.senz-unified .senz-global-header .senz-global-nav a[aria-current=page]{color:#003df9;text-decoration:underline;text-underline-offset:6px}
 body.senz-unified .senz-global-header :is(.senz-start,.senz-client-access,.senz-menu-toggle){min-height:46px;border-radius:999px;font-size:12px;padding:0 17px;display:inline-flex;align-items:center;justify-content:center}
-body.senz-unified .senz-global-header .senz-start{background:#003df9;color:#fff;border-color:#003df9}
+body.senz-unified .senz-global-header .senz-start{background:linear-gradient(125deg,#264e7b,#071b34);color:#fff;border-color:#183b61}
 body.senz-unified .senz-global-header .senz-client-access{background:#fff;color:#010522;border:1px solid #d7e0ef}
 body.senz-unified .senz-global-header .senz-global-nav .senz-mobile-start{display:none}
 body.senz-unified .senz-global-header [hidden]{display:none!important}
