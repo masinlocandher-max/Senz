@@ -214,3 +214,40 @@ body.senz-unified.senz-home .senz-global-header .senz-global-nav{background:tran
 body.senz-unified.senz-home .senz-global-footer{background:#010522}
 @media(max-width:900px){.senz-home .home-connection{gap:12px}.senz-home .home-connection li{padding:12px}.senz-home .home-journey li{padding:20px 16px}}
 @media(max-width:650px){.senz-home .home-hero-grid{padding-top:26px;padding-bottom:30px}.senz-home .home-hero-image:before{inset:-10px -12px 35px 45%;border-top-width:3px;transform:skewY(-5deg)}.senz-home .home-hero-image>img{border-radius:10px}.senz-home .home-connection{padding:8px 0 24px;gap:10px}.senz-home .home-connection li{padding:10px 14px}.senz-home .home-audience{padding-block:26px 30px}.senz-home .home-product-card{padding:7px}.senz-home .home-product-card .home-card-copy{padding:13px 5px 6px}.senz-home .home-product-art{padding:10px}.senz-home .home-journey{gap:14px}.senz-home .home-journey li{padding:20px 16px}.senz-home .home-hero-copy .home-label{gap:7px;flex-wrap:wrap}.senz-home .home-hero-copy .home-label:before{width:16px}.senz-home .home-label{gap:8px}}
+
+/* Human leadership and digital work share one visual identity. */
+.senz-home .home-human-link{display:flex;align-items:center;gap:12px;max-width:390px;margin-top:26px;padding-top:22px;border-top:1px solid #bdceec;color:var(--home-ink);text-decoration:none}
+.home-human-link>img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:50% 25%;border:2px solid #fff;box-shadow:0 3px 10px #01052215;flex-shrink:0}
+.home-human-link>span{min-width:0}
+.home-human-link strong{display:block;font-size:11px;line-height:1.5;font-weight:650}
+.home-human-link small{display:block;font-size:10px;line-height:1.6;margin-top:3px;color:#455473}
+.home-human-link>.home-icon{width:17px;height:17px;margin-left:auto;color:var(--home-blue)}
+.home-human{padding:86px 0;background:var(--home-ink);color:#fff;position:relative;isolation:isolate;overflow:hidden;scroll-margin-top:24px}
+.home-human:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(125deg,transparent 37%,#003df92e 37.1%,transparent 37.3%,transparent 77%,#003df94a 77.1%,transparent 77.4%)}
+.home-human-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:76px;align-items:center}
+.home-founder{position:relative;min-width:0;padding:0 24px 24px 0}
+.home-founder:before{content:'';position:absolute;inset:32px 0 0 32px;background:var(--home-blue);z-index:-1;border:1px solid #527bff}
+.home-founder>img{display:block;width:100%;aspect-ratio:1/1.08;height:auto;object-fit:cover;object-position:50% 20%;background:var(--home-ice);border-radius:12px 12px 0 0}
+.home-founder figcaption{padding:23px 26px 20px;background:var(--home-ice);color:var(--home-ink);border-radius:0 0 12px 12px}
+.home-founder figcaption>span{display:block;color:#455473;font-size:10px;line-height:1.6;letter-spacing:.08em;text-transform:uppercase}
+.home-founder figcaption>strong{display:block;font:400 28px/1.2 Georgia,serif;letter-spacing:-.03em;margin-top:8px}
+.senz-home .home-founder .home-text-link{color:#0034d4;font-size:11px;margin-top:9px}
+.senz-home .home-human .home-label{color:#b8ccff}
+.senz-home .home-human h2{color:#fff;font-size:clamp(40px,4vw,61px);margin-bottom:23px}
+.home-human h2 em{font-weight:400;color:#b8ccff}
+.senz-home .home-human .home-lead{color:#d0d9ed;font-size:15px;line-height:1.8}
+.home-practices{margin-top:30px;display:grid;gap:23px}
+.home-practices article{display:flex;gap:18px;padding-top:23px;border-top:1px solid #33415f}
+.home-practice-number{font-size:10px;line-height:1.6;color:#b8ccff;letter-spacing:.1em;padding-top:2px}
+.senz-home .home-practices h3{font:600 15px/1.5 var(--senz-font);letter-spacing:-.02em;color:#fff;margin-bottom:6px}
+.home-practices p{font-size:12px;line-height:1.8;color:#c0cce3;max-width:490px}
+.senz-home .home-practices .home-text-link{color:#edf3ff;font-size:11px;min-height:38px;margin-top:4px;text-decoration-color:#738aaf}
+.senz-home .home-human-principle{font-size:12px;line-height:1.75;color:#c0cce3;border-left:2px solid #4774ff;padding-left:16px;margin-top:24px;max-width:480px}
+.home-human-copy>.button-row{margin-top:22px}
+.senz-home .home-human a:focus-visible{outline-color:#b8ccff}
+.senz-home .home-founder a:focus-visible{outline-color:var(--home-blue)}
+@media(hover:hover){.home-human-link:hover small{text-decoration:underline;text-underline-offset:4px}}
+@media(max-width:1200px){.home-human-layout{gap:44px}.home-founder figcaption{padding:22px}.home-founder figcaption>strong{font-size:26px}.senz-home .home-human h2{font-size:46px}}
+@media(max-width:900px){.home-human-layout{grid-template-columns:minmax(0,.75fr) minmax(0,1fr);gap:30px}.home-founder{padding:0 14px 14px 0}.home-founder:before{inset:22px 0 0 22px}.home-founder>img{aspect-ratio:3/4}.home-founder figcaption{padding:20px 16px}.home-founder figcaption>strong{font-size:24px}.senz-home .home-human h2{font-size:40px}.senz-home .home-human .home-lead{font-size:14px}}
+@media(max-width:650px){.home-human{padding:50px 0}.home-human-layout{grid-template-columns:1fr;gap:34px}.home-human-copy{grid-row:1}.home-founder{max-width:410px;width:100%;justify-self:center;padding:0 18px 18px 0}.home-founder>img{aspect-ratio:1/1;object-position:50% 25%}.home-founder figcaption{padding:22px}.home-founder figcaption>strong{font-size:27px}.senz-home .home-human h2{font-size:42px}.home-practices{gap:19px;margin-top:25px}.home-practices article{padding-top:20px;gap:15px}.senz-home .home-practices h3{font-size:14px}.home-practices p{font-size:12px}.home-human-copy>.button-row{margin-top:22px}.senz-home .home-human-link{margin-top:21px;padding-top:18px}.home-human-link strong{font-size:10px}.home-human-link small{font-size:10px}.home-human-link>img{width:40px;height:40px}}
+@media(max-width:360px){.senz-home .home-human h2{font-size:36px}.home-human-link{gap:9px}.home-human-link strong{font-size:9px}.home-human-link small{font-size:9px}}
