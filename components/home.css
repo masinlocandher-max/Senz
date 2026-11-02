@@ -183,7 +183,7 @@ body.senz-unified .home-full-catalog>summary{background:#f6f8fb;box-shadow:none;
 .senz-home .home-round-arrow{color:var(--home-blue);border-color:#c4d3f3}
 .senz-home .home-products{background:linear-gradient(165deg,#e1ebff,#edf3ff 55%,#d6e3ff)}
 .senz-home .home-product-card{background:#ffffffd9;border:1px solid #bdceef;border-top:3px solid var(--home-blue);border-radius:14px;padding:10px;box-shadow:0 10px 25px #01052208}
-.senz-home .home-product-art{background:linear-gradient(135deg,#dce7ff,#edf3ff);border:1px solid #d1ddf3;border-radius:8px}
+.senz-home .home-product-card .home-product-art{background:linear-gradient(135deg,#dce7ff,#edf3ff);border:1px solid #d1ddf3;border-radius:8px}
 .senz-home .home-product-card .home-card-copy{padding:17px 8px 8px}
 .senz-home .home-card-link{color:#0034d4}
 body.senz-unified .home-full-catalog>summary{background:#fff;border-color:#b4c7ed;border-left:4px solid #003df9}
@@ -207,7 +207,7 @@ body.senz-unified .home-partners .button.primary{background:#fff;color:#010522;b
 .senz-home .home-closing .home-label{justify-content:center}
 .senz-home .home-starting-points>a{background:#edf3fff2;border-top:3px solid #7b9cff}
 .senz-home .home-starting-points>a>.home-icon{color:var(--home-blue)}
-body.senz-unified.senz-home .button.primary,body.senz-unified.senz-home .senz-start{background:linear-gradient(120deg,#003df9,#002dbb);border-color:#0034d4;box-shadow:0 4px 8px #01052215,0 10px 22px #003df92b}
+body.senz-unified.senz-home .button.primary,body.senz-unified.senz-home .senz-global-header .senz-start{background:linear-gradient(120deg,#003df9,#002dbb);border-color:#0034d4;box-shadow:0 4px 8px #01052215,0 10px 22px #003df92b}
 body.senz-unified.senz-home .home-partners .button.primary{background:#fff;border-color:#fff;color:#010522}
 body.senz-unified.senz-home .senz-global-header{background:#edf3ff;border-bottom:1px solid #bfd0f3}
 body.senz-unified.senz-home .senz-global-header .senz-global-nav{background:transparent}
