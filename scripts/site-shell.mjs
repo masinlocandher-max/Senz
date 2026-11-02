@@ -52,5 +52,5 @@ export function applySiteShell(html, file) {
   // Pages/CDN caches old script URLs. Update the revision when changing the public journey.
   const changedAsset = /(components\/(?:navigation\.(?:css|js)|experience\.css|signature\.css|signature-motion\.js|partner-program\.css|launch-polish\.css|chat-support\.js|cost-(?:model|planner)\.js|discovery(?:-model)?\.js|approved-pages\.js|form-router\.js|purchase\.js|commerce\.css))(?:\?v=[^"']*)?(?=["'])/g;
   return normalizeControlIcons(result.replace(changedAsset, '$1?v=20261102-organized-v1')
-    .replace(/(components\/signature-motion\.js)\?v=[^"']*/g, '$1?v=20261102-editorial-v1'));
+    .replace(/(components\/(?:signature-motion|legit-site)\.js)\?v=[^"']*/g, '$1?v=20261102-editorial-v1'));
 }

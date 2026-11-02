@@ -19,4 +19,21 @@ Correct emblem, more whitespace, readable body copy, actual app evidence, honest
 
 ## Verification ledger
 
-Pending implementation comparison, mobile/browser journeys, repository checks, cross-repository validation, CI and production verification. Record these separately.
+The native browser was used for visual and interaction review. A temporary iframe harness supplied 320px and 390px rendering because this browser API does not expose viewport resizing; the harness is removed from the deliverable. Both widths had equal document/client width, with no horizontal overflow. A full desktop capture was made at 1348px. The supplied reference is 640px wide; the implementation preserves its desktop art direction and deliberately reflows at small widths instead of shrinking desktop text.
+
+| Comparison | Reference / intended result | Implementation and repair |
+| --- | --- | --- |
+| Identity | The user explicitly rejects the reference logo | Original blue emblem retained byte-for-byte; no generated replacement. Header/footer wordmark spacing made consistent. |
+| Hero copy | Influence through clarity; message connected to useful tools | Headline and body match; code-native text, two visible CTAs. Above-fold copy review finds only intentional preview attribution and existing navigation differences. |
+| Typography | Large navy editorial serif with clean interface text | Georgia headings with local Inter body/controls; phone headline wraps without clipping. |
+| Palette | White, blue-gray rental, navy app, warm partnership, navy closing/footer | Matched section rhythm. First review found a pale inherited footer; corrected to navy with high-contrast links. |
+| Imagery | Devices, sample sites, product views, architectural closing | Hero based on existing CRM/Booking screens; exact mobile app screen; fictional site directions and catalog imagery labeled as previews. No photograph overlay on hero. |
+| Buttons/icons | Raised rounded controls; consistent outline icons | Controls remain in document flow; 24-unit outline SVG family, no emoji. |
+| Customer journey | Rental then products, app, partnership, process, choice | All present. Complete catalog preserved in a native disclosure. Style cards select the corresponding supported website example. |
+| Accessibility | Readable, predictable controls | Fixed three low-contrast partnership numbers and removed overriding template-card labels that failed visible-label matching. Native menu/Escape, disclosure and Get Started path verified. |
+
+Material visual corrections: correct emblem, navy footer, consistent wordmark spacing, distinct catalog sample objects, visible disclosure chevron, darker partnership numbering, and matching website-example destinations. Remaining differences from the reference are intentional: more whitespace/readable text, simpler static cards, existing navigation, real app evidence, no unsupported trust/security claims, and accurate unreleased/quote-only notices.
+
+Local source/catalog checks and all 47 unit/integration tests passed. Cross-repository capability/commercial/routing validation passed using the reviewed sibling projections. Native browser checks reached the seven-question discovery screen and the existing-client support entrance; no real inquiry was submitted. Local automated Chromium could not start. Hosted run 41368506209 passed source/unit/generated-output checks, then identified the contrast and visible-label issues above; fixes require a fresh hosted browser run before merge. CI and production status are recorded in the pull request, not inferred from local screenshots.
+
+Generated asset provenance: built-in Image Gen. `assets/senz-connected-workspace.webp`: sunlit stone desk, laptop with supplied SENZ CRM sample screen, phone with supplied Booking sample screen, original emblem as reference, no added promotional text. `assets/senz-catalog-sample.webp`: fictional four-object studio catalog (ivory vase, linen throw, walnut bowl, fluted glass), no text or prices. Both are illustrative, not client premises or merchandise.

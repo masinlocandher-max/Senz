@@ -107,11 +107,15 @@
       const heading = host.querySelector('h2'); if (heading) { heading.tabIndex = -1; if (focus) heading.focus(); }
     }
     render(false);
-    document.querySelectorAll('[data-example]').forEach(control => control.addEventListener('click', () => {
-      const kind = control.dataset.example;
-      document.querySelectorAll('[data-example]').forEach(b => b.setAttribute('aria-pressed', String(b === control)));
-      document.querySelectorAll('[data-example-panel]').forEach(p => { p.hidden = p.dataset.examplePanel !== kind; });
-      track('example', { configuration: kind });
-    }));
+    const exampleControls = [...document.querySelectorAll('[data-example]')];
+    function selectExample(kind, record = false) {
+      if (!exampleControls.some(control => control.dataset.example === kind)) return;
+      exampleControls.forEach(control => control.setAttribute('aria-pressed', String(control.dataset.example === kind)));
+      document.querySelectorAll('[data-example-panel]').forEach(panel => { panel.hidden = panel.dataset.examplePanel !== kind; });
+      if (record) track('example', { configuration: kind });
+    }
+    exampleControls.forEach(control => control.addEventListener('click', () => selectExample(control.dataset.example, true)));
+    // Homepage style cards open their matching example; unknown values keep the default.
+    selectExample(new URLSearchParams(location.search).get('example'));
   }).catch(() => { if (host) { host.replaceChildren(node('h2', 'Tell us what you want to build.'), node('p', 'The setup guide could not load. You can still send your requirements to SENZ.'), link('Request a website quote', '/contact.html?interest=Legit%20Official%20Site')); } });
 })();

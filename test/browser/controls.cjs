@@ -36,6 +36,11 @@ const catalog = require('../../components/product-catalog.json');
     assert.ok(await page.locator('.app-menu-available').isVisible());
     await page.goto(`${base}/index.html`);
     assert.equal(await page.locator('.home-product-groups li').count(), catalog.products.length);
+    await page.locator('.home-template-card').nth(1).click();
+    await page.waitForURL(/legit-official-site\/\?example=business#website-examples/);
+    await page.waitForFunction(() => document.querySelector('[data-example="business"]').getAttribute('aria-pressed') === 'true');
+    assert.ok(await page.locator('#example-business').isVisible());
+    await page.goto(`${base}/index.html`);
     const flow = await page.evaluate(() => {
       const hero = document.querySelector('.home-opening');
       const sections = [...document.querySelector('main').children];
